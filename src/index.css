@@ -76,3 +76,33 @@ body {
   border-radius: 16px;
   margin-top: 20px;
 }
+
+.home {
+  width: 100vw;
+  height: calc(100vh - 80px); /* 헤더 제외 */
+  background-image: url('/images/main.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  color: white;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 40px 60px;
+  border-radius: 20px;
+}
+
+.overlay h1 {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.overlay p {
+  font-size: 20px;
+}
