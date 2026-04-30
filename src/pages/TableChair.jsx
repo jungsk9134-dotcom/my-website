@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 const categories = ['전체상품', '베스트', '텐트·타프', '침낭·매트', '테이블·의자', '랜턴·화로']
 
 const products = Array.from({ length: 11 }, (_, i) => ({
@@ -9,6 +11,7 @@ const products = Array.from({ length: 11 }, (_, i) => ({
 }))
 
 function TableChair() {
+    const navigate = useNavigate()
   return (
     <main className="product-page">
       <section className="product-hero">
@@ -44,7 +47,11 @@ function TableChair() {
 
         <div className="product-grid">
           {products.map((item) => (
-            <article className="product-card" key={item.id}>
+            <article
+  className="product-card"
+  key={item.id}
+  onClick={() => item.id === 1 && navigate(`/product/${item.id}`)}
+>
               <div className={`product-img ${item.soldout ? 'soldout' : ''}`}>
                 {item.soldout && <span>Soldout</span>}
               </div>

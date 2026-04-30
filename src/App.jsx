@@ -7,6 +7,7 @@ import Board from './pages/Board'
 import BoardDetail from './pages/BoardDetail'
 import BoardWrite from './pages/BoardWrite'
 import TableChair from './pages/TableChair'
+import ProductDetail from './pages/ProductDetail'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/board/:id" element={<BoardDetail />} />
         <Route path="/board/write" element={<BoardWrite />} />
         <Route path="/table-chair" element={<TableChair />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
       </Routes>
     </>
   )
