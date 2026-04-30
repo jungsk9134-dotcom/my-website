@@ -6,7 +6,7 @@ const products = [
     name: '캠핑 테이블',
     price: '15,000원',
     oldPrice: '30,000원',
-    image: '/images/products/테이블_제품컷.jpg',
+    image: '/images/products/table1.jpg',
   },
 ]
 

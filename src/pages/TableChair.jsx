@@ -6,9 +6,9 @@ const products = Array.from({ length: 11 }, (_, i) => ({
   id: i + 1,
   name: i === 0 ? '캠핑 테이블' : 'Name',
   oldPrice: '29,000',
-  price: '24,000',
-  image: i === 0 ? '/images/products/테이블_제품컷.jpg',
+  price: '24,000', 
   soldout: i === 10,
+  image: i === 0 ? '/images/products/table1.jpg' : '',
 }))
 
 function TableChair() {
