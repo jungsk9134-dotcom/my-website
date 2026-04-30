@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom'
 function Header() {
   return (
     <header className="campora-header">
-      <Link to="/" className="logo">campora</Link>
+      <Link to="/" className="logo">CAMPORA</Link>
 
       <nav className="campora-nav">
-        <Link to="/">브랜드</Link>
-        <Link to="/">큐레이션</Link>
-        <Link to="/">텐트·타프</Link>
-        <Link to="/">침낭·매트</Link>
-        <Link to="/table-chair">테이블·의자</Link>
-        <Link to="/">랜턴·화로</Link>
+        <Link to="/brand">Brand</Link>
+        <Link to="/">Curation</Link>
+        <Link to="/">tant · tarps</Link>
+        <Link to="/">Sleeping Bag · mat</Link>
+        <Link to="/table-chair">Table · Chair</Link>
+        <Link to="/">Lantern · stove</Link>
       </nav>
 
       <div className="header-icons">

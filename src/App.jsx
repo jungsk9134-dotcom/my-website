@@ -3,6 +3,7 @@ import Header from './components/Header'
 import Home from './pages/Home'
 import TableChair from './pages/TableChair'
 import ProductDetail from './pages/ProductDetail'
+import Brand from "./pages/Brand";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/brand" element={<Brand />} />
         <Route path="/table-chair" element={<TableChair />} />
         <Route path="/product/:id" element={<ProductDetail />} />
       </Routes>

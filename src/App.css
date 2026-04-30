@@ -269,3 +269,172 @@
   align-items: center;
   justify-content: center;
 }
+
+
+/* 26.04.30 21:55 (시작) */
+.brand-page {
+  width: 100%;
+  background: #fff;
+  color: #111;
+  font-family: Arial, sans-serif;
+}
+
+.brand-hero {
+  height: 230px;
+  background: #b8eabc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-hero h1 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 28px;
+}
+
+.brand-hero p {
+  font-size: 10px;
+}
+
+.brand-intro {
+  text-align: center;
+  padding: 45px 20px 40px;
+}
+
+.brand-intro h2 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 18px;
+}
+
+.brand-intro p {
+  font-size: 12px;
+}
+
+.brand-story {
+  width: 88%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px 48px;
+  align-items: center;
+}
+
+.story-img {
+  height: 210px;
+  background: #d9d9d9;
+}
+
+.story-text {
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.story-text.left {
+  padding-left: 10px;
+}
+
+.brand-values {
+  text-align: center;
+  padding: 60px 6% 40px;
+}
+
+.brand-values h2,
+.brand-gallery h2 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 36px;
+}
+
+.value-list {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+}
+
+.value-card {
+  width: 120px;
+  text-align: center;
+}
+
+.value-card div {
+  height: 80px;
+  background: #d9d9d9;
+  margin-bottom: 15px;
+}
+
+.value-card h3 {
+  font-size: 10px;
+  margin-bottom: 8px;
+}
+
+.value-card p {
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.brand-gallery {
+  text-align: center;
+  padding: 40px 6% 70px;
+}
+
+.gallery-list {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+}
+
+.gallery-list div {
+  width: 28%;
+  height: 105px;
+  background: #d9d9d9;
+}
+
+.brand-message {
+  background: #b8eabc;
+  text-align: center;
+  padding: 70px 20px;
+}
+
+.brand-message h2 {
+  font-size: 18px;
+  line-height: 1.55;
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+
+.brand-message p {
+  font-size: 13px;
+}
+
+.brand-footer {
+  height: 110px;
+  background: #555;
+  color: #111;
+  font-size: 12px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 25px;
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+  .brand-story {
+    grid-template-columns: 1fr;
+  }
+
+  .value-list {
+    gap: 18px;
+  }
+
+  .value-card {
+    width: 80px;
+  }
+
+  .gallery-list {
+    gap: 18px;
+  }
+}

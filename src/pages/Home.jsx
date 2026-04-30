@@ -4,7 +4,7 @@ function Home() {
       <section className="hero-section"></section>
 
       <section className="category-section">
-        {['베스트', '텐트·타프', '침낭·매트', '테이블·의자', '랜턴·화로'].map((item) => (
+        {['Best', 'Tent · Tarp', 'Sleep Bag · Met', 'Table · Chair', 'Lantern · stove'].map((item) => (
           <div className="category-item" key={item}>
             <div className="category-circle"></div>
             <p>{item}</p>
