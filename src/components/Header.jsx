@@ -7,11 +7,11 @@ function Header() {
 
       <nav className="campora-nav">
         <Link to="/">브랜드</Link>
-        <Link to="/gallery">큐레이션</Link>
         <Link to="/gallery">텐트·타프</Link>
         <Link to="/gallery">침낭·매트</Link>
-        <Link to="/gallery">테이블·의자</Link>
-        <Link to="/board">랜턴·화로</Link>
+        <Link to="/table-chair">테이블·의자</Link>
+        <Link to="/gallery">랜턴·화로</Link>
+        <Link to="/board">큐레이션</Link>
       </nav>
 
       <div className="header-icons">

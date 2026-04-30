@@ -6,6 +6,7 @@ import Gallery from './pages/Gallery'
 import Board from './pages/Board'
 import BoardDetail from './pages/BoardDetail'
 import BoardWrite from './pages/BoardWrite'
+import TableChair from './pages/TableChair'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/board" element={<Board />} />
         <Route path="/board/:id" element={<BoardDetail />} />
         <Route path="/board/write" element={<BoardWrite />} />
+        <Route path="/table-chair" element={<TableChair />} />
       </Routes>
     </>
   )
