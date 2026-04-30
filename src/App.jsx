@@ -4,6 +4,8 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Gallery from './pages/Gallery'
 import Board from './pages/Board'
+import BoardDetail from './pages/BoardDetail'
+import BoardWrite from './pages/BoardWrite'
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/board" element={<Board />} />
+        <Route path="/board/:id" element={<BoardDetail />} />
+        <Route path="/board/write" element={<BoardWrite />} />
       </Routes>
     </>
   )

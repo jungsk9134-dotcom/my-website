@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 const posts = [
   {
     id: 1,
@@ -37,16 +39,23 @@ const posts = [
 ]
 
 function Board() {
+  const navigate = useNavigate()
   return (
     <main className="board-page">
       <section className="board-header">
         <h2>공지사항</h2>
         <p>공지사항입니다.</p>
+        <button className="write-btn" onClick={() => navigate('/board/write')}>
+  글쓰기
+</button>
       </section>
 
       <section className="board-list">
         {posts.map((post) => (
-          <div className="board-row" key={post.id}>
+          <div className="board-row"
+           key={post.id}
+           onClick={() => navigate(`/board/${post.id}`)}
+           >
             <strong className="board-title">{post.title}</strong>
 
             <div className="board-info">
