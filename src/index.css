@@ -707,6 +707,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .product-img img {
   width: 100%;

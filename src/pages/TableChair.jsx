@@ -4,10 +4,10 @@ const categories = ['전체상품', '베스트', '텐트·타프', '침낭·매�
 
 const products = Array.from({ length: 11 }, (_, i) => ({
   id: i + 1,
-  name: '캠핑 테이블',
+  name: i === 0 ? '캠핑 테이블' : 'Name',
   oldPrice: '29,000',
   price: '24,000',
-  image: '/images/products/테이블_제품컷.jpg',
+  image: i === 0 ? '/images/products/테이블_제품컷.jpg',
   soldout: i === 10,
 }))
 
