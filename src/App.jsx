@@ -7,6 +7,8 @@ import Sleep from './pages/Sleep'
 import Lantern from './pages/Lantern'
 import ProductDetail from './pages/ProductDetail'
 import Brand from "./pages/Brand";
+import Search from './pages/Search'
+import Cart from './pages/Cart'
 import Curation from './pages/Curation'
 import CurationFire from './pages/CurationFire'
 import CurationCar from './pages/CurationCar'
@@ -20,6 +22,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/brand" element={<Brand />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/curation" element={<Curation />} />
         <Route path="/curation/fire" element={<CurationFire />} />
         <Route path="/curation/car" element={<CurationCar />} />

@@ -438,3 +438,12 @@
     gap: 18px;
   }
 }
+
+/* 돋보기,장바구니 영역 */
+.header-icons a {
+  margin-left: 16px;
+  font-size: 18px;
+  text-decoration: none;
+  color: #111;
+  cursor: pointer;
+}

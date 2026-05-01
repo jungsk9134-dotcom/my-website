@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import './Home.css'
 
 function Home() {
   return (
@@ -83,7 +84,9 @@ function Home() {
           </p>
         </div>
 
-        <button className="brand-btn">브랜드 스토리 보러가기 →</button>
+        <Link to="/brand" className="brand-btn">
+         브랜드 스토리 보러가기 →
+        </Link>
       </section>
 
       <footer className="campora-footer"></footer>

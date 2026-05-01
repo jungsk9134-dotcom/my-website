@@ -15,8 +15,8 @@ function Header() {
       </nav>
 
       <div className="header-icons">
-        <span>⌕</span>
-        <span>🛒</span>
+        <Link to="/search">⌕</Link>
+        <Link to="/cart">🛒</Link>
       </div>
     </header>
   )
