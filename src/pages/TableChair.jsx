@@ -1,15 +1,72 @@
 import { useNavigate } from 'react-router-dom'
+import './TableChair.css'
 
 const categories = ['전체상품', '베스트', '텐트·타프', '침낭·매트', '테이블·의자', '랜턴·화로']
 
-const products = Array.from({ length: 11 }, (_, i) => ({
-  id: i + 1,
-  name: i === 0 ? '캠핑 테이블' : 'Name',
-  oldPrice: '29,000',
-  price: '24,000', 
-  soldout: i === 10,
-  image: i === 0 ? '/images/products/table1.jpg' : '',
-}))
+const products = [
+  {
+    id: 1,
+    name: '캠핑 테이블',
+    oldPrice: 29000,
+    price: 24000,
+    discount: 20,
+    image: '/images/products/table1.jpg',
+    rating: 5.0,
+    review: 12,
+  },
+  {
+    id: 2,
+    name: '폴딩 캠핑 테이블',
+    oldPrice: '35,000',
+    price: '28,000',
+    image: '/images/products/table2.png',
+  },
+  {
+    id: 3,
+    name: '경량 알루미늄 테이블',
+    oldPrice: '45,000',
+    price: '39,000',
+    image: '/images/products/table3.png',
+  },
+  {
+    id: 4,
+    name: '미니 캠핑 테이블',
+    oldPrice: '22,000',
+    price: '18,000',
+    image: '/images/products/table1.jpg',
+  },
+  {
+    id: 5,
+    name: '우드 감성 테이블',
+    oldPrice: '60,000',
+    price: '52,000',
+    image: '/images/products/table2.png',
+  },
+    {
+    id: 6,
+    name: '경량 알루미늄 테이블',
+    oldPrice: '45,000',
+    price: '39,000',
+    image: '/images/products/table3.png',
+  },
+  {
+    id: 7,
+    name: '미니 캠핑 테이블',
+    oldPrice: '22,000',
+    price: '18,000',
+    image: '/images/products/table1.jpg',
+  },
+  {
+    id: 8,
+    name: '우드 감성 테이블',
+    oldPrice: '60,000',
+    price: '52,000',
+    image: '/images/products/table2.png',
+    soldout: true, 
+  },
+]
+
+
 
 function TableChair() {
     const navigate = useNavigate()
@@ -53,8 +110,11 @@ function TableChair() {
   key={item.id}
   onClick={() => item.id === 1 && navigate(`/product/${item.id}`)}
 >
-              <div className={`product-img ${item.soldout ? 'soldout' : ''}`}>
-                {item.image && <img src={item.image} alt={item.name} />}
+              <div className={`product-img ${item.soldout ? 'soldout' : ''}`}
+              style={{
+                 backgroundImage: item.soldout ? 'none' : `url(${item.image})`,
+                }}
+              >
                 {item.soldout && <span>Soldout</span>}
               </div>
 
