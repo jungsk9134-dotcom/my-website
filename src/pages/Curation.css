@@ -55,3 +55,12 @@
     gap: 40px;
   }
 }
+/*불멍-큐레이션 보러가기 버튼 클릭 */
+.curation-link {
+  display: inline-block;
+  background: white;
+  padding: 12px 22px;
+  text-decoration: none;
+  color: #111;
+  font-size: 15px;
+}

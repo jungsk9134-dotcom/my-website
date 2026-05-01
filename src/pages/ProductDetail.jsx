@@ -1,3 +1,4 @@
+import './ProductDetail.css'
 import { useParams } from 'react-router-dom'
 
 const products = [

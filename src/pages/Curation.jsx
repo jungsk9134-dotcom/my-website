@@ -1,4 +1,5 @@
 import './Curation.css'
+import { Link } from 'react-router-dom'
 
 function Curation() {
   return (
@@ -18,7 +19,9 @@ function Curation() {
           불을 바라보는 것만으로 충분한 여행<br />
           불멍의 매력
         </h3>
-        <button>큐레이션 보러가기 →</button>
+        <Link to="/curation/fire" className="curation-link">
+          큐레이션 보러가기 →
+        </Link>
       </section>
 
       <section className="curation-card">
