@@ -1,10 +1,16 @@
 import './CurationFire.css'
+import { useNavigate } from 'react-router-dom'
 
 function CurationFire() {
+    const navigate = useNavigate()
   const products = [1, 2, 3, 4]
 
   return (
+    
     <main className="fire-page">
+        <button className="back-btn" onClick={() => navigate(-1)}>
+         ← 뒤로가기
+        </button>
       <section className="fire-hero">
         <div>
           <h2>

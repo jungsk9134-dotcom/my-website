@@ -29,7 +29,7 @@ function Curation() {
           차만 들고 훌쩍 떠나는<br />
           감성 가득 차박 캠핑
         </h3>
-        <button>큐레이션 보러가기 →</button>
+        <Link to="/curation/car" className="curation-link">큐레이션 보러가기 →</Link>
       </section>
 
       <section className="curation-card">
@@ -37,7 +37,7 @@ function Curation() {
           극강의 미니멀리즘<br />
           미니멀캠핑
         </h3>
-        <button>큐레이션 보러가기 →</button>
+        <Link to="/curation/minimal" className="curation-link">큐레이션 보러가기 →</Link>
       </section>
 
       <footer className="campora-footer"></footer>

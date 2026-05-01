@@ -35,7 +35,9 @@ function Home() {
             <h3>차만 들고 훌쩍 떠나는<br />감성 가득 차박 캠핑</h3>
             <div>
               <p>text</p>
-              <button>자세히보기 →</button>
+              <Link to="/curation/car" className="life-link">
+                자세히보기 →
+              </Link>
             </div>
           </div>
 
@@ -43,7 +45,9 @@ function Home() {
             <h3>극강의 미니멀리즘<br />미니멀캠핑</h3>
             <div>
               <p>text</p>
-              <button>자세히보기 →</button>
+              <Link to="/curation/minimal" className="life-link">
+               자세히보기 →
+              </Link>
             </div>
           </div>
         </div>
