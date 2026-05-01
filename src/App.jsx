@@ -5,6 +5,7 @@ import TableChair from './pages/TableChair'
 import ProductDetail from './pages/ProductDetail'
 import Brand from "./pages/Brand";
 import Curation from './pages/Curation'
+import CurationFire from './pages/CurationFire'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/brand" element={<Brand />} />
         <Route path="/curation" element={<Curation />} />
+        <Route path="/curation/fire" element={<CurationFire />} />
         <Route path="/table-chair" element={<TableChair />} />
         <Route path="/product/:id" element={<ProductDetail />} />
       </Routes>

@@ -1,0 +1,57 @@
+/* 큐레이션 페이지 */
+.curation-page {
+  background: #fff;
+}
+
+.curation-hero {
+  height: 360px;
+  background: #b7e7bc;
+  display: flex;
+  align-items: center;
+  padding-left: 11%;
+}
+
+.curation-hero h2 {
+  font-size: 26px;
+  line-height: 1.35;
+  margin: 0 0 170px;
+}
+
+.curation-hero p {
+  font-size: 16px;
+  color: #555;
+}
+
+.curation-card {
+  height: 280px;
+  background: #d9d9d9;
+  margin-bottom: 16px;
+  padding: 80px 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.curation-card h3 {
+  font-size: 27px;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.curation-card button {
+  border: none;
+  background: white;
+  padding: 12px 22px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .curation-card {
+    height: auto;
+    min-height: 240px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+}

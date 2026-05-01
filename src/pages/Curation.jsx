@@ -1,3 +1,5 @@
+import './Curation.css'
+
 function Curation() {
   return (
     <main className="curation-page">

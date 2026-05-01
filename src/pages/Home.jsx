@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 function Home() {
   return (
     <main className="campora-home">
@@ -23,7 +25,9 @@ function Home() {
             <h3>불을 바라보는 것만으로 충분한 여행<br />불멍의 매력</h3>
             <div>
               <p>text</p>
-              <button>자세히보기 →</button>
+              <Link to="/curation/fire" className="life-link">
+                자세히보기 →
+              </Link>
             </div>
           </div>
 
