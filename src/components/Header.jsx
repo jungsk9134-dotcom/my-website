@@ -7,7 +7,7 @@ function Header() {
 
       <nav className="campora-nav">
         <Link to="/brand">Brand</Link>
-        <Link to="/">Curation</Link>
+        <Link to="/curation">Curation</Link>
         <Link to="/">tant · tarps</Link>
         <Link to="/">Sleeping Bag · mat</Link>
         <Link to="/table-chair">Table · Chair</Link>

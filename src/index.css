@@ -878,3 +878,156 @@ body {
   height: 220px;
   background: #555;
 }
+/* 상세페이지-리뷰,상품구매안내,Q&A 영역 */
+.review-area,
+.info-area,
+.qa-area {
+  max-width: 780px;
+  margin: 0 auto 90px;
+}
+
+.review-area h3,
+.info-area h3,
+.qa-area h3 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 50px;
+}
+
+.review-summary {
+  height: 110px;
+  background: #d9d9d9;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 70px;
+  margin-bottom: 45px;
+}
+
+.review-summary p {
+  margin: 0 0 10px;
+}
+
+.review-row {
+  min-height: 92px;
+  border-top: 1px solid #aaa;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-row:last-of-type {
+  border-bottom: 1px solid #aaa;
+}
+
+.review-row p {
+  margin: 4px 0;
+  font-size: 12px;
+}
+
+.review-thumb {
+  width: 70px;
+  height: 70px;
+  background: #d9d9d9;
+}
+
+.review-pages {
+  text-align: center;
+  margin-top: 42px;
+  font-size: 13px;
+}
+
+.info-area {
+  margin-top: 130px;
+}
+
+.info-row {
+  min-height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-row p {
+  font-size: 11px;
+  margin-top: 12px;
+}
+
+.qa-area {
+  min-height: 300px;
+  position: relative;
+}
+
+.qa-area p {
+  text-align: center;
+  margin-top: 90px;
+}
+
+.qa-area button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 145px;
+  height: 42px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+}
+
+/* 큐레이션 페이지 */
+.curation-page {
+  background: #fff;
+}
+
+.curation-hero {
+  height: 360px;
+  background: #b7e7bc;
+  display: flex;
+  align-items: center;
+  padding-left: 11%;
+}
+
+.curation-hero h2 {
+  font-size: 26px;
+  line-height: 1.35;
+  margin: 0 0 170px;
+}
+
+.curation-hero p {
+  font-size: 16px;
+  color: #555;
+}
+
+.curation-card {
+  height: 280px;
+  background: #d9d9d9;
+  margin-bottom: 16px;
+  padding: 80px 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.curation-card h3 {
+  font-size: 27px;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.curation-card button {
+  border: none;
+  background: white;
+  padding: 12px 22px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .curation-card {
+    height: auto;
+    min-height: 240px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+}
