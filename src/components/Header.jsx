@@ -8,10 +8,10 @@ function Header() {
       <nav className="campora-nav">
         <Link to="/brand">Brand</Link>
         <Link to="/curation">Curation</Link>
-        <Link to="/">tant · tarps</Link>
-        <Link to="/">Sleeping Bag · mat</Link>
+        <Link to="/tent">tent.tarps</Link>
+        <Link to="/sleep">sleeping bag.mat</Link>
         <Link to="/table-chair">Table · Chair</Link>
-        <Link to="/">Lantern · stove</Link>
+        <Link to="/lantern">lantern.stove</Link>
       </nav>
 
       <div className="header-icons">

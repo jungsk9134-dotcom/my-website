@@ -2,6 +2,9 @@ import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Home from './pages/Home'
 import TableChair from './pages/TableChair'
+import Tent from './pages/Tent'
+import Sleep from './pages/Sleep'
+import Lantern from './pages/Lantern'
 import ProductDetail from './pages/ProductDetail'
 import Brand from "./pages/Brand";
 import Curation from './pages/Curation'
@@ -22,6 +25,9 @@ function App() {
         <Route path="/curation/car" element={<CurationCar />} />
         <Route path="/curation/minimal" element={<CurationMinimal />} />
         <Route path="/table-chair" element={<TableChair />} />
+        <Route path="/tent" element={<Tent />} />
+        <Route path="/sleep" element={<Sleep />} />
+        <Route path="/lantern" element={<Lantern />} />
         <Route path="/product/:id" element={<ProductDetail />} />
       </Routes>
     </>
