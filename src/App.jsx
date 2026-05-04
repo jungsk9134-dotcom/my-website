@@ -1,10 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Home from './pages/Home'
-import TableChair from './pages/TableChair'
-import Tent from './pages/Tent'
-import Sleep from './pages/Sleep'
-import Lantern from './pages/Lantern'
 import ProductDetail from './pages/ProductDetail'
 import Brand from "./pages/Brand";
 import Search from './pages/Search'
