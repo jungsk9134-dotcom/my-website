@@ -1,12 +1,22 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './TableChair.css'
 
-const categories = ['전체상품', '베스트', '텐트·타프', '침낭·매트', '테이블·의자', '랜턴·화로']
+const categories = [
+  { name: '전체상품', path: '/' },
+  { name: '베스트', path: '/best' },
+  { name: '텐트·타프', path: '/tent' },
+  { name: '침낭·매트', path: '/sleep' },
+  { name: '테이블·의자', path: '/table-chair' },
+  { name: '랜턴·화로', path: '/lantern' },
+]
 
 const products = [
   {
     id: 1,
     name: '캠핑 테이블',
+    category: 'table-chair',
+    subCategory: 'table',
     oldPrice: 29000,
     price: 24000,
     discount: 20,
@@ -17,23 +27,29 @@ const products = [
   {
     id: 2,
     name: '폴딩 캠핑 테이블',
+    category: 'table-chair',
+    subCategory: 'table',
     oldPrice: '35,000',
     price: '28,000',
     image: '/images/products/table2.png',
   },
   {
     id: 3,
-    name: '경량 알루미늄 테이블',
-    oldPrice: '45,000',
+    name: '루핏 좌식 의자',
+    category: 'table-chair',
+    subCategory: 'chair',
+    oldPrice: '62,000',
     price: '39,000',
-    image: '/images/products/table3.png',
+    image: '/images/products/chair1.png',
   },
   {
     id: 4,
-    name: '미니 캠핑 테이블',
-    oldPrice: '22,000',
-    price: '18,000',
-    image: '/images/products/table1.jpg',
+    name: '캠포라 릴렉스 체어',
+    category: 'table-chair',
+    subCategory: 'chair',
+    oldPrice: '59,000',
+    price: '35,000',
+    image: '/images/products/chair2.png',
   },
   {
     id: 5,
@@ -69,7 +85,13 @@ const products = [
 
 
 function TableChair() {
-    const navigate = useNavigate()
+  const navigate = useNavigate()
+  const [filter, setFilter] = useState('all')
+
+  const filteredProducts = products.filter((item) => {
+    if (filter === 'all') return item.category === 'table-chair'
+    return item.category === 'table-chair' && item.subCategory === filter
+  })
   return (
     <main className="product-page">
       <section className="product-hero">
@@ -81,16 +103,21 @@ function TableChair() {
 
       <section className="product-category">
         {categories.map((item) => (
-          <div className="product-category-item" key={item}>
+          <div 
+          className="product-category-item" 
+          key={item.name}
+          onClick={() => navigate(item.path)}
+          style={{ cursor: 'pointer' }}
+          >
             <div className="product-category-circle"></div>
-            <p>{item}</p>
+            <p>{item.name}</p>
           </div>
         ))}
       </section>
 
       <section className="product-wrap">
         <div className="product-top">
-          <p>전체 nn개</p>
+          <p>전체 {filteredProducts.length}개</p>
 
           <div className="product-filter">
             <label><input type="checkbox" /> 무료배송</label>
@@ -102,9 +129,31 @@ function TableChair() {
             </select>
           </div>
         </div>
+        <div className="sub-filter">
+  <button
+    className={filter === 'all' ? 'active' : ''}
+    onClick={() => setFilter('all')}
+  >
+    전체
+  </button>
+
+  <button
+    className={filter === 'table' ? 'active' : ''}
+    onClick={() => setFilter('table')}
+  >
+    테이블
+  </button>
+
+  <button
+    className={filter === 'chair' ? 'active' : ''}
+    onClick={() => setFilter('chair')}
+  >
+    의자
+  </button>
+</div>
 
         <div className="product-grid">
-          {products.map((item) => (
+          {filteredProducts.map((item) => (
             <article
   className="product-card"
   key={item.id}

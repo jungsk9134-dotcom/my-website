@@ -1,6 +1,13 @@
 import { useNavigate } from 'react-router-dom'
 
-const categories = ['전체상품', '베스트', '텐트·타프', '침낭·매트', '테이블·의자', '랜턴·화로']
+const categories = [
+  { name: '전체상품', path: '/' },
+  { name: '베스트', path: '/best' },
+  { name: '텐트·타프', path: '/tent' },
+  { name: '침낭·매트', path: '/sleep' },
+  { name: '테이블·의자', path: '/table-chair' },
+  { name: '랜턴·화로', path: '/lantern' },
+]
 
 const products = Array.from({ length: 11 }, (_, i) => ({
   id: i + 1,
@@ -25,9 +32,14 @@ function Tent() {
 
       <section className="product-category">
         {categories.map((item) => (
-          <div className="product-category-item" key={item}>
+          <div 
+            className="product-category-item" 
+            key={item.name}
+            onClick={() => navigate(item.path)}
+            style={{ cursor: 'pointer' }}
+          >
             <div className="product-category-circle"></div>
-            <p>{item}</p>
+            <p>{item.name}</p>
           </div>
         ))}
       </section>
