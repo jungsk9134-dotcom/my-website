@@ -13,6 +13,7 @@ import Curation from './pages/Curation'
 import CurationFire from './pages/CurationFire'
 import CurationCar from './pages/CurationCar'
 import CurationMinimal from './pages/CurationMinimal'
+import CategoryPage from './pages/CategoryPage'
 
 function App() {
   return (
@@ -28,11 +29,8 @@ function App() {
         <Route path="/curation/fire" element={<CurationFire />} />
         <Route path="/curation/car" element={<CurationCar />} />
         <Route path="/curation/minimal" element={<CurationMinimal />} />
-        <Route path="/table-chair" element={<TableChair />} />
-        <Route path="/tent" element={<Tent />} />
-        <Route path="/sleep" element={<Sleep />} />
-        <Route path="/lantern" element={<Lantern />} />
         <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/category/:type" element={<CategoryPage />} />
       </Routes>
     </>
   )
