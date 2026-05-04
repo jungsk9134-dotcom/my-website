@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { products } from '../data/products'
-import './TableChair.css'
+import './CategoryPage.css'
 
 const categories = [
   { name: '전체상품', path: '/category/all' },
@@ -58,35 +58,35 @@ function CategoryPage() {
   })
 
   return (
-    <main className="product-page">
-      <section className="product-hero">
+    <main className="category-page">
+      <section className="category-hero">
         <p>
           당신의 첫 캠핑부터, 가장 특별했던 순간까지<br />
           Campora와 함께, 당신만의 캠핑을 완성해보세요.
         </p>
       </section>
 
-      <section className="product-category">
+      <section className="category-menu">
         {categories.map((item) => (
           <div
-            className="product-category-item"
+            className="category-menu-item"
             key={item.name}
             onClick={() => {
               setFilter('all')
               navigate(item.path)
             }}
           >
-            <div className="product-category-circle"></div>
+            <div className="category-menu-circle"></div>
             <p>{item.name}</p>
           </div>
         ))}
       </section>
 
-      <section className="product-wrap">
-        <div className="product-top">
+      <section className="category-wrap">
+        <div className="category-top">
           <p>전체 {filteredProducts.length}개</p>
 
-          <div className="product-filter">
+          <div className="category-filter">
             <label>
               <input type="checkbox" /> 무료배송
             </label>
@@ -101,7 +101,7 @@ function CategoryPage() {
         </div>
 
         {type !== 'all' && type !== 'best' && (
-          <div className="sub-filter">
+          <div className="category-sub-filter">
             {currentInfo.filters.map((item) => (
               <button
                 key={item.value}
@@ -114,15 +114,15 @@ function CategoryPage() {
           </div>
         )}
 
-        <div className="product-grid">
+        <div className="category-grid">
           {filteredProducts.map((item) => (
             <article
-              className="product-card"
+              className="category-card"
               key={item.id}
               onClick={() => navigate(`/product/${item.id}`)}
             >
               <div
-                className={`product-img ${item.soldout ? 'soldout' : ''}`}
+                className={`category-img ${item.soldout ? 'soldout' : ''}`}
                 style={{
                   backgroundImage: item.soldout ? 'none' : `url(${item.image})`,
                 }}
@@ -131,10 +131,10 @@ function CategoryPage() {
               </div>
 
               <h3>{item.name}</h3>
-              <p className="old-price">{item.oldPrice}</p>
-              <p className="price">{item.price}</p>
+              <p className="category-old-price">{item.oldPrice}</p>
+              <p className="category-price">{item.price}</p>
 
-              <div className="product-bottom">
+              <div className="category-bottom">
                 <small>★★★★★ 리뷰 0</small>
                 <div>
                   <span>♡</span>
@@ -145,7 +145,7 @@ function CategoryPage() {
           ))}
         </div>
 
-        <button className="more-btn">더보기</button>
+        <button className="category-more-btn">더보기</button>
       </section>
 
       <footer className="campora-footer"></footer>
