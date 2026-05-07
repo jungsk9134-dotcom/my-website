@@ -1,16 +1,30 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Home.css'
 
 function Home() {
+  const navigate = useNavigate()
+
+  const categories = [
+    { name: 'Best', path: '/category/best' },
+    { name: 'Tent · Tarp', path: '/category/tent' },
+    { name: 'Sleep Bag · Met', path: '/category/sleep' },
+    { name: 'Table · Chair', path: '/category/table-chair' },
+    { name: 'Lantern · stove', path: '/category/lantern' },
+  ]
+
   return (
     <main className="campora-home">
       <section className="hero-section"></section>
 
       <section className="category-section">
-        {['Best', 'Tent · Tarp', 'Sleep Bag · Met', 'Table · Chair', 'Lantern · stove'].map((item) => (
-          <div className="category-item" key={item}>
+        {categories.map((item) => (
+          <div
+            className="category-item"
+            key={item.name}
+            onClick={() => navigate(item.path)}
+          >
             <div className="category-circle"></div>
-            <p>{item}</p>
+            <p>{item.name}</p>
           </div>
         ))}
       </section>
@@ -47,7 +61,7 @@ function Home() {
             <div>
               <p>text</p>
               <Link to="/curation/minimal" className="life-link">
-               자세히보기 →
+                자세히보기 →
               </Link>
             </div>
           </div>
@@ -85,7 +99,7 @@ function Home() {
         </div>
 
         <Link to="/brand" className="brand-btn">
-         브랜드 스토리 보러가기 →
+          브랜드 스토리 보러가기 →
         </Link>
       </section>
 

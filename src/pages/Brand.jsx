@@ -1,6 +1,11 @@
+import { useEffect } from 'react'
 import "./Brand.css";
 
 function Brand() {
+  useEffect(() => {
+    window.scrollTo(0,0)
+  },[])
+  
   return (
     <main className="brand">
       <section className="brand-hero">

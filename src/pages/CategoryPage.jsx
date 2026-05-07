@@ -1,15 +1,15 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { products } from '../data/products'
 import './CategoryPage.css'
 
 const categories = [
-  { name: '전체상품', path: '/category/all' },
-  { name: '베스트', path: '/category/best' },
-  { name: '텐트·타프', path: '/category/tent' },
-  { name: '침낭·매트', path: '/category/sleep' },
-  { name: '테이블·의자', path: '/category/table-chair' },
-  { name: '랜턴·화로', path: '/category/lantern' },
+  { name: '전체상품', path: '/category/all', type: 'all' },
+  { name: '베스트', path: '/category/best', type: 'best' },
+  { name: '텐트·타프', path: '/category/tent', type: 'tent' },
+  { name: '침낭·매트', path: '/category/sleep', type: 'sleep' },
+  { name: '테이블·의자', path: '/category/table-chair', type: 'table-chair' },
+  { name: '랜턴·화로', path: '/category/lantern', type: 'lantern' },
 ]
 
 const categoryInfo = {
@@ -48,7 +48,11 @@ function CategoryPage() {
   const { type } = useParams()
   const [filter, setFilter] = useState('all')
 
-  const currentInfo = categoryInfo[type] || categoryInfo['table-chair']
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [type])
+
+  const currentInfo = categoryInfo[type]
 
   const filteredProducts = products.filter((item) => {
     if (type === 'all' || type === 'best') return true
@@ -67,19 +71,27 @@ function CategoryPage() {
       </section>
 
       <section className="category-menu">
-        {categories.map((item) => (
-          <div
-            className="category-menu-item"
-            key={item.name}
-            onClick={() => {
-              setFilter('all')
-              navigate(item.path)
-            }}
-          >
-            <div className="category-menu-circle"></div>
-            <p>{item.name}</p>
-          </div>
-        ))}
+        <div className="category-menu-list">
+          {categories.map((item) => (
+            <div
+              className="category-menu-item"
+              key={item.name}
+              onClick={() => {
+                setFilter('all')
+                navigate(item.path)
+              }}
+            >
+              <div
+                className={
+                  type === item.type
+                    ? 'category-menu-circle active'
+                    : 'category-menu-circle'
+                }
+              ></div>
+              <p>{item.name}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="category-wrap">
@@ -100,7 +112,7 @@ function CategoryPage() {
           </div>
         </div>
 
-        {type !== 'all' && type !== 'best' && (
+        {type !== 'all' && type !== 'best' && currentInfo && (
           <div className="category-sub-filter">
             {currentInfo.filters.map((item) => (
               <button

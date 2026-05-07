@@ -1,0 +1,17 @@
+.cart-icon-wrap {
+  position: relative;
+  text-decoration: none;
+}
+
+.cart-dot {
+  position: absolute;
+
+  right: -2px;
+  bottom: 2px;
+
+  width: 8px;
+  height: 8px;
+
+  background: red;
+  border-radius: 50%;
+}

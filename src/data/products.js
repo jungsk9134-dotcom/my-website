@@ -1,6 +1,42 @@
 export const products = [
   {
     id: 1,
+    name: '쉴드2',
+    category: 'tent',
+    subCategory: 'tent',
+    oldPrice: '455,000',
+    price: '399,900',
+    image: '/images/products/쉴드2.png',
+  },
+  {
+    id: 2,
+    name: 'CAMPORA 에어 텐트',
+    category: 'tent',
+    subCategory: 'tent',
+    oldPrice: '1,489,000',
+    price: '1,199,000',
+    image: '/images/products/air tant.png',
+  },
+  {
+    id: 3,
+    name: 'CAMPORA 실타프 3',
+    category: 'tent',
+    subCategory: 'tarp',
+    oldPrice: '129,000',
+    price: '99,000',
+    image: '/images/products/타프.png',
+  },
+  {
+    id: 4,
+    name: '스크린하우스 타프',
+    category: 'tent',
+    subCategory: 'tarp',
+    oldPrice: '329,000',
+    price: '229,000',
+    image: '/images/products/house tarp.png',
+  },
+  {
+    id: 5,
     name: '캠핑 테이블',
     category: 'table-chair',
     subCategory: 'table',
@@ -9,7 +45,7 @@ export const products = [
     image: '/images/products/table1.jpg',
   },
   {
-    id: 2,
+    id: 6,
     name: '좌식 의자',
     category: 'table-chair',
     subCategory: 'chair',
@@ -18,7 +54,7 @@ export const products = [
     image: '/images/products/chair1.png',
   },
     {
-    id: 3,
+    id: 7,
     name: '좌식 테이블',
     category: 'table-chair',
     subCategory: 'table',
@@ -27,7 +63,7 @@ export const products = [
     image: '/images/products/table2.png',
   },
   {
-    id: 4,
+    id: 8,
     name: '릴렉스 체어',
     category: 'table-chair',
     subCategory: 'chair',
@@ -36,7 +72,7 @@ export const products = [
     image: '/images/products/chair2.png',
   },
   {
-    id: 5,
+    id: 9,
     name: '다운 침낭',
     category: 'sleep',
     subCategory: 'sleeping',
@@ -45,7 +81,7 @@ export const products = [
     image: '/images/products/sleep1.jpg',
   },
   {
-    id: 6,
+    id: 10,
     name: '에어 매트',
     category: 'sleep',
     subCategory: 'mat',
@@ -54,7 +90,7 @@ export const products = [
     image: '/images/products/mat1.jpg',
   },
   {
-    id: 7,
+    id: 11,
     name: '2인용 텐트',
     category: 'tent',
     subCategory: 'tent',
@@ -63,7 +99,7 @@ export const products = [
     image: '/images/products/tent1.jpg',
   },
   {
-    id: 8,
+    id: 12,
     name: '감성 타프',
     category: 'tent',
     subCategory: 'tarp',
@@ -72,7 +108,7 @@ export const products = [
     image: '/images/products/tarp1.jpg',
   },
   {
-    id: 9,
+    id: 13,
     name: 'LED 랜턴',
     category: 'lantern',
     subCategory: 'lantern',
@@ -81,7 +117,7 @@ export const products = [
     image: '/images/products/lantern1.png',
   },
     {
-    id: 10,
+    id: 14,
     name: 'LED 랜턴',
     category: 'lantern',
     subCategory: 'lantern',
@@ -90,7 +126,7 @@ export const products = [
     image: '/images/products/lantern3.png',
   },
   {
-    id: 11,
+    id: 15,
     name: '옥타 파이어 화로대',
     category: 'lantern',
     subCategory: 'stove',
@@ -99,7 +135,7 @@ export const products = [
     image: '/images/products/stove1.png',
   },
     {
-    id: 12,
+    id: 16,
     name: '빈티지 램프',
     category: 'lantern',
     subCategory: 'lantern',
