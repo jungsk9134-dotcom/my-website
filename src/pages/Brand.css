@@ -1,147 +1,351 @@
 .brand {
   width: 100%;
-  background-color: #ffffff;
+  background: #fff;
   color: #111;
   font-family: Arial, sans-serif;
 }
 
-.brand-hero {
+.brand-main-hero {
   width: 100%;
-  height: 260px;
-  background-color: #b8eabb;
-  display: flex;
-  flex-direction: column;
+  height: 130vh;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+
+.brand-main-hero > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-logo-text {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.hero-logo-text img {
+  width: 80px;
+  margin-bottom: 10px;
+}
+
+.hero-logo-text h1 {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.hero-desc {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.hero-desc p {
+  font-size: 12px;
+  line-height: 2;
+  color: #fff;
+}
+
+.brand-story {
+  width: 920px;
+  margin: 80px auto 120px;
+  display: grid;
+  grid-template-columns: 430px 300px;
+  gap: 80px 55px;
   align-items: center;
   justify-content: center;
 }
 
-.brand-hero h1 {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 30px;
-}
-
-.brand-hero p {
-  font-size: 9px;
-}
-
-.brand-intro {
-  text-align: center;
-  padding: 45px 0 40px;
-}
-
-.brand-intro h2 {
-  font-size: 17px;
-  font-weight: 500;
-  margin-bottom: 18px;
-}
-
-.brand-intro p {
-  font-size: 11px;
-}
-
-.brand-story {
-  width: 88%;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 36px 50px;
-  align-items: center;
-}
-
-.box {
-  width: 100%;
-  height: 220px;
-  background-color: #d9d9d9;
+.story-image img {
+  width: 430px;
+  height: 360px;
+  object-fit: cover;
+  display: block;
 }
 
 .story-text {
-  font-size: 10px;
-  line-height: 1.6;
+  width: 260px;
+  margin-left: 0;
 }
 
-.story-text.left {
-  padding-left: 25px;
+.story-left {
+  width: 290px;
+  text-align: right;
+  justify-content: start;
+  margin-right: 0;
+  margin-left: 140px;
+}
+
+.story-image-bottom img{
+  width: 430px;
+  height: 360px;
+  margin-left: 0;
+}
+
+.story-text h2 {
+  font-size: 20px;
+  line-height: 1.45;
+  margin-bottom: 26px;
+  font-weight: 700;
+}
+
+.story-text p {
+  font-size: 11px;
+  line-height: 1.9;
+  color: #333;
 }
 
 .brand-diff {
+  width: 72%;
+  margin: 0 auto 100px;
   text-align: center;
-  padding: 65px 0 45px;
 }
 
 .brand-diff h2,
 .offline h2 {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
-  margin-bottom: 35px;
+  margin-bottom: 55px;
 }
 
 .diff-list {
   display: flex;
   justify-content: center;
-  gap: 36px;
+  gap: 80px;
 }
 
 .diff-item {
-  width: 115px;
+  width: 170px;
   text-align: center;
 }
 
-.diff-item div {
-  height: 80px;
-  background-color: #d9d9d9;
-  margin-bottom: 14px;
+.diff-item img {
+  width: 120px;
+  height: 110px;
+  object-fit: contain;
+  margin-bottom: 20px;
 }
 
 .diff-item h3 {
-  font-size: 10px;
-  margin-bottom: 8px;
+  font-size: 12px;
+  margin-bottom: 10px;
 }
 
 .diff-item p {
-  font-size: 8px;
-  line-height: 1.4;
+  font-size: 10px;
+  line-height: 1.6;
+  color: #333;
 }
 
+.brand-video {
+  width: 72%;
+  margin: 0 auto 120px;
+  position: relative;
+}
+
+.brand-video img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+}
+
+.play-button {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.65);
+  color: #fff;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.brand-mood {
+  width: 920px;
+  margin: 0 auto 160px;
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+}
+
+.mood-grid {
+  width: 650px;
+  display: grid;
+  grid-template-columns: 455px 175px;
+  grid-template-rows: 230px 190px;
+  gap: 14px;
+}
+
+.mood-grid img {
+  object-fit: cover;
+  display: block;
+}
+
+.mood-big {
+  width: 455px;
+  height: 230px;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.mood-small {
+  width: 250px;
+  height: 230px;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+   margin-top: 85px;
+}
+
+.mood-wide {
+  width: 355px;
+  height: 190px;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  margin-left: 100px;
+}
+
+.mood-text {
+  width: 245px;
+  padding-top: 350px;
+  margin-left: -202px;
+}
+
+.mood-text h2 {
+  font-size: 18px;
+  line-height: 1.45;
+  margin-bottom: 28px;
+  font-weight: 700;
+}
+
+.mood-text p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: #333;
+}
 .offline {
+  width: 72%;
+  margin: 0 auto;
+  padding-bottom: 100px;
   text-align: center;
-  padding: 42px 0 72px;
 }
 
 .offline-list {
   display: flex;
   justify-content: center;
-  gap: 34px;
+  gap: 24px;
 }
 
-.offline-list div {
-  width: 28%;
-  height: 105px;
-  background-color: #d9d9d9;
+.offline-item {
+  width: 31%;
+  text-align: left;
 }
 
-.brand-banner {
-  background-color: #b8eabb;
+.offline-item img {
+  width: 100%;
+  height: 145px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.offline-item h3 {
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.offline-item p {
+  font-size: 9px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.hero-logo-text img {
+  width: 500px;
+  height: auto;
+  display: block;
+}
+.brand-bottom-banner {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  margin-top: 80px;
+  overflow: hidden;
+}
+
+.brand-bottom-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 이미지 어둡게 */
+.brand-bottom-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.bottom-banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
   text-align: center;
-  padding: 68px 20px;
+  color: #fff;
 }
 
-.brand-banner h2 {
-  font-size: 17px;
-  line-height: 1.55;
-  margin-bottom: 25px;
+.bottom-banner-text p {
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 24px;
 }
 
-.brand-banner p {
-  font-size: 12px;
+.bottom-banner-text button {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  padding: 10px 32px;
+  font-size: 13px;
+  cursor: pointer;
 }
 
 .brand-footer {
-  height: 110px;
-  background-color: #555;
+  background: #222;
+  color: #fff;
+  padding: 50px 130px 60px;
+}
+
+.brand-footer h2 {
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.footer-links {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 24px;
+  gap: 20px;
+  font-size: 12px;
+  margin-bottom: 22px;
+}
+
+.brand-footer p {
   font-size: 11px;
+  line-height: 1.8;
+  color: #ccc;
 }

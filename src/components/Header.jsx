@@ -1,10 +1,20 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import './Header.css'
 
 function Header({ cartAdded }) {
+
+  const location = useLocation()
+  const isBrandPage = location.pathname === '/brand'
+
   return (
-    <header className="campora-header">
+    <header className={`campora-header ${isBrandPage ? 'brand-header' : ''}`}>
+      
       <Link to="/" className="logo">
-        CAMPORA
+        <img
+          src="/images/logo/logo2.png"
+          alt="campora logo"
+          className="logo-img"
+        />
       </Link>
 
       <nav className="campora-nav">
@@ -21,10 +31,10 @@ function Header({ cartAdded }) {
 
         <Link to="/cart" className="cart-icon-wrap">
           🛒
-
           {cartAdded && <span className="cart-dot"></span>}
         </Link>
       </div>
+
     </header>
   )
 }
