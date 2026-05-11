@@ -1,66 +1,199 @@
 /* 큐레이션 페이지 */
 .curation-page {
-  background: #fff;
+  width: 100%;
+  background: #1f1f1f;
 }
 
+/* 상단 이미지 영역 */
 .curation-hero {
-  height: 360px;
-  background: #b7e7bc;
+  width: 100%;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.curation-hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.curation-hero-dark {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.curation-hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+
+  transform: translate(-50%, -50%);
+
+  color: white;
+  text-align: center;
+}
+
+.curation-hero-text h2 {
+  font-size: 24px;
+  line-height: 1.45;
+  font-weight: 500;
+}
+
+/* 흰색 아이콘 박스 */
+.curation-intro {
+  width: 100%;
+  height: 310px;
+  background: #fff;
+  border-radius: 22px 22px 0 0;
+
+  margin-top: -28px;
+  position: relative;
+  z-index: 5;
+
   display: flex;
+  justify-content: center;
   align-items: center;
-  padding-left: 11%;
+  gap: 135px;
+
+  padding: 40px 40px 35px;
 }
 
-.curation-hero h2 {
-  font-size: 26px;
-  line-height: 1.35;
-  margin: 0 0 170px;
+.curation-intro-box {
+  width: 190px;
+  text-align: center;
+  color: #222;
 }
 
-.curation-hero p {
-  font-size: 16px;
+.curation-intro-box img {
+  width: 95px;
+  height: 62px;
+  object-fit: contain;
+  margin-bottom: 28px;
+}
+
+.curation-intro-box h3 {
+  font-size: 13px;
+  margin-bottom: 13px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.curation-intro-box p {
+  font-size: 11px;
+  line-height: 1.65;
   color: #555;
 }
 
+/* 큐레이션 카드 */
 .curation-card {
-  height: 280px;
-  background: #d9d9d9;
-  margin-bottom: 16px;
-  padding: 80px 10%;
+  width: 100%;
+  height: 330px;
+  position: relative;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
+
+  padding: 0 12%;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+
+  color: white;
+}
+
+.curation-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+}
+
+.curation-card-text,
+.curation-link {
+  position: relative;
+  z-index: 2;
 }
 
 .curation-card h3 {
   font-size: 27px;
-  line-height: 1.3;
+  line-height: 1.45;
   font-weight: 500;
 }
 
-.curation-card button {
-  border: none;
-  background: white;
-  padding: 12px 22px;
-  font-size: 15px;
-  cursor: pointer;
+/* 버튼 */
+.curation-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 150px;
+  height: 42px;
+
+  border: 1px solid white;
+  border-radius: 30px;
+
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+
+  background: transparent;
+  transition: 0.3s;
 }
 
+.curation-link:hover {
+  background: white;
+  color: #111;
+}
+
+/* 카드 배경 이미지 */
+.fire-card {
+  background-image: url("/images/curation/curation2-1.jpg");
+}
+
+.car-card {
+  background-image: url("/images/curation/curation2-2.jpg");
+}
+
+.minimal-card {
+  background-image: url("/images/curation/curation2-3.jpg");
+}
+
+.campora-footer {
+  height: 160px;
+  background: #1f1f1f;
+}
+
+/* 모바일 */
 @media (max-width: 700px) {
-  .curation-card {
+  .curation-hero-text h2 {
+    font-size: 22px;
+  }
+
+  .curation-intro {
     height: auto;
-    min-height: 240px;
+    flex-direction: column;
+    gap: 45px;
+    padding: 70px 20px;
+  }
+
+  .curation-card {
+    height: 280px;
+    padding: 50px 8%;
     flex-direction: column;
     align-items: flex-start;
-    gap: 40px;
+    justify-content: center;
+    gap: 35px;
   }
-}
-/*불멍-큐레이션 보러가기 버튼 클릭 */
-.curation-link {
-  display: inline-block;
-  background: white;
-  padding: 12px 22px;
-  text-decoration: none;
-  color: #111;
-  font-size: 15px;
+
+  .curation-card h3 {
+    font-size: 22px;
+  }
 }

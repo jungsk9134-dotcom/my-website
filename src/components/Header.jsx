@@ -18,12 +18,12 @@ function Header({ cartAdded }) {
       </Link>
 
       <nav className="campora-nav">
-        <Link to="/brand">Brand</Link>
-        <Link to="/category/tent">tent · tarps</Link>
-        <Link to="/category/sleep">sleeping bag · mat</Link>
-        <Link to="/category/table-chair">Table · Chair</Link>
-        <Link to="/category/lantern">lantern.stove</Link>
-        <Link to="/curation">Curation</Link>
+        <Link to="/brand">브랜드</Link>
+        <Link to="/category/tent">텐트 · 타프</Link>
+        <Link to="/category/sleep">침낭 · 매트</Link>
+        <Link to="/category/table-chair">테이블 · 의자</Link>
+        <Link to="/category/lantern">랜턴 · 화로</Link>
+        <Link to="/curation">큐레이션</Link>
       </nav>
 
       <div className="header-icons">

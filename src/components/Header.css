@@ -32,7 +32,7 @@
   width: 100%;
   height: 120px;
 
-  background: #bcebc5;
+  background: transparent !important;
 
   display: flex;
   align-items: center;
@@ -40,18 +40,20 @@
 
   padding: 0 70px;
 
-  position: relative;
-  z-index: 10;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+
+  z-index: 999;
 }
 
 .logo {
   width: 170px;
   height: 70px;
-
   display: flex;
   align-items: center;
-
   overflow: hidden;
+  transform: translateY(12px);
 }
 
 .logo-img {
@@ -69,11 +71,17 @@
 }
 
 .campora-nav a {
-  color: #111;
+  color: #fff !important;
   text-decoration: none;
   font-weight: 700;
   font-size: 15px;
   white-space: nowrap;
+
+  transition: 0.3s;
+}
+
+.campora-nav a:hover {
+  color: #ffe066 !important;
 }
 
 .header-icons {
@@ -83,8 +91,14 @@
 }
 
 .header-icons a {
-  color: #111;
+  color: #fff !important;
   text-decoration: none;
+
+  transition: 0.3s;
+}
+
+.header-icons a:hover {
+  color: #ffe066 !important;
 }
 
 /* 브랜드 페이지 전용 */
@@ -96,18 +110,18 @@
 
   width: 100%;
 
-  background: transparent;
-  z-index: 100;
+  background: transparent !important;
+  z-index: 999;
 }
 
 /* 메뉴 흰색 */
 
 .brand-header .campora-nav a {
-  color: #fff;
+  color: #fff !important;
 }
 
 /* 아이콘 흰색 */
 
 .brand-header .header-icons a {
-  color: #fff;
+  color: #fff !important;
 }
