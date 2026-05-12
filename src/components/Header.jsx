@@ -4,14 +4,23 @@ import './Header.css'
 function Header({ cartAdded }) {
 
   const location = useLocation()
+
   const isBrandPage = location.pathname === '/brand'
+
+  /* 상세페이지 여부 */
+  const isDetailPage =
+    location.pathname.includes('/product/')
 
   return (
     <header className={`campora-header ${isBrandPage ? 'brand-header' : ''}`}>
-      
+
       <Link to="/" className="logo">
         <img
-          src="/images/logo/logo2.png"
+          src={
+            isDetailPage
+              ? '/images/logo/gold-logo.png'
+              : '/images/logo/logo2.png'
+          }
           alt="campora logo"
           className="logo-img"
         />

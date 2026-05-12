@@ -1,5 +1,7 @@
 import './ProductDetail.css'
+import { useEffect, useState, useRef } from 'react'
 import { useParams } from 'react-router-dom'
+
 
 const products = [
   {
@@ -37,6 +39,59 @@ const products = [
 ]
 
 function ProductDetail({ setCartItems }) {
+    const [isSticky, setIsSticky] = useState(false)
+    const [activeTab, setActiveTab] = useState('detail')
+
+    const detailRef = useRef(null)
+    const reviewRef = useRef(null)
+    const guideRef = useRef(null)
+    const qaRef = useRef(null)
+
+    const scrollToSection = (ref, tabName) => {
+      setActiveTab(tabName)
+
+      ref.current?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }
+useEffect(() => {
+  const handleScroll = () => {
+    const tabs = document.querySelector('.sticky-tabs')
+
+    if (!tabs) return
+
+    const top = tabs.getBoundingClientRect().top
+
+    if (top <= 0) {
+      setIsSticky(true)
+    } else {
+      setIsSticky(false)
+    }
+
+    const scrollPosition = window.scrollY + 120
+
+    const detailTop = detailRef.current?.offsetTop || 0
+    const reviewTop = reviewRef.current?.offsetTop || 0
+    const guideTop = guideRef.current?.offsetTop || 0
+    const qaTop = qaRef.current?.offsetTop || 0
+
+    if (scrollPosition >= qaTop) {
+      setActiveTab('qa')
+    } else if (scrollPosition >= guideTop) {
+      setActiveTab('guide')
+    } else if (scrollPosition >= reviewTop) {
+      setActiveTab('review')
+    } else if (scrollPosition >= detailTop) {
+      setActiveTab('detail')
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll)
+  handleScroll()
+
+  return () => window.removeEventListener('scroll', handleScroll)
+}, [])
   const { id } = useParams()
   const product = products.find((item) => item.id === Number(id))
 
@@ -135,18 +190,37 @@ function ProductDetail({ setCartItems }) {
         </div>
       </section>
 
-      <section className="detail-tabs">
-        <span className="active">제품상세</span>
-        <span>리뷰</span>
-        <span>구매안내</span>
-        <span>문의</span>
+      <section className={`detail-tabs sticky-tabs ${isSticky ? 'fixed-left' : ''}`}>
+        <span
+          className={activeTab === 'detail' ? 'active' : ''}
+          onClick={() => scrollToSection(detailRef, 'detail')}
+        > 
+          제품상세
+        </span>
+        <span
+          className={activeTab === 'review' ? 'active' : ''}
+          onClick={() => scrollToSection(reviewRef, 'review')}
+        >
+          리뷰
+        </span>
+        <span
+          className={activeTab === 'guide' ? 'active' : ''}
+          onClick={() => scrollToSection(guideRef, 'guide')}
+        >
+          구매안내
+        </span>
+        <span
+          className={activeTab === 'qa' ? 'active' : ''}
+          onClick={() => scrollToSection(qaRef, 'qa')}
+        >
+          Q&A
+        </span>
       </section>
-
-      <section className="detail-content">
+      <section className="detail-content" ref={detailRef}>
         <div className="fake-img">상세페이지 이미지</div>
       </section>
 
-      <section className="review-area">
+      <section className="review-area" ref={reviewRef}>
         <h3>리뷰</h3>
 
         <div className="review-summary">
@@ -178,7 +252,7 @@ function ProductDetail({ setCartItems }) {
         <div className="review-pages">1&nbsp;&nbsp;2&nbsp;&nbsp;3</div>
       </section>
 
-      <section className="info-area">
+      <section className="info-area" ref={guideRef}>
         <h3>상품 구매 안내</h3>
 
         <div className="info-row open">
@@ -209,7 +283,7 @@ function ProductDetail({ setCartItems }) {
         </div>
       </section>
 
-      <section className="qa-area">
+      <section className="qa-area" ref={qaRef}>
         <h3>Q&A</h3>
         <p>게시글이 없습니다</p>
         <button>상품 문의하기</button>
