@@ -5,6 +5,7 @@
   font-family: Arial, sans-serif;
 }
 
+/* 메인 히어로 */
 .brand-main-hero {
   width: 100%;
   height: 130vh;
@@ -20,6 +21,7 @@
   display: block;
 }
 
+/* 히어로 로고 */
 .hero-logo-text {
   position: absolute;
   top: 200px;
@@ -29,7 +31,9 @@
 }
 
 .hero-logo-text img {
-  width: 80px;
+  width: 500px;
+  height: auto;
+  display: block;
   margin-bottom: 10px;
 }
 
@@ -38,6 +42,7 @@
   font-weight: 400;
 }
 
+/* 히어로 설명 */
 .hero-desc {
   position: absolute;
   top: 55%;
@@ -52,55 +57,94 @@
   color: #fff;
 }
 
-.brand-story {
-  width: 920px;
-  margin: 80px auto 120px;
-  display: grid;
-  grid-template-columns: 430px 300px;
-  gap: 80px 55px;
-  align-items: center;
-  justify-content: center;
+/* 중간 브랜드 소개 */
+.brand-message {
+  width: 100%;
+  padding: 140px 0 130px;
+  text-align: center;
+  background: #ffffff;
 }
 
-.story-image img {
-  width: 430px;
-  height: 360px;
+.brand-message img {
+  width: 250px;
+  margin-bottom: 38px;
+}
+
+.brand-message h2 {
+  font-size: 42px;
+  font-weight: 400;
+  color: #222;
+  margin-bottom: 28px;
+  letter-spacing: -1px;
+}
+
+.brand-message p {
+  font-size: 15px;
+  color: #222;
+  letter-spacing: -0.3px;
+}
+
+/* 브랜드 스토리 전체 */
+.brand-story {
+  width: 1180px;
+  margin: 90px auto 130px;
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+}
+
+/* 스토리 한 줄 */
+.story-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+/* 두 번째 줄: 텍스트 왼쪽, 이미지 오른쪽 */
+.story-row.reverse {
+  flex-direction: row-reverse;
+}
+
+/* 스토리 이미지 */
+.story-image img,
+.story-image-bottom img {
+  width: 520px;
+  flex-shrink: 0;
   object-fit: cover;
   display: block;
 }
 
-.story-text {
-  width: 260px;
-  margin-left: 0;
-}
-
+/*텍스트 영역*/
+.story-text,
 .story-left {
-  width: 290px;
-  text-align: right;
-  justify-content: start;
-  margin-right: 0;
-  margin-left: 140px;
+  width: 500px;
+  flex-shrink: 0;
+  text-align: left;
 }
 
-.story-image-bottom img{
-  width: 430px;
-  height: 360px;
-  margin-left: 0;
+/* 스토리 제목 */
+.story-text h2,
+.story-left h2 {
+  font-size: 27px;
+  line-height: 1.35;
+  font-weight: 500;
+  margin: 0 0 42px;
+  color: #111;
+  white-space: nowrap;
 }
 
-.story-text h2 {
-  font-size: 20px;
-  line-height: 1.45;
-  margin-bottom: 26px;
-  font-weight: 700;
-}
-
-.story-text p {
+/* 스토리 본문 */
+.story-text p,
+.story-left p {
   font-size: 11px;
-  line-height: 1.9;
-  color: #333;
+  line-height: 1.75;
+  letter-spacing: -0.3px;
+  color: #222;
+  margin: 0;
 }
 
+/* 차별점 섹션 */
 .brand-diff {
   width: 72%;
   margin: 0 auto 100px;
@@ -143,6 +187,7 @@
   color: #333;
 }
 
+/* 비디오 섹션 */
 .brand-video {
   width: 72%;
   margin: 0 auto 120px;
@@ -172,6 +217,7 @@
   transform: translate(-50%, -50%);
 }
 
+/* 무드 섹션 */
 .brand-mood {
   width: 920px;
   margin: 0 auto 160px;
@@ -205,7 +251,7 @@
   height: 230px;
   grid-column: 2 / 3;
   grid-row: 1 / 2;
-   margin-top: 85px;
+  margin-top: 85px;
 }
 
 .mood-wide {
@@ -234,6 +280,8 @@
   line-height: 1.9;
   color: #333;
 }
+
+/* 오프라인 섹션 */
 .offline {
   width: 72%;
   margin: 0 auto;
@@ -271,11 +319,7 @@
   color: #333;
 }
 
-.hero-logo-text img {
-  width: 500px;
-  height: auto;
-  display: block;
-}
+/* 하단 배너 */
 .brand-bottom-banner {
   width: 100%;
   height: 300px;
@@ -291,7 +335,6 @@
   display: block;
 }
 
-/* 이미지 어둡게 */
 .brand-bottom-banner::after {
   content: "";
   position: absolute;
@@ -325,6 +368,7 @@
   cursor: pointer;
 }
 
+/* 푸터 */
 .brand-footer {
   background: #222;
   color: #fff;
