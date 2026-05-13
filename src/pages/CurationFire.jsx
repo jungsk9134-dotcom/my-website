@@ -166,7 +166,9 @@ function CurationFire() {
     'cartItems',
     JSON.stringify(mergedCart)
   )
-
+  window.dispatchEvent(
+  new Event('cartUpdated')
+)
   navigate('/cart')
 }
 const handleAddToCart = (e, product) => {
@@ -196,6 +198,9 @@ const handleAddToCart = (e, product) => {
   }
 
   localStorage.setItem('cartItems', JSON.stringify(updatedCart))
+  window.dispatchEvent(
+  new Event('cartUpdated')
+)
   setShowCartPopup(true)
 }
   const ProductCard = ({ item }) => (

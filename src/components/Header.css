@@ -147,3 +147,27 @@
   background: #ff5b5b;
   border-radius: 50%;
 }
+/* 장바구니에 담긴 상품 갯수 표시 */
+.cart-icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #74b6aa;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

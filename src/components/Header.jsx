@@ -1,20 +1,45 @@
 import { Link, useLocation } from 'react-router-dom'
 import { ShoppingCart } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import './Header.css'
 
-function Header({ cartAdded }) {
+function Header() {
   const location = useLocation()
+  const [cartCount, setCartCount] = useState(0)
 
-  const isBrandPage = location.pathname === '/brand'
+  useEffect(() => {
+    const updateCartCount = () => {
+      const savedCart =
+        JSON.parse(localStorage.getItem('cartItems')) || []
 
-  /* 상세페이지 여부 */
-  const isDetailPage =
-    location.pathname.includes('/product/')
+      const totalCount = savedCart.reduce(
+        (sum, item) => sum + (item.quantity || 1),
+        0
+      )
+
+      setCartCount(totalCount)
+    }
+
+    updateCartCount()
+
+    window.addEventListener('storage', updateCartCount)
+    window.addEventListener('cartUpdated', updateCartCount)
+
+    return () => {
+      window.removeEventListener('storage', updateCartCount)
+      window.removeEventListener('cartUpdated', updateCartCount)
+    }
+  }, [])
+
+  const isWhiteHeaderPage =
+  location.pathname === '/brand' ||
+  location.pathname === '/curation/fire'
+  const isDetailPage = location.pathname.includes('/product/')
 
   return (
     <header
       className={`campora-header ${
-        isBrandPage ? 'brand-header' : ''
+        isWhiteHeaderPage ? 'brand-header' : ''
       }`}
     >
       <Link to="/" className="logo">
@@ -46,8 +71,8 @@ function Header({ cartAdded }) {
         <Link to="/cart" className="cart-icon-wrap">
           <ShoppingCart size={20} strokeWidth={2} />
 
-          {cartAdded && (
-            <span className="cart-dot"></span>
+          {cartCount > 0 && (
+            <span className="cart-count">{cartCount}</span>
           )}
         </Link>
       </div>

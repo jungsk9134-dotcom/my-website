@@ -26,13 +26,16 @@ function Search() {
 
     const updatedCart = existItem
       ? savedCart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: (item.quantity || 1) + 1 }
-            : item
-        )
+        item.id === product.id
+          ? { ...item, quantity: (item.quantity || 1) + 1 }
+          : item
+      )
       : [...savedCart, { ...product, quantity: 1 }]
 
     localStorage.setItem('cartItems', JSON.stringify(updatedCart))
+    window.dispatchEvent(
+      new Event('cartUpdated')
+    )
     alert('장바구니에 담겼습니다.')
   }
 

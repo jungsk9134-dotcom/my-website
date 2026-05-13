@@ -79,35 +79,38 @@ function CategoryPage() {
     return item.subCategory === filter
   })
   const handleAddToCart = (e, product) => {
-  e.stopPropagation()
+    e.stopPropagation()
 
-  const savedCart =
-    JSON.parse(localStorage.getItem('cartItems')) || []
+    const savedCart =
+      JSON.parse(localStorage.getItem('cartItems')) || []
 
-  const existItem = savedCart.find((item) => item.id === product.id)
+    const existItem = savedCart.find((item) => item.id === product.id)
 
-  let updatedCart
+    let updatedCart
 
-  if (existItem) {
-    updatedCart = savedCart.map((item) =>
-      item.id === product.id
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
+    if (existItem) {
+      updatedCart = savedCart.map((item) =>
+        item.id === product.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    } else {
+      updatedCart = [
+        ...savedCart,
+        {
+          ...product,
+          quantity: 1,
+        },
+      ]
+    }
+
+    localStorage.setItem('cartItems', JSON.stringify(updatedCart))
+    window.dispatchEvent(
+      new Event('cartUpdated')
     )
-  } else {
-    updatedCart = [
-      ...savedCart,
-      {
-        ...product,
-        quantity: 1,
-      },
-    ]
+
+    setShowCartPopup(true)
   }
-
-  localStorage.setItem('cartItems', JSON.stringify(updatedCart))
-
-  setShowCartPopup(true)
-}
   return (
     <main className="category-page">
       <section className="category-hero">
@@ -196,14 +199,14 @@ function CategoryPage() {
               <div className="category-bottom">
                 <small>★★★★★ 리뷰 0</small>
                 <div>
-  <span>♡</span>
-  <button
-  className="cart-icon-btn"
-  onClick={(e) => handleAddToCart(e, item)}
->
-  <CartIcon />
-</button>
-</div>
+                  <span>♡</span>
+                  <button
+                    className="cart-icon-btn"
+                    onClick={(e) => handleAddToCart(e, item)}
+                  >
+                    <CartIcon />
+                  </button>
+                </div>
               </div>
             </article>
           ))}
@@ -214,25 +217,25 @@ function CategoryPage() {
 
       <footer className="campora-footer"></footer>
       {showCartPopup && (
-  <div className="cart-popup-overlay">
-    <div className="cart-popup">
-      <p>장바구니로 이동하시겠습니까?</p>
+        <div className="cart-popup-overlay">
+          <div className="cart-popup">
+            <p>장바구니로 이동하시겠습니까?</p>
 
-      <div className="cart-popup-buttons">
-        <button onClick={() => setShowCartPopup(false)}>
-          계속 쇼핑하기
-        </button>
+            <div className="cart-popup-buttons">
+              <button onClick={() => setShowCartPopup(false)}>
+                계속 쇼핑하기
+              </button>
 
-        <button
-          className="go-cart"
-          onClick={() => navigate('/cart')}
-        >
-          장바구니 가기
-        </button>
-      </div>
-    </div>
-  </div>
-)}
+              <button
+                className="go-cart"
+                onClick={() => navigate('/cart')}
+              >
+                장바구니 가기
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   )
 }
