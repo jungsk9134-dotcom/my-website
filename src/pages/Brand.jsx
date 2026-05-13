@@ -13,42 +13,42 @@ function Brand() {
     <main className="brand">
       <section className="brand-main-hero">
         <img src="/images/brand/brand-main.jpg" alt="Campora brand main" />
-          <div className="hero-logo-text">
-            <img src="/images/brand/brandg.png" alt="Campora logo" />
-          </div>
+        <div className="hero-logo-text">
+          <img src="/images/brand/brandg.png" alt="Campora logo" />
+        </div>
 
-          <div className="hero-desc">
-            <p>
-              Campora는 단순한 캠핑용품 브랜드가 아닙니다
-              <br /><br />
-              우리는 자연 속에서의 쉼을
-              <br />
-              더 많은 사람들이 경험할 수 있도록 돕습니다.
-              <br /><br />
-              밤하늘 속 고요한 오로라처럼,
-              <br />
-              바쁜 일상에서 잠시 벗어나
-              <br />
-              쉼과 여유를 선물하는 브랜드입니다.
-              <br /><br />
-              그게 Campora가 존재하는 이유입니다.
-            </p>
-          </div>
-        </section>
-        <section className="brand-message">
-          <img
-            src="/images/brand/logonob.png"
-            alt="brand icon"
-          />
+        <div className="hero-desc">
+          <p>
+            Campora는 단순한 캠핑용품 브랜드가 아닙니다
+            <br /><br />
+            우리는 자연 속에서의 쉼을
+            <br />
+            더 많은 사람들이 경험할 수 있도록 돕습니다.
+            <br /><br />
+            밤하늘 속 고요한 오로라처럼,
+            <br />
+            바쁜 일상에서 잠시 벗어나
+            <br />
+            쉼과 여유를 선물하는 브랜드입니다.
+            <br /><br />
+            그게 Campora가 존재하는 이유입니다.
+          </p>
+        </div>
+      </section>
+      <section className="brand-message">
+        <img
+          src="/images/brand/logonob.png"
+          alt="brand icon"
+        />
 
-          <h2>Campora는 단순한 캠핑용품 브랜드가 아닙니다</h2>
+        <h2>Campora는 단순한 캠핑용품 브랜드가 아닙니다</h2>
 
-          <p>자연 속 쉼과 감성을 전달하는 브랜드</p>
-        </section>
-        <section className="brand-story">
-          <div className="story-row">
-            <div className="story-image">
-              <img src="/images/brand/brand-problem-02.jpg" alt="camping" />
+        <p>자연 속 쉼과 감성을 전달하는 브랜드</p>
+      </section>
+      <section className="brand-story">
+        <div className="story-row">
+          <div className="story-image">
+            <img src="/images/brand/brand-problem-02.jpg" alt="camping" />
           </div>
 
           <div className="story-text">
@@ -68,35 +68,35 @@ function Brand() {
               Campora와 함께, 당신만의 캠핑을 완성해보세요.
             </p>
           </div>
-      </div>
-
-      <div className="story-row reverse">
-        <div className="story-image-bottom">
-          <img src="/images/brand/brand2-2.png" alt="camping" />
         </div>
 
-        <div className="story-left">
-          <h2>"복잡한 시작은 덜어내고, 캠핑의 본질만 남기다"</h2>
+        <div className="story-row reverse">
+          <div className="story-image-bottom">
+            <img src="/images/brand/brand2-2.png" alt="camping" />
+          </div>
 
-          <p>1. 초보 캠퍼의 현실<br /><br />
-            설렘보다 먼저 마주하는 복잡함<br />
-            캠핑을 시작하는 순간, 우리는 자연보다 먼저 수많은 선택지 앞에 서게 됩니다.<br /><br />
-            텐트, 침낭, 의자, 테이블, 랜턴까지 무엇이 꼭 필요한지,<br />
-            어떤 기준으로 골라야 하는지조차 쉽지 않습니다.<br /><br />
-            2. 시장 문제<br /><br />
-            선택은 많지만, 기준이 부족했습니다.<br />
-            기존의 캠핑 시장은 수많은 제품으로 가득하지만<br />
-            초보자의 시선에서 쉽고 직관적으로 정리된 경험은 부족했습니다.<br /><br />
-            3. 우리가 발견한 인사이트<br /><br />
-            캠핑의 본질은 더 단순하고 편안해야 합니다.<br />
-            CAMPORA는 캠핑의 시작이 어려워서는 안 된다고 생각했습니다.<br /><br />
-            복잡한 선택은 줄이고,<br />
-            당신의 첫 캠핑이 조금 더 쉽고 특별해질 수 있도록.<br /><br />
-            CAMPORA는 캠핑의 시작을 가장 편안하고 감각적으로 바꿉니다.
-          </p>
+          <div className="story-left">
+            <h2>"복잡한 시작은 덜어내고, 캠핑의 본질만 남기다"</h2>
+
+            <p>1. 초보 캠퍼의 현실<br /><br />
+              설렘보다 먼저 마주하는 복잡함<br />
+              캠핑을 시작하는 순간, 우리는 자연보다 먼저 수많은 선택지 앞에 서게 됩니다.<br /><br />
+              텐트, 침낭, 의자, 테이블, 랜턴까지 무엇이 꼭 필요한지,<br />
+              어떤 기준으로 골라야 하는지조차 쉽지 않습니다.<br /><br />
+              2. 시장 문제<br /><br />
+              선택은 많지만, 기준이 부족했습니다.<br />
+              기존의 캠핑 시장은 수많은 제품으로 가득하지만<br />
+              초보자의 시선에서 쉽고 직관적으로 정리된 경험은 부족했습니다.<br /><br />
+              3. 우리가 발견한 인사이트<br /><br />
+              캠핑의 본질은 더 단순하고 편안해야 합니다.<br />
+              CAMPORA는 캠핑의 시작이 어려워서는 안 된다고 생각했습니다.<br /><br />
+              복잡한 선택은 줄이고,<br />
+              당신의 첫 캠핑이 조금 더 쉽고 특별해질 수 있도록.<br /><br />
+              CAMPORA는 캠핑의 시작을 가장 편안하고 감각적으로 바꿉니다.
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
       <section className="brand-diff">
         <h2>당신의 쉼을 위한 Campora의 철학</h2>
@@ -163,7 +163,7 @@ function Brand() {
 
             큐레이션 보러가기 →
           </p>
-          
+
         </div>
       </section>
 
@@ -194,7 +194,7 @@ function Brand() {
         <img src="/images/brand/brand-outro-bg.jpg" alt="camping banner" />
         <div className="bottom-banner-text">
           <p>
-           불빛 하나로 충분한 밤
+            불빛 하나로 충분한 밤
             <br />
             그 안에도 편안한 시간
             <br />
@@ -206,8 +206,8 @@ function Brand() {
           </p>
 
           <button onClick={() => navigate('/category/all')}>
-  캠프라 제품 보기 →
-</button>
+            캠포라 제품 보기 →
+          </button>
         </div>
       </section>
 

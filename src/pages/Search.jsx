@@ -1,108 +1,132 @@
 import { useState } from 'react'
+import { Search as SearchIcon, Heart, ShoppingCart } from 'lucide-react'
+import { products } from '../data/products'
 import './Search.css'
-import { Search as SearchIcon, ShoppingCart, Heart } from 'lucide-react'
 
 function Search() {
   const [keyword, setKeyword] = useState('')
-  const [cartItems, setCartItems] = useState([])
 
-  const products = [
-    { id: 1, name: '텐트', desc: 'OO% / 캠핑텐트', price: '₩ 46,000' },
-    { id: 2, name: '테이블', desc: 'OO% / 테이블기기', price: '₩ 46,000' },
-    { id: 3, name: '침낭', desc: 'OO% / 캠핑침낭', price: '₩ 46,000' },
-    { id: 4, name: '랜턴', desc: 'OO% / 캠핑랜턴', price: '₩ 46,000' },
-    { id: 5, name: '수납', desc: 'OO% / 캠핑수납', price: '₩ 50,000' },
-  ]
+  const recommendKeywords = ['랜턴', '침낭', '아이스박스', '체어', '테이블']
 
-  const searchedProducts = products.filter((item) =>
-    `${item.name} ${item.desc}`.toLowerCase().includes(keyword.toLowerCase())
-  )
+  const searchedProducts = products.filter((item) => {
+    const searchText = `
+      ${item.name}
+      ${item.category}
+      ${item.subCategory}
+      ${item.searchKeywords || ''}
+    `.toLowerCase()
 
-  const handleCartClick = (id) => {
-    setCartItems((prev) => {
-      if (prev.includes(id)) {
-        return prev
-      }
-      return [...prev, id]
-    })
+    return searchText.includes(keyword.toLowerCase())
+  })
+
+  const handleAddToCart = (product) => {
+    const savedCart = JSON.parse(localStorage.getItem('cartItems')) || []
+
+    const existItem = savedCart.find((item) => item.id === product.id)
+
+    const updatedCart = existItem
+      ? savedCart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: (item.quantity || 1) + 1 }
+            : item
+        )
+      : [...savedCart, { ...product, quantity: 1 }]
+
+    localStorage.setItem('cartItems', JSON.stringify(updatedCart))
+    alert('장바구니에 담겼습니다.')
   }
 
   return (
-    <div className="search-page">
-      <main className="search-main">
-        <div className="breadcrumb">홈 &gt; 검색</div>
+    <main className="search-page">
+      <div className="search-breadcrumb">홈 &gt; 상품 검색</div>
 
-        <section className="search-section">
-          <h2>상품 검색</h2>
+      <section className="search-hero">
+        <h2>상품 검색</h2>
 
-          <div className="search-box">
-            <input
-              type="text"
-              value={keyword}
-              onChange={(e) => setKeyword(e.target.value)}
-              placeholder="검색어를 입력하세요"
-            />
-            <SearchIcon size={17} />
+        <div className="search-box">
+          <input
+            type="text"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            placeholder="검색어를 입력하세요"
+          />
+          <SearchIcon size={28} />
+        </div>
+
+        <div className="recommend-area">
+          <p>관련 검색어</p>
+
+          <div className="recommend-list">
+            {recommendKeywords.map((item) => (
+              <button key={item} onClick={() => setKeyword(item)}>
+                {item}
+              </button>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <div className="line"></div>
+      {keyword && (
+        <section className="search-result-section">
+          <div className="search-result-top">
+            <p>상품 {searchedProducts.length}건</p>
 
-        <section className="product-area">
-          <div className="product-top">
-            <p>전체 {searchedProducts.length}개</p>
-
-            <div className="filter">
-              <span>무료배송</span>
-              <button type="button">신상</button>
-              <button type="button">정렬</button>
-
-              <select>
-                <option>인기순</option>
-                <option>가격낮은순</option>
-                <option>가격높은순</option>
-              </select>
+            <div className="search-result-filter">
+              <label>
+                <input type="checkbox" /> 무료배송
+              </label>
+              <span>≡</span>
+              <button>정렬</button>
             </div>
           </div>
 
-          <div className="product-list">
-            {searchedProducts.map((item) => (
-              <div className="product-card" key={item.id}>
-                <div className="image-box"></div>
+          {searchedProducts.length === 0 ? (
+            <div className="search-no-result">검색 결과가 없습니다</div>
+          ) : (
+            <div className="search-product-grid">
+              {searchedProducts.map((item) => (
+                <article className="search-product-card" key={item.id}>
+                  <div
+                    className="search-product-img"
+                    style={{ backgroundImage: `url(${item.image})` }}
+                  ></div>
 
-                <div className="product-info">
                   <h3>{item.name}</h3>
-                  <p>{item.desc}</p>
-                  <strong>{item.price}</strong>
 
-                  <div className="card-icons">
-                    <Heart size={13} />
+                  <p className="search-product-desc">{item.oldPrice}</p>
 
-                    <button
-                      type="button"
-                      className="cart-icon-wrap"
-                      onClick={() => handleCartClick(item.id)}
-                    >
-                      <ShoppingCart size={13} />
+                  <p className="search-product-price">{item.price}</p>
 
-                      {cartItems.includes(item.id) && (
-                        <span className="cart-dot"></span>
-                      )}
-                    </button>
+                  <div className="search-product-bottom">
+                    <small>★ {item.rating || 4.8}&nbsp;&nbsp;({item.review || 0})</small>
+
+                    <div>
+                      <Heart size={18} />
+                      <button
+                        className="search-cart-btn"
+                        onClick={() => handleAddToCart(item)}
+                      >
+                        <ShoppingCart size={18} />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {searchedProducts.length === 0 && (
-            <p className="no-result">검색 결과가 없습니다.</p>
+                </article>
+              ))}
+            </div>
           )}
         </section>
-      </main>
+      )}
+
+      <section className="event-section">
+        <h3>봄맞이 할인 이벤트</h3>
+
+        <div className="event-banner">
+          <p>침낭 광고 배너 &gt; 상품페이지로 바로 연결</p>
+        </div>
+      </section>
 
       <footer className="search-footer"></footer>
-    </div>
+    </main>
   )
 }
 
