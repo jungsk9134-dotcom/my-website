@@ -12,6 +12,7 @@ import CurationFire from './pages/CurationFire'
 import CurationCar from './pages/CurationCar'
 import CurationMinimal from './pages/CurationMinimal'
 import CategoryPage from './pages/CategoryPage'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   const [cartItems, setCartItems] = useState([])
@@ -19,6 +20,7 @@ function App() {
   return (
     <>
       <Header cartAdded={cartItems.length > 0} />
+      <ScrollToTop />
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -32,7 +34,7 @@ function App() {
         <Route path="/curation/fire" element={<CurationFire />} />
         <Route path="/curation/car" element={<CurationCar />} />
         <Route path="/curation/minimal" element={<CurationMinimal />} />
-
+        <Route path="/product/:id" element={<ProductDetail />} />
         <Route
           path="/product/:id"
           element={<ProductDetail setCartItems={setCartItems} />}

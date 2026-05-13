@@ -1,6 +1,7 @@
 import './CurationFire.css'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function CurationFire() {
   function CartIcon() {
@@ -55,6 +56,7 @@ function CurationFire() {
   const products1 = [
   {
     id: 1,
+    detailId: 20,
     name: '화로',
     originPrice: '89,000',
     price: '59,000',
@@ -63,6 +65,7 @@ function CurationFire() {
   },
   {
     id: 2,
+    detailId: 21,
     name: '장작',
     originPrice: '19,000',
     price: '12,000',
@@ -117,9 +120,10 @@ function CurationFire() {
   const products3 = [
   {
     id: 8,
-    name: '침낭',
-    originPrice: '79,000',
-    price: '59,000',
+    detailId: 9,
+    name: '윈터브리즈 캠핑침낭',
+    originPrice: '69,000',
+    price: '89,000',
     discount: 25,
     image: '/images/curation-1/prod8.png',
   },
@@ -195,7 +199,10 @@ const handleAddToCart = (e, product) => {
 }
   const ProductCard = ({ item }) => (
     <article className="fire-product-card">
-      <img src={item.image} alt={item.name} />
+
+      <Link to={`/product/${item.detailId}`}>
+        <img src={item.image} alt={item.name} />
+      </Link>
 
       <div className="product-info">
         <h4>{item.name}</h4>

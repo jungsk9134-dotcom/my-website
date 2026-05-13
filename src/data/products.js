@@ -87,7 +87,15 @@ export const products = [
     searchKeywords: '침낭 매트 에어매트 캠핑매트',
     oldPrice: '89,000',
     price: '69,000',
-    image: '/images/products/sleeping2.png',
+    image: '/images/products/상세페이지ex.png',
+    thumbs: [
+      '/images/products-침낭/prod-sm-01-detail-01.png',
+      '/images/products-침낭/prod-sm-01-detail-02.png',
+      '/images/products-침낭/prod-sm-01-detail-03.png'
+    ],
+    detailImages: [
+    '/images/products-침낭/prod-sm-01-info.png'
+    ]
   },
   {
     id: 10,

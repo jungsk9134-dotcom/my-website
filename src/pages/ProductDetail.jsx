@@ -6,6 +6,10 @@ import { products } from '../data/products'
 function ProductDetail({ setCartItems }) {
     const [isSticky, setIsSticky] = useState(false)
     const [activeTab, setActiveTab] = useState('detail')
+    const [selectedImage, setSelectedImage] = useState('')
+    const [isReviewModalOpen, setIsReviewModalOpen] = useState(false)
+    const [reviewRating, setReviewRating] = useState(5)
+    const [isPhotoUploadOpen, setIsPhotoUploadOpen] = useState(false)
 
     const detailRef = useRef(null)
     const reviewRef = useRef(null)
@@ -67,6 +71,11 @@ useEffect(() => {
 }, [])
   const { id } = useParams()
   const product = products.find((item) => item.id === Number(id))
+  useEffect(() => {
+  if (product) {
+    setSelectedImage(product.image)
+  }
+}, [product])
 
   if (!product) return <div>상품 없음</div>
 
@@ -102,18 +111,16 @@ const breadcrumbCategory =
       <section className="detail-top">
         <div className="detail-left">
           <div className="detail-img">
-            <img src={product.image} alt={product.name} />
+            <img src={selectedImage || product.image} alt={product.name} />
           </div>
-
           <div className="thumb-list">
-            <div className="thumb active">
-              <img src={product.image} alt={product.name} />
+            {[product.image, ...(product.thumbs || [])].map((thumb, index) => (
+            <div
+              className={`thumb ${selectedImage === thumb ? 'active' : ''}`} key={index}
+              onMouseEnter={() => setSelectedImage(thumb)} >
+            <img src={thumb} alt={`${product.name} 썸네일 ${index + 1}`} />
             </div>
-            <div className="thumb"></div>
-            <div className="thumb"></div>
-            <div className="thumb">
-              <img src={product.thumb2} alt="썸네일" />
-            </div>
+            ))}
           </div>
         </div>
 
@@ -203,40 +210,89 @@ const breadcrumbCategory =
         </span>
       </section>
       <section className="detail-content" ref={detailRef}>
-        <div className="fake-img">상세페이지 이미지</div>
-      </section>
-
-      <section className="review-area" ref={reviewRef}>
-        <h3>리뷰</h3>
-
-        <div className="review-summary">
-          <div>
-            <p>만족도</p>
-            <strong>
-              ★★★★★
-              <br />
-              5.0
-            </strong>
-          </div>
-          <div>
-            <p>리뷰수</p>
-            <strong>nn</strong>
-          </div>
+        <div className="detail-content-inner">
+          {product.detailImages && product.detailImages.length > 0 ? (
+            product.detailImages.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={`${product.name} 상세이미지 ${index + 1}`}
+                className="detail-page-img"
+              />
+            ))
+          ) : (
+            <div className="fake-img">상세페이지 이미지</div>
+          )}
         </div>
-
-        {[1, 2, 3, 4, 5].map((item) => (
-          <div className="review-row" key={item}>
-            <div>
-              <strong>★★★★★ 5.0</strong>
-              <p>q**** | 26.04.30</p>
-              <p>리뷰 내용입니다</p>
-            </div>
-            <div className="review-thumb"></div>
+        </section>
+      <section className="review-area" ref={reviewRef}>
+      <h3>리뷰</h3>
+            
+      <div className="review-summary new-review-summary">
+        <div className="review-score-box">
+          <strong>★★★★★ <span>4.9</span></strong>
+        <p>(13)</p>
+        </div>
+            
+        <div className="review-text-box">
+          <h4>리뷰 한 눈에 보기</h4>
+          <p>
+            부드러운 소재와 포근함에 만족한 리뷰가 많았습니다.
+            차박이나 캠핑처럼 쌀쌀한 환경에서도 따뜻하게 사용할 수 있다는 의견이 많아요.
+          </p>
+      </div>
+      </div>
+            
+      {[
+        {
+          user: 'cozycamp | 26.04.30',
+          text: '침낭이 생각보다 훨씬 부드러워서 아이가 정말 좋아하네요. 캠핑할 때도 따뜻하게 사용할 수 있을 것 같아요.',
+          img: '/images/review/prod-sm-01-review-01.png',
+        },
+        {
+          user: 'bysora | 26.04.27',
+          text: '색감도 예쁘고 두께감도 적당해서 만족스럽습니다. 포근하고 가벼워서 가지고 다니기 좋아요.',
+          img: '/images/review/prod-sm-01-review-02.png',
+        },
+       {
+          user: 'sundayfilm | 26.04.24',
+          text: '감성 캠핑용으로 정말 잘 어울려요. 사진도 예쁘게 나오고 따뜻해서 만족합니다.',
+          img: '/images/review/prod-sm-01-review-03.png',
+        },
+        {
+          user: 'dayoff.zip | 26.04.21',
+          text: '촉감이 부드럽고 안감도 좋아요. 겨울 캠핑까지는 아니어도 봄가을에는 충분히 따뜻할 것 같습니다.',
+          img: '/images/review/prod-sm-01-review-04.png',
+       },
+        {
+          user: 'aurora | 26.04.18',
+          text: '포장도 깔끔하고 색상이 사진이랑 비슷해서 만족합니다. 캠핑 분위기랑 잘 맞아요.',
+          img: '/images/review/prod-sm-01-review-05.png',
+        },
+   ]  .map((review, index) => (
+       <div className="review-row new-review-row" key={index}>
+          <div className="review-left">
+            <strong>★★★★★ <span>5.0</span></strong>
+            <p>{review.user}</p>
+            <p>{review.text}</p>
           </div>
-        ))}
-
-        <div className="review-pages">1&nbsp;&nbsp;2&nbsp;&nbsp;3</div>
-      </section>
+      
+          <img
+            src={review.img}
+            alt={`리뷰 이미지 ${index + 1}`}
+            className="review-img"
+          />
+       </div>
+      ))}
+    
+      <div className="review-pages">1&nbsp;&nbsp;2&nbsp;&nbsp;3</div>
+    
+      <button
+        className="review-write-btn"
+        onClick={() => setIsReviewModalOpen(true)} >
+        리뷰 작성하기
+      </button>
+    </section>
 
       <section className="info-area" ref={guideRef}>
         <h3>상품 구매 안내</h3>
@@ -274,6 +330,64 @@ const breadcrumbCategory =
         <p>게시글이 없습니다</p>
         <button>상품 문의하기</button>
       </section>
+      {isReviewModalOpen && (
+        <div className="review-modal-overlay">
+          <div className="review-modal">
+            <button
+              className="review-modal-close"
+              onClick={() => setIsReviewModalOpen(false)}
+            >
+              ×
+            </button>
+
+            <h3>리뷰 작성하기</h3>
+            <p className="review-modal-sub">
+              사용해본 순간을 자유롭게 남겨주세요
+            </p>
+
+            <div className="review-modal-stars">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button
+                  key={star}
+                  type="button"
+                  className={star <= reviewRating ? 'active' : ''}
+                  onClick={() =>
+                  setReviewRating(reviewRating === star ? star - 1 : star)
+                }
+              >
+                ★
+              </button>
+              ))}
+            </div>
+
+            <textarea
+              placeholder="제품의 사용감이나 캠핑에서의 순간을 들려주세요"
+            ></textarea>
+
+            <button
+              className="review-photo-add"
+              type="button"
+              onClick={() => setIsPhotoUploadOpen(true)}
+            >
+            <span>＋</span>
+
+              <div>
+                <p>사진 추가</p>
+                <small>사진은 1장까지 첨부할 수 있습니다</small>
+              </div>
+            </button>
+
+            <div className="review-modal-btns">
+              <button onClick={() => setIsReviewModalOpen(false)}>
+                취소
+              </button>
+              <button>
+                리뷰 남기기
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   )
 }
