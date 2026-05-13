@@ -1,7 +1,10 @@
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Brand.css'
 
+
 function Brand() {
+  const navigate = useNavigate()
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -202,7 +205,9 @@ function Brand() {
             그런 순간을 위한 브랜드입니다
           </p>
 
-          <button>캠프라 제품 보기 →</button>
+          <button onClick={() => navigate('/category/all')}>
+  캠프라 제품 보기 →
+</button>
         </div>
       </section>
 

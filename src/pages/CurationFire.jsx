@@ -51,7 +51,67 @@ function CurationFire() {
     { id: 8, name: '침낭', price: '00% 판매가격', image: '/images/curation-1/prod8.png' },
     { id: 9, name: '텐트', price: '00% 판매가격', image: '/images/curation-1/prod9.png' },
   ]
+  const handleAddAllToCart = () => {
+  const allProducts = [
+    ...products1,
+    ...products2,
+    ...products3,
+  ]
 
+  const savedCart =
+    JSON.parse(localStorage.getItem('cartItems')) || []
+
+  const mergedCart = [...savedCart]
+
+  allProducts.forEach((newItem) => {
+    const existItem = mergedCart.find(
+      (item) => item.id === newItem.id
+    )
+
+    if (!existItem) {
+      mergedCart.push({
+        ...newItem,
+        quantity: 1,
+      })
+    }
+  })
+
+  localStorage.setItem(
+    'cartItems',
+    JSON.stringify(mergedCart)
+  )
+
+  navigate('/cart')
+}
+const handleAddToCart = (e, product) => {
+  e.stopPropagation()
+
+  const savedCart =
+    JSON.parse(localStorage.getItem('cartItems')) || []
+
+  const existItem = savedCart.find((item) => item.id === product.id)
+
+  let updatedCart
+
+  if (existItem) {
+    updatedCart = savedCart.map((item) =>
+      item.id === product.id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    )
+  } else {
+    updatedCart = [
+      ...savedCart,
+      {
+        ...product,
+        quantity: 1,
+      },
+    ]
+  }
+
+  localStorage.setItem('cartItems', JSON.stringify(updatedCart))
+  alert('장바구니에 담겼습니다.')
+}
   const ProductCard = ({ item }) => (
     <article className="fire-product-card">
       <img src={item.image} alt={item.name} />
@@ -63,7 +123,15 @@ function CurationFire() {
 
         <div className="product-bottom">
           <small>★ 4.8&nbsp;&nbsp;(20)</small>
-          <div className="fire-icons">♡ 🛒</div>
+          <div className="fire-icons">
+  <span>♡</span>
+  <button
+    className="fire-cart-btn"
+    onClick={(e) => handleAddToCart(e, item)}
+  >
+    🛒
+  </button>
+</div>
         </div>
       </div>
     </article>
@@ -155,7 +223,12 @@ function CurationFire() {
           ))}
         </div>
 
-        <button className="more-btn">전체 구성 담기</button>
+        <button
+  className="more-btn"
+  onClick={handleAddAllToCart}
+>
+  전체 구성 담기
+</button>
       </section>
 
       <section className="fire-story">

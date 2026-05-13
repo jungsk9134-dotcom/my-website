@@ -1,11 +1,27 @@
 import './Cart.css'
+import { useEffect, useState } from 'react'
 
-function Cart({ cartItems, setCartItems }) {
+function Cart() {
+  const [cartItems, setCartItems] = useState([])
+
+useEffect(() => {
+  const savedCart =
+    JSON.parse(localStorage.getItem('cartItems')) || []
+
+  setCartItems(savedCart)
+}, [])
   const handleDelete = (id) => {
-    setCartItems((prev) =>
-      prev.filter((item) => item.id !== id)
-    )
-  }
+  const updatedCart = cartItems.filter(
+    (item) => item.id !== id
+  )
+
+  setCartItems(updatedCart)
+
+  localStorage.setItem(
+    'cartItems',
+    JSON.stringify(updatedCart)
+  )
+}
 
   const getPriceNumber = (price) => {
     return Number(price.replace(/[^0-9]/g, ''))

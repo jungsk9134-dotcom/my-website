@@ -341,3 +341,15 @@
   margin-bottom: 70px;
   text-align: center;
 }
+/*장바구니 버튼 클릭 */
+.fire-cart-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.fire-cart-btn:hover {
+  transform: scale(1.15);
+}

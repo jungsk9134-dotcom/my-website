@@ -196,6 +196,18 @@
   background: #000;
 }
 
+/*장바구니 담기 버튼 */
+.cart-icon-btn {
+  border: none;
+  background: none;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.cart-icon-btn:hover {
+  transform: scale(1.15);
+}
 @media (max-width: 900px) {
   .category-menu-list {
     justify-content: flex-start;
