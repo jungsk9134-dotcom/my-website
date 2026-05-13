@@ -1,42 +1,7 @@
 import './ProductDetail.css'
 import { useEffect, useState, useRef } from 'react'
 import { useParams } from 'react-router-dom'
-
-
-const products = [
-  {
-    id: 5,
-    name: '캠핑 테이블',
-    price: '15,000원',
-    oldPrice: '30,000원',
-    image: '/images/products/table1.jpg',
-    thumb2: '/images/products/table2.jpg',
-  },
-  {
-    id: 1,
-    name: '캠핑 텐트',
-    price: '15,000원',
-    oldPrice: '30,000원',
-    image: '/images/products/쉴드2.png',
-    thumb2: 'images/products/air tant.png',
-  },
-  {
-    id: 3,
-    name: '캠핑 타프',
-    price: '15,000원',
-    oldPrice: '30,000원',
-    image: '/images/products/타프.png',
-    thumb2: '',
-  },
-  {
-    id: 6,
-    name: '캠핑 의자',
-    price: '15,000원',
-    oldPrice: '30,000원',
-    image: '/images/products/table1.jpg',
-    thumb2: '',
-  },
-]
+import { products } from '../data/products'
 
 function ProductDetail({ setCartItems }) {
     const [isSticky, setIsSticky] = useState(false)
@@ -50,9 +15,17 @@ function ProductDetail({ setCartItems }) {
     const scrollToSection = (ref, tabName) => {
       setActiveTab(tabName)
 
-      ref.current?.scrollIntoView({
+      if (!ref.current) return
+
+      const headerHeight = 120
+      const tabHeight = 70
+      const extraGap = 20
+      const targetTop =
+        ref.current.offsetTop - headerHeight - tabHeight - extraGap
+
+      window.scrollTo({
+        top: targetTop,
         behavior: 'smooth',
-        block: 'start',
       })
     }
 useEffect(() => {
@@ -69,7 +42,7 @@ useEffect(() => {
       setIsSticky(false)
     }
 
-    const scrollPosition = window.scrollY + 120
+    const scrollPosition = window.scrollY + 220
 
     const detailTop = detailRef.current?.offsetTop || 0
     const reviewTop = reviewRef.current?.offsetTop || 0
@@ -97,6 +70,17 @@ useEffect(() => {
 
   if (!product) return <div>상품 없음</div>
 
+  /* 카테고리 이름 변경 */
+  const categoryNameMap = {
+    tent: '텐트 · 타프',
+    sleep: '침낭 · 매트',
+    'table-chair': '테이블 · 의자',
+    lantern: '랜턴 · 화로',
+}
+
+const breadcrumbCategory =
+  categoryNameMap[product.category] || '전체상품'
+
   const handleAddCart = () => {
     setCartItems((prev) => {
       const exists = prev.find((item) => item.id === product.id)
@@ -111,7 +95,9 @@ useEffect(() => {
 
   return (
     <main className="detail-page">
-      <div className="detail-breadcrumb">홈 &gt; 제품보기 &gt; 테이블의자</div>
+      <div className="detail-breadcrumb">
+        홈 &gt; 제품보기 &gt; {breadcrumbCategory}
+      </div>
 
       <section className="detail-top">
         <div className="detail-left">

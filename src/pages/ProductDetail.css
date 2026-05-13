@@ -242,35 +242,41 @@
 
 /* 탭 */
 .detail-tabs {
-  width: 1060px;
-  margin: 90px auto 70px;
+  width: 780px;
+  height: 58px;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   background: #fff;
   border-bottom: 1px solid #999;
   position: sticky;
-  top: 120px;
-  z-index: 500;
+  top: 0;
+  z-index: 300;
 }
 
 /* 스크롤 고정 시에도 모양 유지 */
 .detail-tabs.fixed-left {
-  margin-left: 0;
-  margin-right: auto;
+  width: 780px;
+  height: 58px;
+  margin: 0 auto 42px;
+  background: #fff;
+  border-bottom: 1px solid #999;
 }
 
 /* 탭 글자 */
 .detail-tabs span {
   flex: 1;
-  text-align: center;
-  padding: 22px 0;
-  font-size: 16px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 400;
   cursor: pointer;
   position: relative;
 }
 
-.detail-tabs .active::after {
+.detail-tabs span.active::after {
   content: "";
   position: absolute;
   left: 0;
@@ -298,7 +304,7 @@
 .qa-area {
   max-width: 780px;
   margin: 0 auto 90px;
-  scroll-margin-top: 90px;
+  scroll-margin-top: 220px;
 }
 
 .review-area h3,
@@ -439,6 +445,7 @@
   background: #555;
 }
 .fake-img {
+  width: 780px;
   max-width: 780px;
   margin: 0 auto;
 }
