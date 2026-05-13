@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 function CurationFire() {
+  const [showCartPopup, setShowCartPopup] = useState(false)
   function CartIcon() {
   return (
     <svg
@@ -195,7 +196,7 @@ const handleAddToCart = (e, product) => {
   }
 
   localStorage.setItem('cartItems', JSON.stringify(updatedCart))
-  alert('장바구니에 담겼습니다.')
+  setShowCartPopup(true)
 }
   const ProductCard = ({ item }) => (
     <article className="fire-product-card">
@@ -433,6 +434,26 @@ const handleAddToCart = (e, product) => {
       </section>
 
       <footer className="campora-footer"></footer>
+      {showCartPopup && (
+  <div className="cart-popup-overlay">
+    <div className="cart-popup">
+      <p>장바구니로 이동하시겠습니까?</p>
+
+      <div className="cart-popup-buttons">
+        <button onClick={() => setShowCartPopup(false)}>
+          계속 쇼핑하기
+        </button>
+
+        <button
+          className="go-cart"
+          onClick={() => navigate('/cart')}
+        >
+          장바구니 가기
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </main>
   )
 }

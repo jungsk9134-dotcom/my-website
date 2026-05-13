@@ -318,6 +318,17 @@
   line-height: 1.5;
   color: #333;
 }
+.offline-item {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  display: block;
+}
+
+.offline-item:hover {
+  transform: translateY(-4px);
+  transition: 0.3s;
+}
 
 /* 하단 배너 */
 .brand-bottom-banner {

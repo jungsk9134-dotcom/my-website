@@ -42,11 +42,29 @@ const categoryInfo = {
     ],
   },
 }
-
+function CartIcon() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="9" cy="21" r="1" />
+      <circle cx="20" cy="21" r="1" />
+      <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6" />
+    </svg>
+  )
+}
 function CategoryPage() {
   const navigate = useNavigate()
   const { type } = useParams()
   const [filter, setFilter] = useState('all')
+  const [showCartPopup, setShowCartPopup] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -88,7 +106,7 @@ function CategoryPage() {
 
   localStorage.setItem('cartItems', JSON.stringify(updatedCart))
 
-  alert('장바구니에 담겼습니다.')
+  setShowCartPopup(true)
 }
   return (
     <main className="category-page">
@@ -180,11 +198,11 @@ function CategoryPage() {
                 <div>
   <span>♡</span>
   <button
-    className="cart-icon-btn"
-    onClick={(e) => handleAddToCart(e, item)}
-  >
-    🛒
-  </button>
+  className="cart-icon-btn"
+  onClick={(e) => handleAddToCart(e, item)}
+>
+  <CartIcon />
+</button>
 </div>
               </div>
             </article>
@@ -195,6 +213,26 @@ function CategoryPage() {
       </section>
 
       <footer className="campora-footer"></footer>
+      {showCartPopup && (
+  <div className="cart-popup-overlay">
+    <div className="cart-popup">
+      <p>장바구니로 이동하시겠습니까?</p>
+
+      <div className="cart-popup-buttons">
+        <button onClick={() => setShowCartPopup(false)}>
+          계속 쇼핑하기
+        </button>
+
+        <button
+          className="go-cart"
+          onClick={() => navigate('/cart')}
+        >
+          장바구니 가기
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </main>
   )
 }

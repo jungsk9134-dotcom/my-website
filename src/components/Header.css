@@ -123,3 +123,27 @@
 .brand-header .header-icons a {
   color: #ffffff !important;
 }
+
+/*장바구니 아이콘 */
+.cart-icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+}
+
+.cart-icon-wrap svg {
+  width: 21px;
+  height: 21px;
+}
+
+.cart-dot {
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  width: 7px;
+  height: 7px;
+  background: #ff5b5b;
+  border-radius: 50%;
+}

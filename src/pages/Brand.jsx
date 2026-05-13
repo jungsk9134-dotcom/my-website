@@ -171,23 +171,23 @@ function Brand() {
         <h2>오프라인 매장</h2>
 
         <div className="offline-list">
-          <div className="offline-item">
+          <a href="#" className="offline-item">
             <img src="/images/brand/brand7-1.jpg" alt="store" />
             <h3>Campora 성수점</h3>
             <p>서울 성동구 성수동</p>
-          </div>
+          </a>
 
-          <div className="offline-item">
+          <a href="#" className="offline-item">
             <img src="/images/brand/brand7-2.jpg" alt="store" />
             <h3>Campora 제주점</h3>
             <p>제주 제주시 애월읍</p>
-          </div>
+          </a>
 
-          <div className="offline-item">
+          <a href="#" className="offline-item">
             <img src="/images/brand/brand7-3.jpg" alt="store" />
             <h3>Campora 양양점</h3>
             <p>강원 양양군 현남면</p>
-          </div>
+          </a>
         </div>
       </section>
       <section className="brand-bottom-banner">

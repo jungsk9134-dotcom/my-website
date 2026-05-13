@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router-dom'
+import { ShoppingCart } from 'lucide-react'
 import './Header.css'
 
 function Header({ cartAdded }) {
-
   const location = useLocation()
 
   const isBrandPage = location.pathname === '/brand'
@@ -12,8 +12,11 @@ function Header({ cartAdded }) {
     location.pathname.includes('/product/')
 
   return (
-    <header className={`campora-header ${isBrandPage ? 'brand-header' : ''}`}>
-
+    <header
+      className={`campora-header ${
+        isBrandPage ? 'brand-header' : ''
+      }`}
+    >
       <Link to="/" className="logo">
         <img
           src={
@@ -36,14 +39,18 @@ function Header({ cartAdded }) {
       </nav>
 
       <div className="header-icons">
-        <Link to="/search">⌕</Link>
+        <Link to="/search" className="search-icon">
+          ⌕
+        </Link>
 
         <Link to="/cart" className="cart-icon-wrap">
-          🛒
-          {cartAdded && <span className="cart-dot"></span>}
+          <ShoppingCart size={20} strokeWidth={2} />
+
+          {cartAdded && (
+            <span className="cart-dot"></span>
+          )}
         </Link>
       </div>
-
     </header>
   )
 }
