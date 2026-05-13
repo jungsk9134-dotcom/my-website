@@ -428,16 +428,63 @@
   margin-top: 130px;
 }
 
-.info-row {
-  min-height: 70px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* 상품 구매 안내탭 */
+
+.info-area {
+  width: 100%;
+  max-width: 1060px;
+  margin: 160px auto 140px;
 }
 
-.info-row p {
-  font-size: 11px;
-  margin-top: 12px;
+.info-area h3 {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 70px;
+}
+
+.guide-box {
+  border-top: 1px solid #ddd;
+}
+
+.guide-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.guide-title {
+  width: 100%;
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  border: none;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+}
+
+.guide-title strong {
+  font-size: 18px;
+  font-weight: 500;
+  color: #222;
+}
+
+.guide-title span {
+  font-size: 20px;
+  color: #888;
+}
+
+.guide-content {
+  padding: 0 24px 38px;
+}
+
+.guide-content p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 6px;
+  padding-left: 16px;
 }
 
 .qa-area {
@@ -624,22 +671,23 @@
   color: #111;
 }
 
+/* ===== 리뷰 작성 팝업 / 사진 첨부 팝업 ===== */
 .review-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.25);
-  z-index: 9999;
-
+  background: rgba(0, 0, 0, 0.18);
+  z-index: 99999;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* 2번 이미지 팝업 */
 .review-modal {
   width: 430px;
   background: #fff;
   border-radius: 12px;
-  padding: 34px 32px 38px;
+  padding: 34px 34px 38px;
   box-sizing: border-box;
   position: relative;
 }
@@ -647,46 +695,50 @@
 .review-modal-close {
   position: absolute;
   top: 18px;
-  right: 18px;
-
+  right: 22px;
   border: none;
   background: none;
-  font-size: 26px;
+  font-size: 24px;
   color: #555;
   cursor: pointer;
 }
 
-.review-modal h3 {
+.review-modal h3,
+.photo-upload-modal h3 {
   text-align: center;
-  font-size: 22px;
+  font-size: 24px;
   margin-bottom: 14px;
 }
 
-.review-modal-sub {
+.review-modal-sub,
+.photo-upload-sub {
   text-align: center;
   font-size: 12px;
-  color: #555;
-  margin-bottom: 30px;
+  color: #333;
+  margin-bottom: 32px;
 }
 
-.review-modal-stars {
+.review-modal-stars,
+.photo-upload-stars {
   display: flex;
   justify-content: center;
-  gap: 4px;
-  margin-bottom: 20px;
+  gap: 3px;
+  margin-bottom: 24px;
 }
 
-.review-modal-stars button {
+.review-modal-stars button,
+.photo-upload-stars button {
   border: none;
   background: none;
   padding: 0;
-  cursor: pointer;
-  font-size: 30px;
-  color: #ddd;
   line-height: 1;
+  font-size: 31px;
+  color: #ddd;
+  cursor: pointer;
 }
 
-.review-modal-stars button.active {
+.review-modal-stars button.active,
+.photo-upload-stars button.active {
   color: #5f9f95;
 }
 
@@ -694,70 +746,299 @@
   width: 100%;
   height: 165px;
   resize: none;
-
   border: 1px solid #ddd;
   border-radius: 4px;
-
   padding: 14px;
   box-sizing: border-box;
-
   font-size: 12px;
   outline: none;
 }
 
-.review-modal textarea:focus {
+.review-modal textarea:focus,
+.photo-upload-modal textarea:focus {
   border-color: #6FAFA7;
 }
 
+/* 사진 추가 버튼 */
 .review-photo-add {
+  width: 100%;
+  min-height: 88px;
+  margin: 24px 0 34px;
+  padding: 0 22px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: 0.2s;
+}
 
-  margin: 22px 0 34px;
+.review-photo-add:hover {
+  border-color: #6FAFA7;
+}
+
+.review-photo-add * {
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .review-photo-add span {
-  width: 18px;
-  height: 18px;
+  width: 26px;
+  height: 26px;
   border: 1px solid #aaa;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
-  line-height: 1.8;
-  padding-left: 1.5px;
-  color: #555;
+  font-size: 18px;
+  line-height: 1;
+  color: #6f7f96;
+  flex-shrink: 0;
 }
 
 .review-photo-add p {
-  font-size: 12px;
-  margin-bottom: 4px;
+  font-size: 13px;
+  margin: 0 0 5px;
+  color: #111;
+  font-weight: 500;
 }
 
 .review-photo-add small {
-  font-size: 10px;
+  font-size: 11px;
   color: #777;
 }
 
-.review-modal-btns {
+.review-modal-btns,
+.photo-upload-btns {
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+.review-modal-btns {
   gap: 14px;
 }
 
-.review-modal-btns button {
-  height: 42px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  background: #fff;
+.review-modal-btns button,
+.photo-upload-btns button {
+  height: 48px;
+  border-radius: 7px;
+  font-size: 14px;
   cursor: pointer;
-  font-size: 13px;
 }
 
-.review-modal-btns button:last-child {
+.review-modal-btns button:first-child,
+.photo-upload-btns button:first-child {
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.review-modal-btns button:last-child,
+.photo-upload-btns button:last-child {
+  border: none;
   background: #6FAFA7;
   color: #fff;
+}
+
+/* 3번 이미지 팝업 */
+.photo-upload-modal {
+  width: 430px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 34px 34px 38px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.photo-back-btn {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  width: 24px;
+  height: 24px;
   border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  line-height: 1;
+  color: #555;
+  cursor: pointer;
+}
+
+.photo-upload-modal h3 {
+  font-size: 24px;
+  margin-bottom: 14px;
+}
+
+.photo-upload-sub {
+  font-size: 12px;
+  margin-bottom: 32px;
+}
+
+.photo-upload-stars {
+  margin-bottom: 35px;
+}
+
+.photo-upload-stars button {
+  font-size: 31px;
+}
+
+.photo-upload-modal textarea {
+  width: 100%;
+  height: 165px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  resize: none;
+  padding: 14px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #666;
+  outline: none;
+}
+
+.photo-upload-modal textarea::placeholder {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #777;
+}
+
+.photo-upload-box {
+  height: 70px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #777;
+  font-size: 11px;
+  font-family: inherit;
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: -0.2px;
+  cursor: pointer;
+}
+
+.upload-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-upload-btns {
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.photo-upload-btns button {
+  height: 48px;
+  border-radius: 7px;
+  font-size: 14px;
+}
+
+.photo-upload-box {
+  overflow: hidden;
+}
+
+.upload-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.review-upload-area {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+  padding-left: 6px;
+}
+
+.upload-guide-text {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 300;
+  color: #777;
+}
+
+.review-upload-preview {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.review-upload-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.review-image-remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  cursor: pointer;
+}
+
+.review-upload-plus {
+  width: 88px;
+  height: 88px;
+  border: 1px solid #d8d8d8;
+  border-radius: 6px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  color: #7b8a97;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.review-upload-plus:hover {
+  border-color: #6FAFA7;
+  color: #6FAFA7;
+}
+
+.review-upload-empty {
+  width: 100%;
+  height: 70px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 300;
+  color: #777;
+  cursor: pointer;
+}
+
+.review-upload-area.has-image {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
