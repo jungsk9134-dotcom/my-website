@@ -1,28 +1,101 @@
 import './Cart.css'
+import { useEffect, useState } from 'react'
 
-function Cart({ cartItems, setCartItems }) {
+function Cart() {
+  const [cartItems, setCartItems] = useState([])
+  const [selectedIds, setSelectedIds] = useState([])
+
+  useEffect(() => {
+    const savedCart =
+      JSON.parse(localStorage.getItem('cartItems')) || []
+
+    setCartItems(savedCart)
+    setSelectedIds(savedCart.map((item) => item.id))
+  }, [])
+
+  const saveCart = (updatedCart) => {
+    setCartItems(updatedCart)
+    localStorage.setItem('cartItems', JSON.stringify(updatedCart))
+  }
+
+  const handleToggleAll = () => {
+    if (selectedIds.length === cartItems.length) {
+      setSelectedIds([])
+    } else {
+      setSelectedIds(cartItems.map((item) => item.id))
+    }
+  }
+
+  const handleToggleItem = (id) => {
+    if (selectedIds.includes(id)) {
+      setSelectedIds(selectedIds.filter((itemId) => itemId !== id))
+    } else {
+      setSelectedIds([...selectedIds, id])
+    }
+  }
+
   const handleDelete = (id) => {
-    setCartItems((prev) =>
-      prev.filter((item) => item.id !== id)
+    const updatedCart = cartItems.filter((item) => item.id !== id)
+    saveCart(updatedCart)
+    setSelectedIds(selectedIds.filter((itemId) => itemId !== id))
+  }
+
+  const handleDeleteSelected = () => {
+    const updatedCart = cartItems.filter(
+      (item) => !selectedIds.includes(item.id)
     )
+
+    saveCart(updatedCart)
+    setSelectedIds([])
+  }
+
+  const handleQuantityChange = (id, type) => {
+    const updatedCart = cartItems.map((item) => {
+      if (item.id !== id) return item
+
+      const currentQuantity = item.quantity || 1
+
+      if (type === 'increase') {
+        return {
+          ...item,
+          quantity: currentQuantity + 1,
+        }
+      }
+
+      if (type === 'decrease') {
+        return {
+          ...item,
+          quantity: currentQuantity > 1 ? currentQuantity - 1 : 1,
+        }
+      }
+
+      return item
+    })
+
+    saveCart(updatedCart)
   }
 
   const getPriceNumber = (price) => {
-    return Number(price.replace(/[^0-9]/g, ''))
+    return Number(String(price).replace(/[^0-9]/g, ''))
   }
 
-  const totalPrice = cartItems.reduce((sum, item) => {
-    return sum + getPriceNumber(item.price)
+  const selectedItems = cartItems.filter((item) =>
+    selectedIds.includes(item.id)
+  )
+
+  const totalPrice = selectedItems.reduce((sum, item) => {
+    return sum + getPriceNumber(item.price) * (item.quantity || 1)
   }, 0)
 
-  const deliveryFee = cartItems.length > 0 ? 3000 : 0
+  const deliveryFee = selectedItems.length > 0 ? 3000 : 0
   const finalPrice = totalPrice + deliveryFee
 
   const formatPrice = (price) => {
     return price.toLocaleString() + '원'
   }
 
-  const isAllChecked = cartItems.length > 0
+  const isAllChecked =
+    cartItems.length > 0 && selectedIds.length === cartItems.length
 
   return (
     <main className="cart-page">
@@ -33,7 +106,11 @@ function Cart({ cartItems, setCartItems }) {
           <h2>장바구니</h2>
 
           <label className="cart-check-all">
-            <input type="checkbox" checked={isAllChecked} readOnly />
+            <input
+              type="checkbox"
+              checked={isAllChecked}
+              onChange={handleToggleAll}
+            />
             <span>전체</span>
           </label>
 
@@ -44,7 +121,10 @@ function Cart({ cartItems, setCartItems }) {
               <CartItem
                 key={item.id}
                 item={item}
+                checked={selectedIds.includes(item.id)}
+                onCheck={() => handleToggleItem(item.id)}
                 onDelete={() => handleDelete(item.id)}
+                onQuantityChange={handleQuantityChange}
               />
             ))
           )}
@@ -53,7 +133,13 @@ function Cart({ cartItems, setCartItems }) {
         <aside className="cart-summary">
           <h2>주문상세</h2>
 
-          <button className="delete-btn">선택삭제</button>
+          <button
+            className="delete-btn"
+            onClick={handleDeleteSelected}
+            disabled={selectedIds.length === 0}
+          >
+            선택삭제
+          </button>
 
           <div className="summary-row">
             <span>총 상품 금액</span>
@@ -80,10 +166,21 @@ function Cart({ cartItems, setCartItems }) {
   )
 }
 
-function CartItem({ item, onDelete }) {
+function CartItem({
+  item,
+  checked,
+  onCheck,
+  onDelete,
+  onQuantityChange,
+}) {
   return (
     <div className="cart-item-wrap">
-      <input type="checkbox" checked readOnly className="item-check" />
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={onCheck}
+        className="item-check"
+      />
 
       <div className="cart-item">
         <div className="item-img">
@@ -95,18 +192,27 @@ function CartItem({ item, onDelete }) {
           <p className="item-option">옵션 1 / 옵션2</p>
 
           <div className="quantity">
-            <button>-</button>
-            <span>1</span>
-            <button>+</button>
+            <button onClick={() => onQuantityChange(item.id, 'decrease')}>
+              -
+            </button>
+
+            <span>{item.quantity || 1}</span>
+
+            <button onClick={() => onQuantityChange(item.id, 'increase')}>
+              +
+            </button>
           </div>
         </div>
 
-        <p className="item-price">{item.price}</p>
+        <p className="item-price">
+          {(
+            Number(String(item.price).replace(/[^0-9]/g, '')) *
+            (item.quantity || 1)
+          ).toLocaleString()}
+          원
+        </p>
 
-        <button
-          className="remove-item-btn"
-          onClick={onDelete}
-        >
+        <button className="remove-item-btn" onClick={onDelete}>
           삭제
         </button>
       </div>

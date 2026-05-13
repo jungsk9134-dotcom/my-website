@@ -236,3 +236,7 @@ body {
   color: white;
   cursor: pointer;
 }
+.cart-check-all input,
+.item-check {
+  cursor: pointer;
+}

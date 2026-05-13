@@ -60,7 +60,36 @@ function CategoryPage() {
     if (filter === 'all') return true
     return item.subCategory === filter
   })
+  const handleAddToCart = (e, product) => {
+  e.stopPropagation()
 
+  const savedCart =
+    JSON.parse(localStorage.getItem('cartItems')) || []
+
+  const existItem = savedCart.find((item) => item.id === product.id)
+
+  let updatedCart
+
+  if (existItem) {
+    updatedCart = savedCart.map((item) =>
+      item.id === product.id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    )
+  } else {
+    updatedCart = [
+      ...savedCart,
+      {
+        ...product,
+        quantity: 1,
+      },
+    ]
+  }
+
+  localStorage.setItem('cartItems', JSON.stringify(updatedCart))
+
+  alert('장바구니에 담겼습니다.')
+}
   return (
     <main className="category-page">
       <section className="category-hero">
@@ -149,9 +178,14 @@ function CategoryPage() {
               <div className="category-bottom">
                 <small>★★★★★ 리뷰 0</small>
                 <div>
-                  <span>♡</span>
-                  <span>🛒</span>
-                </div>
+  <span>♡</span>
+  <button
+    className="cart-icon-btn"
+    onClick={(e) => handleAddToCart(e, item)}
+  >
+    🛒
+  </button>
+</div>
               </div>
             </article>
           ))}

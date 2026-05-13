@@ -3,6 +3,24 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function CurationFire() {
+  function CartIcon() {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="9" cy="21" r="1" />
+      <circle cx="20" cy="21" r="1" />
+      <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6" />
+    </svg>
+  )
+}
   const navigate = useNavigate()
   const [activeSection, setActiveSection] = useState('products')
   const [showSideButtons, setShowSideButtons] = useState(false)
@@ -35,35 +53,177 @@ function CurationFire() {
   }
 }, [])
   const products1 = [
-    { id: 1, name: '화로', price: '00% 판매가격', image: '/images/curation-1/prod1.png' },
-    { id: 2, name: '장작', price: '00% 판매가격', image: '/images/curation-1/prod2.png' },
-    { id: 3, name: '랜턴', price: '00% 판매가격', image: '/images/curation-1/prod3.png' },
-    { id: 4, name: '체어', price: '00% 판매가격', image: '/images/curation-1/prod4.png' },
-  ]
+  {
+    id: 1,
+    name: '화로',
+    originPrice: '89,000',
+    price: '59,000',
+    discount: 33,
+    image: '/images/curation-1/prod1.png',
+  },
+  {
+    id: 2,
+    name: '장작',
+    originPrice: '19,000',
+    price: '12,000',
+    discount: 20,
+    image: '/images/curation-1/prod2.png',
+  },
+  {
+    id: 3,
+    name: '랜턴',
+    originPrice: '49,000',
+    price: '39,000',
+    discount: 15,
+    image: '/images/curation-1/prod3.png',
+  },
+  {
+    id: 4,
+    name: '체어',
+    originPrice: '79,000',
+    price: '59,000',
+    discount: 25,
+    image: '/images/curation-1/prod4.png',
+  },
+]
 
   const products2 = [
-    { id: 5, name: '테이블', price: '00% 판매가격', image: '/images/curation-1/prod5.png' },
-    { id: 6, name: '담요', price: '00% 판매가격', image: '/images/curation-1/prod6.png' },
-    { id: 7, name: '아이스박스', price: '00% 판매가격', image: '/images/curation-1/prod7.png' },
-  ]
+  {
+    id: 5,
+    name: '테이블',
+    originPrice: '89,000',
+    price: '69,000',
+    discount: 22,
+    image: '/images/curation-1/prod5.png',
+  },
+  {
+    id: 6,
+    name: '담요',
+    originPrice: '39,000',
+    price: '29,000',
+    discount: 25,
+    image: '/images/curation-1/prod6.png',
+  },
+  {
+    id: 7,
+    name: '아이스박스',
+    originPrice: '129,000',
+    price: '99,000',
+    discount: 23,
+    image: '/images/curation-1/prod7.png',
+  },
+]
 
   const products3 = [
-    { id: 8, name: '침낭', price: '00% 판매가격', image: '/images/curation-1/prod8.png' },
-    { id: 9, name: '텐트', price: '00% 판매가격', image: '/images/curation-1/prod9.png' },
+  {
+    id: 8,
+    name: '침낭',
+    originPrice: '79,000',
+    price: '59,000',
+    discount: 25,
+    image: '/images/curation-1/prod8.png',
+  },
+  {
+    id: 9,
+    name: '텐트',
+    originPrice: '329,000',
+    price: '259,000',
+    discount: 21,
+    image: '/images/curation-1/prod9.png',
+  },
+]
+  const handleAddAllToCart = () => {
+  const allProducts = [
+    ...products1,
+    ...products2,
+    ...products3,
   ]
 
+  const savedCart =
+    JSON.parse(localStorage.getItem('cartItems')) || []
+
+  const mergedCart = [...savedCart]
+
+  allProducts.forEach((newItem) => {
+    const existItem = mergedCart.find(
+      (item) => item.id === newItem.id
+    )
+
+    if (!existItem) {
+      mergedCart.push({
+        ...newItem,
+        quantity: 1,
+      })
+    }
+  })
+
+  localStorage.setItem(
+    'cartItems',
+    JSON.stringify(mergedCart)
+  )
+
+  navigate('/cart')
+}
+const handleAddToCart = (e, product) => {
+  e.stopPropagation()
+
+  const savedCart =
+    JSON.parse(localStorage.getItem('cartItems')) || []
+
+  const existItem = savedCart.find((item) => item.id === product.id)
+
+  let updatedCart
+
+  if (existItem) {
+    updatedCart = savedCart.map((item) =>
+      item.id === product.id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    )
+  } else {
+    updatedCart = [
+      ...savedCart,
+      {
+        ...product,
+        quantity: 1,
+      },
+    ]
+  }
+
+  localStorage.setItem('cartItems', JSON.stringify(updatedCart))
+  alert('장바구니에 담겼습니다.')
+}
   const ProductCard = ({ item }) => (
     <article className="fire-product-card">
       <img src={item.image} alt={item.name} />
 
       <div className="product-info">
         <h4>{item.name}</h4>
-        <span className="origin-price">원가가격</span>
-        <strong className="sale-price">{item.price}</strong>
+        <div className="price-wrap">
+  <span className="origin-price">
+    {item.originPrice}
+  </span>
+
+  <div className="sale-row">
+    <em>{item.discount}%</em>
+
+    <strong className="sale-price">
+      {item.price}
+    </strong>
+  </div>
+</div>
 
         <div className="product-bottom">
           <small>★ 4.8&nbsp;&nbsp;(20)</small>
-          <div className="fire-icons">♡ 🛒</div>
+          <div className="fire-icons">
+  <span>♡</span>
+  <button
+  className="cart-icon-btn"
+  onClick={(e) => handleAddToCart(e, item)}
+>
+  <CartIcon />
+</button>
+</div>
         </div>
       </div>
     </article>
@@ -155,7 +315,12 @@ function CurationFire() {
           ))}
         </div>
 
-        <button className="more-btn">전체 구성 담기</button>
+        <button
+  className="more-btn"
+  onClick={handleAddAllToCart}
+>
+  전체 구성 담기
+</button>
       </section>
 
       <section className="fire-story">

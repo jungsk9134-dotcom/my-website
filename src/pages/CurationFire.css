@@ -341,3 +341,65 @@
   margin-bottom: 70px;
   text-align: center;
 }
+/*장바구니 버튼 클릭 */
+.fire-cart-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.fire-cart-btn:hover {
+  transform: scale(1.15);
+}
+/* 가격 표시 */
+.price-wrap {
+  margin-top: 8px;
+}
+
+.origin-price {
+  display: block;
+  color: #999;
+  text-decoration: line-through;
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+.sale-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sale-row em {
+  color: #2d8f7b;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.sale-price {
+  font-size: 16px;
+  font-weight: 700;
+}
+/* 카트 이모티콘 */
+.cart-icon-btn {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-icon-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.cart-icon-btn:hover {
+  transform: scale(1.12);
+}
