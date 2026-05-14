@@ -1,54 +1,22 @@
 import { Link, useLocation } from 'react-router-dom'
-import { ShoppingCart } from 'lucide-react'
-import { useEffect, useState } from 'react'
 import './Header.css'
 
-function Header() {
+function Header({ cartAdded }) {
+
   const location = useLocation()
-  const [cartCount, setCartCount] = useState(0)
 
-  useEffect(() => {
-    const updateCartCount = () => {
-      const savedCart =
-        JSON.parse(localStorage.getItem('cartItems')) || []
+  const isBrandPage = location.pathname === '/brand'
 
-      const totalCount = savedCart.reduce(
-        (sum, item) => sum + (item.quantity || 1),
-        0
-      )
-
-      setCartCount(totalCount)
-    }
-
-    updateCartCount()
-
-    window.addEventListener('storage', updateCartCount)
-    window.addEventListener('cartUpdated', updateCartCount)
-
-    return () => {
-      window.removeEventListener('storage', updateCartCount)
-      window.removeEventListener('cartUpdated', updateCartCount)
-    }
-  }, [])
-
-  const isWhiteHeaderPage =
-  location.pathname === '/brand' ||
-  location.pathname === '/curation/fire'
-  const isDetailPage = location.pathname.includes('/product/')
+  /* 상세페이지 여부 */
+  const isDetailPage =
+    location.pathname.includes('/product/')
 
   return (
-    <header
-      className={`campora-header ${
-        isWhiteHeaderPage ? 'brand-header' : ''
-      }`}
-    >
+    <header className={`campora-header ${isBrandPage ? 'brand-header' : ''}`}>
+
       <Link to="/" className="logo">
-        <img
-          src={
-            isDetailPage
-              ? '/images/logo/gold-logo.png'
-              : '/images/logo/logo2.png'
-          }
+         <img
+          src="/images/logo/header-logo.png"
           alt="campora logo"
           className="logo-img"
         />
@@ -64,18 +32,14 @@ function Header() {
       </nav>
 
       <div className="header-icons">
-        <Link to="/search" className="search-icon">
-          ⌕
-        </Link>
+        <Link to="/search">⌕</Link>
 
         <Link to="/cart" className="cart-icon-wrap">
-          <ShoppingCart size={20} strokeWidth={2} />
-
-          {cartCount > 0 && (
-            <span className="cart-count">{cartCount}</span>
-          )}
+          🛒
+          {cartAdded && <span className="cart-dot"></span>}
         </Link>
       </div>
+
     </header>
   )
 }

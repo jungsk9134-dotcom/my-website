@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  padding-top: 40px;
 }
 
 /* 전체 공통 폭 */
@@ -23,7 +24,7 @@
 /* 상단 상품 영역 */
 .detail-top {
   padding: 0 20px;
-  margin: 70px auto 120px;
+  margin: 150px auto 120px;
   display: grid;
   grid-template-columns: 760px 760px;
   justify-content: center;
@@ -33,11 +34,10 @@
 
 .detail-breadcrumb {
   width: 100%;
-  max-width: 1600px;
-  margin: 0 auto 55px;
-  padding: 0 20px;
-  box-sizing: border-box;
-  font-size: 12px;
+  margin-bottom: 22px;
+  font-size: 15px;
+  color: #666;
+  text-align: left;
 }
 
 /* 왼쪽 이미지 */
@@ -102,10 +102,17 @@
 .detail-info {
   width: 760px;
   min-height: 760px;
-  padding-top: 0;
+  padding-top: 40px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+.detail-info-top h2 {
+  font-size: 52px;
+  font-weight: 500;
+  margin-bottom: 18px;
+  line-height: 1.2;
 }
 
 .detail-info-top {
@@ -119,13 +126,14 @@
 }
 
 .rating {
-  font-size: 16px;
-  margin-bottom: 75px;
+  font-size: 18px;
+  margin-bottom: 120px;
 }
 
 /* 가격 */
 .price-box {
   margin-bottom: 70px;
+  margin-top: -90px;
   text-align: right;
 }
 
@@ -139,9 +147,9 @@
 
 .sale-price {
   display: flex;
+  align-items: baseline;
   justify-content: flex-end;
-  align-items: center;
-  gap: 16px;
+  gap: 14px;
 }
 
 .price-box .sale {
@@ -1227,14 +1235,14 @@
 .qa-question {
   text-align: left;
   margin: 0;
-  padding: 22px 0 16px 180px;
+  padding: 22px 0 16px 215px;
   font-size: 15px;
   color: #222;
   line-height: 1.7;
 }
 
 .qa-answer-box {
-  padding: 0 0 34px 180px;
+  padding: 0 0 34px 215px;
   font-size: 15px;
   line-height: 1.9;
   color: #333;
@@ -1243,15 +1251,31 @@
 
 .qa-answer-box p {
   text-align: left;
-  margin: 0 0 12px;
+  margin: 15px 0 12px;
+}
+
+/* 첫 번째 p만 Campora 옆으로 */
+.qa-answer-box p:first-of-type {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+/* 두 번째 p는 아래로 내려서 들여쓰기 */
+.qa-answer-box p:nth-of-type(2) {
+  display: block;
+  margin-top: 5px;
+  margin-left: 90px;
+  line-height: 1.9;
 }
 
 .qa-brand {
   display: inline-block;
   padding: 5px 14px;
-  margin-bottom: 16px;
+  margin-bottom: 0;
   border-radius: 20px;
   background: #eee;
   font-size: 12px;
   color: #333;
+  vertical-align: middle;
 }

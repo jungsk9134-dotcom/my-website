@@ -122,26 +122,28 @@ const breadcrumbCategory =
 
   return (
     <main className="detail-page">
-      <div className="detail-breadcrumb">
-        홈 &gt; 제품보기 &gt; {breadcrumbCategory}
-      </div>
-
       <section className="detail-top">
         <div className="detail-left">
-          <div className="detail-img">
-            <img src={selectedImage || product.image} alt={product.name} />
-          </div>
-          <div className="thumb-list">
-            {[product.image, ...(product.thumbs || [])].map((thumb, index) => (
-            <div
-              className={`thumb ${selectedImage === thumb ? 'active' : ''}`} key={index}
-              onMouseEnter={() => setSelectedImage(thumb)} >
-            <img src={thumb} alt={`${product.name} 썸네일 ${index + 1}`} />
-            </div>
-            ))}
-          </div>
-        </div>
+          <div className="detail-breadcrumb">
+            홈 &gt; 제품 보기 &gt; {breadcrumbCategory}
+              </div>
 
+              <div className="detail-img">
+                <img src={selectedImage || product.image} alt={product.name} />
+              </div>
+
+              <div className="thumb-list">
+                {[product.image, ...(product.thumbs || [])].map((thumb, index) => (
+                  <div
+                    className={`thumb ${selectedImage === thumb ? 'active' : ''}`}
+                    key={index}
+                    onMouseEnter={() => setSelectedImage(thumb)}
+                  >
+                    <img src={thumb} alt={`${product.name} 썸네일 ${index + 1}`} />
+                  </div>
+                ))}
+              </div>
+            </div>
         <div className="detail-info">
           <div className="detail-info-top">
             <h2>{product.name}</h2>
