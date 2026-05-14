@@ -1,54 +1,71 @@
 .campora-footer {
   width: 100%;
-  height: 120px;
-  background: #1f1f1f;
-  color: #d8d8d8;
-  display: flex;
-  align-items: center;
-  margin-top: 120px;
+  height: 220px;
+  background: #1C1C1C !important;
+  color: #fff;
 }
 
 .footer-inner {
-  width: 100%;
-  max-width: 1300px;
+  width: 1060px;
+  height: 100%;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 220px 1fr 120px;
+  display: flex;
   align-items: center;
-  gap: 40px;
+  position: relative;
 }
 
 .footer-logo {
-  font-size: 28px;
+  width: 220px;
   color: #fff;
-  letter-spacing: -1px;
+}
+
+.footer-logo svg {
+  width: 220px;
+  height: auto;
+  display: block;
+}
+
+.footer-logo svg path {
+  fill: currentColor;
+}
+
+.footer-info {
+  margin-left: 110px;
+  font-size: 11px;
+  color: #e5e5e5;
+  line-height: 1.5;
 }
 
 .footer-links {
   display: flex;
-  gap: 14px;
-  margin-bottom: 10px;
-  font-size: 12px;
+  gap: 12px;
+  margin-bottom: 16px;
   color: #fff;
+  font-size: 12px;
 }
 
 .footer-info p {
-  margin: 3px 0;
-  font-size: 11px;
-  color: #aaa;
+  margin: 0;
 }
 
 .footer-info small {
   display: block;
-  margin-top: 16px;
-  font-size: 10px;
-  color: #bdbdbd;
+  margin-top: 38px;
+  color: #fff;
+  font-size: 11px;
+  transform: translateX(190px);
 }
 
 .footer-icons {
+  position: absolute;
+  right: 0;
+  top: 70px;
   display: flex;
-  justify-content: flex-end;
-  gap: 18px;
-  color: #fff;
-  font-size: 16px;
+  gap: 22px;
+}
+
+.footer-icons img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
 }
