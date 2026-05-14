@@ -12,6 +12,9 @@ function ProductDetail({ setCartItems }) {
     const [isPhotoUploadOpen, setIsPhotoUploadOpen] = useState(false)
     const [reviewImages, setReviewImages] = useState([])
     const [openGuide, setOpenGuide] = useState('payment')
+    const [openQaId, setOpenQaId] = useState(null)
+    const [isQaModalOpen, setIsQaModalOpen] = useState(false)
+    const [qaType, setQaType] = useState('제품 문의')
     const handleReviewImage = (file) => {
       if (!file) return
 
@@ -140,41 +143,46 @@ const breadcrumbCategory =
         </div>
 
         <div className="detail-info">
-          <h2>{product.name}</h2>
-          <p className="rating">★★★★★ 5.0 리뷰 10</p>
+          <div className="detail-info-top">
+            <h2>{product.name}</h2>
+            <p className="rating">★★★★★ 5.0 리뷰 10</p>
 
-          <div className="price-box">
-            <span className="old">{product.oldPrice}</span>
-            <div className="sale-price">
-              <span className="sale">50%</span>
-              <span className="price">{product.price}</span>
+            <div className="price-box">
+              <span className="old">{product.oldPrice}</span>
+              <div className="sale-price">
+                <span className="sale">50%</span>
+                <span className="price">{product.price}</span>
+              </div>
             </div>
-          </div>
 
-          <div className="delivery-row">
-            <span>배송방법</span>
-            <span>택배</span>
-          </div>
+            <div className="delivery-row">
+              <span>배송비</span>
+              <span>
+                3,000원 <small>(5만원 이상 무료배송)</small>
+              </span>
+            </div>
 
-          <div className="select-row">
-            <label>사이즈</label>
-            <select>
-              <option>선택</option>
-            </select>
-          </div>
+            <div className="select-row">
+              <label>사이즈</label>
+              <select>
+                <option>[필수] 옵션을 선택해 주세요</option>
+              </select>
+            </div>
 
-          <div className="select-row">
-            <label>색상</label>
-            <select>
-              <option>선택</option>
-            </select>
+            <div className="select-row">
+              <label>컬러</label>
+              <select>
+                <option>[필수] 옵션을 선택해 주세요</option>
+              </select>
+            </div>
           </div>
 
           <div className="selected-product">
             <button className="remove-btn">×</button>
+
             <p>{product.name}</p>
-            <span>옵션1</span>
-            <span>옵션2</span>
+            <span>- 사이즈 싱글</span>
+            <span>- 컬러 샌드</span>
 
             <div className="selected-bottom">
               <div className="quantity">
@@ -182,18 +190,24 @@ const breadcrumbCategory =
                 <span>1</span>
                 <button>+</button>
               </div>
-              <strong>{product.oldPrice}</strong>
+
+              <strong>{product.price}</strong>
             </div>
           </div>
 
-          <div className="total">
-            <span>총 상품 금액</span>
-            <strong>{product.oldPrice}</strong>
-          </div>
+          <div className="detail-info-bottom">
+            <div className="total">
+              <span>총 상품 금액</span>
+              <div>
+                <strong>{product.price}</strong>
+                <em>원&nbsp; (1개)</em>
+              </div>
+            </div>
 
-          <div className="btns">
-            <button onClick={handleAddCart}>장바구니</button>
-            <button>바로구매</button>
+            <div className="btns">
+              <button onClick={handleAddCart}>장바구니</button>
+              <button className="buy">바로 구매</button>
+            </div>
           </div>
         </div>
       </section>
@@ -224,6 +238,8 @@ const breadcrumbCategory =
           Q&A
         </span>
       </section>
+
+      {/* 제품 상세 탭 */}
       <section className="detail-content" ref={detailRef}>
         <div className="detail-content-inner">
           {product.detailImages && product.detailImages.length > 0 ? (
@@ -240,78 +256,81 @@ const breadcrumbCategory =
           )}
         </div>
         </section>
-      <section className="review-area" ref={reviewRef}>
-      <h3>리뷰</h3>
-            
-      <div className="review-summary new-review-summary">
-        <div className="review-score-box">
-          <strong>★★★★★ <span>4.9</span></strong>
-        <p>(13)</p>
-        </div>
-            
-        <div className="review-text-box">
-          <h4>리뷰 한 눈에 보기</h4>
-          <p>
-            부드러운 소재와 포근함에 만족한 리뷰가 많았습니다.
-            차박이나 캠핑처럼 쌀쌀한 환경에서도 따뜻하게 사용할 수 있다는 의견이 많아요.
-          </p>
-      </div>
-      </div>
-            
-      {[
-        {
-          user: 'cozycamp | 26.04.30',
-          text: '침낭이 생각보다 훨씬 부드러워서 아이가 정말 좋아하네요. 캠핑할 때도 따뜻하게 사용할 수 있을 것 같아요.',
-          img: '/images/review/prod-sm-01-review-01.png',
-        },
-        {
-          user: 'bysora | 26.04.27',
-          text: '색감도 예쁘고 두께감도 적당해서 만족스럽습니다. 포근하고 가벼워서 가지고 다니기 좋아요.',
-          img: '/images/review/prod-sm-01-review-02.png',
-        },
-       {
-          user: 'sundayfilm | 26.04.24',
-          text: '감성 캠핑용으로 정말 잘 어울려요. 사진도 예쁘게 나오고 따뜻해서 만족합니다.',
-          img: '/images/review/prod-sm-01-review-03.png',
-        },
-        {
-          user: 'dayoff.zip | 26.04.21',
-          text: '촉감이 부드럽고 안감도 좋아요. 겨울 캠핑까지는 아니어도 봄가을에는 충분히 따뜻할 것 같습니다.',
-          img: '/images/review/prod-sm-01-review-04.png',
-       },
-        {
-          user: 'aurora | 26.04.18',
-          text: '포장도 깔끔하고 색상이 사진이랑 비슷해서 만족합니다. 캠핑 분위기랑 잘 맞아요.',
-          img: '/images/review/prod-sm-01-review-05.png',
-        },
-   ]  .map((review, index) => (
-       <div className="review-row new-review-row" key={index}>
-          <div className="review-left">
-            <strong>★★★★★ <span>5.0</span></strong>
-            <p>{review.user}</p>
-            <p>{review.text}</p>
-          </div>
-      
-          <img
-            src={review.img}
-            alt={`리뷰 이미지 ${index + 1}`}
-            className="review-img"
-          />
-       </div>
-      ))}
-    
-      <div className="review-pages">1&nbsp;&nbsp;2&nbsp;&nbsp;3</div>
-    
-      <button
-        className="review-write-btn"
-        onClick={() => setIsReviewModalOpen(true)} >
-        리뷰 작성하기
-      </button>
-    </section>
 
+      {/* 리뷰 탭 */}
+      <section className="review-area" ref={reviewRef}>
+        <h3>리뷰</h3>
+            
+        <div className="review-summary new-review-summary">
+          <div className="review-score-box">
+            <strong>★★★★★ <span>4.9</span></strong>
+          <p>(13)</p>
+          </div>
+              
+          <div className="review-text-box">
+            <h4>리뷰 한 눈에 보기</h4>
+            <p>
+              부드러운 소재와 포근함에 만족한 리뷰가 많았습니다.
+              차박이나 캠핑처럼 쌀쌀한 환경에서도 따뜻하게 사용할 수 있다는 의견이 많아요.
+            </p>
+        </div>
+        </div>
+              
+        {[
+          {
+            user: 'cozycamp | 26.04.30',
+            text: '침낭이 생각보다 훨씬 부드러워서 아이가 정말 좋아하네요. 캠핑할 때도 따뜻하게 사용할 수 있을 것 같아요.',
+            img: '/images/review/prod-sm-01-review-01.png',
+          },
+          {
+            user: 'bysora | 26.04.27',
+            text: '색감도 예쁘고 두께감도 적당해서 만족스럽습니다. 포근하고 가벼워서 가지고 다니기 좋아요.',
+            img: '/images/review/prod-sm-01-review-02.png',
+          },
+        {
+            user: 'sundayfilm | 26.04.24',
+            text: '감성 캠핑용으로 정말 잘 어울려요. 사진도 예쁘게 나오고 따뜻해서 만족합니다.',
+            img: '/images/review/prod-sm-01-review-03.png',
+          },
+          {
+            user: 'dayoff.zip | 26.04.21',
+            text: '촉감이 부드럽고 안감도 좋아요. 겨울 캠핑까지는 아니어도 봄가을에는 충분히 따뜻할 것 같습니다.',
+            img: '/images/review/prod-sm-01-review-04.png',
+        },
+          {
+            user: 'aurora | 26.04.18',
+            text: '포장도 깔끔하고 색상이 사진이랑 비슷해서 만족합니다. 캠핑 분위기랑 잘 맞아요.',
+            img: '/images/review/prod-sm-01-review-05.png',
+          },
+    ]  .map((review, index) => (
+        <div className="review-row new-review-row" key={index}>
+            <div className="review-left">
+              <strong>★★★★★ <span>5.0</span></strong>
+              <p>{review.user}</p>
+              <p>{review.text}</p>
+            </div>
+        
+            <img
+              src={review.img}
+              alt={`리뷰 이미지 ${index + 1}`}
+              className="review-img"
+            />
+        </div>
+        ))}
+      
+        <div className="review-pages">1&nbsp;&nbsp;2&nbsp;&nbsp;3</div>
+      
+        <button
+          className="review-write-btn"
+          onClick={() => setIsReviewModalOpen(true)} >
+          리뷰 작성하기
+        </button>
+      </section>
+
+
+      {/* 상품 구매 탭 */}
       <section className="info-area" ref={guideRef}>
         <h3>상품 구매 안내</h3>
-
         <div className="guide-box">
           <div className={`guide-item ${openGuide === 'payment' ? 'active' : ''}`}>
             <button
@@ -422,7 +441,80 @@ const breadcrumbCategory =
         </div>
       </section>
 
-        /* 리뷰 작성 팝업 */
+      {/* Q&A 탭 */}
+      <section className="qa-area" ref={qaRef}>
+        <h3>Q&A</h3>
+
+        <div className="qa-table">
+          <div className="qa-head">
+            <span>상태</span>
+            <span>제목</span>
+            <span>작성자</span>
+          </div>
+
+          {[
+            {
+              id: 1,
+              status: '처리 대기',
+              title: '배송 문의',
+              writer: 'nightwood',
+              question: '배송은 보통 며칠 정도 걸리나요?',
+              answer: '',
+            },
+            {
+              id: 2,
+              status: '답변 완료',
+              title: '제품 문의',
+              writer: 'fromdawn',
+              question:
+                '침낭 세탁은 어떻게 해야 하나요? 집에서 세탁해도 괜찮을까요?',
+              answer:
+                '해당 침낭은 생활 오염 기준으로 가벼운 손세탁 또는 중성세제를 사용한 울코스 세탁을 권장드리고 있습니다. 장기간 사용을 위해서는 자연 건조를 추천드려요.',
+            },
+          ].map((qa) => (
+            <div className="qa-item" key={qa.id}>
+              <div className="qa-row">
+                <span>{qa.status}</span>
+
+                <span
+                  className="qa-title"
+                  onClick={() => setOpenQaId(openQaId === qa.id ? null : qa.id)}
+                >
+                  {qa.title}
+                </span>
+
+                <span>{qa.writer}</span>
+              </div>
+
+              <div className={`qa-answer ${openQaId === qa.id ? 'open' : ''}`}>
+                <p className="qa-question">
+                  {qa.question}
+                </p>
+
+                {qa.answer && (
+                  <div className="qa-answer-box">
+                    <span className="qa-brand">Campora</span>
+                    <p>안녕하세요 {qa.writer}님.</p>
+                    <p>{qa.answer}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="qa-write-wrap">
+          <button
+            className="qa-write-btn"
+            type="button"
+            onClick={() => setIsQaModalOpen(true)}
+          >
+            상품 문의하기
+          </button>
+        </div>
+      </section>
+
+      {/* 리뷰 팝업 작성하기 */}
       {isReviewModalOpen && !isPhotoUploadOpen && (
         <div className="review-modal-overlay">
           <div className="review-modal">
@@ -433,13 +525,10 @@ const breadcrumbCategory =
             >
               ×
             </button>
-
             <h3>리뷰 작성하기</h3>
-
             <p className="review-modal-sub">
               사용해본 순간을 자유롭게 남겨주세요
             </p>
-
             <div className="review-modal-stars">
               {[1, 2, 3, 4, 5].map((star) => (
                 <button
@@ -454,23 +543,19 @@ const breadcrumbCategory =
                 </button>
               ))}
             </div>
-
             <textarea
               placeholder="제품의 사용감이나 캠핑에서의 순간을 들려주세요"
             ></textarea>
-
             <div
               className="review-photo-add"
               onClick={() => setIsPhotoUploadOpen(true)}
             >
               <span>＋</span>
-
               <div>
                 <p>사진 추가</p>
                 <small>사진은 1장까지 첨부할 수 있습니다</small>
               </div>
             </div>
-
             <div className="review-modal-btns">
               <button
                 type="button"
@@ -478,7 +563,6 @@ const breadcrumbCategory =
               >
                 취소
               </button>
-
               <button type="button">
                 리뷰 남기기
               </button>
@@ -486,7 +570,6 @@ const breadcrumbCategory =
           </div>
         </div>
       )}
-
       {isReviewModalOpen && isPhotoUploadOpen && (
         <div className="review-modal-overlay">
           <div className="photo-upload-modal">
@@ -497,13 +580,10 @@ const breadcrumbCategory =
             >
               ←
             </button>
-
             <h3>리뷰 작성하기</h3>
-
             <p className="photo-upload-sub">
               사용해본 순간을 자유롭게 남겨주세요
             </p>
-
             <div className="photo-upload-stars">
               {[1, 2, 3, 4, 5].map((star) => (
                 <button
@@ -518,7 +598,6 @@ const breadcrumbCategory =
                 </button>
               ))}
             </div>
-
             <textarea
               placeholder="제품의 사용감이나 캠핑에서의 순간을 들려주세요"
             ></textarea>
@@ -533,7 +612,6 @@ const breadcrumbCategory =
               {reviewImages.map((img, index) => (
                 <div className="review-upload-preview" key={index}>
                   <img src={img} alt={`첨부 이미지 ${index + 1}`} />
-
                   <button
                     type="button"
                     className="review-image-remove"
@@ -576,6 +654,54 @@ const breadcrumbCategory =
 
               <button type="button">
                 리뷰 남기기
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* 상품 문의하기 팝업 */}
+      {isQaModalOpen && (
+        <div className="qa-modal-overlay">
+          <div className="qa-modal">
+            <button
+              className="qa-modal-close"
+              type="button"
+              onClick={() => setIsQaModalOpen(false)}
+            >
+              ×
+            </button>
+
+            <h3>상품 문의하기</h3>
+
+            <p className="qa-modal-sub">어떤 내용이 궁금한가요?</p>
+
+            <div className="qa-category-list">
+              {['제품 문의', '배송 문의', '재입고 문의', '기타'].map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  className={qaType === item ? 'active' : ''}
+                  onClick={() => setQaType(item)}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+
+            <textarea
+              placeholder="제품 사용감이나 구성에 대해 궁금한 내용을 남겨주세요"
+            ></textarea>
+
+            <div className="qa-modal-btns">
+              <button
+                type="button"
+                onClick={() => setIsQaModalOpen(false)}
+              >
+                취소
+              </button>
+
+              <button type="button">
+                문의 등록하기
               </button>
             </div>
           </div>

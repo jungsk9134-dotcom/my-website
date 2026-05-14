@@ -13,6 +13,7 @@ import CurationCar from './pages/CurationCar'
 import CurationMinimal from './pages/CurationMinimal'
 import CategoryPage from './pages/CategoryPage'
 import ScrollToTop from './components/ScrollToTop'
+import Footer from './components/Footer'
 
 function App() {
   const [cartItems, setCartItems] = useState([])
@@ -42,6 +43,8 @@ function App() {
 
         <Route path="/category/:type" element={<CategoryPage />} />
       </Routes>
+
+      <Footer />
     </>
   )
 }
