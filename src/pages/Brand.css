@@ -211,12 +211,12 @@
 
 .story-row:not(.reverse) .story-image {
   justify-self: end;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .story-row:not(.reverse) .story-text {
   justify-self: start;
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 /* 두 번째 줄 */

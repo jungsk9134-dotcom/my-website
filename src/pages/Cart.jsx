@@ -101,18 +101,28 @@ function Cart() {
     <main className="cart-page">
       <div className="cart-breadcrumb">홈 &gt; 장바구니</div>
 
+      <h2 className="cart-title">장바구니</h2>
+
       <section className="cart-container">
         <div className="cart-left">
-          <h2>장바구니</h2>
+          <div className="cart-list-top">
+            <label className="cart-check-all">
+              <input
+                type="checkbox"
+                checked={isAllChecked}
+                onChange={handleToggleAll}
+              />
+              <span>전체 선택</span>
+            </label>
 
-          <label className="cart-check-all">
-            <input
-              type="checkbox"
-              checked={isAllChecked}
-              onChange={handleToggleAll}
-            />
-            <span>전체</span>
-          </label>
+            <button
+              className="delete-btn"
+              onClick={handleDeleteSelected}
+              disabled={selectedIds.length === 0}
+            >
+              선택삭제
+            </button>
+          </div>
 
           {cartItems.length === 0 ? (
             <p className="empty-cart">장바구니가 비어 있습니다.</p>
@@ -131,16 +141,6 @@ function Cart() {
         </div>
 
         <aside className="cart-summary">
-          <h2>주문상세</h2>
-
-          <button
-            className="delete-btn"
-            onClick={handleDeleteSelected}
-            disabled={selectedIds.length === 0}
-          >
-            선택삭제
-          </button>
-
           <div className="summary-row">
             <span>총 상품 금액</span>
             <strong>{formatPrice(totalPrice)}</strong>
@@ -156,12 +156,10 @@ function Cart() {
             <strong>{formatPrice(finalPrice)}</strong>
           </div>
 
-          <button className="order-btn">전체상품주문</button>
-          <button className="order-btn">선택상품주문</button>
+          <button className="order-btn outline">선택 상품 주문</button>
+          <button className="order-btn">전체 상품 주문</button>
         </aside>
       </section>
-
-      <footer className="cart-footer"></footer>
     </main>
   )
 }
@@ -213,7 +211,7 @@ function CartItem({
         </p>
 
         <button className="remove-item-btn" onClick={onDelete}>
-          삭제
+          ×
         </button>
       </div>
     </div>
