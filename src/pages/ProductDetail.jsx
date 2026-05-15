@@ -14,6 +14,7 @@ function ProductDetail({ setCartItems }) {
     const [openGuide, setOpenGuide] = useState('payment')
     const [openQaId, setOpenQaId] = useState(null)
     const [isQaModalOpen, setIsQaModalOpen] = useState(false)
+    const [currentPage, setCurrentPage] = useState(1)
     const [qaType, setQaType] = useState('제품 문의')
     const handleReviewImage = (file) => {
       if (!file) return
@@ -96,7 +97,42 @@ useEffect(() => {
 }, [product])
 
   if (!product) return <div>상품 없음</div>
+    const reviews = [
+    {
+      user: 'cozycamp | 26.04.30',
+      text: '침낭이 생각보다 훨씬 부드러워서 아이가 정말 좋아하네요.',
+      img: '/images/review/prod-sm-01-review-01.png',
+    },
+    {
+      user: 'bysora | 26.04.27',
+      text: '색감도 예쁘고 두께감도 적당해서 만족스럽습니다.',
+      img: '/images/review/prod-sm-01-review-02.png',
+    },
+    {
+      user: 'sundayfilm | 26.04.24',
+      text: '감성 캠핑용으로 정말 잘 어울려요.',
+      img: '/images/review/prod-sm-01-review-03.png',
+    },
+    {
+      user: 'dayoff.zip | 26.04.21',
+      text: '촉감이 부드럽고 안감도 좋아요.',
+      img: '/images/review/prod-sm-01-review-04.png',
+    },
+    {
+      user: 'aurora | 26.04.18',
+      text: '포장도 깔끔하고 색상이 만족스럽습니다.',
+      img: '/images/review/prod-sm-01-review-05.png',
+    },
+  ]
 
+  const reviewsPerPage = 5
+
+  const totalPages = Math.ceil(reviews.length / reviewsPerPage)
+
+  const currentReviews = reviews.slice(
+    (currentPage - 1) * reviewsPerPage,
+    currentPage * reviewsPerPage
+  )
   /* 카테고리 이름 변경 */
   const categoryNameMap = {
     tent: '텐트 · 타프',
@@ -272,55 +308,38 @@ const breadcrumbCategory =
           <div className="review-text-box">
             <h4>리뷰 한 눈에 보기</h4>
             <p>
-              부드러운 소재와 포근함에 만족한 리뷰가 많았습니다.
-              차박이나 캠핑처럼 쌀쌀한 환경에서도 따뜻하게 사용할 수 있다는 의견이 많아요.
+              부드러운 촉감과 쾌적한 사용감 덕분에 편하게 잠들었다는 후기가 많아요.<br />
+              결로에도 관리가 쉬웠고, 부담 없는 가격대에 감성적인 디자인까지 만족스럽다는 이야기가 자주 보였어요.
             </p>
         </div>
         </div>
-              
-        {[
-          {
-            user: 'cozycamp | 26.04.30',
-            text: '침낭이 생각보다 훨씬 부드러워서 아이가 정말 좋아하네요. 캠핑할 때도 따뜻하게 사용할 수 있을 것 같아요.',
-            img: '/images/review/prod-sm-01-review-01.png',
-          },
-          {
-            user: 'bysora | 26.04.27',
-            text: '색감도 예쁘고 두께감도 적당해서 만족스럽습니다. 포근하고 가벼워서 가지고 다니기 좋아요.',
-            img: '/images/review/prod-sm-01-review-02.png',
-          },
-        {
-            user: 'sundayfilm | 26.04.24',
-            text: '감성 캠핑용으로 정말 잘 어울려요. 사진도 예쁘게 나오고 따뜻해서 만족합니다.',
-            img: '/images/review/prod-sm-01-review-03.png',
-          },
-          {
-            user: 'dayoff.zip | 26.04.21',
-            text: '촉감이 부드럽고 안감도 좋아요. 겨울 캠핑까지는 아니어도 봄가을에는 충분히 따뜻할 것 같습니다.',
-            img: '/images/review/prod-sm-01-review-04.png',
-        },
-          {
-            user: 'aurora | 26.04.18',
-            text: '포장도 깔끔하고 색상이 사진이랑 비슷해서 만족합니다. 캠핑 분위기랑 잘 맞아요.',
-            img: '/images/review/prod-sm-01-review-05.png',
-          },
-    ]  .map((review, index) => (
-        <div className="review-row new-review-row" key={index}>
+        {currentReviews.map((review, index) => (
+          <div className="review-row new-review-row" key={index}>
             <div className="review-left">
               <strong>★★★★★ <span>5.0</span></strong>
               <p>{review.user}</p>
               <p>{review.text}</p>
             </div>
-        
+
             <img
               src={review.img}
               alt={`리뷰 이미지 ${index + 1}`}
               className="review-img"
             />
-        </div>
+          </div>
         ))}
       
-        <div className="review-pages">1&nbsp;&nbsp;2&nbsp;&nbsp;3</div>
+        <div className="review-pages">
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i + 1}
+              className={currentPage === i + 1 ? 'active' : ''}
+              onClick={() => setCurrentPage(i + 1)}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
       
         <button
           className="review-write-btn"
