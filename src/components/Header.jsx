@@ -25,7 +25,7 @@ function Header({ cartCount = 0 }) {
             {`
               .st0{filter:url(#Adobe_OpacityMaskFilter);}
               .st2{mask:url(#SVGID_1_);}
-              path { fill: currentColor; }
+              .logo path { fill: currentColor; }
             `}
           </style>
           <defs>
@@ -174,6 +174,7 @@ function Header({ cartCount = 0 }) {
         strokeLinejoin="round"
         fill="none"
       />
+
       <circle cx="10" cy="20" r="1.35" fill="currentColor" />
       <circle cx="18.2" cy="20" r="1.35" fill="currentColor" />
     </svg>

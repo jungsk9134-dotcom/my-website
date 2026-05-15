@@ -1,6 +1,7 @@
 .cart-icon-wrap {
   position: relative;
   text-decoration: none;
+  color: inherit;
 }
 
 .cart-dot {
@@ -148,6 +149,15 @@
   width: 31px;
   height: 31px;
   display: block;
+}
+
+.cart-icon path{
+  fill: none;
+  stroke: currentColor;
+}
+
+.cart-icon circle {
+  fill: currentColor;
 }
 
 /* 장바구니 숫자 */
