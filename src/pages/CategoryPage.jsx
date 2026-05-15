@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { products } from '../data/products'
 import './CategoryPage.css'
@@ -71,6 +71,7 @@ const categoryInfo = {
     ],
   },
 }
+
 function CartIcon() {
   return (
     <svg
@@ -89,24 +90,58 @@ function CartIcon() {
     </svg>
   )
 }
+
+function getNumberPrice(price) {
+  if (!price) return 0
+  return Number(String(price).replace(/,/g, ''))
+}
+
 function CategoryPage() {
   const navigate = useNavigate()
   const { type } = useParams()
   const [filter, setFilter] = useState('all')
+  const [sortType, setSortType] = useState('latest')
   const [showCartPopup, setShowCartPopup] = useState(false)
+  const scrollYRef = useRef(null)
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    if (scrollYRef.current !== null) {
+      window.scrollTo(0, scrollYRef.current)
+      scrollYRef.current = null
+    } else {
+      window.scrollTo(0, 0)
+    }
   }, [type])
 
   const currentInfo = categoryInfo[type]
 
-  const filteredProducts = products.filter((item) => {
-    if (type === 'all' || type === 'best') return true
-    if (item.category !== type) return false
-    if (filter === 'all') return true
-    return item.subCategory === filter
-  })
+  const filteredProducts = products
+    .filter((item) => {
+      if (type === 'all' || type === 'best') return true
+      if (item.category !== type) return false
+      if (filter === 'all') return true
+      return item.subCategory === filter
+    })
+    .sort((a, b) => {
+      if (sortType === 'latest') {
+        return (b.id || 0) - (a.id || 0)
+      }
+
+      if (sortType === 'popular') {
+        return (b.review || 20) - (a.review || 20)
+      }
+
+      if (sortType === 'highPrice') {
+        return getNumberPrice(b.price) - getNumberPrice(a.price)
+      }
+
+      if (sortType === 'lowPrice') {
+        return getNumberPrice(a.price) - getNumberPrice(b.price)
+      }
+
+      return 0
+    })
+
   const handleAddToCart = (e, product) => {
     e.stopPropagation()
 
@@ -134,12 +169,11 @@ function CategoryPage() {
     }
 
     localStorage.setItem('cartItems', JSON.stringify(updatedCart))
-    window.dispatchEvent(
-      new Event('cartUpdated')
-    )
+    window.dispatchEvent(new Event('cartUpdated'))
 
     setShowCartPopup(true)
   }
+
   return (
     <main className="category-page">
       <section className="category-hero">
@@ -156,6 +190,8 @@ function CategoryPage() {
               className="category-menu-item"
               key={item.name}
               onClick={() => {
+                scrollYRef.current = window.scrollY
+
                 setFilter('all')
                 navigate(item.path)
               }}
@@ -179,6 +215,7 @@ function CategoryPage() {
                   className="category-icon hover-icon"
                 />
               </div>
+
               <p>{item.name}</p>
             </div>
           ))}
@@ -186,67 +223,90 @@ function CategoryPage() {
       </section>
 
       <section className="category-wrap">
-        <div className="category-top">
-          <p>전체 {filteredProducts.length}개</p>
+        <div className="category-list-header">
+          <div className="category-list-top">
+            {currentInfo ? (
+              <div className="category-sub-filter">
+                {currentInfo.filters.map((item) => (
+                  <button
+                    key={item.value}
+                    className={filter === item.value ? 'active' : ''}
+                    onClick={() => setFilter(item.value)}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <div className="category-sub-filter empty-filter"></div>
+            )}
 
-          <div className="category-filter">
-            <label>
-              <input type="checkbox" /> 무료배송
-            </label>
-
-            <select>
-              <option>정렬</option>
-              <option>인기순</option>
-              <option>가격높은순</option>
-              <option>가격낮은순</option>
+            <select
+              className="category-sort-select"
+              value={sortType}
+              onChange={(e) => setSortType(e.target.value)}
+            >
+              <option value="latest">최신순</option>
+              <option value="popular">인기순</option>
+              <option value="highPrice">높은가격순</option>
+              <option value="lowPrice">낮은가격순</option>
             </select>
           </div>
+
+          <p className="category-count">
+            총 {filteredProducts.length}개
+          </p>
         </div>
 
-        {type !== 'all' && type !== 'best' && currentInfo && (
-          <div className="category-sub-filter">
-            {currentInfo.filters.map((item) => (
-              <button
-                key={item.value}
-                className={filter === item.value ? 'active' : ''}
-                onClick={() => setFilter(item.value)}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        )}
+        <div className="category-grid"></div>
 
         <div className="category-grid">
           {filteredProducts.map((item) => (
             <article
-              className="category-card"
+              className="product-card"
               key={item.id}
               onClick={() => navigate(`/product/${item.id}`)}
             >
-              <div
-                className={`category-img ${item.soldout ? 'soldout' : ''}`}
-                style={{
-                  backgroundImage: item.soldout ? 'none' : `url(${item.image})`,
-                }}
-              >
-                {item.soldout && <span>Soldout</span>}
+              <div className="product-image-wrap">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="product-image"
+                />
+
+                <button className="wishlist-btn">♡</button>
               </div>
 
-              <h3>{item.name}</h3>
-              <p className="category-old-price">{item.oldPrice}</p>
-              <p className="category-price">{item.price}</p>
+              <div className="product-info">
+                <h3>{item.name}</h3>
 
-              <div className="category-bottom">
-                <small>★★★★★ 리뷰 0</small>
-                <div>
-                  <span>♡</span>
-                  <button
-                    className="cart-icon-btn"
-                    onClick={(e) => handleAddToCart(e, item)}
-                  >
-                    <CartIcon />
-                  </button>
+                <p className="product-old-price">
+                  {item.oldPrice}
+                </p>
+
+                <div className="product-price-row">
+                  <span className="discount-rate">00%</span>
+
+                  <span className="product-price">
+                    {item.price}
+                  </span>
+                </div>
+
+                <div className="product-bottom">
+                  <div className="review">
+                    ★ 4.8 <span>({item.review || 20})</span>
+                  </div>
+
+                  <div className="product-icons">
+                    <button className="wishlist-icon">♡</button>
+
+                    <button
+                      className="cart-icon-btn"
+                      onClick={(e) => handleAddToCart(e, item)}
+                    >
+                      <CartIcon />
+                    </button>
+                  </div>
                 </div>
               </div>
             </article>
@@ -256,7 +316,6 @@ function CategoryPage() {
         <button className="category-more-btn">더보기</button>
       </section>
 
-      <footer className="campora-footer"></footer>
       {showCartPopup && (
         <div className="cart-popup-overlay">
           <div className="cart-popup">

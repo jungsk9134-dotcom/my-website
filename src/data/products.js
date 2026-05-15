@@ -8,6 +8,8 @@ export const products = [
     oldPrice: '455,000',
     price: '399,900',
     image: '/images/products/tent4.png',
+    createdAt: '2026-05-15',
+    review: 20,
   },
   {
     id: 2,
@@ -68,6 +70,8 @@ export const products = [
     oldPrice: '29,000',
     price: '23,000',
     image: '/images/products/table2.png',
+    createdAt: '2026-05-15',
+    review: 17,
   },
   {
     id: 8,
