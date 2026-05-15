@@ -15,7 +15,7 @@
 .info-area,
 .qa-area {
   width: 100%;
-  max-width: 1400px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
@@ -311,7 +311,7 @@
 }
 /* 탭 */
 .detail-tabs {
-  max-width: 1400px;
+  max-width: 800px;
   height: 58px;
   margin: 0 auto;
   display: flex;
@@ -325,7 +325,7 @@
 
 /* 스크롤 고정 시에도 모양 유지 */
 .detail-tabs.fixed-left {
-  max-width: 1400px;
+  max-width: 800px;
   height: 58px;
   margin: 0 auto 42px;
   background: #fff;
@@ -365,13 +365,13 @@
 
 .detail-content-inner {
   width: 100%;
-  max-width: 1550px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
 .detail-page-img {
   width: 100%;
-  max-width: 1400px;
+  max-width: 800px;
   display: block;
   margin: 0;
   padding: 0;
@@ -380,7 +380,7 @@
 
 .fake-img {
   width: 100%;
-  max-width: 1400px;
+  max-width: 800px;
   height: 900px;
   margin: 0 auto;
   background: #b7e7bc;
@@ -396,7 +396,7 @@
 .info-area,
 .qa-area {
   width: 100%;
-  max-width: 1400px;
+  max-width: 800px;
   margin: 0 auto 120px;
   scroll-margin-top: 220px;
 }
@@ -549,15 +549,15 @@
 
 /* 리뷰 작성 버튼 */
 .review-write-btn {
-  width: 300px;
-  height: 62px;
+  width: 160px;
+  height: 42px;
   border-radius: 8px;
   border: 1px solid #e2e2e2;
   background: #fff;
   display: block;
   margin-left: auto;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 500;
   color: #444;
   cursor: pointer;
   transition: 0.2s;
@@ -643,7 +643,7 @@
 
 .qa-table {
   width: 100%;
-  max-width: 1400px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -678,23 +678,25 @@
 }
 
 .qa-write-wrap {
+  width: 100%;
+  margin-top: 35px;
   display: flex;
   justify-content: flex-end;
-  margin-top: 58px;
 }
 
 .qa-write-btn {
   position: static;
-  width: 300px;
-  height: 62px;
-  border-radius: 8px;
+  width: 160px;
+  height: 42px;
+  border-radius: 4px;
   border: 1px solid #e2e2e2;
   background: #fff;
+  margin-right: 375px;
   cursor: pointer;
   transition: 0.2s;
   color: #444;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .qa-write-btn:hover {
@@ -1194,15 +1196,22 @@
   border-bottom: none;
 }
 
+.qa-question {
+  text-align: left;
+  margin: 0;
+  padding: 18px 0 12px 215px;
+  font-size: 13px;
+  color: #222;
+  line-height: 1.6;
+}
+
 .qa-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease;
+  display: none;
   background: #fff;
 }
 
 .qa-answer.open {
-  max-height: 260px;
+  display: block;
 }
 
 .qa-question {
@@ -1215,40 +1224,40 @@
 }
 
 .qa-answer-box {
-  padding: 0 0 34px 215px;
-  font-size: 15px;
-  line-height: 1.9;
+  padding: 0 0 26px 215px;
+  font-size: 13px;
+  line-height: 1.7;
   color: #333;
-  max-width: 980px;
+  max-width: 760px;
 }
 
 .qa-answer-box p {
   text-align: left;
-  margin: 15px 0 12px;
+  margin: 10px 0 8px;
+  line-height: 1.7;
 }
 
 /* 첫 번째 p만 Campora 옆으로 */
 .qa-answer-box p:first-of-type {
   display: inline-block;
-  margin-left: 10px;
+  margin-left: 8px;
   vertical-align: middle;
 }
 
 /* 두 번째 p는 아래로 내려서 들여쓰기 */
 .qa-answer-box p:nth-of-type(2) {
   display: block;
-  margin-top: 5px;
-  margin-left: 90px;
-  line-height: 1.9;
+  margin-top: 2px;
+  margin-left: 78px;
+  line-height: 1.7;
 }
 
 .qa-brand {
   display: inline-block;
-  padding: 5px 14px;
-  margin-bottom: 0;
+  padding: 4px 12px;
   border-radius: 20px;
   background: #eee;
-  font-size: 12px;
+  font-size: 11px;
   color: #333;
   vertical-align: middle;
 }

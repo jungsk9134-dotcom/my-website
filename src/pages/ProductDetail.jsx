@@ -11,7 +11,7 @@ function ProductDetail({ setCartItems }) {
     const [reviewRating, setReviewRating] = useState(5)
     const [isPhotoUploadOpen, setIsPhotoUploadOpen] = useState(false)
     const [reviewImages, setReviewImages] = useState([])
-    const [openGuide, setOpenGuide] = useState('payment')
+    const [openGuide, setOpenGuide] = useState('null')
     const [openQaId, setOpenQaId] = useState(null)
     const [isQaModalOpen, setIsQaModalOpen] = useState(false)
     const [currentPage, setCurrentPage] = useState(1)
