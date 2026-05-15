@@ -295,23 +295,7 @@ function Brand() {
         </div>
       </section>
 
-      <footer className="brand-footer">
-        <h2>Campora</h2>
-
-        <div className="footer-links">
-          <span>이용약관</span>
-          <span>개인정보처리방침</span>
-          <span>고객센터</span>
-        </div>
-
-        <p>
-          캠프라 Campora | 서울특별시 00구 00동 | 대표 : 김OO | 사업자등록 : 02-3456-7890
-          <br />
-          사업자등록번호 : 123-45-67890 | 통신판매업 신고번호 : 2026-서울양천-0456
-        </p>
-
-        <p>© 2026 Campora. All rights reserved.</p>
-      </footer>
+      
     </main>
   )
 }

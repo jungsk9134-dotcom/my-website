@@ -223,7 +223,10 @@ function Search() {
         <h3>봄맞이 할인 이벤트</h3>
 
         <div className="event-banner">
-          <p>침낭 광고 배너 &gt; 상품페이지로 바로 연결</p>
+          <img
+    src="/images/logo/search-banner.png"
+    alt="침낭 광고 배너"
+  />
         </div>
       </section>
 
