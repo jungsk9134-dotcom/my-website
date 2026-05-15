@@ -4,12 +4,41 @@ import { products } from '../data/products'
 import './CategoryPage.css'
 
 const categories = [
-  { name: '전체상품', path: '/category/all', type: 'all' },
-  { name: '베스트', path: '/category/best', type: 'best' },
-  { name: '텐트·타프', path: '/category/tent', type: 'tent' },
-  { name: '침낭·매트', path: '/category/sleep', type: 'sleep' },
-  { name: '테이블·의자', path: '/category/table-chair', type: 'table-chair' },
-  { name: '랜턴·화로', path: '/category/lantern', type: 'lantern' },
+  {
+    name: 'All',
+    path: '/category/all',
+    type: 'all',
+    icon: '/images/icons/ico-category-every.png',
+    activeIcon: '/images/icons/ico-category-every-active.png',
+  },
+  {
+    name: 'Shelter',
+    path: '/category/tent',
+    type: 'tent',
+    icon: '/images/icons/ico-category-shelter.png',
+    activeIcon: '/images/icons/ico-category-shelter-active.png',
+  },
+  {
+    name: 'Rest',
+    path: '/category/sleep',
+    type: 'sleep',
+    icon: '/images/icons/ico-category-rest.png',
+    activeIcon: '/images/icons/ico-category-rest-active.png',
+  },
+  {
+    name: 'Living',
+    path: '/category/table-chair',
+    type: 'table-chair',
+    icon: '/images/icons/ico-category-living.png',
+    activeIcon: '/images/icons/ico-category-living-active.png',
+  },
+  {
+    name: 'Fire',
+    path: '/category/lantern',
+    type: 'lantern',
+    icon: '/images/icons/ico-category-fire.png',
+    activeIcon: '/images/icons/ico-category-fire-active.png',
+  },
 ]
 
 const categoryInfo = {
@@ -137,7 +166,19 @@ function CategoryPage() {
                     ? 'category-menu-circle active'
                     : 'category-menu-circle'
                 }
-              ></div>
+              >
+                <img
+                  src={item.icon}
+                  alt={item.name}
+                  className="category-icon default-icon"
+                />
+
+                <img
+                  src={item.activeIcon}
+                  alt={item.name}
+                  className="category-icon hover-icon"
+                />
+              </div>
               <p>{item.name}</p>
             </div>
           ))}
