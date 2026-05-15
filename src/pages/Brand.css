@@ -188,54 +188,76 @@
 
 /* 브랜드 스토리 전체 */
 .brand-story {
-  width: 920px;
-  margin: 170px auto 150px;
+  max-width: 1400px;
+  margin: 170px auto 180px;
+  padding: 0 40px;
+
   display: flex;
   flex-direction: column;
-  gap: 110px;
+  gap: 140px;
 }
 
 /* 스토리 한 줄 */
 .story-row {
   display: grid;
-  grid-template-columns: 430px 330px;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  justify-content: center;
-  gap: 80px;
 }
 
-/* 두 번째 줄: 텍스트 왼쪽, 이미지 오른쪽 */
+/* 첫 번째 줄 */
+.story-row:not(.reverse) {
+  column-gap: 80px;
+}
+
+.story-row:not(.reverse) .story-image {
+  justify-self: end;
+  margin-right: 5px;
+}
+
+.story-row:not(.reverse) .story-text {
+  justify-self: start;
+  margin-left: 5px;
+}
+
+/* 두 번째 줄 */
 .story-row.reverse {
-  grid-template-columns: 330px 430px;
+  column-gap: 80px;
+}
+
+.story-row.reverse .story-left {
+  justify-self: end;
+  margin-right: 10px;
+
+  text-align: right;
+
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .story-row.reverse .story-image-bottom {
+  justify-self: start;
+  margin-left: 10px;
+
   grid-column: 2;
   grid-row: 1;
 }
 
-.story-row.reverse .story-left {
-  grid-column: 1;
-  grid-row: 1;
-  text-align: right;
-}
-
-/* 스토리 이미지 */
+/* 이미지 */
 .story-image img,
 .story-image-bottom img {
-  width: 430px;
-  height: 330px;
+  width: 600px;
+  height: auto;
   object-fit: cover;
   display: block;
 }
 
-/*텍스트 영역*/
+/* 텍스트 영역 */
 .story-text,
 .story-left {
-  width: 330px;
+  width: 300px;
 }
 
-/* 스토리 제목 */
+/* 제목 */
 .story-text h2,
 .story-left h2 {
   font-weight: 600;
@@ -243,9 +265,10 @@
   line-height: 34px;
   letter-spacing: 0;
   color: #1c1c1c;
+  margin-bottom: 38px;
 }
 
-/* 스토리 본문 */
+/* 본문 */
 .story-text p,
 .story-left p {
   font-weight: 400;
