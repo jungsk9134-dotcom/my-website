@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import Header from './components/Header'
 import Home from './pages/Home'
@@ -16,11 +16,26 @@ import ScrollToTop from './components/ScrollToTop'
 import Footer from './components/Footer'
 
 function App() {
-  const [cartItems, setCartItems] = useState([])
+  const [cartItems, setCartItems] = useState(() => {
+    return JSON.parse(localStorage.getItem('cartItems')) || []
+  })
+
+  useEffect(() => {
+    const handleCartUpdated = () => {
+      const savedCart = JSON.parse(localStorage.getItem('cartItems')) || []
+      setCartItems(savedCart)
+    }
+
+    window.addEventListener('cartUpdated', handleCartUpdated)
+
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartUpdated)
+    }
+  }, [])
 
   return (
     <>
-      <Header cartAdded={cartItems.length > 0} />
+      <Header cartCount={cartItems.length} />
       <ScrollToTop />
 
       <Routes>
@@ -35,7 +50,6 @@ function App() {
         <Route path="/curation/fire" element={<CurationFire />} />
         <Route path="/curation/car" element={<CurationCar />} />
         <Route path="/curation/minimal" element={<CurationMinimal />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
         <Route
           path="/product/:id"
           element={<ProductDetail setCartItems={setCartItems} />}

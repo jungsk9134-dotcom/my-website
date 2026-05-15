@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Search as SearchIcon, Heart, ShoppingCart } from 'lucide-react'
 import { products } from '../data/products'
+import { Link } from 'react-router-dom'
 import './Search.css'
 
 function Search() {
@@ -94,10 +95,10 @@ function Search() {
 
     const updatedCart = existItem
       ? savedCart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: (item.quantity || 1) + 1 }
-            : item
-        )
+        item.id === product.id
+          ? { ...item, quantity: (item.quantity || 1) + 1 }
+          : item
+      )
       : [...savedCart, { ...product, quantity: 1 }]
 
     localStorage.setItem('cartItems', JSON.stringify(updatedCart))
@@ -222,15 +223,15 @@ function Search() {
       <section className="event-section">
         <h3>봄맞이 할인 이벤트</h3>
 
-        <div className="event-banner">
+        <Link to="/product/9" className="event-banner">
           <img
-    src="/images/logo/search-banner.png"
-    alt="침낭 광고 배너"
-  />
-        </div>
+            src="/images/logo/search-banner.png"
+            alt="침낭 광고 배너"
+          />
+        </Link>
       </section>
 
-      <footer className="search-footer"></footer>
+
     </main>
   )
 }

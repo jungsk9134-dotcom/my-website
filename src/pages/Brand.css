@@ -10,6 +10,7 @@
   height: 240vh;
   position: relative;
 }
+
 .brand-main-hero {
   width: 100%;
   height: 100vh;
@@ -32,9 +33,12 @@
 
 .hero-logo-text img {
   width: 500px;
+  max-width: none;
   height: auto;
   display: block;
   margin-bottom: 10px;
+  transform: scale(1.4);
+  transform-origin: center;
 }
 
 .hero-logo-text h1 {
@@ -56,6 +60,7 @@
   line-height: 2;
   color: #fff;
 }
+
 /* 배경 */
 .hero-bg {
   position: absolute;
@@ -73,7 +78,7 @@
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.18);
+  background: rgba(0, 0, 0, 0.18);
 }
 
 /* 중앙 로고 */
@@ -103,6 +108,7 @@
     transform: translate(-50%, -50%);
   }
 }
+
 .hero-copy-window {
   position: absolute;
   left: 50%;
@@ -113,16 +119,21 @@
   z-index: 10;
   text-align: center;
 }
+
 /* 스크롤 카피 */
 .hero-scroll-copy {
   width: 100%;
   will-change: transform;
 }
+
 .hero-scroll-copy p {
-  font-size: 14px;
-  line-height: 2.1;
-  opacity: 0.9;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-align: center;
 }
+
 .hero-scroll-copy.show {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
@@ -147,6 +158,7 @@
   line-height: 1.9;
   opacity: 0.8;
 }
+
 /* 중간 브랜드 소개 */
 .brand-message {
   width: 100%;
@@ -196,10 +208,12 @@
 .story-row.reverse {
   grid-template-columns: 330px 430px;
 }
+
 .story-row.reverse .story-image-bottom {
   grid-column: 2;
   grid-row: 1;
 }
+
 .story-row.reverse .story-left {
   grid-column: 1;
   grid-row: 1;
@@ -224,21 +238,21 @@
 /* 스토리 제목 */
 .story-text h2,
 .story-left h2 {
-  font-size: 25px;
-  line-height: 1.35;
-  font-weight: 700;
-  margin: 0 0 32px;
-  color: #111;
-  white-space: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 34px;
+  letter-spacing: 0;
+  color: #1c1c1c;
 }
 
 /* 스토리 본문 */
 .story-text p,
 .story-left p {
-  font-size: 13px;
-  line-height: 1.9;
-  color: #222;
-  margin: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: #1c1c1c;
 }
 
 /* 차별점(철학) 섹션 */
@@ -247,17 +261,19 @@
   margin: 0 auto 180px;
   text-align: center;
 }
+
 .brand-diff h2 {
-  font-size: 54px;
-  font-weight: 700;
-  letter-spacing: -2px;
-  color: #222;
-  margin-bottom: 28px;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #1c1c1c;
 }
+
 /* 가운데 점 */
 .diff-dot {
-  font-size: 26px;
-  color: #777;
+  font-size: 16px;
+  color: #1c1c1c;
   margin-bottom: 90px;
   letter-spacing: 6px;
 }
@@ -287,32 +303,33 @@
 
 /* 카드 제목 */
 .diff-item h3 {
-  font-size: 34px;
-  line-height: 1.32;
-  font-weight: 700;
-  color: #222;
-  margin-bottom: 32px;
-  letter-spacing: -1px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  color: #1c1c1c;
+
 }
 
 /* 설명 */
 .diff-item p {
-  font-size: 20px;
-  line-height: 1.9;
-  color: #555;
-  letter-spacing: -0.4px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1c1c1c;
+  letter-spacing: 0;
 }
 
 /* 비디오 섹션 */
 .brand-video {
-  width: 920px;
+  width: 1400px;
   margin: 0 auto 140px;
   position: relative;
 }
 
 .brand-video img {
   width: 100%;
-  height: 380px;
+  height: 640px;
   object-fit: cover;
   display: block;
 }
@@ -332,6 +349,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 /* 무드 섹션 */
 .brand-mood {
   width: 920px;
@@ -384,18 +402,20 @@
 }
 
 .mood-text h2 {
+  font-weight: 400;
+  font-weight: 600;
   font-size: 18px;
-  line-height: 1.35;
-  margin: 0 0 28px;
-  font-weight: 700;
-  color: #111;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #1c1c1c;
 }
 
 .mood-text p {
-  font-size: 12px;
-  line-height: 1.9;
-  color: #333;
-  margin: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: #1c1c1c;
 }
 
 /* 오프라인 섹션 */
@@ -405,10 +425,13 @@
   padding-bottom: 120px;
   text-align: center;
 }
+
 .offline h2 {
-  font-size: 18px;
-  font-weight: 500;
-  margin-bottom: 55px;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #1c1c1c;
 }
 
 .offline-list {
@@ -436,15 +459,22 @@
 }
 
 .offline-item h3 {
-  font-size: 12px;
-  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0;
+  color: #1c1c1c;
+
 }
 
 .offline-item p {
-  font-size: 10px;
-  line-height: 1.5;
-  color: #333;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0;
+  color: #1c1c1c;
 }
+
 .offline-item {
   text-decoration: none;
   color: inherit;
@@ -460,7 +490,7 @@
 /* 하단 배너 */
 .brand-bottom-banner {
   width: 100%;
-  height: 300px;
+  height: 575px;
   position: relative;
   margin-top: 80px;
   overflow: hidden;
@@ -471,6 +501,31 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.brand-bottom-banner button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  padding: 16px 40px;
+
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+
+  color: #fff;
+
+  font-weight: 400 !important;
+  font-size: 18px !important;
+  line-height: 24px !important;
+  letter-spacing: 0 !important;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .brand-bottom-banner::after {
@@ -491,9 +546,11 @@
 }
 
 .bottom-banner-text p {
-  font-size: 14px;
-  line-height: 1.8;
-  margin-bottom: 24px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0;
+  text-align: center;
 }
 
 .bottom-banner-text button {
@@ -530,4 +587,24 @@
   font-size: 11px;
   line-height: 1.8;
   color: #ccc;
+}
+
+/* 큐레이션 바로가기 */
+.curation-link-btn {
+  margin-top: 32px;
+  border: none;
+  background: none;
+  padding: 0;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0;
+
+  color: #111;
+  cursor: pointer;
+}
+
+.curation-link-btn:hover {
+  opacity: 0.7;
 }

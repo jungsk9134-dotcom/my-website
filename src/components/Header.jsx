@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import './Header.css'
 
-function Header({ cartAdded }) {
+function Header({ cartCount = 0 }) {
   const location = useLocation()
   const isBrandPage = location.pathname === '/brand'
   /* 상세페이지 여부 */
@@ -145,14 +145,44 @@ function Header({ cartAdded }) {
         <Link to="/curation">Curation</Link>
       </nav>
 
-      <div className="header-icons">
-        <Link to="/search">⌕</Link>
+   <div className="header-icons">
+  <Link to="/search" className="search-icon-wrap">
+    <svg className="search-icon" viewBox="0 0 24 24" fill="none">
+      <circle
+        cx="10.5"
+        cy="10.5"
+        r="6.5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+      <path
+        d="M15.5 15.5L21 21"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  </Link>
 
-        <Link to="/cart" className="cart-icon-wrap">
-          🛒
-          {cartAdded && <span className="cart-dot"></span>}
-        </Link>
-      </div>
+  <Link to="/cart" className="cart-icon-wrap">
+    <svg className="cart-icon" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M3.5 4.8H5.8L7.8 15.2C7.95 16 8.65 16.6 9.45 16.6H18.2C18.95 16.6 19.6 16.1 19.85 15.4L22 8.2H7"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <circle cx="10" cy="20" r="1.35" fill="currentColor" />
+      <circle cx="18.2" cy="20" r="1.35" fill="currentColor" />
+    </svg>
+
+    {cartCount > 0 && (
+      <span className="cart-count">{cartCount}</span>
+    )}
+  </Link>
+</div>   
 
     </header>
   )

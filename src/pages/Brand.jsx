@@ -146,63 +146,63 @@ function Brand() {
         </div>
       </section>
 
-<section className="brand-diff">
-  <h2>당신의 쉼을 위한 Campora의 철학</h2>
+      <section className="brand-diff">
+        <h2>당신의 쉼을 위한 Campora의 철학</h2>
 
-  <div className="diff-dot">...</div>
+        <div className="diff-dot">...</div>
 
-  <div className="diff-list">
+        <div className="diff-list">
 
-    <div className="diff-item">
-      <img src="/images/brand/brand4-1.jpg" alt="감성 라이프" />
+          <div className="diff-item">
+            <img src="/images/brand/brand4-1.jpg" alt="감성 라이프" />
 
-      <h3>
-        선택의 무게를 덜고
-        <br />
-        오롯이 감성만 남도록
-      </h3>
+            <h3>
+              선택의 무게를 덜고
+              <br />
+              오롯이 감성만 남도록
+            </h3>
 
-      <p>
-        당신의 첫 캠핑이 좋은 기억으로 남도록
-        <br />
-        수많은 장비 대신 꼭 필요한 것만 추천합니다
-      </p>
-    </div>
+            <p>
+              당신의 첫 캠핑이 좋은 기억으로 남도록
+              <br />
+              수많은 장비 대신 꼭 필요한 것만 추천합니다
+            </p>
+          </div>
 
-    <div className="diff-item">
-      <img src="/images/brand/brand4-2.jpg" alt="편안한 구조" />
+          <div className="diff-item">
+            <img src="/images/brand/brand4-2.jpg" alt="편안한 구조" />
 
-      <h3>
-        분위기만 고르면
-        <br />
-        캠핑이 완성되도록
-      </h3>
+            <h3>
+              분위기만 고르면
+              <br />
+              캠핑이 완성되도록
+            </h3>
 
-      <p>
-        불멍, 차박, 미니멀 캠핑까지
-        <br />
-        원하는 테마를 선택하면 그에 맞는 구성이 따라옵니다
-      </p>
-    </div>
+            <p>
+              불멍, 차박, 미니멀 캠핑까지
+              <br />
+              원하는 테마를 선택하면 그에 맞는 구성이 따라옵니다
+            </p>
+          </div>
 
-    <div className="diff-item">
-      <img src="/images/brand/brand4-3.jpg" alt="캠핑 감성" />
+          <div className="diff-item">
+            <img src="/images/brand/brand4-3.jpg" alt="캠핑 감성" />
 
-      <h3>
-        제품을 넘어
-        <br />
-        경험으로 이어지도록
-      </h3>
+            <h3>
+              제품을 넘어
+              <br />
+              경험으로 이어지도록
+            </h3>
 
-      <p>
-        Campora의 큐레이션은 제품에서 끝나지 않습니다
-        <br />
-        우리 모두의 경험까지 자연스럽게 이어집니다
-      </p>
-    </div>
+            <p>
+              Campora의 큐레이션은 제품에서 끝나지 않습니다
+              <br />
+              우리 모두의 경험까지 자연스럽게 이어집니다
+            </p>
+          </div>
 
-  </div>
-</section>
+        </div>
+      </section>
 
       <section className="brand-video">
         <img src="/images/brand/brand5.jpg" alt="camping video" />
@@ -245,8 +245,14 @@ function Brand() {
               자신만의 순간을 만들어갈 수 있습니다
               <br /><br />
 
-              큐레이션 보러가기 →
+
             </p>
+            <button
+              className="curation-link-btn"
+              onClick={() => navigate('/curation')}
+            >
+              큐레이션 보러가기 →
+            </button>
           </div>
         </div>
       </section>
@@ -257,20 +263,38 @@ function Brand() {
         <div className="offline-list">
           <a href="#" className="offline-item">
             <img src="/images/brand/brand7-1.jpg" alt="store" />
-            <h3>Campora 성수점</h3>
-            <p>서울 성동구 성수동</p>
+            <h3>CAMPORA 영등포 본점</h3>
+            <p>
+              서울 영등포구
+              <br />
+              ・ 09:00 ~ 20:00
+              <br />
+              ・ 02-1234-5678
+            </p>
           </a>
 
           <a href="#" className="offline-item">
             <img src="/images/brand/brand7-2.jpg" alt="store" />
-            <h3>Campora 제주점</h3>
-            <p>제주 제주시 애월읍</p>
+            <h3>CAMPORA 가평점</h3>
+            <p>
+              경기도 가평
+              <br />
+              ・ 09:00 ~ 19:00
+              <br />
+              ・ 031-123-4567
+            </p>
           </a>
 
           <a href="#" className="offline-item">
             <img src="/images/brand/brand7-3.jpg" alt="store" />
-            <h3>Campora 양양점</h3>
-            <p>강원 양양군 현남면</p>
+            <h3>CAMPORA 강릉점</h3>
+            <p>
+              강원도 강릉
+              <br />
+              ・ 10:00 ~ 20:00
+              <br />
+              ・ 033-123-4567
+            </p>
           </a>
         </div>
       </section>
@@ -290,12 +314,12 @@ function Brand() {
           </p>
 
           <button onClick={() => navigate('/category/all')}>
-            캠포라 제품 보기 →
+            캠포라 제품 보기   →
           </button>
         </div>
       </section>
 
-      
+
     </main>
   )
 }

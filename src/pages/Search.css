@@ -237,6 +237,7 @@
 .event-banner {
   width: 100%;
   height: 230px;
+  display: block;
   background: #d9d9d9;
   border-radius: 14px;
   overflow: hidden;
@@ -269,18 +270,7 @@
     padding: 0 24px;
   }
 
-.event-banner {
-  width: 100%;
-  height: 180px;
-  overflow: hidden;
-  border-radius: 12px;
-}
-.event-banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+
 
   .search-product-grid {
     grid-template-columns: repeat(2, 1fr);

@@ -122,50 +122,47 @@
   color: #ffffff !important;
 }
 
-/*장바구니 아이콘 */
+
+
+
+
+
+/* 장바구니 */
+.search-icon-wrap,
 .cart-icon-wrap {
   position: relative;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #111;
 }
 
-.cart-icon-wrap svg {
-  width: 21px;
-  height: 21px;
+.search-icon {
+  width: 27px;
+  height: 27px;
+  display: block;
 }
 
-.cart-dot {
-  position: absolute;
-  top: -2px;
-  right: -4px;
-  width: 7px;
-  height: 7px;
-  background: #ff5b5b;
-  border-radius: 50%;
-}
-/* 장바구니에 담긴 상품 갯수 표시 */
-.cart-icon-wrap {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #111;
+.cart-icon {
+  width: 31px;
+  height: 31px;
+  display: block;
 }
 
+/* 장바구니 숫자 */
 .cart-count {
   position: absolute;
-  top: -8px;
-  right: -10px;
-  width: 18px;
-  height: 18px;
+  top: -7px;
+  right: -7px;
+  width: 17px;
+  height: 17px;
+  background: #67b8ae;
+  color: #fff;
   border-radius: 50%;
-  background: #74b6aa;
-  color: white;
   font-size: 11px;
   font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  line-height: 17px;
+  text-align: center;
 }
+
