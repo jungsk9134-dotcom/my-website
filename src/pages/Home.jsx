@@ -1,9 +1,23 @@
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Home.css'
 
 function Home() {
   const navigate = useNavigate()
+  const [reviewIndex, setReviewIndex] = useState(0)
+  const visibleCount = 4
 
+  const nextReview = () => {
+    if (reviewIndex + visibleCount < reviews.length) {
+      setReviewIndex(reviewIndex + visibleCount)
+    }
+  }
+
+  const prevReview = () => {
+    if (reviewIndex - visibleCount >= 0) {
+      setReviewIndex(reviewIndex - visibleCount)
+    }
+  }
   const categories = [
     {
       name: 'All',
@@ -65,6 +79,34 @@ function Home() {
       thumbImg: '/images/productreview/thumb4.png',
       text: '수납력 최고인데 디자인까지 예뻐서 테이블 대용으로 써요. 캠핑 짐 정리가 한결...',
       user: 'monodiary',
+    },
+    {
+      title: '타프',
+      reviewImg: '/images/productreview/review5.png',
+      thumbImg: '/images/productreview/thumb5.png',
+      text: '가격대는 좀 있지만 피칭해보니 확실히 달라요. 차박의 완성은 역시 이 타프네요',
+      user: 'cloudcamp',
+    },
+    {
+      title: '침낭',
+      reviewImg: '/images/productreview/review6.png',
+      thumbImg: '/images/productreview/thumb1.png',
+      text: '아침 결로에도 툭툭 털면 금방 보송해져서, 관리 편한 입문용 침낭으로 추천해요.',
+      user: 'sundayfilm',
+    },
+    {
+      title: '체어',
+      reviewImg: '/images/productreview/review7.png',
+      thumbImg: '/images/productreview/thumb7.png',
+      text: '오래 앉아 있어도 허리가 안 아파요. 불멍할 때 이만한 의자가 없는 것 같습니다.',
+      user: 'deepblue',
+    },
+    {
+      title: '랜턴',
+      reviewImg: '/images/productreview/review8.png',
+      thumbImg: '/images/productreview/thumb8.png',
+      text: '수은은한 불빛 덕분에 텐트 분위기가 확 살아요. 캠포라 감성에 딱 맞는 아이템입니다.',
+      user: 'bysora',
     },
   ]
 
@@ -167,33 +209,48 @@ function Home() {
           <p>사용자들의 캠핑 경험 속 Campora 아이템을 함께 둘러보세요</p>
         </div>
 
-        <button className="review-arrow review-prev" type="button">
+        <button
+          className="review-arrow review-prev"
+          type="button"
+          onClick={prevReview}
+        >
           ‹
         </button>
 
-        <div className="review-list">
-          {reviews.map((review) => (
-            <div className="review-card" key={review.title}>
-              <img
-                className="review-img"
-                src={review.reviewImg}
-                alt={`${review.title} 후기`}
-              />
+        <div className="review-list-wrap">
+          <div
+            className="review-list"
+            style={{
+              transform: `translateX(-${reviewIndex * 380}px)`,
+            }}
+          >
+            {reviews.map((review) => (
+              <div className="review-card" key={review.title}>
+                <img
+                  className="review-img"
+                  src={review.reviewImg}
+                  alt={`${review.title} 후기`}
+                />
 
-              <img
-                className="product-thumb"
-                src={review.thumbImg}
-                alt={review.title}
-              />
+                <img
+                  className="product-thumb"
+                  src={review.thumbImg}
+                  alt={review.title}
+                />
 
-              <h3>{review.title}</h3>
-              <p>{review.text}</p>
-              <small>{review.user} | ★★★★★</small>
-            </div>
-          ))}
+                <h3>{review.title}</h3>
+                <p>{review.text}</p>
+                <small>{review.user} | ★★★★★</small>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <button className="review-arrow review-next" type="button">
+        <button
+          className="review-arrow review-next"
+          type="button"
+          onClick={nextReview}
+        >
           ›
         </button>
       </section>

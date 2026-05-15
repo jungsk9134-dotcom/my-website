@@ -207,6 +207,7 @@
 /* 제품 후기 */
 .review-section {
   position: relative;
+  overflow: hidden;
   width: 100%;
   padding: 90px 0 120px;
   background: #fff;
@@ -231,35 +232,45 @@
   font-weight: 300;
 }
 
-.review-section .review-list {
-  width: 1400px;
+.review-list-wrap {
+  width: 1460px;
   margin: 0 auto;
+  overflow: hidden;
+}
+
+.review-list {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  gap: 70px;
+  transition: transform 0.45s ease;
 }
 
-.review-section .review-card {
-  width: 290px;
+.review-card {
+  width: 310px !important;
+  min-width: 310px !important;
+  flex: 0 0 310px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  flex: 0 0 290px;
 }
 
-.review-section .review-img {
-  width: 290px !important;
-  height: 330px !important;
+.review-img {
+  width: 310px !important;
+  height: 370px !important;
   object-fit: cover;
-  border-radius: 18px;
+  border-radius: 20px;
   display: block;
 }
 
-.review-section .product-thumb {
-  width: 74px !important;
-  height: 74px !important;
+.product-thumb {
+  width: 78px !important;
+  height: 78px !important;
   object-fit: cover;
   border-radius: 50%;
   background: #f3f1eb;
-  margin: -37px auto 24px;
+  margin: -39px auto 24px;
   position: relative;
   z-index: 5;
   box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
@@ -268,13 +279,13 @@
 .review-card h3 {
   font-size: 17px;
   font-weight: 300;
-  margin: 0 0 18px;
+  margin: 10px 0 16px;
 }
 
 .review-card p {
-  width: 95%;
+  width: 270px;
   margin: 0 auto 16px;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.65;
   color: #222;
   word-break: keep-all;
@@ -285,7 +296,7 @@
 }
 
 .review-card small {
-  font-size: 14px;
+  font-size: 13px;
   color: #111;
 }
 
@@ -299,14 +310,15 @@
   font-weight: 200;
   color: #aaa;
   cursor: pointer;
+  z-index: 10;
 }
 
 .review-prev {
-  left: 170px;
+  left: 120px;
 }
 
 .review-next {
-  right: 170px;
+  right: 120px;
 }
 
 .campora-story-section {
