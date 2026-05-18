@@ -3,47 +3,72 @@
   width: 100%;
   background: #1f1f1f;
 }
-
-/* 상단 이미지 영역 */
-.curation-hero {
-  width: 100%;
-  height: auto;
+/* 전체 영역 */
+.curation-hero-wrap {
   position: relative;
-  overflow: hidden;
-  display: block;
 }
 
-.curation-hero-img {
+/* sticky 영상 */
+.curation-hero {
+  position: sticky;
+  top: 0;
+
   width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
+  height: 100vh;
+
+  overflow: hidden;
 }
 
+/* 영상 */
+.curation-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 어두운 overlay */
 .curation-hero-dark {
   position: absolute;
   inset: 0;
+
+  background: rgba(0, 0, 0, 0.42);
+
   z-index: 1;
-  background: rgba(0, 0, 0, 0.28);
 }
 
+/* 텍스트 */
 .curation-hero-text {
   position: absolute;
+
   top: 50%;
   left: 50%;
-  z-index: 2;
 
   transform: translate(-50%, -50%);
+
+  z-index: 2;
 
   color: white;
   text-align: center;
 }
 
 .curation-hero-text h2 {
-  font-size: 24px;
-  line-height: 1.45;
-  font-weight: 500;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1.4;
 }
+
+/* 영상 위를 덮는 콘텐츠 */
+.curation-content {
+  position: relative;
+  z-index: 5;
+
+  background: white;
+
+  border-radius: 30px 30px 0 0;
+
+  margin-top: -80px;
+}
+
 
 /* 흰색 아이콘 박스 */
 .curation-intro {
@@ -92,7 +117,7 @@
 /* 큐레이션 카드 */
 .curation-card {
   width: 100%;
-  height: 330px;
+  height: 500px;
   position: relative;
   overflow: hidden;
 
@@ -165,10 +190,7 @@
   background-image: url("/images/curation/curation2-3.jpg");
 }
 
-.campora-footer {
-  height: 160px;
-  background: #1f1f1f;
-}
+
 
 /* 모바일 */
 @media (max-width: 700px) {

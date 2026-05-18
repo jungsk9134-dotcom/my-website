@@ -7,15 +7,15 @@ import './Search.css'
 function Search() {
   const defaultKeywords = ['랜턴', '침낭', '아이스박스', '체어', '테이블']
 
-  const sortOptions = [
-    { label: '정렬', value: 'default' },
-    { label: '인기순', value: 'popular' },
-    { label: '가격높은순', value: 'high' },
-    { label: '가격낮은순', value: 'low' },
-  ]
+const sortOptions = [
+  { label: '최신순', value: 'latest' },
+  { label: '인기순', value: 'popular' },
+  { label: '높은가격순', value: 'high' },
+  { label: '낮은가격순', value: 'low' },
+]
 
   const [keyword, setKeyword] = useState('')
-  const [sortType, setSortType] = useState('default')
+  const [sortType, setSortType] = useState('latest')
   const [selectedKeyword, setSelectedKeyword] = useState('')
   const [isSortOpen, setIsSortOpen] = useState(false)
 
@@ -43,8 +43,8 @@ function Search() {
     return Number(String(price).replace(/[^0-9]/g, ''))
   }
 
-  const currentSortLabel =
-    sortOptions.find((item) => item.value === sortType)?.label || '정렬'
+const currentSortLabel =
+  sortOptions.find((item) => item.value === sortType)?.label || '최신순'
 
   const searchedProducts = products.filter((item) => {
     if (!keyword) return false
@@ -59,28 +59,48 @@ function Search() {
     return searchText.includes(keyword.toLowerCase())
   })
 
-  const sortedProducts = [...searchedProducts].sort((a, b) => {
-    if (sortType === 'high') {
-      return getPriceNumber(b.price) - getPriceNumber(a.price)
-    }
+const sortedProducts = [...searchedProducts].sort((a, b) => {
 
-    if (sortType === 'low') {
-      return getPriceNumber(a.price) - getPriceNumber(b.price)
-    }
+  // 최신순 : ID 오름차순
+  if (sortType === 'latest') {
+    return (a.id || 0) - (b.id || 0)
+  }
 
-    return 0
-  })
+  // 인기순 : 별점 + 리뷰수
+  if (sortType === 'popular') {
+
+    const scoreA =
+      ((a.rating || 0) * 100) + (a.review || 0)
+
+    const scoreB =
+      ((b.rating || 0) * 100) + (b.review || 0)
+
+    return scoreB - scoreA
+  }
+
+  // 높은 가격순
+  if (sortType === 'high') {
+    return getPriceNumber(b.price) - getPriceNumber(a.price)
+  }
+
+  // 낮은 가격순
+  if (sortType === 'low') {
+    return getPriceNumber(a.price) - getPriceNumber(b.price)
+  }
+
+  return 0
+})
 
   const handleInputChange = (e) => {
     setKeyword(e.target.value)
     setSelectedKeyword('')
-    setSortType('default')
+    setSortType('latest')
   }
 
   const handleKeywordClick = (item) => {
     setKeyword(item)
     setSelectedKeyword(item)
-    setSortType('default')
+    setSortType('latest')
   }
 
   const handleSortSelect = (value) => {
@@ -147,9 +167,7 @@ function Search() {
             <p>상품 {searchedProducts.length}건</p>
 
             <div className="search-result-filter">
-              <label>
-                <input type="checkbox" /> 무료배송
-              </label>
+
 
               <div className="custom-sort" ref={sortRef}>
                 <button
@@ -194,9 +212,31 @@ function Search() {
                     style={{ backgroundImage: `url(${item.image})` }}
                   ></div>
 
-                  <h3>{item.name}</h3>
-                  <p className="search-product-desc">{item.oldPrice}</p>
-                  <p className="search-product-price">{item.price}</p>
+<h3>{item.name}</h3>
+
+<p className="search-product-old-price">
+  {item.discountRate > 0
+    ? `${item.oldPrice}원`
+    : '\u00A0'}
+</p>
+
+<div className="search-price-row">
+  <span
+    className={
+      item.discountRate > 0
+        ? 'search-discount-rate'
+        : 'search-discount-rate empty'
+    }
+  >
+    {item.discountRate > 0
+      ? `${item.discountRate}%`
+      : '\u00A0'}
+  </span>
+
+  <p className="search-product-price">
+    {item.price}원
+  </p>
+</div>
 
                   <div className="search-product-bottom">
                     <small>
@@ -223,7 +263,7 @@ function Search() {
       <section className="event-section">
         <h3>봄맞이 할인 이벤트</h3>
 
-        <Link to="/product/9" className="event-banner">
+        <Link to="/product/4" className="event-banner">
           <img
             src="/images/logo/search-banner.png"
             alt="침낭 광고 배너"

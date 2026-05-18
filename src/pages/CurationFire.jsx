@@ -6,203 +6,221 @@ import { Link } from 'react-router-dom'
 function CurationFire() {
   const [showCartPopup, setShowCartPopup] = useState(false)
   function CartIcon() {
-  return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="9" cy="21" r="1" />
-      <circle cx="20" cy="21" r="1" />
-      <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6" />
-    </svg>
-  )
-}
+    return (
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="9" cy="21" r="1" />
+        <circle cx="20" cy="21" r="1" />
+        <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6" />
+      </svg>
+    )
+  }
   const navigate = useNavigate()
   const [activeSection, setActiveSection] = useState('products')
   const [showSideButtons, setShowSideButtons] = useState(false)
   useEffect(() => {
-  const handleScroll = () => {
-    const productsSection = document.querySelector('.fire-products')
-    const storySection = document.querySelector('.fire-story')
-    if (!productsSection || !storySection) return
-    const productsTop =
-      productsSection.getBoundingClientRect().top
-    const storyTop =
-      storySection.getBoundingClientRect().top
-    /* 제품영역 도착하면 버튼 등장 */
-    if (productsTop <= 120) {
-      setShowSideButtons(true)
-    } else {
-      setShowSideButtons(false)
+    const handleScroll = () => {
+      const productsSection = document.querySelector('.fire-products')
+      const storySection = document.querySelector('.fire-story')
+      if (!productsSection || !storySection) return
+      const productsTop =
+        productsSection.getBoundingClientRect().top
+      const storyTop =
+        storySection.getBoundingClientRect().top
+      /* 제품영역 도착하면 버튼 등장 */
+      if (productsTop <= 120) {
+        setShowSideButtons(true)
+      } else {
+        setShowSideButtons(false)
+      }
+      /* 활성화 색상 변경 */
+      if (storyTop <= window.innerHeight / 2) {
+        setActiveSection('people')
+      } else {
+        setActiveSection('products')
+      }
     }
-    /* 활성화 색상 변경 */
-    if (storyTop <= window.innerHeight / 2) {
-      setActiveSection('people')
-    } else {
-      setActiveSection('products')
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
     }
-  }
-  window.addEventListener('scroll', handleScroll)
-  handleScroll()
-  return () => {
-    window.removeEventListener('scroll', handleScroll)
-  }
-}, [])
+  }, [])
   const products1 = [
-  {
-    id: 1,
-    detailId: 20,
-    name: '화로',
-    originPrice: '89,000',
-    price: '59,000',
-    discount: 33,
-    image: '/images/curation-1/prod1.png',
-  },
-  {
-    id: 2,
-    detailId: 21,
-    name: '장작',
-    originPrice: '19,000',
-    price: '12,000',
-    discount: 20,
-    image: '/images/curation-1/prod2.png',
-  },
-  {
-    id: 3,
-    name: '랜턴',
-    originPrice: '49,000',
-    price: '39,000',
-    discount: 15,
-    image: '/images/curation-1/prod3.png',
-  },
-  {
-    id: 4,
-    name: '체어',
-    originPrice: '79,000',
-    price: '59,000',
-    discount: 25,
-    image: '/images/curation-1/prod4.png',
-  },
-]
-
-  const products2 = [
-  {
-    id: 5,
-    name: '테이블',
-    originPrice: '89,000',
-    price: '69,000',
-    discount: 22,
-    image: '/images/curation-1/prod5.png',
-  },
-  {
-    id: 6,
-    name: '담요',
-    originPrice: '39,000',
-    price: '29,000',
-    discount: 25,
-    image: '/images/curation-1/prod6.png',
-  },
-  {
-    id: 7,
-    name: '아이스박스',
-    originPrice: '129,000',
-    price: '99,000',
-    discount: 23,
-    image: '/images/curation-1/prod7.png',
-  },
-]
-
-  const products3 = [
-  {
-    id: 8,
-    detailId: 9,
-    name: '윈터브리즈 캠핑침낭',
-    originPrice: '69,000',
-    price: '89,000',
-    discount: 25,
-    image: '/images/curation-1/prod8.png',
-  },
-  {
-    id: 9,
-    name: '텐트',
-    originPrice: '329,000',
-    price: '259,000',
-    discount: 21,
-    image: '/images/curation-1/prod9.png',
-  },
-]
-  const handleAddAllToCart = () => {
-  const allProducts = [
-    ...products1,
-    ...products2,
-    ...products3,
+    {
+      id: 1,
+      detailId: 20,
+      name: '화로',
+      originPrice: '',
+      price: '189,000',
+      discount: 0,
+      rating: 4.9,
+      review: 14,
+      image: '/images/curation-1/prod1.png',
+    },
+    {
+      id: 2,
+      detailId: 21,
+      name: '장작',
+      originPrice: '39,000',
+      price: '27,000',
+      discount: 30,
+      rating: 4.9,
+      review: 13,
+      image: '/images/curation-1/prod2.png',
+    },
+    {
+      id: 3,
+      name: '랜턴',
+      originPrice: '62,000',
+      price: '49,000',
+      discount: 20,
+      rating: 4.9,
+      review: 18,
+      image: '/images/curation-1/prod3.png',
+    },
+    {
+      id: 4,
+      name: '체어',
+      originPrice: '',
+      price: '53,000',
+      discount: 0,
+      rating: 4.9,
+      review: 16,
+      image: '/images/curation-1/prod4.png',
+    },
   ]
 
-  const savedCart =
-    JSON.parse(localStorage.getItem('cartItems')) || []
+  const products2 = [
+    {
+      id: 5,
+      name: '테이블',
+      originPrice: '60,000',
+      price: '51,000',
+      discount: 15,
+      rating: 4.8,
+      review: 6,
+      image: '/images/curation-1/prod5.png',
+    },
+    {
+      id: 6,
+      name: '담요',
+      originPrice: '',
+      price: '24,000',
+      discount: 0,
+      rating: 4.8,
+      review: 6,
+      image: '/images/curation-1/prod6.png',
+    },
+    {
+      id: 7,
+      name: '아이스박스',
+      originPrice: '',
+      price: '58,000',
+      discount: 0,
+      rating: 4.8,
+      review: 6,
+      image: '/images/curation-1/prod7.png',
+    },
+  ]
 
-  const mergedCart = [...savedCart]
-
-  allProducts.forEach((newItem) => {
-    const existItem = mergedCart.find(
-      (item) => item.id === newItem.id
-    )
-
-    if (!existItem) {
-      mergedCart.push({
-        ...newItem,
-        quantity: 1,
-      })
-    }
-  })
-
-  localStorage.setItem(
-    'cartItems',
-    JSON.stringify(mergedCart)
-  )
-  window.dispatchEvent(
-  new Event('cartUpdated')
-)
-  navigate('/cart')
-}
-const handleAddToCart = (e, product) => {
-  e.stopPropagation()
-
-  const savedCart =
-    JSON.parse(localStorage.getItem('cartItems')) || []
-
-  const existItem = savedCart.find((item) => item.id === product.id)
-
-  let updatedCart
-
-  if (existItem) {
-    updatedCart = savedCart.map((item) =>
-      item.id === product.id
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
-    )
-  } else {
-    updatedCart = [
-      ...savedCart,
-      {
-        ...product,
-        quantity: 1,
-      },
+  const products3 = [
+    {
+      id: 8,
+      detailId: 4,
+      name: '윈터브리즈 캠핑침낭',
+      originPrice: '79,000',
+      price: '63,000',
+      discount: 20,
+      rating: 4.9,
+      review: 13,
+      image: '/images/curation-1/prod8.png',
+    },
+    {
+      id: 9,
+      name: '텐트',
+      originPrice: '',
+      price: '142,000',
+      discount: 0,
+      rating: 4.9,
+      review: 15,
+      image: '/images/curation-1/prod9.png',
+    },
+  ]
+  const handleAddAllToCart = () => {
+    const allProducts = [
+      ...products1,
+      ...products2,
+      ...products3,
     ]
-  }
 
-  localStorage.setItem('cartItems', JSON.stringify(updatedCart))
-  window.dispatchEvent(
-  new Event('cartUpdated')
-)
-  setShowCartPopup(true)
-}
+    const savedCart =
+      JSON.parse(localStorage.getItem('cartItems')) || []
+
+    const mergedCart = [...savedCart]
+
+    allProducts.forEach((newItem) => {
+      const existItem = mergedCart.find(
+        (item) => item.id === newItem.id
+      )
+
+      if (!existItem) {
+        mergedCart.push({
+          ...newItem,
+          quantity: 1,
+        })
+      }
+    })
+
+    localStorage.setItem(
+      'cartItems',
+      JSON.stringify(mergedCart)
+    )
+    window.dispatchEvent(
+      new Event('cartUpdated')
+    )
+    navigate('/cart')
+  }
+  const handleAddToCart = (e, product) => {
+    e.stopPropagation()
+
+    const savedCart =
+      JSON.parse(localStorage.getItem('cartItems')) || []
+
+    const existItem = savedCart.find((item) => item.id === product.id)
+
+    let updatedCart
+
+    if (existItem) {
+      updatedCart = savedCart.map((item) =>
+        item.id === product.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    } else {
+      updatedCart = [
+        ...savedCart,
+        {
+          ...product,
+          quantity: 1,
+        },
+      ]
+    }
+
+    localStorage.setItem('cartItems', JSON.stringify(updatedCart))
+    window.dispatchEvent(
+      new Event('cartUpdated')
+    )
+    setShowCartPopup(true)
+  }
   const ProductCard = ({ item }) => (
     <article className="fire-product-card">
 
@@ -213,30 +231,30 @@ const handleAddToCart = (e, product) => {
       <div className="product-info">
         <h4>{item.name}</h4>
         <div className="price-wrap">
-  <span className="origin-price">
-    {item.originPrice}
-  </span>
+          <span className="origin-price">
+            {item.originPrice}
+          </span>
 
-  <div className="sale-row">
-    <em>{item.discount}%</em>
+          <div className="sale-row">
+            <em>{item.discount}%</em>
 
-    <strong className="sale-price">
-      {item.price}
-    </strong>
-  </div>
-</div>
+            <strong className="sale-price">
+              {item.price}
+            </strong>
+          </div>
+        </div>
 
         <div className="product-bottom">
           <small>★ 4.8&nbsp;&nbsp;(20)</small>
           <div className="fire-icons">
-  <span>♡</span>
-  <button
-  className="cart-icon-btn"
-  onClick={(e) => handleAddToCart(e, item)}
->
-  <CartIcon />
-</button>
-</div>
+            <span>♡</span>
+            <button
+              className="cart-icon-btn"
+              onClick={(e) => handleAddToCart(e, item)}
+            >
+              <CartIcon />
+            </button>
+          </div>
         </div>
       </div>
     </article>
@@ -269,32 +287,32 @@ const handleAddToCart = (e, product) => {
           불멍의 온기를 중심으로,<br />
           주변의 분위기까지 자연스럽게 이어주는 아이템들을 담았습니다
         </p>
-    
+
         {showSideButtons && (
           <div className="side-buttons">
             <button
               className={activeSection === 'products' ? 'active' : ''}
               onClick={() =>
                 document.querySelector('.fire-products')?.scrollIntoView({
-                behavior: 'smooth',
-              })
-            }
-          >
-          Products
-          </button>
+                  behavior: 'smooth',
+                })
+              }
+            >
+              Products
+            </button>
 
-    <button
-      className={activeSection === 'people' ? 'active' : ''}
-      onClick={() =>
-        document.querySelector('.fire-story')?.scrollIntoView({
-          behavior: 'smooth',
-        })
-      }
-    >
-      People
-    </button>
-  </div>
-)}
+            <button
+              className={activeSection === 'people' ? 'active' : ''}
+              onClick={() =>
+                document.querySelector('.fire-story')?.scrollIntoView({
+                  behavior: 'smooth',
+                })
+              }
+            >
+              People
+            </button>
+          </div>
+        )}
 
         <div className="fire-product-list four">
           {products1.map((item) => (
@@ -329,28 +347,28 @@ const handleAddToCart = (e, product) => {
         </div>
 
         <button
-  className="more-btn"
-  onClick={handleAddAllToCart}
->
-  전체 구성 담기
-</button>
+          className="more-btn"
+          onClick={handleAddAllToCart}
+        >
+          전체 구성 담기
+        </button>
       </section>
 
       <section className="fire-story">
         <div className="story-top">
           <img
-           src="/images/curation-1/curationicon.png"
-           alt="people icon"
-           className="story-top-icon"
+            src="/images/curation-1/curationicon.png"
+            alt="people icon"
+            className="story-top-icon"
           />
-        
+
           <p className="story-brand">Campora People</p>
 
           <span className="story-small-text">
             서연님의 캠핑 이야기
           </span>
         </div>
-                
+
         <h3 className="story-main-title">
           불빛을 바라보는 시간 하나로 충분했던 하루
         </h3>
@@ -360,7 +378,7 @@ const handleAddToCart = (e, product) => {
             src="/images/curation-1/curationfire1.jpg"
             alt="불멍 캠핑"
           />
-        
+
           <h4>"오늘 하루도 정신없이 보내진 않았나요?"</h4>
           <p>바쁘게 지내다 보면<br />
             문득 아무것도 하지 않고 싶은 순간이 생기고는 하죠.<br /><br />
@@ -440,25 +458,25 @@ const handleAddToCart = (e, product) => {
 
       <footer className="campora-footer"></footer>
       {showCartPopup && (
-  <div className="cart-popup-overlay">
-    <div className="cart-popup">
-      <p>장바구니로 이동하시겠습니까?</p>
+        <div className="cart-popup-overlay">
+          <div className="cart-popup">
+            <p>장바구니로 이동하시겠습니까?</p>
 
-      <div className="cart-popup-buttons">
-        <button onClick={() => setShowCartPopup(false)}>
-          계속 쇼핑하기
-        </button>
+            <div className="cart-popup-buttons">
+              <button onClick={() => setShowCartPopup(false)}>
+                계속 쇼핑하기
+              </button>
 
-        <button
-          className="go-cart"
-          onClick={() => navigate('/cart')}
-        >
-          장바구니 가기
-        </button>
-      </div>
-    </div>
-  </div>
-)}
+              <button
+                className="go-cart"
+                onClick={() => navigate('/cart')}
+              >
+                장바구니 가기
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   )
 }

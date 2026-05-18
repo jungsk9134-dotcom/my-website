@@ -276,3 +276,34 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+.search-product-old-price {
+  font-size: 12px;
+  color: #777;
+  margin: 0 0 8px;
+  text-decoration: line-through;
+  min-height: 18px;
+}
+
+.search-price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.search-discount-rate {
+  font-size: 14px;
+  font-weight: 700;
+  min-width: 38px;
+  display: inline-block;
+}
+
+.search-discount-rate.empty {
+  visibility: hidden;
+}
+
+.search-product-price {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}

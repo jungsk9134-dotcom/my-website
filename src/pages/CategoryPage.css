@@ -200,18 +200,7 @@
   transform: scale(1.04);
 }
 
-.wishlist-btn {
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.7);
-  cursor: pointer;
-  font-size: 14px;
-}
+
 
 .product-info {
   padding-top: 20px;
@@ -292,27 +281,29 @@
 }
 
 .category-more-btn {
-  display: block;
-  margin: 75px auto 0;
-  width: 90px;
-  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  margin: 90px auto 0;
+
   border: none;
-  background: #777;
-  color: #fff;
-  font-size: 13px;
+  background: transparent;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  color: #111;
   cursor: pointer;
-  transition: 0.3s;
-  border-radius: 10px;
+
+  transition: 0.25s;
 }
 
 .category-more-btn:hover {
-  background: #66aaa2;
+  color: #4F8A83;
 }
 
-.campora-footer {
-  height: 180px;
-  background: #000;
-}
 
 /* 장바구니 팝업 */
 .cart-popup-overlay {
@@ -381,4 +372,39 @@
   .category-grid {
     grid-template-columns: repeat(1, 280px);
   }
+}
+
+.product-old-price {
+  font-size: 14px;
+  color: #999;
+  text-decoration: line-through;
+  margin: 0 0 8px;
+  min-height: 20px; /* 높이 고정 */
+}
+
+
+.product-price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+  min-height: 28px;
+}
+
+.discount-rate {
+  min-width: 42px;
+  display: inline-block;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.discount-rate.empty {
+  visibility: hidden;
+}
+
+/*상품 카드 hover 컬러 변경*/
+.product-card:hover .product-price,
+.product-card:hover .discount-rate,
+.product-card:hover h3 {
+  color: #4F8A83;
 }
