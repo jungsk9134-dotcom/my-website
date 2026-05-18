@@ -77,39 +77,42 @@ function Curation() {
     <section className="curation-card fire-card">
       <div className="curation-card-text">
         <h3>
-          불을 바라보는 것만으로 충분한 여행<br />
-          불멍의 매력
+          장작 소리만 들리는 밤,<br />
+          불빛 하나로 충분한 <br /><br />
+          <p>불멍 캠핑</p>
         </h3>
       </div>
 
       <Link to="/curation/fire" className="curation-link">
-        큐레이션 보러가기 →
+        Click →
       </Link>
     </section>
 
     <section className="curation-card car-card">
       <div className="curation-card-text">
         <h3>
-          차만 들고 훌쩍 떠나는<br />
-          감성 가득 차박 캠핑
+          차 안에서 맞이하는 밤,<br />
+          어디로든 갈 수 있는 <br /><br />
+          <p>차박 캠핑</p>
         </h3>
       </div>
 
       <Link to="/curation/car" className="curation-link">
-        큐레이션 보러가기 →
+        Click →
       </Link>
     </section>
 
     <section className="curation-card minimal-card">
       <div className="curation-card-text">
         <h3>
-          극강의 미니멀리즘<br />
-          미니멀캠핑
+          덜어낸 만큼 여유로운 밤,<br />
+          더욱 조용해지는 <br /><br />
+          <p>미니멀 캠핑</p>
         </h3>
       </div>
 
       <Link to="/curation/minimal" className="curation-link">
-        큐레이션 보러가기 →
+        Click →
       </Link>
     </section>
 
