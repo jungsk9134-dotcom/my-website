@@ -153,7 +153,7 @@ export const products = [
   },
   {
     id: 12,
-    name: '',
+    name: '코지다운 슬립백',
     category: 'sleep',
     subCategory: 'sleeping',
     searchKeywords: '침낭',
@@ -309,7 +309,7 @@ export const products = [
   },
   {
     id: 24,
-    name: '',
+    name: '루미에 캠프라이트',
     category: 'lantern',
     subCategory: 'lantern',
     searchKeywords: '랜턴 램프',
@@ -426,7 +426,7 @@ export const products = [
   },
   {
     id: 33,
-    name: '',
+    name: '코지클라우드 블랭킷',
     category: 'sleep',
     subCategory: 'etc',
     searchKeywords: '침구소품 기타 담요 블랭킷',
@@ -439,7 +439,7 @@ export const products = [
   },
   {
     id: 34,
-    name: '',
+    name: '무드라이트 침낭',
     category: 'sleep',
     subCategory: 'sleeping',
     searchKeywords: '침낭',

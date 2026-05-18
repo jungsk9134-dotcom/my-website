@@ -456,7 +456,6 @@ function CurationFire() {
         </article>
       </section>
 
-      <footer className="campora-footer"></footer>
       {showCartPopup && (
         <div className="cart-popup-overlay">
           <div className="cart-popup">

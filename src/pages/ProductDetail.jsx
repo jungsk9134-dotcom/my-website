@@ -1,103 +1,108 @@
 import './ProductDetail.css'
 import { useEffect, useState, useRef } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { products } from '../data/products'
 
 function ProductDetail({ setCartItems }) {
-    const [isSticky, setIsSticky] = useState(false)
-    const [activeTab, setActiveTab] = useState('detail')
-    const [selectedImage, setSelectedImage] = useState('')
-    const [isReviewModalOpen, setIsReviewModalOpen] = useState(false)
-    const [reviewRating, setReviewRating] = useState(5)
-    const [isPhotoUploadOpen, setIsPhotoUploadOpen] = useState(false)
-    const [reviewImages, setReviewImages] = useState([])
-    const [openGuide, setOpenGuide] = useState('null')
-    const [openQaId, setOpenQaId] = useState(null)
-    const [isQaModalOpen, setIsQaModalOpen] = useState(false)
-    const [currentPage, setCurrentPage] = useState(1)
-    const [qaType, setQaType] = useState('제품 문의')
-    const handleReviewImage = (file) => {
-      if (!file) return
+  const [isSticky, setIsSticky] = useState(false)
+  const [activeTab, setActiveTab] = useState('detail')
+  const [selectedImage, setSelectedImage] = useState('')
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false)
+  const [reviewRating, setReviewRating] = useState(5)
+  const [isPhotoUploadOpen, setIsPhotoUploadOpen] = useState(false)
+  const [reviewImages, setReviewImages] = useState([])
+  const [openGuide, setOpenGuide] = useState('null')
+  const [openQaId, setOpenQaId] = useState(null)
+  const [isQaModalOpen, setIsQaModalOpen] = useState(false)
+  const [showCartPopup, setShowCartPopup] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [quantity, setQuantity] = useState(1)
+  const [selectedSize, setSelectedSize] = useState('싱글')
+  const [selectedColor, setSelectedColor] = useState('그린')
+  const [qaType, setQaType] = useState('제품 문의')
+  const handleReviewImage = (file) => {
+    if (!file) return
 
-      if (!file.type.startsWith('image/')) {
-        alert('이미지 파일만 첨부할 수 있습니다.')
-        return
+    if (!file.type.startsWith('image/')) {
+      alert('이미지 파일만 첨부할 수 있습니다.')
+      return
+    }
+
+    const imageUrl = URL.createObjectURL(file)
+
+    setReviewImages((prev) => [...prev, imageUrl])
+  }
+
+  const detailRef = useRef(null)
+  const reviewRef = useRef(null)
+  const guideRef = useRef(null)
+  const qaRef = useRef(null)
+  const fileInputRef = useRef(null)
+
+  const scrollToSection = (ref, tabName) => {
+    setActiveTab(tabName)
+
+    if (!ref.current) return
+
+    const headerHeight = 120
+    const tabHeight = 70
+    const extraGap = 20
+    const targetTop =
+      ref.current.offsetTop - headerHeight - tabHeight - extraGap
+
+    window.scrollTo({
+      top: targetTop,
+      behavior: 'smooth',
+    })
+  }
+  useEffect(() => {
+    const handleScroll = () => {
+      const tabs = document.querySelector('.sticky-tabs')
+
+      if (!tabs) return
+
+      const top = tabs.getBoundingClientRect().top
+
+      if (top <= 0) {
+        setIsSticky(true)
+      } else {
+        setIsSticky(false)
       }
 
-      const imageUrl = URL.createObjectURL(file)
+      const scrollPosition = window.scrollY + 220
 
-      setReviewImages((prev) => [...prev, imageUrl])
+      const detailTop = detailRef.current?.offsetTop || 0
+      const reviewTop = reviewRef.current?.offsetTop || 0
+      const guideTop = guideRef.current?.offsetTop || 0
+      const qaTop = qaRef.current?.offsetTop || 0
+
+      if (scrollPosition >= qaTop) {
+        setActiveTab('qa')
+      } else if (scrollPosition >= guideTop) {
+        setActiveTab('guide')
+      } else if (scrollPosition >= reviewTop) {
+        setActiveTab('review')
+      } else if (scrollPosition >= detailTop) {
+        setActiveTab('detail')
+      }
     }
 
-    const detailRef = useRef(null)
-    const reviewRef = useRef(null)
-    const guideRef = useRef(null)
-    const qaRef = useRef(null)
-    const fileInputRef = useRef(null)
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
 
-    const scrollToSection = (ref, tabName) => {
-      setActiveTab(tabName)
-
-      if (!ref.current) return
-
-      const headerHeight = 120
-      const tabHeight = 70
-      const extraGap = 20
-      const targetTop =
-        ref.current.offsetTop - headerHeight - tabHeight - extraGap
-
-      window.scrollTo({
-        top: targetTop,
-        behavior: 'smooth',
-      })
-    }
-useEffect(() => {
-  const handleScroll = () => {
-    const tabs = document.querySelector('.sticky-tabs')
-
-    if (!tabs) return
-
-    const top = tabs.getBoundingClientRect().top
-
-    if (top <= 0) {
-      setIsSticky(true)
-    } else {
-      setIsSticky(false)
-    }
-
-    const scrollPosition = window.scrollY + 220
-
-    const detailTop = detailRef.current?.offsetTop || 0
-    const reviewTop = reviewRef.current?.offsetTop || 0
-    const guideTop = guideRef.current?.offsetTop || 0
-    const qaTop = qaRef.current?.offsetTop || 0
-
-    if (scrollPosition >= qaTop) {
-      setActiveTab('qa')
-    } else if (scrollPosition >= guideTop) {
-      setActiveTab('guide')
-    } else if (scrollPosition >= reviewTop) {
-      setActiveTab('review')
-    } else if (scrollPosition >= detailTop) {
-      setActiveTab('detail')
-    }
-  }
-
-  window.addEventListener('scroll', handleScroll)
-  handleScroll()
-
-  return () => window.removeEventListener('scroll', handleScroll)
-}, [])
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
   const { id } = useParams()
+  const navigate = useNavigate()
   const product = products.find((item) => item.id === Number(id))
   useEffect(() => {
-  if (product) {
-    setSelectedImage(product.image)
-  }
-}, [product])
+    if (product) {
+      setSelectedImage(product.image)
+    }
+  }, [product])
 
   if (!product) return <div>상품 없음</div>
-    const reviews = [
+  const reviews = [
     {
       user: 'cozycamp | 26.04.30',
       text: '원단이 자극적이지 않고 부드러워서 아이가 정말 좋아하네요. 캠핑장 가면 잠자리가 바뀌어서 예민해지는데, 이건 자기 침대 같다고 꿀잠 잤어요. 하나 더 사서 연결해서 쓰려고요!',
@@ -139,22 +144,32 @@ useEffect(() => {
     sleep: '침낭 · 매트',
     'table-chair': '테이블 · 의자',
     lantern: '랜턴 · 화로',
-}
-
-const breadcrumbCategory =
-  categoryNameMap[product.category] || '전체상품'
-
-  const handleAddCart = () => {
-    setCartItems((prev) => {
-      const exists = prev.find((item) => item.id === product.id)
-
-      if (exists) {
-        return prev
-      }
-
-      return [...prev, product]
-    })
   }
+
+  const breadcrumbCategory =
+    categoryNameMap[product.category] || '전체상품'
+
+const handleAddCart = () => {
+  setCartItems((prev) => {
+    const exists = prev.find((item) => item.id === product.id)
+
+    if (exists) {
+      return prev
+    }
+
+    return [
+      ...prev,
+      {
+        ...product,
+        quantity,
+        selectedSize,
+        selectedColor,
+      },
+    ]
+  })
+
+  setShowCartPopup(true)
+}
 
   return (
     <main className="detail-page">
@@ -162,33 +177,33 @@ const breadcrumbCategory =
         <div className="detail-left">
           <div className="detail-breadcrumb">
             홈 &gt; 제품 보기 &gt; {breadcrumbCategory}
-              </div>
+          </div>
 
-              <div className="detail-img">
-                <img src={selectedImage || product.image} alt={product.name} />
-              </div>
+          <div className="detail-img">
+            <img src={selectedImage || product.image} alt={product.name} />
+          </div>
 
-              <div className="thumb-list">
-                {[product.image, ...(product.thumbs || [])].map((thumb, index) => (
-                  <div
-                    className={`thumb ${selectedImage === thumb ? 'active' : ''}`}
-                    key={index}
-                    onMouseEnter={() => setSelectedImage(thumb)}
-                  >
-                    <img src={thumb} alt={`${product.name} 썸네일 ${index + 1}`} />
-                  </div>
-                ))}
+          <div className="thumb-list">
+            {[product.image, ...(product.thumbs || [])].map((thumb, index) => (
+              <div
+                className={`thumb ${selectedImage === thumb ? 'active' : ''}`}
+                key={index}
+                onMouseEnter={() => setSelectedImage(thumb)}
+              >
+                <img src={thumb} alt={`${product.name} 썸네일 ${index + 1}`} />
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
         <div className="detail-info">
           <div className="detail-info-top">
             <h2>{product.name}</h2>
-            <p className="rating">★★★★★ 5.0 리뷰 10</p>
+            <p className="rating">★★★★★ 4.9    리뷰 13</p>
 
             <div className="price-box">
               <span className="old">{product.oldPrice}</span>
               <div className="sale-price">
-                <span className="sale">50%</span>
+                <span className="sale">20%</span>
                 <span className="price">{product.price}</span>
               </div>
             </div>
@@ -202,15 +217,23 @@ const breadcrumbCategory =
 
             <div className="select-row">
               <label>사이즈</label>
-              <select>
-                <option>[필수] 옵션을 선택해 주세요</option>
+              <select
+                value={selectedSize}
+                onChange={(e) => setSelectedSize(e.target.value)}
+              >
+                <option value="싱글">싱글</option>
+                <option value="와이드">와이드</option>
               </select>
             </div>
 
             <div className="select-row">
               <label>컬러</label>
-              <select>
-                <option>[필수] 옵션을 선택해 주세요</option>
+              <select
+                value={selectedColor}
+                onChange={(e) => setSelectedColor(e.target.value)}
+              >
+                <option value="그린">그린</option>
+                <option value="샌드">샌드</option>
               </select>
             </div>
           </div>
@@ -219,17 +242,35 @@ const breadcrumbCategory =
             <button className="remove-btn">×</button>
 
             <p>{product.name}</p>
-            <span>- 사이즈 싱글</span>
-            <span>- 컬러 샌드</span>
+            <span>- 사이즈 {selectedSize}</span>
+            <span>- 컬러 {selectedColor}</span>
 
             <div className="selected-bottom">
               <div className="quantity">
-                <button>-</button>
-                <span>1</span>
-                <button>+</button>
+                <button
+                  onClick={() =>
+                    setQuantity((prev) => (prev > 1 ? prev - 1 : 1))
+                  }
+                >
+                  -
+                </button>
+
+                <span>{quantity}</span>
+
+                <button
+                  onClick={() =>
+                    setQuantity((prev) => prev + 1)
+                  }
+                >
+                  +
+                </button>
               </div>
 
-              <strong>{product.price}</strong>
+              <strong>
+                {(
+                  Number(product.price.replace(/[^0-9]/g, '')) * quantity
+                ).toLocaleString()}원
+              </strong>
             </div>
           </div>
 
@@ -237,8 +278,13 @@ const breadcrumbCategory =
             <div className="total">
               <span>총 상품 금액</span>
               <div>
-                <strong>{product.price}</strong>
-                <em>원&nbsp; (1개)</em>
+                <strong>
+                  {(
+                    Number(product.price.replace(/[^0-9]/g, '')) * quantity
+                  ).toLocaleString()}원
+                </strong>
+
+                <em>&nbsp; ({quantity}개)</em>
               </div>
             </div>
 
@@ -254,7 +300,7 @@ const breadcrumbCategory =
         <span
           className={activeTab === 'detail' ? 'active' : ''}
           onClick={() => scrollToSection(detailRef, 'detail')}
-        > 
+        >
           제품상세
         </span>
         <span
@@ -293,25 +339,25 @@ const breadcrumbCategory =
             <div className="fake-img">상세페이지 이미지</div>
           )}
         </div>
-        </section>
+      </section>
 
       {/* 리뷰 탭 */}
       <section className="review-area" ref={reviewRef}>
         <h3>리뷰</h3>
-            
+
         <div className="review-summary new-review-summary">
           <div className="review-score-box">
             <strong>★★★★★ <span>4.9</span></strong>
-          <p>(13)</p>
+            <p>(13)</p>
           </div>
-              
+
           <div className="review-text-box">
             <h4>리뷰 한 눈에 보기</h4>
             <p>
               부드러운 촉감과 쾌적한 사용감 덕분에 편하게 잠들었다는 후기가 많아요.<br />
               결로에도 관리가 쉬웠고, 부담 없는 가격대에 감성적인 디자인까지 만족스럽다는 이야기가 자주 보였어요.
             </p>
-        </div>
+          </div>
         </div>
         {currentReviews.map((review, index) => (
           <div className="review-row new-review-row" key={index}>
@@ -328,7 +374,7 @@ const breadcrumbCategory =
             />
           </div>
         ))}
-      
+
         <div className="review-pages">
           {Array.from({ length: totalPages }, (_, i) => (
             <button
@@ -340,7 +386,7 @@ const breadcrumbCategory =
             </button>
           ))}
         </div>
-      
+
         <button
           className="review-write-btn"
           onClick={() => setIsReviewModalOpen(true)} >
@@ -728,6 +774,27 @@ const breadcrumbCategory =
           </div>
         </div>
       )}
+      {/* 장바구니 팝업 */}
+{showCartPopup && (
+  <div className="cart-popup-overlay">
+    <div className="cart-popup">
+      <p>장바구니로 이동하시겠습니까?</p>
+
+      <div className="cart-popup-buttons">
+        <button onClick={() => setShowCartPopup(false)}>
+          계속 쇼핑하기
+        </button>
+
+        <button
+          className="go-cart"
+          onClick={() => navigate('/cart')}
+        >
+          장바구니 가기
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </main>
   )
 }

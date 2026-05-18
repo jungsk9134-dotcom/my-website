@@ -1,14 +1,49 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import './Header.css'
 
 function Header({ cartCount = 0 }) {
   const location = useLocation()
-  const isBrandPage = location.pathname === '/brand'
-  /* 상세페이지 여부 */
-  const isDetailPage =
-    location.pathname.includes('/product/')
+  const [headerState, setHeaderState] = useState({
+    show: true,
+    scrolled: false,
+  })
+
+  const transparentPages = [
+    '/',
+    '/brand',
+    '/curation',
+  ]
+  const isTransparentPage =
+    transparentPages.includes(location.pathname)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+
+      setHeaderState({
+        // 80px 이하(최상단)일 때만 헤더를 보여주고, 넘어가면 무조건 숨깁니다.
+        show: currentScrollY <= 80,
+        scrolled: currentScrollY > 80,
+      })
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+  const showHeader = headerState.show
+  const isScrolled = headerState.scrolled
   return (
-    <header className={`campora-header ${isBrandPage ? 'brand-header' : ''}`}>
+    <header
+      className={`
+    campora-header
+    ${isTransparentPage ? 'transparent-header' : 'default-header'}
+    ${showHeader ? 'header-show' : 'header-hide'}
+  `}
+    >
       <Link to="/" className="logo">
         <svg
           version="1.1"
@@ -112,7 +147,7 @@ function Header({ cartCount = 0 }) {
 			                c-1.11-5.68-1.54-11.6-3.46-17c-5.02-14.11-14.88-23.31-30.05-25.21c-14.27-1.79-27.66,0.89-36.42,13.55
 			                c-10.85,15.67-11.26,32.72-3.68,49.86c5.91,13.37,16.79,20.57,31.24,21.44c14.98,0.9,27.34-4.24,35.6-17.62
 			                C736.95,176.82,738.02,168.38,738.97,159.52z"/>
-		          <path d="M323.28,208.99c-16.29,3.8-21.68,0.93-26.1-13.07c-4.94,3.23-9.62,6.95-14.84,9.58c-14.17,7.15-29.09,8.16-44.09,3.11
+              <path d="M323.28,208.99c-16.29,3.8-21.68,0.93-26.1-13.07c-4.94,3.23-9.62,6.95-14.84,9.58c-14.17,7.15-29.09,8.16-44.09,3.11
 			                c-10.63-3.58-18.21-10.57-19.42-22.43c-1.31-12.79,4.58-21.7,15.71-27.56c8.46-4.46,17.62-5.91,26.99-6.27
 			                c10.31-0.39,20.64-0.42,30.96-0.64c0.96-0.02,1.91-0.21,2.78-0.32c3.31-18.8-8.49-33.21-26.93-33.6
 			                c-15.94-0.34-28.63,5.08-36.7,19.43c-0.24,0.43-0.58,0.8-0.91,1.16c-0.09,0.1-0.31,0.1-1.7,0.47c0-7.08-0.11-13.9,0.13-20.7
@@ -121,12 +156,12 @@ function Header({ cartCount = 0 }) {
 			                c-2.33,0-4.71-0.33-6.97,0.06c-9.1,1.57-18.39,2.65-27.18,5.29c-8.03,2.41-11.57,9.42-11.25,17.58
 			                c0.34,8.54,4.67,15.17,13.07,17.59c5.29,1.53,11.12,2.05,16.65,1.78c17.77-0.87,28.59-12.53,28.66-30.15
 			                c0.05-12.28,0.05-12.28-11.97-12.17C283.68,158.97,283.34,158.97,283.01,158.97z"/>
-		          <path d="M205.25,179.19c0,4.91,0.13,9.83-0.1,14.74c-0.05,1.12-1.11,2.39-2.02,3.23c-20.25,18.71-62.08,19.48-83.05,1.43
+              <path d="M205.25,179.19c0,4.91,0.13,9.83-0.1,14.74c-0.05,1.12-1.11,2.39-2.02,3.23c-20.25,18.71-62.08,19.48-83.05,1.43
 			                c-16.26-14-20.17-32.18-15.54-52.13c4.82-20.81,19.32-32.6,39.69-36.9c17.08-3.6,34.06-2.34,50.59,3.76
 			                c4.15,1.53,6.1,3.83,5.67,8.5c-0.44,4.72-0.1,9.51-0.7,14.83c-9.96-15.99-24.83-20.68-42.14-19.41
 			                c-10.51,0.77-19.61,4.89-26.45,13.3c-13.73,16.89-11.74,47.92,4.28,61.7c11,9.47,24.09,11.38,38.01,9.11
 			                C187.53,199.04,197.8,191.36,205.25,179.19z"/>
-		          <path d="M799.93,209.62c-8.24,0-17.44,0-27.65,0c9.36-10.69,5.91-23.08,6.33-34.78c0.38-10.65,0.21-21.32,0.03-31.98
+              <path d="M799.93,209.62c-8.24,0-17.44,0-27.65,0c9.36-10.69,5.91-23.08,6.33-34.78c0.38-10.65,0.21-21.32,0.03-31.98
 			                c-0.19-11.13,1.74-22.7-7.07-33.07c8.45,0,15.78,0,23.62,0c0,3.9,0,7.99,0,13.55c2.47-2.58,3.86-4.33,5.54-5.75
 			                c10.62-8.97,22.81-11.87,36.42-9.23c2.95,0.57,4.33,2.01,4.21,5.08c-0.14,3.78-0.03,7.57-0.03,12.4c-2.02-1.15-3.35-1.9-4.67-2.66
 			                c-12.11-7.01-34.16-4.63-39.42,13.1c-1.07,3.63-1.72,7.53-1.72,11.3c-0.02,15.49-0.01,30.99,0.65,46.45
@@ -134,56 +169,56 @@ function Header({ cartCount = 0 }) {
             </g>
           </g>
         </svg>
-         </Link>
+      </Link>
 
-      <nav className="campora-nav">
-        <Link to="/brand">Brand</Link>
-        <Link to="/category/tent">Shelter</Link>
-        <Link to="/category/sleep">Sleep</Link>
-        <Link to="/category/table-chair">Living</Link>
-        <Link to="/category/lantern">Light</Link>
-        <Link to="/curation">Curation</Link>
+<nav className="campora-nav">
+        <NavLink to="/brand" data-text="Brand">Brand</NavLink>
+        <NavLink to="/category/tent" data-text="Shelter">Shelter</NavLink>
+        <NavLink to="/category/sleep" data-text="Sleep">Sleep</NavLink>
+        <NavLink to="/category/table-chair" data-text="Living">Living</NavLink>
+        <NavLink to="/category/lantern" data-text="Light">Light</NavLink>
+        <NavLink to="/curation" data-text="Curation">Curation</NavLink>
       </nav>
 
-   <div className="header-icons">
-  <Link to="/search" className="search-icon-wrap">
-    <svg className="search-icon" viewBox="0 0 24 24" fill="none">
-      <circle
-        cx="10.5"
-        cy="10.5"
-        r="6.5"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
-      <path
-        d="M15.5 15.5L21 21"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
-  </Link>
+      <div className="header-icons">
+        <Link to="/search" className="search-icon-wrap">
+          <svg className="search-icon" viewBox="0 0 24 24" fill="none">
+            <circle
+              cx="10.5"
+              cy="10.5"
+              r="6.5"
+              stroke="currentColor"
+              strokeWidth="1.8"
+            />
+            <path
+              d="M15.5 15.5L21 21"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+            />
+          </svg>
+        </Link>
 
-  <Link to="/cart" className="cart-icon-wrap">
-    <svg className="cart-icon" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M3.5 4.8H5.8L7.8 15.2C7.95 16 8.65 16.6 9.45 16.6H18.2C18.95 16.6 19.6 16.1 19.85 15.4L22 8.2H7"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
+        <Link to="/cart" className="cart-icon-wrap">
+          <svg className="cart-icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3.5 4.8H5.8L7.8 15.2C7.95 16 8.65 16.6 9.45 16.6H18.2C18.95 16.6 19.6 16.1 19.85 15.4L22 8.2H7"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              fill="none"
+            />
 
-      <circle cx="10" cy="20" r="1.35" fill="currentColor" />
-      <circle cx="18.2" cy="20" r="1.35" fill="currentColor" />
-    </svg>
+            <circle cx="10" cy="20" r="1.35" fill="currentColor" />
+            <circle cx="18.2" cy="20" r="1.35" fill="currentColor" />
+          </svg>
 
-    {cartCount > 0 && (
-      <span className="cart-count">{cartCount}</span>
-    )}
-  </Link>
-</div>   
+          {cartCount > 0 && (
+            <span className="cart-count">{cartCount}</span>
+          )}
+        </Link>
+      </div>
 
     </header>
   )

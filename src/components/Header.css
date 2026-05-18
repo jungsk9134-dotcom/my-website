@@ -4,39 +4,29 @@
   color: inherit;
 }
 
-.cart-dot {
-  position: absolute;
-  right: -2px;
-  bottom: 2px;
-
-  width: 8px;
-  height: 8px;
-
-  background: red;
-  border-radius: 50%;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo-img {
-  width: 170px;
-  height: auto;
-  object-fit: contain;
-}
-
-/* 기본 헤더 */
+/* 공통 헤더 */
 
 .campora-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+
   width: 100%;
-  height: 70px;
-  background: transparent !important;
+  height: 80px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   padding: 0 70px;
+
+  z-index: 9999;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
 }
 
 .logo {
@@ -47,19 +37,8 @@
   overflow: hidden;
   position: relative;
   left: 120px;
-  transform: translateY(0);
 }
 
-.logo-img {
-  width: 150px;
-  height: auto;
-  display: block;
-  object-fit: contain;
-}
-
-.gold.logo {
-  height: 54px;
-}
 .campora-nav {
   display: flex;
   gap: 55px;
@@ -67,18 +46,35 @@
 }
 
 .campora-nav a {
-  color: #000000 !important;
+  color: #1c1c1c !important;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 400;
   font-size: 15px;
   white-space: nowrap;
 
-  transition: 0.3s;
+/* 크기 변경 애니메이션이 작동할 수 있도록 정렬 및 트랜지션 설정 */
+  display: inline-block;
+  transition: transform 0.2s ease, opacity 0.3s ease;
 }
 
-.campora-nav a:hover {
-  color: #696969 !important;
-  opacity: 0.5;
+
+
+/* 호버 및 클릭(활성화) 시 Bold 효과 */
+.campora-nav a:hover,
+.campora-nav a.active {
+  color: #1c1c1c !important;
+  font-weight: 700;
+  transform: scale(1.5);
+}
+/*  헤더 보이기,숨기기 */
+.header-show {
+  transform: translateY(0);
+}
+
+.header-hide {
+  transform: translateY(-100%);
+    transition:
+    transform 0.3s ease;
 }
 
 .header-icons {
@@ -94,36 +90,41 @@
   transition: 0.3s;
 }
 
-.header-icons a:hover {
-  color: #696969 !important;
-}
 
-/* 브랜드 페이지 전용 */
+/* 투명 헤더 */
 
-.brand-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-
+.transparent-header {
   background: transparent !important;
-  z-index: 999;
+  border-bottom: 1px solid transparent;
 }
 
 /* 메뉴 흰색 */
 
-.brand-header .campora-nav a {
-  color: #fff !important;
-}
-
-/* 아이콘 흰색 */
-
-.brand-header .header-icons a {
+.transparent-header .campora-nav a,
+.transparent-header .header-icons a,
+.transparent-header .logo {
   color: #ffffff !important;
 }
 
+.default-header::before {
+  content: '';
 
+  position: absolute;
+  inset: 0;
+
+  background: #ffffff;
+  border-bottom: 1px solid #E8E6E1;
+
+  z-index: -1;
+}
+
+/* 메뉴 검정 */
+
+.default-header .campora-nav a,
+.default-header .header-icons a,
+.default-header .logo {
+  color: #1C1C1C !important;
+}
 
 
 

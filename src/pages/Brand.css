@@ -579,13 +579,18 @@
 .bottom-banner-text button {
   background: transparent;
   color: #fff;
-  border: 1px solid #fff;
+   border: 1px solid rgba(255, 255, 255, 0.85);
   border-radius: 30px;
   padding: 10px 32px;
   font-size: 13px;
   cursor: pointer;
+    backdrop-filter: blur(8px);
+  transition: 0.25s;
 }
-
+.bottom-banner-text button:hover{
+    background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
 /* 푸터 */
 .brand-footer {
   background: #222;
