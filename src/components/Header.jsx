@@ -174,9 +174,9 @@ function Header({ cartCount = 0 }) {
 <nav className="campora-nav">
         <NavLink to="/brand" data-text="Brand">Brand</NavLink>
         <NavLink to="/category/tent" data-text="Shelter">Shelter</NavLink>
-        <NavLink to="/category/sleep" data-text="Sleep">Sleep</NavLink>
+        <NavLink to="/category/sleep" data-text="Sleep">Rest</NavLink>
         <NavLink to="/category/table-chair" data-text="Living">Living</NavLink>
-        <NavLink to="/category/lantern" data-text="Light">Light</NavLink>
+        <NavLink to="/category/lantern" data-text="Light">Fire</NavLink>
         <NavLink to="/curation" data-text="Curation">Curation</NavLink>
       </nav>
 

@@ -75,7 +75,7 @@
   overflow: hidden;
 
   /* 반원의 위쪽 둥근 정점이 비디오와 겹치도록 마이너스 마진 조정 */
-  margin-top: -120px;
+  margin-top: 40vh;
 
   /* 경계면 입체감을 위한 미세한 그림자 */
   box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.06);
