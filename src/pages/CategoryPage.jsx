@@ -324,29 +324,22 @@ return (
 
 <div className="product-info">
   <h3>{item.name}</h3>
+  <div className="product-price-box">
+    <p className={item.discountRate > 0 ? 'product-old-price' : 'product-old-price empty'}>
+      {item.discountRate > 0 ? `${item.oldPrice}원` : '원가격'}
+    </p>
 
-  <p className="product-old-price">
-    {item.discountRate > 0
-      ? `${item.oldPrice}원`
-      : '\u00A0'}
-  </p>
+    <div className={item.discountRate > 0 ? 'product-price-row' : 'product-price-row no-discount'}>
+      {item.discountRate > 0 && (
+        <span className="discount-rate">
+          {item.discountRate}%
+        </span>
+      )}
 
-  <div className="product-price-row">
-    <span
-      className={
-        item.discountRate > 0
-          ? 'discount-rate'
-          : 'discount-rate empty'
-      }
-    >
-      {item.discountRate > 0
-        ? `${item.discountRate}%`
-        : '\u00A0'}
-    </span>
-
-    <span className="product-price">
-      {item.price}원
-    </span>
+      <span className="product-price">
+        {item.price}원
+      </span>
+    </div>
   </div>
 
   <div className="product-bottom">
