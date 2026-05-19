@@ -150,7 +150,7 @@ function Home() {
         </p>
 
         <div className="lifestyle-cards">
-          <div className="life-card fire-card">
+          <div className="life-card firem-card">
             <div className="fire-overlay"></div>
             <div className="fire-content">
               <div className="fire-text">
@@ -167,7 +167,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="life-card car-card">
+          <div className="life-card carm-card">
             <div className="fire-overlay"></div>
             <div className="fire-content">
               <div className="fire-text">
@@ -184,7 +184,7 @@ function Home() {
             </div>
           </div>
 
-          <div className="life-card minimal-card">
+          <div className="life-card minimalm-card">
             <div className="fire-overlay"></div>
             <div className="fire-content">
               <div className="fire-text">

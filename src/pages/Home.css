@@ -119,16 +119,25 @@
   background-repeat: no-repeat;
 }
 
-.fire-card {
-  background-image: url('/images/mainscreen/firecamp.png');
+.firem-card {
+  background-image: url('/images/mainscreen/firetest-new.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.car-card {
-  background-image: url('/images/mainscreen/car-camping.png');
+.carm-card {
+  background-image: url('/images/mainscreen/cartest-new.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.minimal-card {
-  background-image: url('/images/mainscreen/minimal-camping.png');
+.minimalm-card {
+  background-image: url('/images/mainscreen/minimal-test2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .fire-overlay {
