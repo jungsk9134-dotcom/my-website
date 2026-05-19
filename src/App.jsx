@@ -17,7 +17,12 @@ import Footer from './components/Footer'
 
 function App() {
   const [cartItems, setCartItems] = useState(() => {
-    return JSON.parse(localStorage.getItem('cartItems')) || []
+    const savedCart = JSON.parse(localStorage.getItem('cartItems')) || []
+
+    return savedCart.map((item) => ({
+      ...item,
+      quantity: 1,
+    }))
   })
 
   const handleAddCart = (product) => {
@@ -29,7 +34,7 @@ function App() {
       if (existItem) {
         newCartItems = prev.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: (item.quantity || 1) + 1 }
+            ? { ...item, quantity: 1 }
             : item
         )
       } else {
@@ -46,7 +51,13 @@ function App() {
   useEffect(() => {
     const handleCartUpdated = () => {
       const savedCart = JSON.parse(localStorage.getItem('cartItems')) || []
-      setCartItems(savedCart)
+
+      const fixedCart = savedCart.map((item) => ({
+        ...item,
+        quantity: item.quantity || 1,
+      }))
+
+      setCartItems(fixedCart)
     }
 
     window.addEventListener('cartUpdated', handleCartUpdated)
@@ -85,7 +96,6 @@ function App() {
           path="/product/:id"
           element={
             <ProductDetail
-              setCartItems={setCartItems}
               onAddCart={handleAddCart}
             />
           }

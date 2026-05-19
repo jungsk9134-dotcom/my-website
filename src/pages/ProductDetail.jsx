@@ -1,7 +1,8 @@
 import './ProductDetail.css'
 import { useEffect, useState, useRef } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import { products } from '../data/products'
+import { curationProducts } from '../data/curationProducts'
 
 function ProductDetail({ onAddCart }) {
   const [isSticky, setIsSticky] = useState(false)
@@ -105,7 +106,8 @@ function ProductDetail({ onAddCart }) {
   }, [])
   const { id } = useParams()
   const navigate = useNavigate()
-  const product = products.find((item) => item.id === Number(id))
+  const allProducts = [...curationProducts, ...products]
+  const product = allProducts.find((item) => item.id === Number(id))
   useEffect(() => {
     if (product) {
       setSelectedImage(product.image)
@@ -113,38 +115,9 @@ function ProductDetail({ onAddCart }) {
   }, [product])
 
   if (!product) return <div>상품 없음</div>
-  const reviews = [
-    {
-      user: 'cozycamp | 26.04.30',
-      text: '원단이 자극적이지 않고 부드러워서 아이가 정말 좋아하네요. 캠핑장 가면 잠자리가 바뀌어서 예민해지는데, 이건 자기 침대 같다고 꿀잠 잤어요. 하나 더 사서 연결해서 쓰려고요!',
-      img: '/images/review/prod-sm-01-review-01.png',
-    },
-    {
-      user: 'bysora | 26.04.27',
-      text: '유명 브랜드 침낭은 너무 비싸서 부담스러웠는데, 캠포라는 가격도 착하고 디자인도 세련됐네요. 사진 찍으면 정말 잘 나와서 인스타 업로드용으로도 딱입니다. 친구들도 어디 거냐고 물어보네요.',
-      img: '/images/review/prod-sm-01-review-02.png',
-    },
-    {
-      user: 'sundayfilm | 26.04.24',
-      text: '아침에 일어나면 텐트에 결로 생겨서 침낭 눅눅해질 때가 많잖아요? 이건 생활 방수 원단이라 그런지 툭툭 털어내니까 금방 보송해지더라고요. 관리하기 편해서 입문자분들께 추천해요.',
-      img: '/images/review/prod-sm-01-review-03.png',
-    },
-    {
-      user: 'dayoff.zip | 26.04.21',
-      text: '침낭 특유의 바스락거리는 소리도 적고 통기성이 좋아서 밤새 땀 안 차고 쾌적하게 잤어요. 안감이 피부에 닿는 느낌이 정말 좋아서 반바지 입고 들어가도 거부감이 없네요.',
-      img: '/images/review/prod-sm-01-review-04.png',
-    },
-    {
-      user: 'aurora | 26.04.18',
-      text: '영하로 내려가는 날 사용했는데 후드 스트링 꽉 조이니까 찬바람 하나 안 들어오네요. 얼굴만 쏙 내밀고 자는데 포근함이 장난 아니에요. 겨울 캠핑 무서웠는데 이 침낭 덕분에 자신감 생겼습니다.',
-      img: '/images/review/prod-sm-01-review-05.png',
-    },
-  ]
-
+  const reviews = product.reviews || []
   const reviewsPerPage = 5
-
   const totalPages = Math.ceil(reviews.length / reviewsPerPage)
-
   const currentReviews = reviews.slice(
     (currentPage - 1) * reviewsPerPage,
     currentPage * reviewsPerPage
@@ -165,7 +138,13 @@ function ProductDetail({ onAddCart }) {
       <section className="detail-top">
         <div className="detail-left">
           <div className="detail-breadcrumb">
-            홈 &gt; 제품 보기 &gt; {breadcrumbCategory}
+            <Link to="/">홈</Link>
+            <span> &gt; </span>
+            <Link to="/category/all">제품 보기</Link>
+            <span> &gt; </span>
+            <Link to={`/category/${product.category}`}>
+              {breadcrumbCategory}
+            </Link>
           </div>
 
           <div className="detail-img">
@@ -173,7 +152,9 @@ function ProductDetail({ onAddCart }) {
           </div>
 
           <div className="thumb-list">
-            {[product.image, ...(product.thumbs || [])].map((thumb, index) => (
+            {[product.image, ...(product.thumbs || [])]
+              .filter(Boolean)
+              .map((thumb, index) => (
               <div
                 className={`thumb ${selectedImage === thumb ? 'active' : ''}`}
                 key={index}
@@ -187,7 +168,9 @@ function ProductDetail({ onAddCart }) {
         <div className="detail-info">
           <div className="detail-info-top">
             <h2>{product.name}</h2>
-            <p className="rating">★★★★★ 4.9    리뷰 13</p>
+            <p className="rating">
+              ★★★★★ {product.rating || '4.9'} 리뷰 {reviews.length}
+            </p>
 
             <div className="price-box">
               <span className="old">{product.oldPrice}</span>
@@ -257,7 +240,7 @@ function ProductDetail({ onAddCart }) {
 
               <strong>
                 {(
-                  Number(product.price.replace(/[^0-9]/g, '')) * quantity
+                  Number(String(product.price).replace(/[^0-9]/g, '')) * quantity
                 ).toLocaleString()}원
               </strong>
             </div>
@@ -269,7 +252,7 @@ function ProductDetail({ onAddCart }) {
               <div>
                 <strong>
                   {(
-                    Number(product.price.replace(/[^0-9]/g, '')) * quantity
+                    Number(String(product.price).replace(/[^0-9]/g, '')) * quantity
                   ).toLocaleString()}원
                 </strong>
 
@@ -336,15 +319,14 @@ function ProductDetail({ onAddCart }) {
 
         <div className="review-summary new-review-summary">
           <div className="review-score-box">
-            <strong>★★★★★ <span>4.9</span></strong>
-            <p>(13)</p>
+            <strong>★★★★★ <span>{product.rating || '4.9'}</span></strong>
+            <p>({reviews.length})</p>
           </div>
 
           <div className="review-text-box">
             <h4>리뷰 한 눈에 보기</h4>
             <p>
-              부드러운 촉감과 쾌적한 사용감 덕분에 편하게 잠들었다는 후기가 많아요.<br />
-              결로에도 관리가 쉬웠고, 부담 없는 가격대에 감성적인 디자인까지 만족스럽다는 이야기가 자주 보였어요.
+              {product.reviewSummary || '아직 등록된 리뷰 요약이 없습니다.'}
             </p>
           </div>
         </div>
@@ -508,26 +490,7 @@ function ProductDetail({ onAddCart }) {
             <span>작성자</span>
           </div>
 
-          {[
-            {
-              id: 1,
-              status: '처리 대기',
-              title: '배송 문의',
-              writer: 'nightwood',
-              question: '배송은 보통 며칠 정도 걸리나요?',
-              answer: '',
-            },
-            {
-              id: 2,
-              status: '답변 완료',
-              title: '제품 문의',
-              writer: 'fromdawn',
-              question:
-                '침낭 세탁은 어떻게 해야 하나요? 집에서 세탁해도 괜찮을까요?',
-              answer:
-                '해당 침낭은 생활 오염 기준으로 가벼운 손세탁 또는 중성세제를 사용한 울코스 세탁을 권장드리고 있습니다. 장기간 사용을 위해서는 자연 건조를 추천드려요.',
-            },
-          ].map((qa) => (
+         {(product.qna || []).map((qa) => (
             <div className="qa-item" key={qa.id}>
               <div className="qa-row">
                 <span>{qa.status}</span>

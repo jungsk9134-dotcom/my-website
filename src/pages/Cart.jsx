@@ -1,17 +1,12 @@
 import './Cart.css'
 import { useEffect, useState } from 'react'
 
-function Cart() {
-  const [cartItems, setCartItems] = useState([])
+function Cart({ cartItems, setCartItems }) {
   const [selectedIds, setSelectedIds] = useState([])
 
   useEffect(() => {
-    const savedCart =
-      JSON.parse(localStorage.getItem('cartItems')) || []
-
-    setCartItems(savedCart)
-    setSelectedIds(savedCart.map((item) => item.id))
-  }, [])
+    setSelectedIds(cartItems.map((item) => item.id))
+  }, [cartItems])
 
   const saveCart = (updatedCart) => {
     setCartItems(updatedCart)

@@ -57,7 +57,7 @@ function CurationFire() {
   const products1 = [
     {
       id: 1,
-      detailId: 20,
+      detailId: 101,
       name: '화로',
       originPrice: '',
       price: '189,000',
@@ -68,7 +68,7 @@ function CurationFire() {
     },
     {
       id: 2,
-      detailId: 21,
+      detailId: 102,
       name: '장작',
       originPrice: '39,000',
       price: '27,000',
@@ -79,6 +79,7 @@ function CurationFire() {
     },
     {
       id: 3,
+      detailId: 103,
       name: '랜턴',
       originPrice: '62,000',
       price: '49,000',
@@ -89,6 +90,7 @@ function CurationFire() {
     },
     {
       id: 4,
+      detailId: 104,
       name: '체어',
       originPrice: '',
       price: '53,000',
@@ -102,6 +104,7 @@ function CurationFire() {
   const products2 = [
     {
       id: 5,
+      detailId: 105,
       name: '테이블',
       originPrice: '60,000',
       price: '51,000',
@@ -112,6 +115,7 @@ function CurationFire() {
     },
     {
       id: 6,
+      detailId: 106,
       name: '담요',
       originPrice: '',
       price: '24,000',
@@ -122,6 +126,7 @@ function CurationFire() {
     },
     {
       id: 7,
+      detailId: 107,
       name: '아이스박스',
       originPrice: '',
       price: '58,000',
@@ -135,17 +140,18 @@ function CurationFire() {
   const products3 = [
     {
       id: 8,
-      detailId: 4,
+      detailId: 108,
       name: '윈터브리즈 캠핑침낭',
       originPrice: '79,000',
       price: '63,000',
       discount: 20,
       rating: 4.9,
       review: 13,
-      image: '/images/curation-1/prod8.png',
+      image: '/images/curation-1/prod-sm-01.png',
     },
     {
       id: 9,
+      detailId: 109,
       name: '텐트',
       originPrice: '',
       price: '142,000',

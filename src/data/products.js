@@ -1,3 +1,11 @@
+const categoryNameMap = {
+  tent: '텐트 · 타프',
+  sleep: '침낭 · 매트',
+  'table-chair': '테이블 · 의자',
+  lantern: '랜턴 · 화로',
+  curation: '큐레이션',
+}
+
 export const products = [
   {
     id: 1,
@@ -49,14 +57,14 @@ export const products = [
     price: '63,000',
     rating: 4.9,
     review: 13,
-    image: '/images/products/상세페이지ex.png',
+    image: '/images/cu.prod.sm/prod-sm-01.png',
     thumbs: [
-      '/images/products-침낭/prod-sm-01-detail-01.png',
-      '/images/products-침낭/prod-sm-01-detail-02.png',
-      '/images/products-침낭/prod-sm-01-detail-03.png'
+      '/images/cu.prod.sm/prod-sm-01-detail-01.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-02.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-03.png'
     ],
     detailImages: [
-      '/images/products-침낭/prod-sm-01-info.png'
+      '/images/cu.prod.sm/prod-sm-01-info.png'
     ]
   },
   {
