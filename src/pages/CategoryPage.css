@@ -422,6 +422,7 @@
   width: 100%;
   height: 58px;
   margin-bottom: 14px;
+  transform: translateY(15px);
 }
 
 /* 할인 없는 상품은 현재 가격이 퍼센트 자리부터 시작 */

@@ -13,30 +13,44 @@ const [headerState, setHeaderState] = useState({
   const transparentPages = [
     '/',
     '/brand',
-    '/curation',
   ]
   const isTransparentPage =
     transparentPages.includes(location.pathname)
 
-useEffect(() => {
+  useEffect(() => {
+
+  const getChangePoint = () => {
+
+    // 홈
+    if (location.pathname === '/') {
+      return 800
+    }
+    // 브랜드
+    if (location.pathname === '/brand') {
+      return 2100
+    }
+    // 기본
+    return 0
+  }
   const handleScroll = () => {
     const currentScrollY = window.scrollY
+    const changePoint = getChangePoint()
 
     setHeaderState({
-      show: currentScrollY <= 80,
-      scrolled: currentScrollY > 80,
-
-      // 100vh 지나면 글자 검정
-      darkMode: currentScrollY > window.innerHeight,
+      show: true,
+      // 배경 blur
+      scrolled: currentScrollY > changePoint,
+      // 글자 검정
+      darkMode: currentScrollY > changePoint,
     })
   }
-
+  handleScroll()
   window.addEventListener('scroll', handleScroll)
-
   return () => {
     window.removeEventListener('scroll', handleScroll)
   }
-}, [])
+
+}, [location.pathname])
 const showHeader = headerState.show
 const isScrolled = headerState.scrolled
 const isDarkMode = headerState.darkMode
