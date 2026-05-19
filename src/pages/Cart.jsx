@@ -82,7 +82,12 @@ function Cart({ cartItems, setCartItems }) {
     return sum + getPriceNumber(item.price) * (item.quantity || 1)
   }, 0)
 
-  const deliveryFee = selectedItems.length > 0 ? 3000 : 0
+  const deliveryFee =
+    totalPrice >= 50000
+      ? 0
+      : selectedItems.length > 0
+        ? 3000
+        : 0
   const finalPrice = totalPrice + deliveryFee
 
   const formatPrice = (price) => {
@@ -143,7 +148,9 @@ function Cart({ cartItems, setCartItems }) {
 
           <div className="summary-row">
             <span>배송비</span>
-            <strong>{formatPrice(deliveryFee)}</strong>
+            <strong>
+              {deliveryFee === 0 ? '무료' : formatPrice(deliveryFee)}
+            </strong>
           </div>
 
           <div className="summary-total">
@@ -182,7 +189,9 @@ function CartItem({
 
         <div className="item-info">
           <p className="item-name">{item.name}</p>
-          <p className="item-option">옵션 1 / 옵션2</p>
+          <p className="item-option">
+            사이즈 : {item.selectedSize} / 컬러 : {item.selectedColor}
+          </p>
 
           <div className="quantity">
             <button onClick={() => onQuantityChange(item.id, 'decrease')}>
