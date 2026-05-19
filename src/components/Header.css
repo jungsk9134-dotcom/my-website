@@ -76,9 +76,9 @@
 /* 스크롤 시 반투명 헤더 */
 
 .scrolled-header {
-  background: rgba(255, 255, 255, 0.08) !important;
+  background: rgba(255, 255, 255, 0.45) !important;
 
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(16px);
 
   border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -121,7 +121,7 @@
 .default-header {
   background: #ffffff !important;
   border-bottom: none !important;
-    background: rgba(255,255,255,0.08) !important;
+    background: rgba(255,255,255,0.45) !important;
 
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
