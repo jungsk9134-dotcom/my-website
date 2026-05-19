@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { products } from '../data/products'
 
-function ProductDetail({ setCartItems }) {
+function ProductDetail({ onAddCart }) {
   const [isSticky, setIsSticky] = useState(false)
   const [activeTab, setActiveTab] = useState('detail')
   const [selectedImage, setSelectedImage] = useState('')
@@ -32,6 +32,17 @@ function ProductDetail({ setCartItems }) {
 
     setReviewImages((prev) => [...prev, imageUrl])
   }
+
+    const handleCartClick = () => {
+      onAddCart({
+        ...product,
+        quantity,
+        selectedSize,
+        selectedColor,
+      })
+
+  setShowCartPopup(true)
+}
 
   const detailRef = useRef(null)
   const reviewRef = useRef(null)
@@ -148,28 +159,6 @@ function ProductDetail({ setCartItems }) {
 
   const breadcrumbCategory =
     categoryNameMap[product.category] || '전체상품'
-
-const handleAddCart = () => {
-  setCartItems((prev) => {
-    const exists = prev.find((item) => item.id === product.id)
-
-    if (exists) {
-      return prev
-    }
-
-    return [
-      ...prev,
-      {
-        ...product,
-        quantity,
-        selectedSize,
-        selectedColor,
-      },
-    ]
-  })
-
-  setShowCartPopup(true)
-}
 
   return (
     <main className="detail-page">
@@ -289,7 +278,7 @@ const handleAddCart = () => {
             </div>
 
             <div className="btns">
-              <button onClick={handleAddCart}>장바구니</button>
+              <button onClick={handleCartClick}>장바구니</button>
               <button className="buy">바로 구매</button>
             </div>
           </div>

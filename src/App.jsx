@@ -20,6 +20,29 @@ function App() {
     return JSON.parse(localStorage.getItem('cartItems')) || []
   })
 
+  const handleAddCart = (product) => {
+    setCartItems((prev) => {
+      const existItem = prev.find((item) => item.id === product.id)
+
+      let newCartItems
+
+      if (existItem) {
+        newCartItems = prev.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: (item.quantity || 1) + 1 }
+            : item
+        )
+      } else {
+        newCartItems = [...prev, { ...product, quantity: 1 }]
+      }
+
+      localStorage.setItem('cartItems', JSON.stringify(newCartItems))
+      window.dispatchEvent(new Event('cartUpdated'))
+
+      return newCartItems
+    })
+  }
+
   useEffect(() => {
     const handleCartUpdated = () => {
       const savedCart = JSON.parse(localStorage.getItem('cartItems')) || []
@@ -42,17 +65,30 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/brand" element={<Brand />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/cart" element={
-          <Cart 
-            cartItems={cartItems}
-            setCartItems={setCartItems} />} />
+
+        <Route
+          path="/cart"
+          element={
+            <Cart
+              cartItems={cartItems}
+              setCartItems={setCartItems}
+            />
+          }
+        />
+
         <Route path="/curation" element={<Curation />} />
         <Route path="/curation/fire" element={<CurationFire />} />
         <Route path="/curation/car" element={<CurationCar />} />
         <Route path="/curation/minimal" element={<CurationMinimal />} />
+
         <Route
           path="/product/:id"
-          element={<ProductDetail setCartItems={setCartItems} />}
+          element={
+            <ProductDetail
+              setCartItems={setCartItems}
+              onAddCart={handleAddCart}
+            />
+          }
         />
 
         <Route path="/category/:type" element={<CategoryPage />} />
