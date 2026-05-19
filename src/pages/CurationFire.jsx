@@ -58,7 +58,7 @@ function CurationFire() {
     {
       id: 1,
       detailId: 101,
-      name: '화로',
+      name: '듀얼 플로우 화로대',
       originPrice: '',
       price: '189,000',
       discount: 0,
@@ -69,7 +69,7 @@ function CurationFire() {
     {
       id: 2,
       detailId: 102,
-      name: '장작',
+      name: '오로라 장작나무 장작 세트',
       originPrice: '39,000',
       price: '27,000',
       discount: 30,
@@ -80,7 +80,7 @@ function CurationFire() {
     {
       id: 3,
       detailId: 103,
-      name: '랜턴',
+      name: '미드나잇 글로우 랜턴',
       originPrice: '62,000',
       price: '49,000',
       discount: 20,
@@ -91,7 +91,7 @@ function CurationFire() {
     {
       id: 4,
       detailId: 104,
-      name: '체어',
+      name: '포레스트 라운지 우드 체어',
       originPrice: '',
       price: '53,000',
       discount: 0,
@@ -105,7 +105,7 @@ function CurationFire() {
     {
       id: 5,
       detailId: 105,
-      name: '테이블',
+      name: '솔리드 오크 테이블',
       originPrice: '60,000',
       price: '51,000',
       discount: 15,
@@ -116,7 +116,7 @@ function CurationFire() {
     {
       id: 6,
       detailId: 106,
-      name: '담요',
+      name: '소프트 블랭킷',
       originPrice: '',
       price: '24,000',
       discount: 0,
@@ -127,7 +127,7 @@ function CurationFire() {
     {
       id: 7,
       detailId: 107,
-      name: '아이스박스',
+      name: '웜프리 쿨러 박스 28L',
       originPrice: '',
       price: '58,000',
       discount: 0,
@@ -152,7 +152,7 @@ function CurationFire() {
     {
       id: 9,
       detailId: 109,
-      name: '텐트',
+      name: '그린밸리 캠프 텐트',
       originPrice: '',
       price: '142,000',
       discount: 0,

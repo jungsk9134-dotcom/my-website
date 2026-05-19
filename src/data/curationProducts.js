@@ -1,7 +1,7 @@
 export const curationProducts = [
   {
     id: 101,
-    name: '화로',
+    name: '듀얼 플로우 화로대',
     image: '/images/cu.prod.lf/prod-lf-02.png',
 
     detailImages: [
@@ -31,66 +31,102 @@ export const curationProducts = [
 
   {
   id: 102,
-  name: '장작',
+  name: '오로라 장작나무 장작 세트',
   image: '/images/cu.prod.lf/prod-lf-03.png',
-  detailImages: [
-    '/images/cu.prod.lf/prod-lf-03-info.png',
-  ],
+  thumbs: [
+      '/images/cu.prod.sm/prod-sm-01-detail-01.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-02.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-03.png',
+    ],
+
+    detailImages: [
+      '/images/cu.prod.sm/prod-sm-01-info.png',
+    ],
 
   reviews: [],
   qna: [],
 },
   {
   id: 103,
-  name: '장작',
-  image: '/images/cu.prod.lf/prod-lf-03.png',
-  detailImages: [
-    '/images/cu.prod.lf/prod-lf-03-info.png',
-  ],
+  name: '미드나잇 글로우 랜턴',
+  image: '/images/cu.prod.lf/prod-lf-01.png',
+  thumbs: [
+      '/images/cu.prod.sm/prod-sm-01-detail-01.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-02.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-03.png',
+    ],
+
+    detailImages: [
+      '/images/cu.prod.lf/prod-lf-01-info.png',
+    ],
 
   reviews: [],
   qna: [],
 },
   {
   id: 104,
-  name: '장작',
-  image: '/images/cu.prod.lf/prod-lf-03.png',
-  detailImages: [
-    '/images/cu.prod.lf/prod-lf-03-info.png',
-  ],
+  name: '포레스트 라운지 우드 체어',
+  image: '/images/cu.prod.tc/prod-tc-01.png',
+  thumbs: [
+      '/images/cu.prod.sm/prod-sm-01-detail-01.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-02.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-03.png',
+    ],
+
+    detailImages: [
+      '/images/cu.prod.sm/prod-sm-01-info.png',
+    ],
 
   reviews: [],
   qna: [],
 },
   {
   id: 105,
-  name: '장작',
-  image: '/images/cu.prod.lf/prod-lf-03.png',
-  detailImages: [
-    '/images/cu.prod.lf/prod-lf-03-info.png',
-  ],
+  name: '솔리드 오크 테이블',
+  image: '/images/cu.prod.tc/prod-tc-02.png',
+  thumbs: [
+      '/images/cu.prod.sm/prod-sm-01-detail-01.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-02.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-03.png',
+    ],
+
+    detailImages: [
+      '/images/cu.prod.sm/prod-sm-01-info.png',
+    ],
 
   reviews: [],
   qna: [],
 },
   {
   id: 106,
-  name: '장작',
-  image: '/images/cu.prod.lf/prod-lf-03.png',
-  detailImages: [
-    '/images/cu.prod.lf/prod-lf-03-info.png',
-  ],
+  name: '소프트 블랭킷',
+  image: '/images/cu.prod.sm/prod-sm-02.png',
+  thumbs: [
+      '/images/cu.prod.sm/prod-sm-01-detail-01.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-02.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-03.png',
+    ],
+
+    detailImages: [
+      '/images/cu.prod.sm/prod-sm-01-info.png',
+    ],
 
   reviews: [],
   qna: [],
 },
   {
   id: 107,
-  name: '장작',
-  image: '/images/cu.prod.lf/prod-lf-03.png',
-  detailImages: [
-    '/images/cu.prod.lf/prod-lf-03-info.png',
-  ],
+  name: '웜프리 쿨러 박스 28L',
+  image: '/images/cu.prod.tc/prod-sc-01.png',
+  thumbs: [
+      '/images/cu.prod.sm/prod-sm-01-detail-01.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-02.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-03.png',
+    ],
+
+    detailImages: [
+      '/images/cu.prod.sm/prod-sm-01-info.png',
+    ],
 
   reviews: [],
   qna: [],
@@ -168,11 +204,17 @@ export const curationProducts = [
   },
   {
   id: 109,
-  name: '장작',
-  image: '/images/cu.prod.lf/prod-lf-03.png',
-  detailImages: [
-    '/images/cu.prod.lf/prod-lf-03-info.png',
-  ],
+  name: '그린밸리 캠프 텐트',
+  image: '/images/cu.prod.tt/prod-tt-01.png',
+  thumbs: [
+      '/images/cu.prod.sm/prod-sm-01-detail-01.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-02.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-03.png',
+    ],
+
+    detailImages: [
+      '/images/cu.prod.sm/prod-sm-01-info.png',
+    ],
 
   reviews: [],
   qna: [],
