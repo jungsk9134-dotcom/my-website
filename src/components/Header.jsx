@@ -22,8 +22,8 @@ function Header({ cartCount = 0 }) {
       const currentScrollY = window.scrollY
 
       setHeaderState({
-        // 80px 이하(최상단)일 때만 헤더를 보여주고, 넘어가면 무조건 숨깁니다.
-        show: currentScrollY <= 80,
+        // 80px 이하(최상단)일 때만 헤더를 보여주고, 넘어가면 반투명하게.
+        show: true,
         scrolled: currentScrollY > 80,
       })
     }
@@ -37,13 +37,13 @@ function Header({ cartCount = 0 }) {
   const showHeader = headerState.show
   const isScrolled = headerState.scrolled
   return (
-    <header
-      className={`
+<header
+  className={`
     campora-header
     ${isTransparentPage ? 'transparent-header' : 'default-header'}
-    ${showHeader ? 'header-show' : 'header-hide'}
+    ${isScrolled ? 'scrolled-header' : ''}
   `}
-    >
+>
       <Link to="/" className="logo">
         <svg
           version="1.1"
