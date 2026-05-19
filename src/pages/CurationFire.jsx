@@ -233,23 +233,23 @@ function CurationFire() {
       <Link to={`/product/${item.detailId}`}>
         <img src={item.image} alt={item.name} />
       </Link>
-
       <div className="product-info">
         <h4>{item.name}</h4>
-        <div className="price-wrap">
-          <span className="origin-price">
-            {item.originPrice}
-          </span>
-
-          <div className="sale-row">
-            <em>{item.discount}%</em>
-
-            <strong className="sale-price">
-              {item.price}
-            </strong>
+        <div className="product-price-box">
+          <p className={item.discount > 0 ? 'product-old-price' : 'product-old-price empty'}>
+            {item.discount > 0 ? `${item.originPrice}원` : ''}
+          </p>
+          <div className={item.discount > 0 ? 'product-price-row' : 'product-price-row no-discount'}>
+            {item.discount > 0 && (
+              <span className="discount-rate">
+                {item.discount}%
+              </span>
+            )}
+            <span className="product-price">
+              {item.price}원
+            </span>
           </div>
         </div>
-
         <div className="product-bottom">
           <small>★ 4.8&nbsp;&nbsp;(20)</small>
           <div className="fire-icons">

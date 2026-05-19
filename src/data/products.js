@@ -417,7 +417,7 @@ export const products = [
     price: '89,000',
     rating: 4.8,
     review: 1,
-    image: '/images/products/prod-sc-03.jpg',
+    image: '/images/products/prod-sc-03.png',
   },
   {
     id: 32,
@@ -482,7 +482,7 @@ export const products = [
     price: '54,000',
     rating: 4.8,
     review: 3,
-    image: '/images/products/prod-sc-06.jpg',
+    image: '/images/products/prod-sc-06.png',
   },
   {
     id: 37,
@@ -521,7 +521,7 @@ export const products = [
     price: '42,000',
     rating: 4.8,
     review: 2,
-    image: '/images/products/prod-sm-08.jpg',
+    image: '/images/products/prod-sm-08.png',
   },
   {
     id: 40,
