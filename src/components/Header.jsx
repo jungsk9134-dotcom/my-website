@@ -4,10 +4,11 @@ import './Header.css'
 
 function Header({ cartCount = 0 }) {
   const location = useLocation()
-  const [headerState, setHeaderState] = useState({
-    show: true,
-    scrolled: false,
-  })
+const [headerState, setHeaderState] = useState({
+  show: true,
+  scrolled: false,
+  darkMode: false,
+})
 
   const transparentPages = [
     '/',
@@ -17,31 +18,36 @@ function Header({ cartCount = 0 }) {
   const isTransparentPage =
     transparentPages.includes(location.pathname)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY
+useEffect(() => {
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY
 
-      setHeaderState({
-        // 80px 이하(최상단)일 때만 헤더를 보여주고, 넘어가면 반투명하게.
-        show: true,
-        scrolled: currentScrollY > 80,
-      })
-    }
+    setHeaderState({
+      show: currentScrollY <= 80,
+      scrolled: currentScrollY > 80,
 
-    window.addEventListener('scroll', handleScroll)
+      // 100vh 지나면 글자 검정
+      darkMode: currentScrollY > window.innerHeight,
+    })
+  }
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
-  const showHeader = headerState.show
-  const isScrolled = headerState.scrolled
+  window.addEventListener('scroll', handleScroll)
+
+  return () => {
+    window.removeEventListener('scroll', handleScroll)
+  }
+}, [])
+const showHeader = headerState.show
+const isScrolled = headerState.scrolled
+const isDarkMode = headerState.darkMode
   return (
 <header
   className={`
     campora-header
     ${isTransparentPage ? 'transparent-header' : 'default-header'}
+    ${showHeader ? 'header-show' : 'header-hide'}
     ${isScrolled ? 'scrolled-header' : ''}
+    ${isDarkMode ? 'dark-text-header' : ''}
   `}
 >
       <Link to="/" className="logo">

@@ -188,4 +188,16 @@
   line-height: 17px;
   text-align: center;
 }
+/* 투명 헤더 스크롤 후 */
+.transparent-scrolled .campora-nav a,
+.transparent-scrolled .header-icons a,
+.transparent-scrolled .logo {
+  color: #1C1C1C !important;
+}
+/* 100vh 이후 글자 검정 */
 
+.dark-text-header .campora-nav a,
+.dark-text-header .header-icons a,
+.dark-text-header .logo {
+  color: #1C1C1C !important;
+}
