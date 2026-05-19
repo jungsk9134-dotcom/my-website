@@ -422,8 +422,7 @@
   width: 100%;
   min-height: 195px;
   background: #fafafa;
-  display: grid;
-  grid-template-columns: 360px 1fr;
+  display: flex;
   align-items: center;
   padding: 0 70px;
   box-sizing: border-box;
@@ -432,21 +431,24 @@
 
 /* 별점 영역 */
 .review-score-box {
-  width: 100%;
-  height: 120px;
-  text-align: center;
-  border-right: 1px solid #e5e5e5;
-  transform: translateX(-60px);
-  box-sizing: border-box;
-
+  width: 230px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  margin-left: -40px;
+}
+
+.review-divider {
+  width: 1px;
+  height: 120px;
+  background: #e5e5e5;
+  margin: 0 55px 0 10px;
 }
 
 .review-score-box strong {
   color: #5f9f95;
-  font-size: 34px;
+  font-size: 30px;
   font-weight: 600;
 }
 
@@ -460,27 +462,28 @@
   color: #444;
 }
 
-/* 리뷰 한 눈에 보기 텍스트 */
 .review-text-box {
-  padding-left: 60px;
-  text-align: left;
-  transform: translateY(-10px);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: translateY(-5px);
+  margin-left: -20px;
 }
 
 .review-text-box h4 {
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 14px;
   font-weight: 500;
   color: #111;
+  margin-bottom: 14px;
 }
 
 .review-text-box p {
-  font-size: 16px;
-  line-height: 1.7;
-  letter-spacing: -0.2px;
+  font-size: 14px;
+  line-height: 1.5;
   color: #666;
-  text-align: left;
-  max-width: 850px;
+  max-width: 420px;
 }
 
 /* 리뷰 리스트 */

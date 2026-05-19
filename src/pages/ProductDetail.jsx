@@ -312,17 +312,14 @@ function ProductDetail({ onAddCart }) {
           )}
         </div>
       </section>
-
-      {/* 리뷰 탭 */}
       <section className="review-area" ref={reviewRef}>
         <h3>리뷰</h3>
-
         <div className="review-summary new-review-summary">
           <div className="review-score-box">
             <strong>★★★★★ <span>{product.rating || '4.9'}</span></strong>
             <p>({reviews.length})</p>
           </div>
-
+          <div className="review-divider"></div>
           <div className="review-text-box">
             <h4>리뷰 한 눈에 보기</h4>
             <p>
