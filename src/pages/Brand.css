@@ -22,23 +22,33 @@
 
 
 
-/* 히어로 로고 */
+/* 히어로 로고 기본 상태*/
 .hero-logo-text {
   position: absolute;
-  top: 200px;
+  top: 32%;
   left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  opacity: 1;
+  visibility: visible;
+  /* 텍스트가 나타날 때와 똑같은 부드러운 가속도 곡선을 적용하고, 시간을 0.7초로 맞췄습니다 */
+  transition:
+    opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+    transform 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+    visibility 0.7s;
+  will-change: transform, opacity;
+}
+
+/* 글씨가 올라왔을 때 로고가 사라지는 상태 */
+.hero-logo-text.hide {
+  opacity: 0;
+  visibility: hidden;
+  /* 위로 휙 사라지지 않고 텍스트의 상승 흐름에 맞춰 자연스럽게 살짝만 위로 이동합니다 */
+  transform: translate(-50%, -58%);
 }
 
 .hero-logo-text img {
-  width: 500px;
-  max-width: none;
-  height: auto;
-  display: block;
-  margin-bottom: 10px;
-  transform: scale(1.4);
-  transform-origin: center;
+  width: 240px;
 }
 
 .hero-logo-text h1 {
@@ -109,10 +119,12 @@
   }
 }
 
+/* 카피를 담는 창 위치 고정 */
 .hero-copy-window {
   position: absolute;
   left: 50%;
-  bottom: 220px;
+  bottom: 120px;
+  /* 로고와 안 겹치도록 적절히 배치 */
   width: 680px;
   transform: translateX(-50%);
   overflow: visible;
@@ -120,10 +132,20 @@
   text-align: center;
 }
 
-/* 스크롤 카피 */
+/* 스크롤 카피 초기 상태: 아예 안 보이고 아래 배치 */
 .hero-scroll-copy {
   width: 100%;
-  will-change: transform;
+  opacity: 0;
+  transform: translateY(220px);
+  /* 가속도가 붙는 부드러운 Bezier 곡선 적용 */
+  transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.6s ease;
+  will-change: transform, opacity;
+}
+
+/* 스크롤을 조금만 내려도 자동으로 올라오는 상태 */
+.hero-scroll-copy.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hero-scroll-copy p {
@@ -132,6 +154,7 @@
   line-height: 24px;
   letter-spacing: 0;
   text-align: center;
+  color: #fff;
 }
 
 .hero-scroll-copy.show {
@@ -579,18 +602,20 @@
 .bottom-banner-text button {
   background: transparent;
   color: #fff;
-   border: 1px solid rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.85);
   border-radius: 30px;
   padding: 10px 32px;
   font-size: 13px;
   cursor: pointer;
-    backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   transition: 0.25s;
 }
-.bottom-banner-text button:hover{
-    background: rgba(255, 255, 255, 0.12);
+
+.bottom-banner-text button:hover {
+  background: rgba(255, 255, 255, 0.12);
   transform: translateY(-2px);
 }
+
 /* 푸터 */
 .brand-footer {
   background: #222;
