@@ -143,6 +143,11 @@
   opacity: 1;
   transform: translateY(0);
 }
+/* 올라갈 때 전체가 같이 사라지는 느낌 */
+.hero-scroll-copy:not(.active) .hero-line {
+  transition-delay: 0s !important;
+  filter: blur(0.5px);
+}
 
 .hero-scroll-copy p {
   font-weight: 400;
@@ -163,10 +168,10 @@
   margin-bottom: 28px;
 
   transform: translateY(140px);
-
+filter: blur(0);
   transition:
-    transform 1.8s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 1.6s ease;
+    transform 1.6s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1.4s ease;
 
   will-change: transform, opacity;
 }
