@@ -23,6 +23,9 @@ function ProductDetail({ onAddCart }) {
   const [selectedSize, setSelectedSize] = useState('')
   const [selectedColor, setSelectedColor] = useState('')
   const [qaType, setQaType] = useState('제품 문의')
+  const [qaText, setQaText] = useState('')
+  const [userQnas, setUserQnas] = useState([])
+  const [answerInputs, setAnswerInputs] = useState({})
 
   const detailRef = useRef(null)
   const reviewRef = useRef(null)
@@ -37,6 +40,8 @@ function ProductDetail({ onAddCart }) {
   const product = allProducts.find((item) => item.id === Number(id))
 
   const reviews = [...userReviews, ...(product?.reviews || [])]
+  const qnas = [...userQnas, ...(product?.qna || [])]
+
   const reviewsPerPage = 5
   const totalPages = Math.ceil(reviews.length / reviewsPerPage)
   const currentReviews = reviews.slice(
@@ -51,7 +56,11 @@ function ProductDetail({ onAddCart }) {
       const savedReviews =
         JSON.parse(localStorage.getItem(`reviews-${product.id}`)) || []
 
+      const savedQnas =
+        JSON.parse(localStorage.getItem(`qnas-${product.id}`)) || []
+
       setUserReviews(savedReviews)
+      setUserQnas(savedQnas)
       setCurrentPage(1)
     }
   }, [product])
@@ -115,7 +124,6 @@ function ProductDetail({ onAddCart }) {
     }
 
     const imageUrl = URL.createObjectURL(file)
-
     setReviewImages([imageUrl])
   }
 
@@ -149,6 +157,112 @@ function ProductDetail({ onAddCart }) {
     setIsPhotoUploadOpen(false)
     setCurrentPage(1)
     setActiveTab('review')
+  }
+
+  const handleSubmitQa = () => {
+    if (qaText.trim() === '') {
+      alert('문의 내용을 입력해주세요.')
+      return
+    }
+
+    const newQa = {
+      id: Date.now(),
+      status: '처리 대기',
+      title: qaType,
+      writer: 'campora',
+      question: qaText,
+      answer: '',
+      isUserQa: true,
+    }
+
+    const updatedQnas = [newQa, ...userQnas]
+
+    setUserQnas(updatedQnas)
+    localStorage.setItem(`qnas-${product.id}`, JSON.stringify(updatedQnas))
+
+    setQaText('')
+    setQaType('제품 문의')
+    setIsQaModalOpen(false)
+    setOpenQaId(newQa.id)
+    setActiveTab('qa')
+  }
+
+  const handleSubmitQaAnswer = (qaId) => {
+    const answerText = answerInputs[qaId]
+
+    if (!answerText || answerText.trim() === '') {
+      alert('답변 내용을 입력해주세요.')
+      return
+    }
+
+    const updatedQnas = userQnas.map((qa) =>
+      qa.id === qaId
+        ? {
+            ...qa,
+            status: '답변 완료',
+            answer: answerText,
+          }
+        : qa
+    )
+
+    setUserQnas(updatedQnas)
+    localStorage.setItem(`qnas-${product.id}`, JSON.stringify(updatedQnas))
+
+    setAnswerInputs((prev) => ({
+      ...prev,
+      [qaId]: '',
+    }))
+  }
+
+  const handleDeleteQa = (qaId) => {
+    if (!window.confirm('문의글을 삭제하시겠습니까?')) return
+
+    const updatedQnas = userQnas.filter((qa) => qa.id !== qaId)
+
+    setUserQnas(updatedQnas)
+    localStorage.setItem(`qnas-${product.id}`, JSON.stringify(updatedQnas))
+    setOpenQaId(null)
+  }
+
+  const handleEditQa = (qaId) => {
+    const currentQa = userQnas.find((qa) => qa.id === qaId)
+
+    if (!currentQa) return
+
+    const editText = window.prompt('수정할 문의 내용을 입력해주세요.', currentQa.question)
+
+    if (!editText || editText.trim() === '') return
+
+    const updatedQnas = userQnas.map((qa) =>
+      qa.id === qaId
+        ? {
+            ...qa,
+            question: editText,
+            status: '처리 대기',
+            answer: '',
+          }
+        : qa
+    )
+
+    setUserQnas(updatedQnas)
+    localStorage.setItem(`qnas-${product.id}`, JSON.stringify(updatedQnas))
+  }
+
+  const handleDeleteQaAnswer = (qaId) => {
+    if (!window.confirm('답변을 삭제하시겠습니까?')) return
+
+    const updatedQnas = userQnas.map((qa) =>
+      qa.id === qaId
+        ? {
+            ...qa,
+            status: '처리 대기',
+            answer: '',
+          }
+        : qa
+    )
+
+    setUserQnas(updatedQnas)
+    localStorage.setItem(`qnas-${product.id}`, JSON.stringify(updatedQnas))
   }
 
   const handleCartClick = () => {
@@ -188,8 +302,7 @@ function ProductDetail({ onAddCart }) {
     lantern: '랜턴 · 화로',
   }
 
-  const breadcrumbCategory =
-    categoryNameMap[product.category] || '전체상품'
+  const breadcrumbCategory = categoryNameMap[product.category] || '전체상품'
 
   return (
     <main className="detail-page">
@@ -547,7 +660,7 @@ function ProductDetail({ onAddCart }) {
             <span>작성자</span>
           </div>
 
-          {(product.qna || []).map((qa) => (
+          {qnas.map((qa) => (
             <div className="qa-item" key={qa.id}>
               <div className="qa-row">
                 <span>{qa.status}</span>
@@ -565,12 +678,56 @@ function ProductDetail({ onAddCart }) {
               <div className={`qa-answer ${openQaId === qa.id ? 'open' : ''}`}>
                 <p className="qa-question">{qa.question}</p>
 
-                {qa.answer && (
+                {qa.isUserQa && (
+                  <div className="qa-edit-btns">
+                    <button type="button" onClick={() => handleEditQa(qa.id)}>
+                      문의 수정
+                    </button>
+
+                    <button type="button" onClick={() => handleDeleteQa(qa.id)}>
+                      문의 삭제
+                    </button>
+                  </div>
+                )}
+
+                {qa.answer ? (
                   <div className="qa-answer-box">
                     <span className="qa-brand">Campora</span>
                     <p>안녕하세요 {qa.writer}님.</p>
                     <p>{qa.answer}</p>
+
+                    {qa.isUserQa && (
+                      <button
+                        type="button"
+                        className="qa-answer-delete-btn"
+                        onClick={() => handleDeleteQaAnswer(qa.id)}
+                      >
+                        답변 삭제
+                      </button>
+                    )}
                   </div>
+                ) : (
+                  qa.isUserQa && (
+                    <div className="qa-admin-answer-box">
+                      <textarea
+                        value={answerInputs[qa.id] || ''}
+                        onChange={(e) =>
+                          setAnswerInputs((prev) => ({
+                            ...prev,
+                            [qa.id]: e.target.value,
+                          }))
+                        }
+                        placeholder="답변 내용을 입력해주세요"
+                      ></textarea>
+
+                      <button
+                        type="button"
+                        onClick={() => handleSubmitQaAnswer(qa.id)}
+                      >
+                        답변 등록하기
+                      </button>
+                    </div>
+                  )
                 )}
               </div>
             </div>
@@ -782,14 +939,26 @@ function ProductDetail({ onAddCart }) {
               ))}
             </div>
 
-            <textarea placeholder="제품 사용감이나 구성에 대해 궁금한 내용을 남겨주세요"></textarea>
+            <textarea
+              value={qaText}
+              onChange={(e) => setQaText(e.target.value)}
+              placeholder="제품 사용감이나 구성에 대해 궁금한 내용을 남겨주세요"
+            ></textarea>
 
             <div className="qa-modal-btns">
-              <button type="button" onClick={() => setIsQaModalOpen(false)}>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsQaModalOpen(false)
+                  setQaText('')
+                }}
+              >
                 취소
               </button>
 
-              <button type="button">문의 등록하기</button>
+              <button type="button" onClick={handleSubmitQa}>
+                문의 등록하기
+              </button>
             </div>
           </div>
         </div>
