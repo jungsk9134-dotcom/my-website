@@ -135,15 +135,11 @@
 /* 스크롤 카피 초기 상태: 아예 안 보이고 아래 배치 */
 .hero-scroll-copy {
   width: 100%;
-  opacity: 0;
-  transform: translateY(220px);
-  /* 가속도가 붙는 부드러운 Bezier 곡선 적용 */
-  transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.6s ease;
-  will-change: transform, opacity;
+
 }
 
-/* 스크롤을 조금만 내려도 자동으로 올라오는 상태 */
-.hero-scroll-copy.active {
+/* active 되면 등장 */
+.hero-scroll-copy.active .hero-line{
   opacity: 1;
   transform: translateY(0);
 }
@@ -160,6 +156,34 @@
 .hero-scroll-copy.show {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+/* 문단별 애니메이션 */
+.hero-line {
+  opacity: 0;
+  margin-bottom: 28px;
+
+  transform: translateY(140px);
+
+  transition:
+    transform 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1.6s ease;
+
+  will-change: transform, opacity;
+}
+.delay-1 {
+  transition-delay: 0s;
+}
+
+.delay-2 {
+  transition-delay: 0.35s;
+}
+
+.delay-3 {
+  transition-delay: 0.7s;
+}
+
+.delay-4 {
+  transition-delay: 1.05s;
 }
 
 .copy-small {

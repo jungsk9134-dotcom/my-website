@@ -21,7 +21,7 @@ function Brand() {
 
   return (
     <main className="brand">
-<section className="brand-hero-scroll">
+      <section className="brand-hero-scroll">
         <div className="brand-main-hero">
           {/* 배경 이미지 어두워지는 효과는 기존 유지 */}
           <div
@@ -49,21 +49,23 @@ function Brand() {
           <div className="hero-copy-window">
             {/* 스크롤이 조금이라도(20px 이상) 내려가면 active 클래스 추가 */}
             <div className={`hero-scroll-copy ${scrollY > 20 ? 'active' : ''}`}>
-              <p>
-                Campora는 단순한 캠핑용품 브랜드가 아닙니다
-                <br /><br /><br />
+              <p className="hero-line delay-1">
+                Campora는 단순한 캠핑용품 브랜드가 아닙니다</p>
+
+              <p className="hero-line delay-2">
                 우리는 자연 속에서의 '쉼'을
                 <br />
-                더 많은 사람들이 경험할 수 있도록 돕습니다.
-                <br /><br /><br />
+                더 많은 사람들이 경험할 수 있도록 돕습니다.</p>
+              <p className="hero-line delay-3">
                 밤하늘 속 고요한 오로라처럼,
                 <br />
                 바쁜 일상에서 잠시 벗어나
                 <br />
-                불빛 하나로 충분한 밤을 만드는 것.
-                <br /><br /><br />
-                그게 Campora가 존재하는 이유입니다.
-              </p>
+                불빛 하나로 충분한 밤을 만드는 것.</p>
+              <p className="hero-line delay-4">
+                그게 Campora가 존재하는 이유입니다.</p>
+
+
             </div>
           </div>
         </div>
