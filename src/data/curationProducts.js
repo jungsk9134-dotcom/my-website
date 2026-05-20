@@ -30,10 +30,10 @@ export const curationProducts = [
 
 
   {
-  id: 102,
-  name: '오로라 장작나무 장작 세트',
-  image: '/images/cu.prod.lf/prod-lf-03.png',
-  thumbs: [
+    id: 102,
+    name: '오로라 장작나무 장작 세트',
+    image: '/images/cu.prod.lf/prod-lf-03.png',
+    thumbs: [
       '/images/cu.prod.sm/prod-sm-01-detail-01.png',
       '/images/cu.prod.sm/prod-sm-01-detail-02.png',
       '/images/cu.prod.sm/prod-sm-01-detail-03.png',
@@ -43,14 +43,14 @@ export const curationProducts = [
       '/images/cu.prod.sm/prod-sm-01-info.png',
     ],
 
-  reviews: [],
-  qna: [],
-},
+    reviews: [],
+    qna: [],
+  },
   {
-  id: 103,
-  name: '미드나잇 글로우 랜턴',
-  image: '/images/cu.prod.lf/prod-lf-01.png',
-  thumbs: [
+    id: 103,
+    name: '미드나잇 글로우 랜턴',
+    image: '/images/cu.prod.lf/prod-lf-01.png',
+    thumbs: [
       '/images/cu.prod.sm/prod-sm-01-detail-01.png',
       '/images/cu.prod.sm/prod-sm-01-detail-02.png',
       '/images/cu.prod.sm/prod-sm-01-detail-03.png',
@@ -59,15 +59,32 @@ export const curationProducts = [
     detailImages: [
       '/images/cu.prod.lf/prod-lf-01-info.png',
     ],
-
-  reviews: [],
-  qna: [],
-},
+    colors: ['그린', '베이지', '레드'],
+    reviews: [],
+    qna: [],
+  },
   {
-  id: 104,
-  name: '포레스트 라운지 우드 체어',
-  image: '/images/cu.prod.tc/prod-tc-01.png',
-  thumbs: [
+    id: 104,
+    name: '포레스트 라운지 우드 체어',
+    image: '/images/cu.prod.tc/prod-tc-01.png',
+    thumbs: [
+      '/images/cu.prod.sm/prod-sm-01-detail-01.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-02.png',
+      '/images/cu.prod.sm/prod-sm-01-detail-03.png',
+    ],
+
+    detailImages: [
+      '/images/cu.prod.sm/prod-sm-01-info.png',
+    ],
+    colors: ['그린', '베이지'],
+    reviews: [],
+    qna: [],
+  },
+  {
+    id: 105,
+    name: '솔리드 오크 테이블',
+    image: '/images/cu.prod.tc/prod-tc-02.png',
+    thumbs: [
       '/images/cu.prod.sm/prod-sm-01-detail-01.png',
       '/images/cu.prod.sm/prod-sm-01-detail-02.png',
       '/images/cu.prod.sm/prod-sm-01-detail-03.png',
@@ -77,14 +94,14 @@ export const curationProducts = [
       '/images/cu.prod.sm/prod-sm-01-info.png',
     ],
 
-  reviews: [],
-  qna: [],
-},
+    reviews: [],
+    qna: [],
+  },
   {
-  id: 105,
-  name: '솔리드 오크 테이블',
-  image: '/images/cu.prod.tc/prod-tc-02.png',
-  thumbs: [
+    id: 106,
+    name: '소프트 블랭킷',
+    image: '/images/cu.prod.sm/prod-sm-02.png',
+    thumbs: [
       '/images/cu.prod.sm/prod-sm-01-detail-01.png',
       '/images/cu.prod.sm/prod-sm-01-detail-02.png',
       '/images/cu.prod.sm/prod-sm-01-detail-03.png',
@@ -94,14 +111,14 @@ export const curationProducts = [
       '/images/cu.prod.sm/prod-sm-01-info.png',
     ],
 
-  reviews: [],
-  qna: [],
-},
+    reviews: [],
+    qna: [],
+  },
   {
-  id: 106,
-  name: '소프트 블랭킷',
-  image: '/images/cu.prod.sm/prod-sm-02.png',
-  thumbs: [
+    id: 107,
+    name: '웜프리 쿨러 박스 28L',
+    image: '/images/cu.prod.tc/prod-sc-01.png',
+    thumbs: [
       '/images/cu.prod.sm/prod-sm-01-detail-01.png',
       '/images/cu.prod.sm/prod-sm-01-detail-02.png',
       '/images/cu.prod.sm/prod-sm-01-detail-03.png',
@@ -110,27 +127,10 @@ export const curationProducts = [
     detailImages: [
       '/images/cu.prod.sm/prod-sm-01-info.png',
     ],
-
-  reviews: [],
-  qna: [],
-},
-  {
-  id: 107,
-  name: '웜프리 쿨러 박스 28L',
-  image: '/images/cu.prod.tc/prod-sc-01.png',
-  thumbs: [
-      '/images/cu.prod.sm/prod-sm-01-detail-01.png',
-      '/images/cu.prod.sm/prod-sm-01-detail-02.png',
-      '/images/cu.prod.sm/prod-sm-01-detail-03.png',
-    ],
-
-    detailImages: [
-      '/images/cu.prod.sm/prod-sm-01-info.png',
-    ],
-
-  reviews: [],
-  qna: [],
-},
+    sizes: ['20L', '40L'],
+    reviews: [],
+    qna: [],
+  },
   {
     id: 108,
     name: '윈터브리즈 캠핑침낭',
@@ -152,6 +152,9 @@ export const curationProducts = [
     detailImages: [
       '/images/cu.prod.sm/prod-sm-01-info.png',
     ],
+
+    sizes: ['싱글', '와이드'],
+    colors: ['그린', '샌드'],
 
     reviewSummary:
       '부드러운 촉감과 쾌적한 사용감 덕분에 편하게 잠들었다는 후기가 많아요.결로에도 관리가 쉬웠고, 부담 없는 가격대에 감성적인 디자인까지 만족스럽다는 이야기가 자주 보였어요.',
@@ -198,15 +201,15 @@ export const curationProducts = [
         title: '제품 문의 1',
         writer: 'fromdown',
         question: '침낭 세탁은 어떻게 해야 하나요? 집에서 세탁해도 괜찮을까요?',
-        answer:'해당 침낭은 생활 오염 기준으로 가벼운 손 세탁 또는 중성세제를 사용한 울코스 세탁을 권장드리고 있습니다. 장기간 사용을 위해서는 자연 건조를 추천드려요.',
+        answer: '해당 침낭은 생활 오염 기준으로 가벼운 손 세탁 또는 중성세제를 사용한 울코스 세탁을 권장드리고 있습니다. 장기간 사용을 위해서는 자연 건조를 추천드려요.',
       },
     ],
   },
   {
-  id: 109,
-  name: '그린밸리 캠프 텐트',
-  image: '/images/cu.prod.tt/prod-tt-01.png',
-  thumbs: [
+    id: 109,
+    name: '그린밸리 캠프 텐트',
+    image: '/images/cu.prod.tt/prod-tt-01.png',
+    thumbs: [
       '/images/cu.prod.sm/prod-sm-01-detail-01.png',
       '/images/cu.prod.sm/prod-sm-01-detail-02.png',
       '/images/cu.prod.sm/prod-sm-01-detail-03.png',
@@ -215,9 +218,11 @@ export const curationProducts = [
     detailImages: [
       '/images/cu.prod.sm/prod-sm-01-info.png',
     ],
+    sizes: ['1인용', '2인용'],
+    colors: ['샌드'],
 
-  reviews: [],
-  qna: [],
-},
+    reviews: [],
+    qna: [],
+  },
 
 ]

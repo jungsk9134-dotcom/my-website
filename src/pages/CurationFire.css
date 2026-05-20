@@ -64,30 +64,33 @@
   position: relative;
   background: #fff;
   text-align: center;
-  padding: 70px 8% 80px;
+  padding: 180px 8% 240px;
 }
 
 /* 민트색 작대기 */
 .section-mark {
-  width: 24px;
-  height: 4px;
-  background: #79b8ae;
-  border-radius: 10px;
+  width: 30px;
+  height: 8px;
+  background: #6fafa7;
   margin: 0 auto 16px;
   display: block;
 }
 
 .fire-products h3 {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 14px;
+  font-size: 36px;
+  line-height: 1.4;
+  color: #1c1c1c;
+  font-weight: 400;
+  margin-bottom: 26px;
+  margin-top: 22px;
 }
 
 .section-sub {
-  font-size: 13px;
-  color: #777;
-  line-height: 1.8;
-  margin-bottom: 45px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #1c1c1c;
+  line-height: 32px;
+  margin-bottom: 110px;
 }
 
 /* Products / People 버튼 오른쪽 고정 */
@@ -124,95 +127,119 @@
 }
 
 .product-title {
-  margin-top: 40px;
+  margin-top: 260px;
 }
 
 /* 상품 리스트 */
 .fire-product-list {
   display: grid;
-  gap: 45px;
-  margin: 0 auto 70px;
+  gap: 70px 34px;
+  margin: 0 auto 180px;
   align-items: start;
 }
 
 .fire-product-list.four {
+  display: grid;
   grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  gap: 90px 34px;
   max-width: 1200px;
 }
 .fire-product-list.three {
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  gap: 90px 34px;
   max-width: 760px;
 }
 
 .fire-product-list.two {
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  gap: 90px 34px;
   max-width: 500px;
 }
 
 /* 상품 카드 */
 .fire-product-card {
+  width: 300px;
+  height: 463px;
   text-align: left;
 }
 
 .fire-product-card img {
-  width: 100%;
-  height: 260px;
+  width: 300px;
+  height: 300px;
   object-fit: cover;
   background: #eee;
-  border-radius: 14px;
-  margin-bottom: 18px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  display: block;
 }
 
 /* 상품 정보 */
 .product-info {
   width: 100%;
+  padding-top: 18px;
   text-align: left;
 }
 
 .product-info h4 {
-  font-size: 13px;
-  font-weight: 500;
-  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  margin-bottom: 22px;
+  margin: 0 0 20px;
+  color: #1c1c1c;
 }
 
 .product-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 18px;
 }
 
 .product-bottom small {
   font-size: 11px;
-  color: #111;
+  color: #1c1c1c;
 }
 
 .fire-icons {
   display: flex;
   gap: 16px;
   font-size: 20px;
-  color: #111;
+  color: #1c1c1c;
   margin-top: 0;
 }
 
 .more-btn {
-  margin-top: 20px;
+  width: 220px;
+  height: 64px;
+  font-size: 24px;
+  font-weight: 600;
   border: none;
-  background: #6ba99a;
+  border-radius: 10px;
+  background: #6fafa7;
   color: white;
-  padding: 10px 34px;
+  padding: 16px 40px;
   cursor: pointer;
+  gap: 20px;
+  opacity: 1;
+  margin-top: 120px;
 }
 
 /* 스토리 영역 */
 .fire-story {
   background: #f8f6ef;
   text-align: center;
-  padding: 90px 20px 120px;
+  padding: 260px 20px 300px;
 }
 
 .story-brand {
   font-size: 12px;
-  color: #777;
+  color: #1c1c1c;
   margin-bottom: 16px;
 }
 
@@ -228,54 +255,90 @@
   margin-bottom: 55px;
 }
 
-.story-intro {
-  font-size: 14px;
-  line-height: 1.9;
-  color: #555;
-  margin-bottom: 60px;
-}
-
 .story-block {
-  max-width: 620px;
-  margin: 0 auto 62px;
+  width: 100%;
+  margin: 0 auto 140px;
 }
 
 .story-block img {
-  width: 100%;
-  height: auto;
+  width: 1000px;
+  height: 500px;
   display: block;
-  margin-bottom: 24px;
-}
-
-.story-block h4 {
-  font-size: 15px;
-  margin-bottom: 14px;
-  font-weight: 500;
+  margin: 0 auto 180px;
+  object-fit: cover;
+  margin-bottom: 120px;
 }
 
 .story-block p {
-  font-size: 12px;
-  line-height: 1.9;
-  color: #444;
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 34px;
+  font-weight: 400;
+  color: #1c1c1c;
 }
 
 .story-grid {
-  max-width: 620px;
-  margin: 0 auto 36px;
+  width: 1000px;
+  margin: 0 auto 120px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  grid-template-columns: 364px 626px;
+  gap: 10px;
 }
 
 .story-grid img {
   width: 100%;
-  height: 210px;
+  height: 400px;
   object-fit: cover;
+  display: block;
 }
 
-.campora-footer {
-  height: 160px;
-  background: #1f1f1f;
+.story1-grid {
+  width: 1000px;
+  margin: 0 auto 120px;
+  display: grid;
+  grid-template-columns: 495px 495px;
+  gap: 10px;
+}
+
+.story1-grid img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+.story2-grid {
+  width: 1000px;
+  margin: 0 auto 120px;
+  display: grid;
+  grid-template-columns: 626px 364px;
+  gap: 10px;
+}
+
+.story2-grid img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+.story3-block{
+  width: 100%;
+  margin: 0 auto 120px;
+  margin-top: 180px;
+}
+.story3-block img{
+  margin-bottom: 180px;
+  width: 1000px;
+  height: 400px;
+}
+.story3-block p{
+  max-width: 620px;
+  margin: 0 auto;
+
+  font-size: 16px;
+  line-height: 34px;
+  font-weight: 400;
+  color: #1c1c1c;
 }
 
 @media (max-width: 800px) {
@@ -303,27 +366,22 @@
   width: 26px;
   height: 26px;
   object-fit: contain;
-  margin-bottom: 10px;
   margin-bottom: -10px;
 }
 
 .story-brand {
-  font-size: 12px;
-  color: #222;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #1c1c1c;
   margin-bottom: 4px;
 }
 
-.story-small-text {
-  display: block;
-  font-size: 11px;
-  color: #777;
-}
-
 .story-main-title {
-  font-size: 30px;
-  font-weight: 500;
-  line-height: 1.5;
-  margin-bottom: 70px;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 260px;
   text-align: center;
 }
 
@@ -342,15 +400,17 @@
 
 /* 가격 영역 - CategoryPage 방식으로 고정 */
 .product-price-box {
-  margin-top: 10px;
-  min-height: 54px;
+  margin-top: 16px;
+  margin-bottom: 18px;
+  min-height: 68px;
 }
 
 .product-old-price {
   height: 18px;
-  margin: 0 0 4px;
-  font-size: 12px;
-  color: #999;
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #6b6b6b;
   text-decoration: line-through;
   line-height: 18px;
 }
@@ -360,11 +420,11 @@
 }
 
 .product-price-row {
-  height: 26px;
+  height: 18px;
   display: flex;
   align-items: center;
   gap: 6px;
-  line-height: 26px;
+  line-height: 24px;
 }
 
 .product-price-row.no-discount {
@@ -372,16 +432,16 @@
 }
 
 .discount-rate {
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 400;
   color: #2d8f7b;
   flex-shrink: 0;
 }
 
 .product-price {
-  font-size: 16px;
-  font-weight: 700;
-  color: #111;
+  font-size: 18px;
+  font-weight: 400;
+  color: #1c1c1c;
   white-space: nowrap;
 }
 

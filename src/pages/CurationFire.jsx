@@ -251,7 +251,9 @@ function CurationFire() {
           </div>
         </div>
         <div className="product-bottom">
-          <small>★ 4.8&nbsp;&nbsp;(20)</small>
+          <small>
+    ★ {item.rating}&nbsp;&nbsp;({item.review})
+  </small>
           <div className="fire-icons">
             <span>♡</span>
             <button
@@ -340,7 +342,7 @@ function CurationFire() {
         </div>
 
         <div className="section-mark"></div>
-        <h3 className="product-title">밤까지, 머물 당신을 위해</h3>
+        <h3 className="product-title">밤까지 머물 당신을 위해</h3>
         <p className="section-sub">
           차가운 밤공기 속에서도 따뜻하게 쉬어갈 수 있도록,<br />
           밤의 온기를 더해주는 제품을 모았습니다
@@ -368,11 +370,10 @@ function CurationFire() {
             className="story-top-icon"
           />
 
-          <p className="story-brand">Campora People</p>
-
-          <span className="story-small-text">
-            서연님의 캠핑 이야기
-          </span>
+          <p className="story-brand">Campora People
+          <br />
+          서연님의 캠핑 이야기
+          </p>
         </div>
 
         <h3 className="story-main-title">
@@ -385,11 +386,11 @@ function CurationFire() {
             alt="불멍 캠핑"
           />
 
-          <h4>"오늘 하루도 정신없이 보내진 않았나요?"</h4>
-          <p>바쁘게 지내다 보면<br />
+          <p>"오늘 하루도 정신없이 보내진 않았나요?"<br /><br />
+          바쁘게 지내다 보면<br />
             문득 아무것도 하지 않고 싶은 순간이 생기고는 하죠.<br /><br />
             최근 매일 보던 모니터 대신,<br />
-            멍하니 불만 바라보는 시간을 한 번 가져보고 싶다는 생각이 들더라고요.<br /><br />
+            멍하니 불만 바라보는 시간을 한 번 가져보고 싶다는 생각이 들더라구요.<br /><br />
             아무것도 하지 않는 시간이<br />
             어쩌면 저에게 필요했었던 것 같아요.<br /><br />
             오히려 그런 순간들이 더 오래 기억에 남지 않을까 싶었어요.
@@ -415,7 +416,7 @@ function CurationFire() {
           </p>
         </article>
 
-        <article className="story-grid">
+        <article className="story1-grid">
           <img src="/images/curation-1/curationfire3-1.jpg" alt="음식과 불멍" />
           <img src="/images/curation-1/curationfire3-2.jpg" alt="사람들과 불멍" />
         </article>
@@ -428,7 +429,7 @@ function CurationFire() {
           </p>
         </article>
 
-        <article className="story-grid">
+        <article className="story2-grid">
           <img src="/images/curation-1/curationfire4-1.jpg" alt="밤 캠핑" />
           <img src="/images/curation-1/curationfire4-2.jpg" alt="불멍 캠핑" />
         </article>
@@ -442,14 +443,14 @@ function CurationFire() {
             조명은 불빛을 해치지 않게 은은하게 유지돼서<br />
             그 분위기를 그대로 살려주는 점이 좋았어요.<br /><br />
             준비에 신경을 덜 쓰니까<br />
-            그 순간 자체에 더 집중할 수 있었던 것 같다요.
+            그 순간 자체에 더 집중할 수 있었던 것 같아요.
           </p>
         </article>
 
-        <article className="story-block">
+        <article className="story3-block">
           <img src="/images/curation-1/curationfire5.jpg" alt="텐트와 불멍" />
           <p>
-            시간이 자나고 보니<br />
+            시간이 지나고 보니<br />
             무언가를 많이 했던 하루라기보다,<br />
             잠시 조용히 머물다 온 기억에 더 가까웠던 것 같아요.<br /><br />
             텐트 안으로 들어온 밤공기와<br />

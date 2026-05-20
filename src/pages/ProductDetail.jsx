@@ -18,8 +18,8 @@ function ProductDetail({ onAddCart }) {
   const [showCartPopup, setShowCartPopup] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [quantity, setQuantity] = useState(1)
-  const [selectedSize, setSelectedSize] = useState('싱글')
-  const [selectedColor, setSelectedColor] = useState('그린')
+  const [selectedSize, setSelectedSize] = useState('')
+  const [selectedColor, setSelectedColor] = useState('')
   const [qaType, setQaType] = useState('제품 문의')
   const handleReviewImage = (file) => {
     if (!file) return
@@ -34,16 +34,16 @@ function ProductDetail({ onAddCart }) {
     setReviewImages((prev) => [...prev, imageUrl])
   }
 
-    const handleCartClick = () => {
-      onAddCart({
-        ...product,
-        quantity,
-        selectedSize,
-        selectedColor,
-      })
+  const handleCartClick = () => {
+    onAddCart({
+      ...product,
+      quantity,
+      selectedSize,
+      selectedColor,
+    })
 
-  setShowCartPopup(true)
-}
+    setShowCartPopup(true)
+  }
 
   const detailRef = useRef(null)
   const reviewRef = useRef(null)
@@ -114,6 +114,16 @@ function ProductDetail({ onAddCart }) {
     }
   }, [product])
 
+  useEffect(() => {
+    if (product?.sizes?.length > 0) {
+      setSelectedSize(product.sizes[0])
+    }
+
+    if (product?.colors?.length > 0) {
+      setSelectedColor(product.colors[0])
+    }
+  }, [product])
+
   if (!product) return <div>상품 없음</div>
   const reviews = product.reviews || []
   const reviewsPerPage = 5
@@ -155,14 +165,14 @@ function ProductDetail({ onAddCart }) {
             {[product.image, ...(product.thumbs || [])]
               .filter(Boolean)
               .map((thumb, index) => (
-              <div
-                className={`thumb ${selectedImage === thumb ? 'active' : ''}`}
-                key={index}
-                onMouseEnter={() => setSelectedImage(thumb)}
-              >
-                <img src={thumb} alt={`${product.name} 썸네일 ${index + 1}`} />
-              </div>
-            ))}
+                <div
+                  className={`thumb ${selectedImage === thumb ? 'active' : ''}`}
+                  key={index}
+                  onMouseEnter={() => setSelectedImage(thumb)}
+                >
+                  <img src={thumb} alt={`${product.name} 썸네일 ${index + 1}`} />
+                </div>
+              ))}
           </div>
         </div>
         <div className="detail-info">
@@ -187,35 +197,52 @@ function ProductDetail({ onAddCart }) {
               </span>
             </div>
 
-            <div className="select-row">
-              <label>사이즈</label>
-              <select
-                value={selectedSize}
-                onChange={(e) => setSelectedSize(e.target.value)}
-              >
-                <option value="싱글">싱글</option>
-                <option value="와이드">와이드</option>
-              </select>
-            </div>
+            {product.sizes && (
+              <div className="select-row">
+                <label>사이즈</label>
 
-            <div className="select-row">
-              <label>컬러</label>
-              <select
-                value={selectedColor}
-                onChange={(e) => setSelectedColor(e.target.value)}
-              >
-                <option value="그린">그린</option>
-                <option value="샌드">샌드</option>
-              </select>
-            </div>
+                <select
+                  value={selectedSize}
+                  onChange={(e) => setSelectedSize(e.target.value)}
+                >
+                  {product.sizes.map((size) => (
+                    <option key={size} value={size}>
+                      {size}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            {product.colors && (
+              <div className="select-row">
+                <label>컬러</label>
+
+                <select
+                  value={selectedColor}
+                  onChange={(e) => setSelectedColor(e.target.value)}
+                >
+                  {product.colors.map((color) => (
+                    <option key={color} value={color}>
+                      {color}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
           </div>
 
           <div className="selected-product">
             <button className="remove-btn">×</button>
 
             <p>{product.name}</p>
-            <span>- 사이즈 {selectedSize}</span>
-            <span>- 컬러 {selectedColor}</span>
+            {selectedSize && (
+              <span>- 사이즈 {selectedSize}</span>
+            )}
+
+            {selectedColor && (
+              <span>- 컬러 {selectedColor}</span>
+            )}
 
             <div className="selected-bottom">
               <div className="quantity">
@@ -487,7 +514,7 @@ function ProductDetail({ onAddCart }) {
             <span>작성자</span>
           </div>
 
-         {(product.qna || []).map((qa) => (
+          {(product.qna || []).map((qa) => (
             <div className="qa-item" key={qa.id}>
               <div className="qa-row">
                 <span>{qa.status}</span>
@@ -724,26 +751,26 @@ function ProductDetail({ onAddCart }) {
         </div>
       )}
       {/* 장바구니 팝업 */}
-{showCartPopup && (
-  <div className="cart-popup-overlay">
-    <div className="cart-popup">
-      <p>장바구니로 이동하시겠습니까?</p>
+      {showCartPopup && (
+        <div className="cart-popup-overlay">
+          <div className="cart-popup">
+            <p>장바구니로 이동하시겠습니까?</p>
 
-      <div className="cart-popup-buttons">
-        <button onClick={() => setShowCartPopup(false)}>
-          계속 쇼핑하기
-        </button>
+            <div className="cart-popup-buttons">
+              <button onClick={() => setShowCartPopup(false)}>
+                계속 쇼핑하기
+              </button>
 
-        <button
-          className="go-cart"
-          onClick={() => navigate('/cart')}
-        >
-          장바구니 가기
-        </button>
-      </div>
-    </div>
-  </div>
-)}
+              <button
+                className="go-cart"
+                onClick={() => navigate('/cart')}
+              >
+                장바구니 가기
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   )
 }
