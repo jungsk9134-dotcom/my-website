@@ -10,8 +10,10 @@ function ProductDetail({ onAddCart }) {
   const [selectedImage, setSelectedImage] = useState('')
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false)
   const [reviewRating, setReviewRating] = useState(5)
-  const [isPhotoUploadOpen, setIsPhotoUploadOpen] = useState(false)
+  const [reviewText, setReviewText] = useState('')
   const [reviewImages, setReviewImages] = useState([])
+  const [userReviews, setUserReviews] = useState([])
+  const [isPhotoUploadOpen, setIsPhotoUploadOpen] = useState(false)
   const [openGuide, setOpenGuide] = useState('null')
   const [openQaId, setOpenQaId] = useState(null)
   const [isQaModalOpen, setIsQaModalOpen] = useState(false)
@@ -21,29 +23,6 @@ function ProductDetail({ onAddCart }) {
   const [selectedSize, setSelectedSize] = useState('')
   const [selectedColor, setSelectedColor] = useState('')
   const [qaType, setQaType] = useState('제품 문의')
-  const handleReviewImage = (file) => {
-    if (!file) return
-
-    if (!file.type.startsWith('image/')) {
-      alert('이미지 파일만 첨부할 수 있습니다.')
-      return
-    }
-
-    const imageUrl = URL.createObjectURL(file)
-
-    setReviewImages((prev) => [...prev, imageUrl])
-  }
-
-  const handleCartClick = () => {
-    onAddCart({
-      ...product,
-      quantity,
-      selectedSize,
-      selectedColor,
-    })
-
-    setShowCartPopup(true)
-  }
 
   const detailRef = useRef(null)
   const reviewRef = useRef(null)
@@ -51,22 +30,42 @@ function ProductDetail({ onAddCart }) {
   const qaRef = useRef(null)
   const fileInputRef = useRef(null)
 
-  const scrollToSection = (ref, tabName) => {
-    setActiveTab(tabName)
+  const { id } = useParams()
+  const navigate = useNavigate()
 
-    if (!ref.current) return
+  const allProducts = [...curationProducts, ...products]
+  const product = allProducts.find((item) => item.id === Number(id))
 
-    const headerHeight = 120
-    const tabHeight = 70
-    const extraGap = 20
-    const targetTop =
-      ref.current.offsetTop - headerHeight - tabHeight - extraGap
+  const reviews = [...userReviews, ...(product?.reviews || [])]
+  const reviewsPerPage = 5
+  const totalPages = Math.ceil(reviews.length / reviewsPerPage)
+  const currentReviews = reviews.slice(
+    (currentPage - 1) * reviewsPerPage,
+    currentPage * reviewsPerPage
+  )
 
-    window.scrollTo({
-      top: targetTop,
-      behavior: 'smooth',
-    })
-  }
+  useEffect(() => {
+    if (product) {
+      setSelectedImage(product.image)
+
+      const savedReviews =
+        JSON.parse(localStorage.getItem(`reviews-${product.id}`)) || []
+
+      setUserReviews(savedReviews)
+      setCurrentPage(1)
+    }
+  }, [product])
+
+  useEffect(() => {
+    if (product?.sizes?.length > 0) {
+      setSelectedSize(product.sizes[0])
+    }
+
+    if (product?.colors?.length > 0) {
+      setSelectedColor(product.colors[0])
+    }
+  }, [product])
+
   useEffect(() => {
     const handleScroll = () => {
       const tabs = document.querySelector('.sticky-tabs')
@@ -104,35 +103,84 @@ function ProductDetail({ onAddCart }) {
 
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-  const { id } = useParams()
-  const navigate = useNavigate()
-  const allProducts = [...curationProducts, ...products]
-  const product = allProducts.find((item) => item.id === Number(id))
-  useEffect(() => {
-    if (product) {
-      setSelectedImage(product.image)
-    }
-  }, [product])
-
-  useEffect(() => {
-    if (product?.sizes?.length > 0) {
-      setSelectedSize(product.sizes[0])
-    }
-
-    if (product?.colors?.length > 0) {
-      setSelectedColor(product.colors[0])
-    }
-  }, [product])
 
   if (!product) return <div>상품 없음</div>
-  const reviews = product.reviews || []
-  const reviewsPerPage = 5
-  const totalPages = Math.ceil(reviews.length / reviewsPerPage)
-  const currentReviews = reviews.slice(
-    (currentPage - 1) * reviewsPerPage,
-    currentPage * reviewsPerPage
-  )
-  /* 카테고리 이름 변경 */
+
+  const handleReviewImage = (file) => {
+    if (!file) return
+
+    if (!file.type.startsWith('image/')) {
+      alert('이미지 파일만 첨부할 수 있습니다.')
+      return
+    }
+
+    const imageUrl = URL.createObjectURL(file)
+
+    setReviewImages([imageUrl])
+  }
+
+  const handleSubmitReview = () => {
+    if (reviewText.trim() === '') {
+      alert('리뷰 내용을 입력해주세요.')
+      return
+    }
+
+    const today = new Date()
+    const dateText = `${String(today.getFullYear()).slice(2)}.${String(
+      today.getMonth() + 1
+    ).padStart(2, '0')}.${String(today.getDate()).padStart(2, '0')}`
+
+    const newReview = {
+      user: `campora | ${dateText}`,
+      text: reviewText,
+      img: reviewImages[0] || product.image,
+      rating: reviewRating,
+    }
+
+    const updatedReviews = [newReview, ...userReviews]
+
+    setUserReviews(updatedReviews)
+    localStorage.setItem(`reviews-${product.id}`, JSON.stringify(updatedReviews))
+
+    setReviewText('')
+    setReviewImages([])
+    setReviewRating(5)
+    setIsReviewModalOpen(false)
+    setIsPhotoUploadOpen(false)
+    setCurrentPage(1)
+    setActiveTab('review')
+  }
+
+  const handleCartClick = () => {
+    if (onAddCart) {
+      onAddCart({
+        ...product,
+        quantity,
+        selectedSize,
+        selectedColor,
+      })
+    }
+
+    setShowCartPopup(true)
+  }
+
+  const scrollToSection = (ref, tabName) => {
+    setActiveTab(tabName)
+
+    if (!ref.current) return
+
+    const headerHeight = 120
+    const tabHeight = 70
+    const extraGap = 20
+    const targetTop =
+      ref.current.offsetTop - headerHeight - tabHeight - extraGap
+
+    window.scrollTo({
+      top: targetTop,
+      behavior: 'smooth',
+    })
+  }
+
   const categoryNameMap = {
     tent: '텐트 · 타프',
     sleep: '침낭 · 매트',
@@ -175,6 +223,7 @@ function ProductDetail({ onAddCart }) {
               ))}
           </div>
         </div>
+
         <div className="detail-info">
           <div className="detail-info-top">
             <h2>{product.name}</h2>
@@ -200,7 +249,6 @@ function ProductDetail({ onAddCart }) {
             {product.sizes && (
               <div className="select-row">
                 <label>사이즈</label>
-
                 <select
                   value={selectedSize}
                   onChange={(e) => setSelectedSize(e.target.value)}
@@ -217,7 +265,6 @@ function ProductDetail({ onAddCart }) {
             {product.colors && (
               <div className="select-row">
                 <label>컬러</label>
-
                 <select
                   value={selectedColor}
                   onChange={(e) => setSelectedColor(e.target.value)}
@@ -236,13 +283,9 @@ function ProductDetail({ onAddCart }) {
             <button className="remove-btn">×</button>
 
             <p>{product.name}</p>
-            {selectedSize && (
-              <span>- 사이즈 {selectedSize}</span>
-            )}
 
-            {selectedColor && (
-              <span>- 컬러 {selectedColor}</span>
-            )}
+            {selectedSize && <span>- 사이즈 {selectedSize}</span>}
+            {selectedColor && <span>- 컬러 {selectedColor}</span>}
 
             <div className="selected-bottom">
               <div className="quantity">
@@ -256,19 +299,17 @@ function ProductDetail({ onAddCart }) {
 
                 <span>{quantity}</span>
 
-                <button
-                  onClick={() =>
-                    setQuantity((prev) => prev + 1)
-                  }
-                >
+                <button onClick={() => setQuantity((prev) => prev + 1)}>
                   +
                 </button>
               </div>
 
               <strong>
                 {(
-                  Number(String(product.price).replace(/[^0-9]/g, '')) * quantity
-                ).toLocaleString()}원
+                  Number(String(product.price).replace(/[^0-9]/g, '')) *
+                  quantity
+                ).toLocaleString()}
+                원
               </strong>
             </div>
           </div>
@@ -279,8 +320,10 @@ function ProductDetail({ onAddCart }) {
               <div>
                 <strong>
                   {(
-                    Number(String(product.price).replace(/[^0-9]/g, '')) * quantity
-                  ).toLocaleString()}원
+                    Number(String(product.price).replace(/[^0-9]/g, '')) *
+                    quantity
+                  ).toLocaleString()}
+                  원
                 </strong>
 
                 <em>&nbsp; ({quantity}개)</em>
@@ -322,7 +365,6 @@ function ProductDetail({ onAddCart }) {
         </span>
       </section>
 
-      {/* 제품 상세 탭 */}
       <section className="detail-content" ref={detailRef}>
         <div className="detail-content-inner">
           {product.detailImages && product.detailImages.length > 0 ? (
@@ -339,60 +381,73 @@ function ProductDetail({ onAddCart }) {
           )}
         </div>
       </section>
+
       <section className="review-area" ref={reviewRef}>
         <h3>리뷰</h3>
+
         <div className="review-summary new-review-summary">
           <div className="review-score-box">
-            <strong>★★★★★ <span>{product.rating || '4.9'}</span></strong>
+            <strong>
+              ★★★★★ <span>{product.rating || '4.9'}</span>
+            </strong>
             <p>({reviews.length})</p>
           </div>
+
           <div className="review-divider"></div>
+
           <div className="review-text-box">
             <h4>리뷰 한 눈에 보기</h4>
-            <p>
-              {product.reviewSummary || '아직 등록된 리뷰 요약이 없습니다.'}
-            </p>
+            <p>{product.reviewSummary || '아직 등록된 리뷰 요약이 없습니다.'}</p>
           </div>
         </div>
+
         {currentReviews.map((review, index) => (
           <div className="review-row new-review-row" key={index}>
             <div className="review-left">
-              <strong>★★★★★ <span>5.0</span></strong>
+              <strong>
+                {'★'.repeat(review.rating || 5)}
+                {'☆'.repeat(5 - (review.rating || 5))}
+                <span> {(review.rating || 5).toFixed(1)}</span>
+              </strong>
               <p>{review.user}</p>
               <p>{review.text}</p>
             </div>
 
-            <img
-              src={review.img}
-              alt={`리뷰 이미지 ${index + 1}`}
-              className="review-img"
-            />
+            {review.img && (
+              <img
+                src={review.img}
+                alt={`리뷰 이미지 ${index + 1}`}
+                className="review-img"
+              />
+            )}
           </div>
         ))}
 
-        <div className="review-pages">
-          {Array.from({ length: totalPages }, (_, i) => (
-            <button
-              key={i + 1}
-              className={currentPage === i + 1 ? 'active' : ''}
-              onClick={() => setCurrentPage(i + 1)}
-            >
-              {i + 1}
-            </button>
-          ))}
-        </div>
+        {totalPages > 0 && (
+          <div className="review-pages">
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i + 1}
+                className={currentPage === i + 1 ? 'active' : ''}
+                onClick={() => setCurrentPage(i + 1)}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
+        )}
 
         <button
           className="review-write-btn"
-          onClick={() => setIsReviewModalOpen(true)} >
+          onClick={() => setIsReviewModalOpen(true)}
+        >
           리뷰 작성하기
         </button>
       </section>
 
-
-      {/* 상품 구매 탭 */}
       <section className="info-area" ref={guideRef}>
         <h3>상품 구매 안내</h3>
+
         <div className="guide-box">
           <div className={`guide-item ${openGuide === 'payment' ? 'active' : ''}`}>
             <button
@@ -410,12 +465,8 @@ function ProductDetail({ onAddCart }) {
               <div className="guide-content">
                 <p>
                   고액결제의 경우 안전을 위해 카드사에서 확인전화를 드릴 수도 있습니다.
-                  확인과정에서 도난 카드의 사용이나 타인 명의의 주문등 정상적인 주문이
-                  아니라고 판단될 경우 임의로 주문을 보류 또는 취소할 수 있습니다.
-                </p>
-                <p>
-                  무통장 입금은 상품 구매 대금은 PC뱅킹, 인터넷뱅킹,
-                  텔레뱅킹 혹은 가까운 은행에서 직접 입금하시면 됩니다.
+                  확인과정에서 정상적인 주문이 아니라고 판단될 경우 임의로 주문을 보류
+                  또는 취소할 수 있습니다.
                 </p>
               </div>
             )}
@@ -439,10 +490,6 @@ function ProductDetail({ onAddCart }) {
                 <p>· 배송 지역 : 전국</p>
                 <p>· 배송 비용 : 3,000원 / 5만원 이상 무료배송</p>
                 <p>· 배송 기간 : 1일 ~ 7일</p>
-                <p>
-                  고객님께서 주문하신 상품은 입금 확인후 배송해 드립니다.
-                  상품 종류에 따라서 배송이 다소 지연될 수 있습니다.
-                </p>
               </div>
             )}
           </div>
@@ -462,21 +509,8 @@ function ProductDetail({ onAddCart }) {
             {openGuide === 'return' && (
               <div className="guide-content">
                 <p>
-                  교환 및 반품이 가능한 경우<br />
-                  -계약내용에 관한 서면을 받은 날부터 7일. 단, 그 서면을 받은 때보다 재화 등의 공급이 늦게 이루어진 경우에는 재화 등을 공급받거나 재화 등의 공급이 시작된 날부터 7일 이내<br />
-                  -공급받으신 상품 및 용역의 내용이 표시·광고 내용과 다르거나 계약내용과 다르게 이행된 때에는 당해 재화 등을 공급받은 날부터 3개월 이내, 그 사실을 알게 된 날 또는 알 수 있었던 날부터 30일 이내<br />
-                  -그외 각 제품의 상세페이지 하단의 각 상품의 교환 및 반품 규정에 따라 진행<br /><br /><br />
-                  교환 및 반품이 불가능한 경우<br />
-                  -이용자에게 책임 있는 사유로 재화 등이 멸실 또는 훼손된 경우 (단, 재화 등의 내용을 확인하기 위하여 포장 등을 훼손한 경우에는 청약철회를 할 수 있습니다.)<br />
-                  -이용자의 사용 또는 일부 소비에 의하여 재화 등의 가치가 현저히 감소한 경우<br />
-                  -시간의 경과에 의하여 재판매가 곤란할 정도로 재화 등의 가치가 현저히 감소한 경우<br />
-                  -복제가 가능한 재화 등의 포장을 훼손한 경우<br />
-                  -개별 주문 생산되는 재화 등의 청약철회 시 판매자에게 회복할 수 없는 피해가 예상되어 소비자의 사전 동의를 얻은 경우<br />
-                  -디지털 콘텐츠의 제공이 개시된 경우 (단, 가분적 용역 또는 가분적 디지털 콘텐츠로 구성된 계약의 경우 제공이 개시되지 아니한 부분은 청약철회를 할 수 있습니다.)<br />
-                  -그외 각 제품의 상세페이지 하단의 각 상품의 교환 및 반품 규정에 따라 진행<br /><br /><br />
-                  유의사항<br />
-                  고객님의 마음이 바뀌어 교환, 반품을 하실 경우 상품반송 비용은 고객님께서 부담하셔야 합니다.<br />
-                  (색상 교환, 사이즈 교환 등 포함)
+                  교환 및 반품은 상품 수령 후 7일 이내 가능합니다.
+                  단, 사용 흔적이 있거나 상품 가치가 훼손된 경우 제한될 수 있습니다.
                 </p>
               </div>
             )}
@@ -503,7 +537,6 @@ function ProductDetail({ onAddCart }) {
         </div>
       </section>
 
-      {/* Q&A 탭 */}
       <section className="qa-area" ref={qaRef}>
         <h3>Q&A</h3>
 
@@ -530,9 +563,7 @@ function ProductDetail({ onAddCart }) {
               </div>
 
               <div className={`qa-answer ${openQaId === qa.id ? 'open' : ''}`}>
-                <p className="qa-question">
-                  {qa.question}
-                </p>
+                <p className="qa-question">{qa.question}</p>
 
                 {qa.answer && (
                   <div className="qa-answer-box">
@@ -557,7 +588,6 @@ function ProductDetail({ onAddCart }) {
         </div>
       </section>
 
-      {/* 리뷰 팝업 작성하기 */}
       {isReviewModalOpen && !isPhotoUploadOpen && (
         <div className="review-modal-overlay">
           <div className="review-modal">
@@ -568,10 +598,13 @@ function ProductDetail({ onAddCart }) {
             >
               ×
             </button>
+
             <h3>리뷰 작성하기</h3>
+
             <p className="review-modal-sub">
               사용해본 순간을 자유롭게 남겨주세요
             </p>
+
             <div className="review-modal-stars">
               {[1, 2, 3, 4, 5].map((star) => (
                 <button
@@ -586,9 +619,13 @@ function ProductDetail({ onAddCart }) {
                 </button>
               ))}
             </div>
+
             <textarea
+              value={reviewText}
+              onChange={(e) => setReviewText(e.target.value)}
               placeholder="제품의 사용감이나 캠핑에서의 순간을 들려주세요"
             ></textarea>
+
             <div
               className="review-photo-add"
               onClick={() => setIsPhotoUploadOpen(true)}
@@ -599,20 +636,28 @@ function ProductDetail({ onAddCart }) {
                 <small>사진은 1장까지 첨부할 수 있습니다</small>
               </div>
             </div>
+
             <div className="review-modal-btns">
               <button
                 type="button"
-                onClick={() => setIsReviewModalOpen(false)}
+                onClick={() => {
+                  setIsReviewModalOpen(false)
+                  setReviewText('')
+                  setReviewImages([])
+                  setReviewRating(5)
+                }}
               >
                 취소
               </button>
-              <button type="button">
+
+              <button type="button" onClick={handleSubmitReview}>
                 리뷰 남기기
               </button>
             </div>
           </div>
         </div>
       )}
+
       {isReviewModalOpen && isPhotoUploadOpen && (
         <div className="review-modal-overlay">
           <div className="photo-upload-modal">
@@ -623,10 +668,13 @@ function ProductDetail({ onAddCart }) {
             >
               ←
             </button>
+
             <h3>리뷰 작성하기</h3>
+
             <p className="photo-upload-sub">
               사용해본 순간을 자유롭게 남겨주세요
             </p>
+
             <div className="photo-upload-stars">
               {[1, 2, 3, 4, 5].map((star) => (
                 <button
@@ -641,11 +689,17 @@ function ProductDetail({ onAddCart }) {
                 </button>
               ))}
             </div>
+
             <textarea
+              value={reviewText}
+              onChange={(e) => setReviewText(e.target.value)}
               placeholder="제품의 사용감이나 캠핑에서의 순간을 들려주세요"
             ></textarea>
+
             <div
-              className={`review-upload-area ${reviewImages.length > 0 ? 'has-image' : ''}`}
+              className={`review-upload-area ${
+                reviewImages.length > 0 ? 'has-image' : ''
+              }`}
               onDragOver={(e) => e.preventDefault()}
               onDrop={(e) => {
                 e.preventDefault()
@@ -658,22 +712,22 @@ function ProductDetail({ onAddCart }) {
                   <button
                     type="button"
                     className="review-image-remove"
-                    onClick={() =>
-                      setReviewImages((prev) => prev.filter((_, i) => i !== index))
-                    }
+                    onClick={() => setReviewImages([])}
                   >
                     ×
                   </button>
                 </div>
               ))}
 
-              <button
-                type="button"
-                className="review-upload-plus"
-                onClick={() => fileInputRef.current.click()}
-              >
-                ＋
-              </button>
+              {reviewImages.length < 1 && (
+                <button
+                  type="button"
+                  className="review-upload-plus"
+                  onClick={() => fileInputRef.current.click()}
+                >
+                  ＋
+                </button>
+              )}
 
               <input
                 ref={fileInputRef}
@@ -688,21 +742,18 @@ function ProductDetail({ onAddCart }) {
             </div>
 
             <div className="photo-upload-btns">
-              <button
-                type="button"
-                onClick={() => setIsPhotoUploadOpen(false)}
-              >
+              <button type="button" onClick={() => setIsPhotoUploadOpen(false)}>
                 취소
               </button>
 
-              <button type="button">
+              <button type="button" onClick={handleSubmitReview}>
                 리뷰 남기기
               </button>
             </div>
           </div>
         </div>
       )}
-      {/* 상품 문의하기 팝업 */}
+
       {isQaModalOpen && (
         <div className="qa-modal-overlay">
           <div className="qa-modal">
@@ -731,26 +782,19 @@ function ProductDetail({ onAddCart }) {
               ))}
             </div>
 
-            <textarea
-              placeholder="제품 사용감이나 구성에 대해 궁금한 내용을 남겨주세요"
-            ></textarea>
+            <textarea placeholder="제품 사용감이나 구성에 대해 궁금한 내용을 남겨주세요"></textarea>
 
             <div className="qa-modal-btns">
-              <button
-                type="button"
-                onClick={() => setIsQaModalOpen(false)}
-              >
+              <button type="button" onClick={() => setIsQaModalOpen(false)}>
                 취소
               </button>
 
-              <button type="button">
-                문의 등록하기
-              </button>
+              <button type="button">문의 등록하기</button>
             </div>
           </div>
         </div>
       )}
-      {/* 장바구니 팝업 */}
+
       {showCartPopup && (
         <div className="cart-popup-overlay">
           <div className="cart-popup">
@@ -761,10 +805,7 @@ function ProductDetail({ onAddCart }) {
                 계속 쇼핑하기
               </button>
 
-              <button
-                className="go-cart"
-                onClick={() => navigate('/cart')}
-              >
+              <button className="go-cart" onClick={() => navigate('/cart')}>
                 장바구니 가기
               </button>
             </div>
