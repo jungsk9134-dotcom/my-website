@@ -13,35 +13,21 @@ const [headerState, setHeaderState] = useState({
   const transparentPages = [
     '/',
     '/brand',
+    '/curation',
   ]
   const isTransparentPage =
-    transparentPages.includes(location.pathname)
+    transparentPages.includes(location.pathname) ||
+    location.pathname.startsWith('/curation')
 
   useEffect(() => {
-
-  const getChangePoint = () => {
-
-    // 홈
-    if (location.pathname === '/') {
-      return 800
-    }
-    // 브랜드
-    if (location.pathname === '/brand') {
-      return 2100
-    }
-    // 기본
-    return 0
-  }
   const handleScroll = () => {
     const currentScrollY = window.scrollY
-    const changePoint = getChangePoint()
-
     setHeaderState({
-      show: true,
-      // 배경 blur
-      scrolled: currentScrollY > changePoint,
+      show: currentScrollY === 0,
+      // 스크롤 시작하면 바로 상태 변경
+      scrolled: currentScrollY > 0,
       // 글자 검정
-      darkMode: currentScrollY > changePoint,
+      darkMode: currentScrollY > 0,
     })
   }
   handleScroll()
@@ -191,7 +177,7 @@ const isDarkMode = headerState.darkMode
         </svg>
       </Link>
 
-<nav className="campora-nav">
+      <nav className={`campora-nav ${isScrolled ? 'nav-hide' : ''}`}>
         <NavLink to="/brand" data-text="Brand">Brand</NavLink>
         <NavLink to="/category/tent" data-text="Shelter">Shelter</NavLink>
         <NavLink to="/category/sleep" data-text="Sleep">Rest</NavLink>

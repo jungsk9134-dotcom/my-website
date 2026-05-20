@@ -66,40 +66,14 @@
 .campora-nav a.active {
   /* text-shadow: 0 0 0.5px currentColor, 0 0 0.5px currentColor;  */
   font-weight: 700 !important;
-
 }
-
-/* 스크롤 시 반투명 헤더 */
 
 .scrolled-header {
-  background: rgba(255, 255, 255, 0.45) !important;
-
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(16px);
-
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-
-  transition:
-    background 0.3s ease,
-    backdrop-filter 0.3s ease,
-    border-color 0.3s ease;
-}
-
-.header-icons {
-  display: flex;
-  gap: clamp(18px, 2vw, 25px);
-  align-items: center;
-  justify-self: end;
+  background: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   border-bottom: none !important;
 }
-
-.header-icons a {
-  color: #000000 !important;
-  text-decoration: none;
-
-  transition: 0.3s;
-}
-
 
 /* 투명 헤더 */
 
@@ -118,10 +92,8 @@
 .default-header {
   background: #ffffff !important;
   border-bottom: none !important;
-  background: rgba(255,255,255,0.45) !important;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0,0,0,0.08);
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* 메뉴 검정 */
@@ -179,16 +151,19 @@
   text-align: center;
 }
 
-/* 투명 헤더 스크롤 후 */
-.transparent-scrolled .campora-nav a,
-.transparent-scrolled .header-icons a,
-.transparent-scrolled .logo {
-  color: #1C1C1C !important;
+/* 스크롤 시 카테고리 메뉴 숨김 */
+.campora-nav {
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-/* 100vh 이후 글자 검정 */
-.dark-text-header .campora-nav a,
-.dark-text-header .header-icons a,
-.dark-text-header .logo {
-  color: #1C1C1C !important;
+.header-show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.header-hide {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
