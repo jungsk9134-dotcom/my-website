@@ -168,7 +168,7 @@ function ProductDetail({ onAddCart }) {
                 <div
                   className={`thumb ${selectedImage === thumb ? 'active' : ''}`}
                   key={index}
-                  onMouseEnter={() => setSelectedImage(thumb)}
+                  onClick={() => setSelectedImage(thumb)}
                 >
                   <img src={thumb} alt={`${product.name} 썸네일 ${index + 1}`} />
                 </div>

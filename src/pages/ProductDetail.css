@@ -88,14 +88,20 @@
   border: 2px solid transparent;
   border-radius: 6px;
   cursor: pointer;
+  transition: border-color 0.2s ease;
 }
 
 .thumb:hover {
-  border-color: transparent;
+  border-color: #6FAFA7;
+}
+
+.thumb:hover img {
+  opacity: 1;
 }
 
 .thumb.active {
   border: 2px solid #6FAFA7;
+  border-color: #6FAFA7;
 }
 
 .thumb img {
