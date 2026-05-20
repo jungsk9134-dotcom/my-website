@@ -1,6 +1,6 @@
 .search-page {
   background: #fff;
-  color: #111;
+  color: #1c1c1c;
   min-height: 100vh;
 }
 
@@ -161,23 +161,34 @@
 
 .search-product-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 60px 42px;
+  grid-template-columns: repeat(4, 300px);
+  justify-content: center;
+  gap: 90px 34px;
 }
-
+.search-product-card {
+  width: 300px;
+  min-height: 463px;
+}
 .search-product-card h3 {
-  margin: 18px 0 12px;
-  font-size: 15px;
+  margin: 22px 0 18px;
+
+  font-size: 16px;
+  font-weight: 400;
+
+  line-height: 22px;
+
+  color: #1c1c1c;
 }
 
 .search-product-img {
-  width: 100%;
-  height: 210px;
+  width: 300px;
+  height: 300px;
   background-color: #fff;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border-radius: 14px;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .search-product-desc {
@@ -201,7 +212,7 @@
 
 .search-product-bottom div {
   display: flex;
-  gap: 14px;
+  gap: 18px;
   align-items: center;
 }
 
@@ -277,25 +288,28 @@
   }
 }
 .search-product-old-price {
-  font-size: 12px;
-  color: #777;
+  font-size: 14px;
+  height: 18px;
+  color: #6b6b6b;
   margin: 0 0 8px;
   text-decoration: line-through;
-  min-height: 18px;
+  line-height: 18px;
 }
 
 .search-price-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 18px;
 }
 
 .search-discount-rate {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 400;
   min-width: 38px;
+  line-height: 28px;
   display: inline-block;
+  white-space: nowrap;
 }
 
 .search-discount-rate.empty {
@@ -303,7 +317,8 @@
 }
 
 .search-product-price {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
   margin: 0;
 }
