@@ -167,31 +167,33 @@
 /* 제품 리스트 */
 .category-grid {
   display: grid;
-  grid-template-columns: repeat(4, 280px);
-  justify-content: space-between;
-  gap: 90px 40px;
+  grid-template-columns: repeat(4, 300px);
+  justify-content: center;
+  gap: 90px 34px;
 }
 
 .product-card {
-  width: 280px;
+  width: 300px;
+  min-height: 463px;
   cursor: pointer;
 }
 
 .product-image-wrap {
   position: relative;
-  width: 280px;
-  height: 280px;
+  width: 300px;
+  height: 300px;
   background: #ffffff;
-  border-radius: 24px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .product-image {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
   transition: 0.25s;
 }
@@ -203,13 +205,14 @@
 
 
 .product-info {
-  padding-top: 20px;
+  padding-top: 22px;
 }
 
 .product-info h3 {
-  font-size: 18px;
-  font-weight: 500;
-  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 400;
+   line-height: 22px;
+  margin: 0 0 18px;
 }
 
 .product-bottom {
@@ -219,7 +222,8 @@
 }
 
 .review {
-  font-size: 15px;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .review span {
@@ -242,11 +246,11 @@
 }
 
 .wishlist-icon {
-  font-size: 28px;
+  font-size: 24px;
 }
 
 .cart-icon-btn {
-  color: #111;
+  color: #1c1c1c;
   display: flex;
   align-items: center;
 }
@@ -377,10 +381,10 @@
 
 .product-old-price {
   height: 18px;
-  margin: 0 0 4px;
-  font-size: 12px;
+  margin: 0 0 6px;
+  font-size: 14px;
   line-height: 18px;
-  color: #999;
+  color: #6b6b6b;
   text-decoration: line-through;
 }
 
@@ -399,9 +403,9 @@
 .discount-rate {
   width: 38px;
   flex: 0 0 38px;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 28px;
-  font-weight: 700;
+  font-weight: 400;
   color: #4F8A83;
   white-space: nowrap;
 }
@@ -411,17 +415,17 @@
 }
 
 .product-price {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 28px;
-  font-weight: 700;
-  color: #111;
+  font-weight: 400;
+  color: #1c1c1c;
   white-space: nowrap;
 }
 
 .product-price-box {
   width: 100%;
-  height: 58px;
-  margin-bottom: 14px;
+  height: 68px;
+  margin-bottom: 18px;
   transform: translateY(15px);
 }
 
