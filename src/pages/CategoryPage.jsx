@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { products } from '../data/products'
 import './CategoryPage.css'
+import ProductIcons from '../components/ProductIcons'
 
 const categories = [
   {
@@ -72,42 +73,6 @@ const categoryInfo = {
       { label: '화로', value: 'stove' },
     ],
   },
-}
-
-function CartIcon() {
-  return (
-    <svg
-      width="30"
-      height="30"
-      viewBox="0 0 24 24"
-      fill="none"
-    >
-      {/* 장바구니 몸통 */}
-      <path
-        d="M2.5 4H5L7.5 15H18.5L20.5 7H8"
-        fill="none"
-        stroke="#111"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-
-      {/* 바퀴 */}
-      <circle
-        cx="9"
-        cy="19"
-        r="2"
-        fill="#111"
-      />
-
-      <circle
-        cx="17.5"
-        cy="19"
-        r="1.7"
-        fill="#111"
-      />
-    </svg>
-  )
 }
 
 function getNumberPrice(price) {
@@ -288,10 +253,10 @@ return (
             className="category-sort-select"
             value={sortType}
             onChange={(e) => {
-  setSortType(e.target.value)
-  setVisibleCount(16)
-}}
-          >
+            setSortType(e.target.value)
+            setVisibleCount(16)
+          }}
+                    >
             <option value="latest">최신순</option>
             <option value="popular">인기순</option>
             <option value="highPrice">높은가격순</option>
@@ -322,80 +287,70 @@ return (
 
             </div>
 
-<div className="product-info">
-  <h3>{item.name}</h3>
-  <div className="product-price-box">
-    <p className={item.discountRate > 0 ? 'product-old-price' : 'product-old-price empty'}>
-      {item.discountRate > 0 ? `${item.oldPrice}원` : '원가격'}
-    </p>
+            <div className="product-info">
+              <h3>{item.name}</h3>
+              <div className="product-price-box">
+                <p className={item.discountRate > 0 ? 'product-old-price' : 'product-old-price empty'}>
+                  {item.discountRate > 0 ? `${item.oldPrice}원` : '원가격'}
+                </p>
 
-    <div className={item.discountRate > 0 ? 'product-price-row' : 'product-price-row no-discount'}>
-      {item.discountRate > 0 && (
-        <span className="discount-rate">
-          {item.discountRate}%
-        </span>
-      )}
+                <div className={item.discountRate > 0 ? 'product-price-row' : 'product-price-row no-discount'}>
+                  {item.discountRate > 0 && (
+                    <span className="discount-rate">
+                      {item.discountRate}%
+                    </span>
+                  )}
 
-      <span className="product-price">
-        {item.price}원
-      </span>
-    </div>
-  </div>
+                  <span className="product-price">
+                    {item.price}원
+                  </span>
+                </div>
+              </div>
 
-  <div className="product-bottom">
-    <div className="review">
-      ★ {item.rating || 0}
-      <span>({item.review || 0})</span>
-    </div>
-
-    <div className="product-icons">
-      <button className="wishlist-icon">♡</button>
-
-      <button
-        className="cart-icon-btn"
-        onClick={(e) => handleAddToCart(e, item)}
-      >
-        <CartIcon />
-      </button>
-    </div>
-  </div>
-</div>
+              <div className="product-bottom">
+                <div className="review">
+                  ★ {item.rating || 0}
+                  <span>({item.review || 0})</span>
+                </div>
+                <ProductIcons onCartClick={(e) => handleAddToCart(e, item)} />
+              </div>
+            </div>
           </article>
         ))}
       </div>
 
       {visibleCount < filteredProducts.length && (
-  <button
-    className="category-more-btn"
-    onClick={() =>
-      setVisibleCount((prev) => prev + 12)
-    }
-  >
-    + 더보기
-  </button>
-)}
-    </section>
+        <button
+          className="category-more-btn"
+          onClick={() =>
+            setVisibleCount((prev) => prev + 12)
+          }
+        >
+          + 더보기
+        </button>
+      )}
+          </section>
 
-    {showCartPopup && (
-      <div className="cart-popup-overlay">
-        <div className="cart-popup">
-          <p>장바구니로 이동하시겠습니까?</p>
+          {showCartPopup && (
+            <div className="cart-popup-overlay">
+              <div className="cart-popup">
+                <p>장바구니로 이동하시겠습니까?</p>
 
-          <div className="cart-popup-buttons">
-            <button onClick={() => setShowCartPopup(false)}>
-              계속 쇼핑하기
-            </button>
+                <div className="cart-popup-buttons">
+                  <button onClick={() => setShowCartPopup(false)}>
+                    계속 쇼핑하기
+                  </button>
 
-            <button
-              className="go-cart"
-              onClick={() => navigate('/cart')}
-            >
-              장바구니 가기
-            </button>
-          </div>
-        </div>
-      </div>
-    )}
+                  <button
+                    className="go-cart"
+                    onClick={() => navigate('/cart')}
+                  >
+                    장바구니 가기
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
   </main>
 )
 }

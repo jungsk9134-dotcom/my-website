@@ -2,27 +2,10 @@ import './CurationFire.css'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import ProductIcons from '../components/ProductIcons'
 
 function CurationFire() {
   const [showCartPopup, setShowCartPopup] = useState(false)
-  function CartIcon() {
-    return (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="9" cy="21" r="1" />
-        <circle cx="20" cy="21" r="1" />
-        <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6" />
-      </svg>
-    )
-  }
   const navigate = useNavigate()
   const [activeSection, setActiveSection] = useState('products')
   const [showSideButtons, setShowSideButtons] = useState(false)
@@ -252,17 +235,9 @@ function CurationFire() {
         </div>
         <div className="product-bottom">
           <small>
-    ★ {item.rating}&nbsp;&nbsp;({item.review})
-  </small>
-          <div className="fire-icons">
-            <span>♡</span>
-            <button
-              className="cart-icon-btn"
-              onClick={(e) => handleAddToCart(e, item)}
-            >
-              <CartIcon />
-            </button>
-          </div>
+            ★ {item.rating}&nbsp;&nbsp;({item.review})
+          </small>
+          <ProductIcons onCartClick={(e) => handleAddToCart(e, item)} />
         </div>
       </div>
     </article>
