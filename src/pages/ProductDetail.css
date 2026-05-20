@@ -90,9 +90,8 @@
   cursor: pointer;
 }
 
-.thumb:hover,
-.thumb.active {
-  border-color: #6FAFA7;
+.thumb:hover {
+  border-color: transparent;
 }
 
 .thumb.active {
