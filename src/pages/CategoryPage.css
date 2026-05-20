@@ -98,7 +98,6 @@
   padding-bottom: 130px;
 }
 
-/* 2번 이미지처럼 전체 / 텐트 / 타프 */
 .category-list-header {
   width: 100%;
   margin: 30px 0 70px;
@@ -133,7 +132,6 @@
 .category-sub-filter button.active::after {
   content: "";
   position: absolute;
-  left: 0;
   bottom: -1px;
   width: 140%;
   height: 2px;
@@ -164,7 +162,6 @@
   width: 180px;
 }
 
-/* 제품 리스트 */
 .category-grid {
   display: grid;
   grid-template-columns: repeat(4, 300px);
@@ -174,7 +171,8 @@
 
 .product-card {
   width: 300px;
-  min-height: 463px;
+  height: auto;
+  text-align: left;
   cursor: pointer;
 }
 
@@ -182,17 +180,15 @@
   position: relative;
   width: 300px;
   height: 300px;
-  background: #ffffff;
+  background: #eee;
   border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
+  margin-bottom: 18px;
 }
 
 .product-image {
-  max-width: 100%;
-  max-height: 100%;
+  width: 300px;
+  height: 300px;
   object-fit: cover;
   display: block;
   transition: 0.25s;
@@ -202,28 +198,83 @@
   transform: scale(1.04);
 }
 
-
-
 .product-info {
-  padding-top: 22px;
+  width: 100%;
+  padding-top: 0;
+  text-align: left;
 }
 
 .product-info h3 {
   font-size: 16px;
   font-weight: 400;
-   line-height: 22px;
-  margin: 0 0 18px;
+  line-height: 22px;
+  margin: 0 0 1px;
+  padding-left: 20px;
+  color: #1c1c1c;
+}
+
+.product-price-box {
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 16px;
+  min-height: 58px;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+
+.product-old-price {
+  height: 18px;
+  margin: 0 0 4px;
+  font-size: 13px;
+  font-weight: 300;
+  color: #6b6b6b;
+  text-decoration: line-through;
+  line-height: 18px;
+  transform: translateY(5px);
+}
+
+.product-old-price.empty {
+  visibility: hidden;
+}
+
+.product-price-row {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 24px;
+}
+
+.product-price-row.no-discount {
+  margin-top: 0;
+}
+
+.discount-rate {
+  font-size: 18px;
+  font-weight: 400;
+  color: #2d8f7b;
+  flex-shrink: 0;
+}
+
+.product-price {
+  font-size: 18px;
+  font-weight: 400;
+  color: #1c1c1c;
+  white-space: nowrap;
 }
 
 .product-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 0;
 }
 
 .review {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
+  color: #1c1c1c;
+  padding-left: 20px;
 }
 
 .review span {
@@ -231,10 +282,17 @@
   margin-left: 4px;
 }
 
-.product-icons {
+.product-icons,
+.product-icon-box {
   display: flex;
-  gap: 18px;
+  gap: 14px;
   align-items: center;
+}
+
+.product-icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
 .category-more-btn {
@@ -242,18 +300,13 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-
   margin: 90px auto 0;
-
   border: none;
   background: transparent;
-
   font-size: 15px;
   font-weight: 500;
-
   color: #111;
   cursor: pointer;
-
   transition: 0.25s;
 }
 
@@ -261,8 +314,6 @@
   color: #4F8A83;
 }
 
-
-/* 장바구니 팝업 */
 .cart-popup-overlay {
   position: fixed;
   inset: 0;
@@ -307,6 +358,11 @@
   border-color: #444;
 }
 
+.product-card:hover .product-price,
+.product-card:hover h3 {
+  color: #4F8A83;
+}
+
 @media (max-width: 1200px) {
   .category-wrap {
     width: auto;
@@ -314,7 +370,7 @@
   }
 
   .category-grid {
-    grid-template-columns: repeat(2, 280px);
+    grid-template-columns: repeat(2, 300px);
     justify-content: center;
   }
 }
@@ -327,72 +383,6 @@
   }
 
   .category-grid {
-    grid-template-columns: repeat(1, 280px);
+    grid-template-columns: repeat(1, 300px);
   }
-}
-
-/*상품 카드 hover 컬러 변경*/
-.product-card:hover .product-price,
-.product-card:hover
-.product-card:hover h3 {
-  color: #4F8A83;
-}
-
-.product-old-price {
-  height: 18px;
-  margin: 0 0 6px;
-  font-size: 14px;
-  line-height: 18px;
-  color: #6b6b6b;
-  text-decoration: line-through;
-}
-
-.product-old-price.empty {
-  visibility: hidden;
-}
-
-.product-price-row {
-  display: flex;
-  align-items: baseline;
-  width: 100%;
-  height: 28px;
-  overflow: hidden;
-}
-
-.discount-rate {
-  width: 38px;
-  flex: 0 0 38px;
-  font-size: 18px;
-  line-height: 28px;
-  font-weight: 400;
-  color: #4F8A83;
-  white-space: nowrap;
-}
-
-.discount-rate.empty {
-  display: none;
-}
-
-.product-price {
-  font-size: 18px;
-  line-height: 28px;
-  font-weight: 400;
-  color: #1c1c1c;
-  white-space: nowrap;
-}
-
-.product-price-box {
-  width: 100%;
-  height: 68px;
-  margin-bottom: 18px;
-  transform: translateY(15px);
-}
-
-/* 할인 없는 상품은 현재 가격이 퍼센트 자리부터 시작 */
-.product-price-row.no-discount {
-  display: block;
-}
-
-.product-price-row.no-discount .product-price {
-  margin-left: 0;
 }

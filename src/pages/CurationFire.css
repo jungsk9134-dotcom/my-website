@@ -164,7 +164,7 @@
 /* 상품 카드 */
 .fire-product-card {
   width: 300px;
-  height: 463px;
+  height: auto;
   text-align: left;
 }
 
@@ -174,7 +174,7 @@
   object-fit: cover;
   background: #eee;
   border-radius: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   display: block;
 }
 
@@ -190,16 +190,16 @@
 /* 상품 정보 */
 .product-info {
   width: 100%;
-  padding-top: 18px;
+  padding-top: 0;
   text-align: left;
 }
 
 .product-info h4 {
   font-size: 16px;
   font-weight: 400;
-  line-height: 22px;
-  margin-bottom: 22px;
-  margin: 0 0 20px;
+  line-height: 20px; 
+  margin: 0 0 5px;
+  padding-left: 20px; 
   color: #1c1c1c;
 }
 
@@ -207,12 +207,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 18px;
+  margin-top: 0;
+}
+
+.product-icon-box {
+  position: relative;
+  right: 20px;
 }
 
 .product-bottom small {
-  font-size: 11px;
+  font-size: 13px;
   color: #1c1c1c;
+  padding-left: 20px;
 }
 
 .more-btn {
@@ -401,19 +407,23 @@
 
 /* 가격 영역 - CategoryPage 방식으로 고정 */
 .product-price-box {
-  margin-top: 16px;
-  margin-bottom: 18px;
-  min-height: 68px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  min-height: 54px;
+  padding-left: 20px;
 }
 
 .product-old-price {
-  height: 18px;
-  margin: 0 0 6px;
-  font-size: 14px;
+  height: 16px;
+  margin: 0 0 4px;
+  font-size: 12px;
   font-weight: 300;
   color: #6b6b6b;
   text-decoration: line-through;
   line-height: 18px;
+  transform: translateY(6px);
+  position: relative;
+  top: 6px !important;
 }
 
 .product-old-price.empty {
@@ -421,11 +431,12 @@
 }
 
 .product-price-row {
-  height: 18px;
+  height: 24px;
   display: flex;
   align-items: center;
   gap: 6px;
   line-height: 24px;
+  transform: translateY(10px);
 }
 
 .product-price-row.no-discount {
