@@ -781,7 +781,7 @@ function ProductDetail({ onAddCart }) {
 
             <div
               className="review-photo-add"
-              onClick={() => fileInputRef.current.click()}
+              onClick={() => setIsPhotoUploadOpen(true)}
             >
               <span>＋</span>
 
@@ -796,6 +796,7 @@ function ProductDetail({ onAddCart }) {
                 type="button"
                 onClick={() => {
                   setIsReviewModalOpen(false)
+                  setIsPhotoUploadOpen(false)
                   setReviewText('')
                   setReviewImages([])
                   setReviewRating(5)
