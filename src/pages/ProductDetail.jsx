@@ -65,15 +65,7 @@ function ProductDetail({ onAddCart }) {
     }
   }, [product])
 
-  useEffect(() => {
-    if (product?.sizes?.length > 0) {
-      setSelectedSize(product.sizes[0])
-    }
 
-    if (product?.colors?.length > 0) {
-      setSelectedColor(product.colors[0])
-    }
-  }, [product])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -296,6 +288,9 @@ function ProductDetail({ onAddCart }) {
   }
 
   const breadcrumbCategory = categoryNameMap[product.category] || '전체상품'
+  const priceNumber = Number(
+  String(product.price || 0).replace(/[^0-9]/g, '')
+)
 
   return (
     <main className="detail-page">
@@ -343,7 +338,9 @@ function ProductDetail({ onAddCart }) {
 
               <div className="sale-price">
                 <span className="sale">20%</span>
-                <span className="price">{product.price}</span>
+                <span className="price">
+  {product.price || '0원'}
+</span>
               </div>
             </div>
 
@@ -354,37 +351,43 @@ function ProductDetail({ onAddCart }) {
               </span>
             </div>
 
-            {product.sizes && (
-              <div className="select-row">
-                <label>사이즈</label>
-                <select
-                  value={selectedSize}
-                  onChange={(e) => setSelectedSize(e.target.value)}
-                >
-                  {product.sizes.map((size) => (
-                    <option key={size} value={size}>
-                      {size}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
+{product.sizes && (
+  <div className="select-row">
+    <label>사이즈</label>
 
-            {product.colors && (
-              <div className="select-row">
-                <label>컬러</label>
-                <select
-                  value={selectedColor}
-                  onChange={(e) => setSelectedColor(e.target.value)}
-                >
-                  {product.colors.map((color) => (
-                    <option key={color} value={color}>
-                      {color}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
+    <select
+      value={selectedSize}
+      onChange={(e) => setSelectedSize(e.target.value)}
+    >
+      <option value="">선택하세요</option>
+
+      {product.sizes.map((size) => (
+        <option key={size} value={size}>
+          {size}
+        </option>
+      ))}
+    </select>
+  </div>
+)}
+
+{product.colors && (
+  <div className="select-row">
+    <label>컬러</label>
+
+    <select
+      value={selectedColor}
+      onChange={(e) => setSelectedColor(e.target.value)}
+    >
+      <option value="">선택하세요</option>
+
+      {product.colors.map((color) => (
+        <option key={color} value={color}>
+          {color}
+        </option>
+      ))}
+    </select>
+  </div>
+)}
           </div>
 
           <div className="selected-product">
@@ -413,11 +416,7 @@ function ProductDetail({ onAddCart }) {
               </div>
 
               <strong>
-                {(
-                  Number(String(product.price).replace(/[^0-9]/g, '')) *
-                  quantity
-                ).toLocaleString()}
-                원
+{(priceNumber * quantity).toLocaleString()}원
               </strong>
             </div>
           </div>
@@ -428,11 +427,7 @@ function ProductDetail({ onAddCart }) {
 
               <div>
                 <strong>
-                  {(
-                    Number(String(product.price).replace(/[^0-9]/g, '')) *
-                    quantity
-                  ).toLocaleString()}
-                  원
+{(priceNumber * quantity).toLocaleString()}원
                 </strong>
 
                 <em>&nbsp; ({quantity}개)</em>
@@ -786,7 +781,7 @@ function ProductDetail({ onAddCart }) {
 
             <div
               className="review-photo-add"
-              onClick={() => setIsPhotoUploadOpen(true)}
+              onClick={() => fileInputRef.current.click()}
             >
               <span>＋</span>
 
@@ -801,7 +796,6 @@ function ProductDetail({ onAddCart }) {
                 type="button"
                 onClick={() => {
                   setIsReviewModalOpen(false)
-                  setIsPhotoUploadOpen(false)
                   setReviewText('')
                   setReviewImages([])
                   setReviewRating(5)

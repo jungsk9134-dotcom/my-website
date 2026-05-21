@@ -207,8 +207,10 @@ function CurationFire() {
       updatedCart = [
         ...savedCart,
         {
-          ...product,
-          quantity: 1,
+  ...product,
+  productId: product.id,
+  detailId: product.detailId,
+  quantity: 1,
         },
       ]
     }

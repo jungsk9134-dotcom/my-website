@@ -7,7 +7,7 @@ export const curationProducts = [
     detailImages: [
       '/images/cu.prod.lf/prod-lf-02-info.png',
     ],
-
+price: '189,000',
     reviews: [
       {
         user: 'campday',
@@ -42,7 +42,7 @@ export const curationProducts = [
     detailImages: [
       '/images/cu.prod.sm/prod-sm-01-info.png',
     ],
-
+price: '27,000',
     reviews: [],
     qna: [],
   },
@@ -55,7 +55,8 @@ export const curationProducts = [
       '/images/cu.prod.sm/prod-sm-01-detail-02.png',
       '/images/cu.prod.sm/prod-sm-01-detail-03.png',
     ],
-
+    
+price: '49,000',
     detailImages: [
       '/images/cu.prod.lf/prod-lf-01-info.png',
     ],
@@ -72,7 +73,7 @@ export const curationProducts = [
       '/images/cu.prod.sm/prod-sm-01-detail-02.png',
       '/images/cu.prod.sm/prod-sm-01-detail-03.png',
     ],
-
+price: '53,000',
     detailImages: [
       '/images/cu.prod.sm/prod-sm-01-info.png',
     ],
@@ -93,7 +94,7 @@ export const curationProducts = [
     detailImages: [
       '/images/cu.prod.sm/prod-sm-01-info.png',
     ],
-
+price: '51,000',
     reviews: [],
     qna: [],
   },
@@ -106,7 +107,7 @@ export const curationProducts = [
       '/images/cu.prod.sm/prod-sm-01-detail-02.png',
       '/images/cu.prod.sm/prod-sm-01-detail-03.png',
     ],
-
+price: '24,000',
     detailImages: [
       '/images/cu.prod.sm/prod-sm-01-info.png',
     ],
@@ -116,7 +117,7 @@ export const curationProducts = [
   },
   {
     id: 107,
-    name: '웜프리 쿨러 박스 28L',
+    name: '웜프리 쿨러 박스',
     image: '/images/cu.prod.tc/prod-sc-01.png',
     thumbs: [
       '/images/cu.prod.sm/prod-sm-01-detail-01.png',
@@ -127,6 +128,7 @@ export const curationProducts = [
     detailImages: [
       '/images/cu.prod.sm/prod-sm-01-info.png',
     ],
+    price: '58,000',
     sizes: ['20L', '40L'],
     reviews: [],
     qna: [],
@@ -218,9 +220,9 @@ export const curationProducts = [
     detailImages: [
       '/images/cu.prod.sm/prod-sm-01-info.png',
     ],
+    price: '142,000',
     sizes: ['1인용', '2인용'],
     colors: ['샌드'],
-
     reviews: [],
     qna: [],
   },

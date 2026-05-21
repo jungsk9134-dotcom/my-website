@@ -190,7 +190,15 @@ function CartItem({
 
         <div
           className="cart-item-link"
-          onClick={() => navigate(`/product/${item.id}`)}
+onClick={() => {
+
+  if (item.detailId) {
+    navigate(`/product/${item.detailId}`)
+  } else {
+    navigate(`/product/${item.productId || item.id}`)
+  }
+
+}}
         >
 
           <div className="item-img">
@@ -200,29 +208,25 @@ function CartItem({
           <div className="item-info">
             <p className="item-name">{item.name}</p>
 
-{(item.hasSizeOption || item.hasColorOption) && (
-  <p className="item-option">
+<p className="item-option">
 
-    {item.hasSizeOption && (
-      <>
-        사이즈 :
-        {item.selectedSize ? ` ${item.selectedSize}` : ''}
-      </>
-    )}
+  {item.selectedSize && (
+    <>
+      사이즈 : {item.selectedSize}
+    </>
+  )}
 
-    {item.hasSizeOption && item.hasColorOption && (
-      <> / </>
-    )}
+  {item.selectedSize && item.selectedColor && (
+    <> / </>
+  )}
 
-    {item.hasColorOption && (
-      <>
-        컬러 :
-        {item.selectedColor ? ` ${item.selectedColor}` : ''}
-      </>
-    )}
+  {item.selectedColor && (
+    <>
+      컬러 : {item.selectedColor}
+    </>
+  )}
 
-  </p>
-)}
+</p>
 
             <div className="quantity">
 
