@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import {
-  Search as SearchIcon,
-  Heart,
-  ShoppingCart
-} from 'lucide-react'
+import { Search as SearchIcon } from 'lucide-react'
+import CartIcon from '../components/CartIcon'
 import { products } from '../data/products'
 import { Link, useNavigate } from 'react-router-dom'
 import './Search.css'
@@ -14,6 +11,7 @@ function Search() {
   const navigate = useNavigate()
 
   const [showCartPopup, setShowCartPopup] = useState(false)
+  const [likedItems, setLikedItems] = useState([])
 
   const sortOptions = [
     { label: '최신순', value: 'latest' },
@@ -115,7 +113,13 @@ function Search() {
     setSortType(value)
     setIsSortOpen(false)
   }
-
+  const handleLikeToggle = (id) => {
+    setLikedItems((prev) =>
+      prev.includes(id)
+        ? prev.filter((itemId) => itemId !== id)
+        : [...prev, id]
+    )
+  }
   const handleAddToCart = (product) => {
     const savedCart = JSON.parse(localStorage.getItem('cartItems')) || []
 
@@ -214,55 +218,73 @@ function Search() {
           ) : (
             <div className="search-product-grid">
               {sortedProducts.map((item) => (
-<article
-  className="search-product-card"
-  key={item.id}
->
-<div
-  className="search-product-link-area"
-  onClick={() => navigate(`/product/${item.id}`)}
->
+                <article
+                  className="search-product-card"
+                  key={item.id}
+                >
+                <div
+                  className="search-product-link-area"
+                  onClick={() => navigate(`/product/${item.id}`)}
+                >
 
-  <div
-    className="search-product-img"
-    style={{ backgroundImage: `url(${item.image})` }}
-  ></div>
+                  <div
+                    className="search-product-img"
+                    style={{ backgroundImage: `url(${item.image})` }}
+                  ></div>
 
-  <h3>{item.name}</h3>
+                  <h3>{item.name}</h3>
 
-  <p className="search-product-old-price">
-    {item.discountRate > 0
-      ? `${item.oldPrice}원`
-      : null}
-  </p>
+                  <p className="search-product-old-price">
+                    {item.discountRate > 0
+                      ? `${item.oldPrice}원`
+                      : null}
+                  </p>
 
-  <div className="search-price-row">
-    {item.discountRate > 0 && (
-      <span className="search-discount-rate">
-        {item.discountRate}%
-      </span>
-    )}
+                  <div className="search-price-row">
+                    {item.discountRate > 0 && (
+                      <span className="search-discount-rate">
+                        {item.discountRate}%
+                      </span>
+                    )}
 
-    <p className="search-product-price">
-      {item.price}원
-    </p>
-  </div>
-
-</div>
-
+                    <p className="search-product-price">
+                      {item.price}원
+                    </p>
+                  </div>
+                </div>
                   <div className="search-product-bottom">
                     <small>
                       ★ {item.rating || 4.8}&nbsp;&nbsp;({item.review || 0})
                     </small>
-
-                    <div>
-                      <Heart size={24} strokeWidth={1.7} style={{ fill: 'none', stroke: 'currentColor' }} />
+                    <div className="search-product-icons">
                       <button
-                        className="search-cart-btn"
-                        onClick={() => handleAddToCart(item)}
+                        type="button"
+                        className="search-heart-btn"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          handleLikeToggle(item.id)
+                        }}
                       >
-                        <ShoppingCart size={24} strokeWidth={1.7}
-                          style={{ fill: 'none', stroke: 'currentColor' }} />
+                        <img
+                          src={
+                            likedItems.includes(item.id)
+                              ? '/images/icons/ico-heart-aurora.png'
+                              : '/images/icons/ico-heart-black.png'
+                          }
+                          alt="찜하기"
+                          className="search-heart-img"
+                        />
+                      </button>
+
+                      <button
+                        type="button"
+                        className="search-cart-btn"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          handleAddToCart(item)
+                        }}
+                      >
+                        <CartIcon />
                       </button>
                     </div>
                   </div>

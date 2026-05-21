@@ -167,19 +167,19 @@
   justify-content: center;
   gap: 90px 34px;
 }
+
 .search-product-card {
   width: 300px;
   height: 463px;
-
+  text-align: left;
 }
-.search-product-card h3 {
-  margin: 22px 0 18px;
 
+.search-product-card h3 {
   font-size: 16px;
   font-weight: 400;
-
   line-height: 22px;
-
+  margin: 0 0 5px;
+  padding-left: 20px;
   color: #1c1c1c;
 }
 
@@ -192,7 +192,9 @@
   background-repeat: no-repeat;
   border-radius: 20px;
   overflow: hidden;
+  margin-bottom: 18px;
 }
+
 .search-product-link-area {
   cursor: pointer;
 }
@@ -204,16 +206,13 @@
   text-decoration: line-through;
 }
 
-.search-product-price {
-  font-size: 14px;
-  font-weight: 700;
-  margin: 0 0 18px;
-}
-
 .search-product-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
+  margin-top: 0;
+  box-sizing: border-box;
 }
 
 .search-product-bottom div {
@@ -232,13 +231,6 @@
 .search-cart-btn svg {
   fill: none !important;
   stroke: currentColor !important;
-}
-
-.search-cart-btn {
-  border: none;
-  background: none;
-  padding: 0;
-  cursor: pointer;
 }
 
 .search-no-result {
@@ -303,40 +295,44 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 .search-product-old-price {
+  height: 16px;
+  margin: 0 0 4px;
+  padding-left: 20px;
   font-size: 14px;
-  height: 18px;
+  font-weight: 300;
   color: #6b6b6b;
-  margin: 0 0 8px;
   text-decoration: line-through;
-  line-height: 18px;
+  line-height: 16px;
 }
 
 .search-price-row {
+  height: 24px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 28px;
+  gap: 6px;
+  padding-left: 20px;
+  margin-bottom: 16px;
+  line-height: 24px;
 }
 
 .search-discount-rate {
   font-size: 18px;
   font-weight: 400;
-  min-width: 38px;
-  line-height: 24px;
-  display: inline-block;
-  white-space: nowrap;
   color: #2d8f7b;
+  line-height: 24px;
 }
-
-
 
 .search-product-price {
   font-size: 18px;
-  line-height: 28px;
   font-weight: 400;
+  color: #1c1c1c;
+  line-height: 24px;
   margin: 0;
+  white-space: nowrap;
 }
+
 /* 아이콘 내부가 채워지는 현상을 완전히 방어 */
 .search-product-bottom svg,
 .search-product-bottom svg path,
@@ -409,4 +405,43 @@
 .cart-popup-buttons button:hover {
   transform: translateY(-2px);
   opacity: 0.92;
+}
+
+/* 검색 페이지 하트/장바구니 아이콘 - 큐레이션 불멍 페이지 규격 */
+.search-product-icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.search-heart-btn,
+.search-cart-btn {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.search-heart-img,
+.search-cart-btn .cart-img-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+}
+
+.search-cart-btn .cart-img-icon {
+  transform: translateY(0);
+}
+
+.search-product-bottom small {
+  font-size: 13px;
+  color: #1c1c1c;
+  line-height: 22px;
 }

@@ -19,8 +19,9 @@
   z-index: 9999;
 
   transition:
-    transform 0.3s ease,
-    border-color 0.3s ease;
+    transform 0.35s ease,
+    opacity 0.35s ease,
+    background 0.3s ease;
   border-bottom: none !important;
 }
 
@@ -167,4 +168,20 @@
   transform: translateY(-100%);
   opacity: 0;
   pointer-events: none;
+}
+
+/* 홈/브랜드/큐레이션에서 스크롤 후 위로 올릴 때 헤더 색 변경 */
+.color-changed-header {
+  background: #ffffff !important;
+}
+
+.color-changed-header .campora-nav a,
+.color-changed-header .header-icons a,
+.color-changed-header .logo {
+  color: #1c1c1c !important;
+}
+
+.color-changed-header .search-icon,
+.color-changed-header .cart-icon-img {
+  color: #1c1c1c !important;
 }
