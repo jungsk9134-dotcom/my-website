@@ -212,20 +212,22 @@
 
 .product-icon-box {
   position: relative;
-  right: 20px;
 }
 
 .product-bottom small {
   font-size: 13px;
   color: #1c1c1c;
-   transform: translateY(-9px);
 }
 
+.product-icons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
 .fire-icons {
   display: flex;
   gap: 16px;
   color: #1c1c1c;
-  margin-top: 0;
 }
 
 .more-btn {
