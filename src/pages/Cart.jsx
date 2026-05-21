@@ -1,7 +1,9 @@
 import './Cart.css'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Cart({ cartItems, setCartItems }) {
+  const navigate = useNavigate()
   const [selectedIds, setSelectedIds] = useState([])
 
   useEffect(() => {
@@ -129,7 +131,8 @@ function Cart({ cartItems, setCartItems }) {
           ) : (
             cartItems.map((item) => (
               <CartItem
-                key={item.id}
+                 key={item.id}
+  navigate={navigate}
                 item={item}
                 checked={selectedIds.includes(item.id)}
                 onCheck={() => handleToggleItem(item.id)}
@@ -172,6 +175,7 @@ function CartItem({
   onCheck,
   onDelete,
   onQuantityChange,
+  navigate,
 }) {
   return (
     <div className="cart-item-wrap">
@@ -183,43 +187,92 @@ function CartItem({
       />
 
       <div className="cart-item">
-        <div className="item-img">
-          <img src={item.image} alt={item.name} />
-        </div>
 
-        <div className="item-info">
-          <p className="item-name">{item.name}</p>
-          <p className="item-option">
-            사이즈 : {item.selectedSize} / 컬러 : {item.selectedColor}
+        <div
+          className="cart-item-link"
+          onClick={() => navigate(`/product/${item.id}`)}
+        >
+
+          <div className="item-img">
+            <img src={item.image} alt={item.name} />
+          </div>
+
+          <div className="item-info">
+            <p className="item-name">{item.name}</p>
+
+{(item.hasSizeOption || item.hasColorOption) && (
+  <p className="item-option">
+
+    {item.hasSizeOption && (
+      <>
+        사이즈 :
+        {item.selectedSize ? ` ${item.selectedSize}` : ''}
+      </>
+    )}
+
+    {item.hasSizeOption && item.hasColorOption && (
+      <> / </>
+    )}
+
+    {item.hasColorOption && (
+      <>
+        컬러 :
+        {item.selectedColor ? ` ${item.selectedColor}` : ''}
+      </>
+    )}
+
+  </p>
+)}
+
+            <div className="quantity">
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onQuantityChange(item.id, 'decrease')
+                }}
+              >
+                -
+              </button>
+
+              <span>{item.quantity || 1}</span>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onQuantityChange(item.id, 'increase')
+                }}
+              >
+                +
+              </button>
+
+            </div>
+          </div>
+
+          <p className="item-price">
+            {(
+              Number(String(item.price).replace(/[^0-9]/g, '')) *
+              (item.quantity || 1)
+            ).toLocaleString()}
+            원
           </p>
 
-          <div className="quantity">
-            <button onClick={() => onQuantityChange(item.id, 'decrease')}>
-              -
-            </button>
-
-            <span>{item.quantity || 1}</span>
-
-            <button onClick={() => onQuantityChange(item.id, 'increase')}>
-              +
-            </button>
-          </div>
         </div>
 
-        <p className="item-price">
-          {(
-            Number(String(item.price).replace(/[^0-9]/g, '')) *
-            (item.quantity || 1)
-          ).toLocaleString()}
-          원
-        </p>
-
-        <button className="remove-item-btn" onClick={onDelete}>
+        <button
+          className="remove-item-btn"
+          onClick={(e) => {
+            e.stopPropagation()
+            onDelete()
+          }}
+        >
           ×
         </button>
+
       </div>
     </div>
   )
 }
+
 
 export default Cart
