@@ -3,12 +3,21 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import ProductIcons from '../components/ProductIcons'
+import CartIcon from '../components/CartIcon'
 
 function CurationFire() {
   const [showCartPopup, setShowCartPopup] = useState(false)
+  const [likedItems, setLikedItems] = useState([])
   const navigate = useNavigate()
   const [activeSection, setActiveSection] = useState('products')
   const [showSideButtons, setShowSideButtons] = useState(false)
+  const handleLikeToggle = (id) => {
+    setLikedItems((prev) =>
+      prev.includes(id)
+        ? prev.filter((itemId) => itemId !== id)
+        : [...prev, id]
+    )
+  }
   useEffect(() => {
     const handleScroll = () => {
       const productsSection = document.querySelector('.fire-products')
@@ -237,29 +246,11 @@ function CurationFire() {
           <small>
             ★ {item.rating}&nbsp;&nbsp;({item.review})
           </small>
-          <div className="fire-icons">
-            <button
-              type="button"
-              className="heart-icon-btn"
-              onClick={() => handleLikeToggle(item.id)}
-            >
-              <img
-                src={
-                  likedItems.includes(item.id)
-                    ? "/images/icons/ico-heart-aurora.png"
-                    : "/images/icons/ico-heart-black.png"
-                }
-                alt="찜하기"
-                className="heart-icon-img"
-              />
-            </button>
-            <button
-              className="cart-icon-btn"
-              onClick={(e) => handleAddToCart(e, item)}
-            >
-              <CartIcon />
-            </button>
-          </div>
+          <ProductIcons
+            isLiked={likedItems.includes(item.id)}
+            onLikeClick={() => handleLikeToggle(item.id)}
+            onCartClick={(e) => handleAddToCart(e, item)}
+          />
         </div>
       </div>
     </article>

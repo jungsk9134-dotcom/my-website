@@ -1,18 +1,12 @@
 import './CartIcon.css'
 
-function CartIcon({ className = '', onClick }) {
+function CartIcon({ className = '' }) {
   return (
-    <button
-      type="button"
-      className={`cart-img-button ${className}`}
-      onClick={onClick}
-    >
-      <img
-        src="/images/icons/ico-cart.png"
-        alt="장바구니"
-        className="cart-img-icon"
-      />
-    </button>
+    <img
+      src="/images/icons/ico-cart.png"
+      alt="장바구니"
+      className={`cart-img-icon ${className}`}
+    />
   )
 }
 

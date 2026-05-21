@@ -205,29 +205,27 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
-  margin: 0 0 1px;
+  margin: 0 0 5px;
   padding-left: 20px;
   color: #1c1c1c;
 }
 
 .product-price-box {
-  width: 100%;
   margin-top: 0;
   margin-bottom: 16px;
-  min-height: 58px;
+  min-height: 54px;
   padding-left: 20px;
   box-sizing: border-box;
 }
 
 .product-old-price {
-  height: 18px;
+  height: 16px;
   margin: 0 0 4px;
   font-size: 14px;
   font-weight: 300;
   color: #6b6b6b;
   text-decoration: line-through;
-  line-height: 18px;
-  transform: translateY(5px);
+  line-height: 16px;
 }
 
 .product-old-price.empty {
@@ -249,15 +247,12 @@
 .discount-rate {
   font-size: 18px;
   font-weight: 400;
-  line-height: 24px;
   color: #2d8f7b;
-  flex-shrink: 0;
 }
 
 .product-price {
   font-size: 18px;
   font-weight: 400;
-  line-height: 24px;
   color: #1c1c1c;
   white-space: nowrap;
 }
@@ -266,26 +261,41 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
   margin-top: 0;
+  box-sizing: border-box;
 }
 
+/* 별점 */
 .review {
-  font-size: 14px;
-  font-weight: 400;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
   color: #1c1c1c;
-  padding-left: 20px;
+  line-height: 22px;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* 버튼 */
+.heart-icon-btn,
+.cart-icon-btn {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .review span {
   color: #666;
   margin-left: 4px;
-}
-
-.product-icons,
-.product-icon-box {
-  display: flex;
-  gap: 14px;
-  align-items: center;
 }
 
 .product-icon-img {
@@ -381,4 +391,56 @@
   .category-grid {
     grid-template-columns: repeat(1, 300px);
   }
+}
+
+.product-icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.product-icons,
+.product-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+/* 버튼 */
+.heart-icon-btn,
+.cart-icon-btn {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* 하트 이미지 */
+.heart-icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+  /* 위치 */
+  transform: translateY(10px);
+}
+/* 장바구니 이미지 */
+.cart-img-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+  /* 위치 */
+  transform: translateY(0);
 }
