@@ -171,7 +171,7 @@
 
 .product-card {
   width: 300px;
-  height: auto;
+  height: 463px;
   text-align: left;
   cursor: pointer;
 }
@@ -194,9 +194,6 @@
   transition: 0.25s;
 }
 
-.product-card:hover .product-image {
-  transform: scale(1.04);
-}
 
 .product-info {
   width: 100%;
@@ -225,7 +222,7 @@
 .product-old-price {
   height: 18px;
   margin: 0 0 4px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 300;
   color: #6b6b6b;
   text-decoration: line-through;
@@ -252,6 +249,7 @@
 .discount-rate {
   font-size: 18px;
   font-weight: 400;
+  line-height: 24px;
   color: #2d8f7b;
   flex-shrink: 0;
 }
@@ -259,6 +257,7 @@
 .product-price {
   font-size: 18px;
   font-weight: 400;
+  line-height: 24px;
   color: #1c1c1c;
   white-space: nowrap;
 }
@@ -271,7 +270,7 @@
 }
 
 .review {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   color: #1c1c1c;
   padding-left: 20px;
@@ -358,10 +357,7 @@
   border-color: #444;
 }
 
-.product-card:hover .product-price,
-.product-card:hover h3 {
-  color: #4F8A83;
-}
+
 
 @media (max-width: 1200px) {
   .category-wrap {

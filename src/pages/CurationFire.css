@@ -164,7 +164,7 @@
 /* 상품 카드 */
 .fire-product-card {
   width: 300px;
-  height: auto;
+  height: 463px;
   text-align: left;
 }
 
@@ -197,7 +197,7 @@
 .product-info h4 {
   font-size: 16px;
   font-weight: 400;
-  line-height: 20px; 
+  line-height: 22px; 
   margin: 0 0 5px;
   padding-left: 20px; 
   color: #1c1c1c;
@@ -416,11 +416,11 @@
 .product-old-price {
   height: 16px;
   margin: 0 0 4px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 300;
   color: #6b6b6b;
   text-decoration: line-through;
-  line-height: 18px;
+  line-height: 100%;
   transform: translateY(6px);
   position: relative;
   top: 6px !important;
@@ -446,6 +446,7 @@
 .discount-rate {
   font-size: 18px;
   font-weight: 400;
+  line-height: 24px;
   color: #2d8f7b;
   flex-shrink: 0;
 }
@@ -453,6 +454,7 @@
 .product-price {
   font-size: 18px;
   font-weight: 400;
+  line-height: 24px;
   color: #1c1c1c;
   white-space: nowrap;
 }

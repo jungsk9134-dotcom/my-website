@@ -81,8 +81,9 @@
 }
 
 .search-result-section {
-  max-width: 1080px;
+  max-width: 1320px;
   margin: 0 auto 90px;
+  padding: 0 20px;
 }
 
 .search-result-top {
@@ -215,6 +216,18 @@
   gap: 18px;
   align-items: center;
 }
+/* 하단 아이콘 영역의 모든 SVG 스타일 강제 지정 */
+.search-product-bottom svg {
+  fill: none !important;         /* 내부 채우기 무조건 제거 */
+  stroke: currentColor !important; /* 현재 글자 색상을 선 색상으로 사용 */
+  stroke-width: 1.7px !important;  /* 선 두께 고정 */
+}
+
+/* 장바구니 버튼 내부의 아이콘도 동일하게 적용 */
+.search-cart-btn svg {
+  fill: none !important;
+  stroke: currentColor !important;
+}
 
 .search-cart-btn {
   border: none;
@@ -233,13 +246,15 @@
 }
 
 .event-section {
-  max-width: 1080px;
+  max-width: 1320px;
   margin: 0 auto 240px;
+  padding: 0 20px;
 }
 
 .event-section h3 {
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
   margin-bottom: 18px;
   padding-bottom: 18px;
   border-bottom: 1px solid #ddd;
@@ -300,25 +315,33 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 18px;
+  margin-bottom: 28px;
 }
 
 .search-discount-rate {
   font-size: 18px;
   font-weight: 400;
   min-width: 38px;
-  line-height: 28px;
+  line-height: 24px;
   display: inline-block;
   white-space: nowrap;
+  color: #2d8f7b;
 }
 
-.search-discount-rate.empty {
-  visibility: hidden;
-}
+
 
 .search-product-price {
   font-size: 18px;
   line-height: 28px;
   font-weight: 400;
   margin: 0;
+}
+/* 아이콘 내부가 채워지는 현상을 완전히 방어 */
+.search-product-bottom svg,
+.search-product-bottom svg path,
+.search-product-bottom svg circle,
+.search-product-bottom svg rect {
+  fill: none !important;
+  fill-opacity: 0 !important; /* 투명도를 0으로 강제 */
+  stroke: #1c1c1c !important; /* 선 색상을 명시적으로 지정 */
 }

@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { Search as SearchIcon, Heart, ShoppingCart } from 'lucide-react'
+import {
+  Search as SearchIcon,
+  Heart,
+  ShoppingCart
+} from 'lucide-react'
 import { products } from '../data/products'
 import { Link } from 'react-router-dom'
 import './Search.css'
@@ -221,17 +225,11 @@ const sortedProducts = [...searchedProducts].sort((a, b) => {
 </p>
 
 <div className="search-price-row">
-  <span
-    className={
-      item.discountRate > 0
-        ? 'search-discount-rate'
-        : 'search-discount-rate empty'
-    }
-  >
-    {item.discountRate > 0
-      ? `${item.discountRate}%`
-      : '\u00A0'}
+{item.discountRate > 0 && (
+  <span className="search-discount-rate">
+    {item.discountRate}%
   </span>
+)}
 
   <p className="search-product-price">
     {item.price}원
@@ -244,12 +242,13 @@ const sortedProducts = [...searchedProducts].sort((a, b) => {
                     </small>
 
                     <div>
-                      <Heart size={18} />
+                      <Heart size={24} strokeWidth={1.7} style={{ fill: 'none', stroke: 'currentColor' }}/>
                       <button
                         className="search-cart-btn"
                         onClick={() => handleAddToCart(item)}
                       >
-                        <ShoppingCart size={18} />
+                        <ShoppingCart size={24} strokeWidth={1.7} 
+        style={{ fill: 'none', stroke: 'currentColor' }}/>
                       </button>
                     </div>
                   </div>
