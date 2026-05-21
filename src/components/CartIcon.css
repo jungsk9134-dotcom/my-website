@@ -1,0 +1,16 @@
+.cart-img-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-img-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
+}
