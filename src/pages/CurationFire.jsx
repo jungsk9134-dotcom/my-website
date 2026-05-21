@@ -6,27 +6,6 @@ import ProductIcons from '../components/ProductIcons'
 
 function CurationFire() {
   const [showCartPopup, setShowCartPopup] = useState(false)
-<<<<<<< HEAD
-=======
-  const [likedItems, setLikedItems] = useState([])
-
-  const handleLikeToggle = (id) => {
-    setLikedItems((prev) =>
-      prev.includes(id)
-        ? prev.filter((itemId) => itemId !== id)
-        : [...prev, id]
-    )
-  }
-  function CartIcon() {
-    return (
-      <img
-        src="/images/icons/ico-cart.png"
-        alt="장바구니"
-        className="product-cart-icon"
-      />
-    )
-  }
->>>>>>> c30ee56 (작업 저장)
   const navigate = useNavigate()
   const [activeSection, setActiveSection] = useState('products')
   const [showSideButtons, setShowSideButtons] = useState(false)
@@ -258,9 +237,6 @@ function CurationFire() {
           <small>
             ★ {item.rating}&nbsp;&nbsp;({item.review})
           </small>
-<<<<<<< HEAD
-          <ProductIcons onCartClick={(e) => handleAddToCart(e, item)} />
-=======
           <div className="fire-icons">
             <button
               type="button"
@@ -284,7 +260,6 @@ function CurationFire() {
               <CartIcon />
             </button>
           </div>
->>>>>>> c30ee56 (작업 저장)
         </div>
       </div>
     </article>

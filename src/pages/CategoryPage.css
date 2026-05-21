@@ -266,7 +266,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-<<<<<<< HEAD
   margin-top: 0;
 }
 
@@ -275,13 +274,6 @@
   font-weight: 400;
   color: #1c1c1c;
   padding-left: 20px;
-=======
-  margin-top: 10px;
-}
-
-.review {
-  font-size: 15px;
->>>>>>> c30ee56 (작업 저장)
 }
 
 .review span {
