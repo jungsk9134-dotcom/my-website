@@ -78,19 +78,12 @@ function ProductDetail({ onAddCart }) {
   useEffect(() => {
     const handleScroll = () => {
       const tabs = document.querySelector('.sticky-tabs')
-
       if (!tabs) return
 
       const top = tabs.getBoundingClientRect().top
-
-      if (top <= 0) {
-        setIsSticky(true)
-      } else {
-        setIsSticky(false)
-      }
+      setIsSticky(top <= 0)
 
       const scrollPosition = window.scrollY + 220
-
       const detailTop = detailRef.current?.offsetTop || 0
       const reviewTop = reviewRef.current?.offsetTop || 0
       const guideTop = guideRef.current?.offsetTop || 0
@@ -340,12 +333,14 @@ function ProductDetail({ onAddCart }) {
         <div className="detail-info">
           <div className="detail-info-top">
             <h2>{product.name}</h2>
+
             <p className="rating">
               ★★★★★ {product.rating || '4.9'} 리뷰 {reviews.length}
             </p>
 
             <div className="price-box">
               <span className="old">{product.oldPrice}</span>
+
               <div className="sale-price">
                 <span className="sale">20%</span>
                 <span className="price">{product.price}</span>
@@ -430,6 +425,7 @@ function ProductDetail({ onAddCart }) {
           <div className="detail-info-bottom">
             <div className="total">
               <span>총 상품 금액</span>
+
               <div>
                 <strong>
                   {(
@@ -458,18 +454,21 @@ function ProductDetail({ onAddCart }) {
         >
           제품상세
         </span>
+
         <span
           className={activeTab === 'review' ? 'active' : ''}
           onClick={() => scrollToSection(reviewRef, 'review')}
         >
           리뷰
         </span>
+
         <span
           className={activeTab === 'guide' ? 'active' : ''}
           onClick={() => scrollToSection(guideRef, 'guide')}
         >
           구매안내
         </span>
+
         <span
           className={activeTab === 'qa' ? 'active' : ''}
           onClick={() => scrollToSection(qaRef, 'qa')}
@@ -567,7 +566,7 @@ function ProductDetail({ onAddCart }) {
               type="button"
               className="guide-title"
               onClick={() =>
-                setOpenGuide(openGuide === 'payment' ? '' : 'payment')
+                setOpenGuide(openGuide === 'payment' ? null : 'payment')
               }
             >
               <strong>상품결제정보</strong>
@@ -590,7 +589,7 @@ function ProductDetail({ onAddCart }) {
               type="button"
               className="guide-title"
               onClick={() =>
-                setOpenGuide(openGuide === 'delivery' ? '' : 'delivery')
+                setOpenGuide(openGuide === 'delivery' ? null : 'delivery')
               }
             >
               <strong>배송정보</strong>
@@ -612,7 +611,7 @@ function ProductDetail({ onAddCart }) {
               type="button"
               className="guide-title"
               onClick={() =>
-                setOpenGuide(openGuide === 'return' ? '' : 'return')
+                setOpenGuide(openGuide === 'return' ? null : 'return')
               }
             >
               <strong>교환 및 반품</strong>
@@ -634,7 +633,7 @@ function ProductDetail({ onAddCart }) {
               type="button"
               className="guide-title"
               onClick={() =>
-                setOpenGuide(openGuide === 'service' ? '' : 'service')
+                setOpenGuide(openGuide === 'service' ? null : 'service')
               }
             >
               <strong>서비스문의</strong>
@@ -667,7 +666,9 @@ function ProductDetail({ onAddCart }) {
 
                 <span
                   className="qa-title"
-                  onClick={() => setOpenQaId(openQaId === qa.id ? null : qa.id)}
+                  onClick={() =>
+                    setOpenQaId(openQaId === qa.id ? null : qa.id)
+                  }
                 >
                   {qa.title}
                 </span>
@@ -785,9 +786,10 @@ function ProductDetail({ onAddCart }) {
 
             <div
               className="review-photo-add"
-              onClick={() => setIsPhotoUploadOpen(true)}
+              onClick={() => fileInputRef.current.click()}
             >
               <span>＋</span>
+
               <div>
                 <p>사진 추가</p>
                 <small>사진은 1장까지 첨부할 수 있습니다</small>
