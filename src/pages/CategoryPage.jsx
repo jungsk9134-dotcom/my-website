@@ -314,6 +314,7 @@ return (
                 </div>
               </div>
 
+<<<<<<< HEAD
   <div className="product-bottom">
     <div className="review">
       ★ {item.rating || 0}
@@ -348,6 +349,16 @@ return (
     </div>
   </div>
 </div>
+=======
+              <div className="product-bottom">
+                <div className="review">
+                  ★ {item.rating || 0}
+                  <span>({item.review || 0})</span>
+                </div>
+                <ProductIcons onCartClick={(e) => handleAddToCart(e, item)} />
+              </div>
+            </div>
+>>>>>>> a66ae82 (충돌 수정)
           </article>
         ))}
       </div>
