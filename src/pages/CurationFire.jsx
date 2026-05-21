@@ -34,7 +34,9 @@ function CurationFire() {
         setShowSideButtons(false)
       }
       /* 활성화 색상 변경 */
-      if (storyTop <= window.innerHeight / 2) {
+      if (window.scrollY < 300) {
+        setActiveSection('')
+      } else if (storyTop <= window.innerHeight / 2) {
         setActiveSection('people')
       } else {
         setActiveSection('products')
@@ -285,8 +287,6 @@ function CurationFire() {
           불멍의 온기를 중심으로,<br />
           주변의 분위기까지 자연스럽게 이어주는 아이템들을 담았습니다
         </p>
-
-        {showSideButtons && (
           <div className="side-buttons">
             <button
               className={activeSection === 'products' ? 'active' : ''}
@@ -310,7 +310,6 @@ function CurationFire() {
               People
             </button>
           </div>
-        )}
 
         <div className="fire-product-list four">
           {products1.map((item) => (

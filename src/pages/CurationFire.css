@@ -93,41 +93,52 @@
   margin-bottom: 110px;
 }
 
-/* Products / People 버튼 오른쪽 고정 */
+.product-title {
+  margin-top: 260px;
+}
+
+/* Products / People 버튼 */
 .side-buttons {
   position: fixed;
-  top: 50%;
-  right: 4%;
-  transform: translateY(-50%);
+  bottom: 40px;
+  right: 40px;
   z-index: 999;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-end;
+  gap: 14px;
 }
 
 .side-buttons button {
-  width: 52px;
-  height: 52px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   border: none;
-  background: #b8b8b8;
+  background: #7d7d7d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
-  font-size: 10px;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1;
   cursor: pointer;
-  transition: 0.3s;
+  opacity: 0.6;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    background 0.25s ease;
+  flex-shrink: 0;
 }
 
-.side-buttons button.active {
-  background: #6ba99a !important;
-}
-
+/* 마우스 호버 */
 .side-buttons button:hover {
-  background: #6ba99a;
+  opacity: 1;
 }
 
-.product-title {
-  margin-top: 260px;
+/* 클릭된 상태 */
+.side-buttons button.active {
+  opacity: 0.8;
 }
 
 /* 상품 리스트 */
