@@ -1,5 +1,5 @@
 .search-page {
-  background: #fff;
+  background: #fff !important;
   color: #1c1c1c;
   min-height: 100vh;
 }
@@ -51,7 +51,8 @@
 }
 
 .recommend-area p {
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 400;
   margin-bottom: 18px;
 }
 
@@ -168,7 +169,8 @@
 }
 .search-product-card {
   width: 300px;
-  min-height: 463px;
+  height: 463px;
+
 }
 .search-product-card h3 {
   margin: 22px 0 18px;
@@ -190,6 +192,9 @@
   background-repeat: no-repeat;
   border-radius: 20px;
   overflow: hidden;
+}
+.search-product-link-area {
+  cursor: pointer;
 }
 
 .search-product-desc {
@@ -247,15 +252,18 @@
 
 .event-section {
   max-width: 1320px;
-  margin: 0 auto 240px;
-  padding: 0 20px;
+  margin: 0 auto;
+  padding: 0 20px 120px;
+  background: #fff;
+  margin-top: 70px;
+  padding: 0 20px 200px;
 }
 
 .event-section h3 {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 22px;
-  margin-bottom: 18px;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 34px;
+  margin-bottom: 50px;
   padding-bottom: 18px;
   border-bottom: 1px solid #ddd;
 }
@@ -264,11 +272,11 @@
   width: 100%;
   height: 230px;
   display: block;
-  background: #d9d9d9;
   border-radius: 14px;
   overflow: hidden;
   padding: 0;
   font-size: 0;
+  /* margin-top: 50px; */
 }
 .event-banner img {
   width: 100%;
@@ -277,10 +285,6 @@
   display: block;
 }
 
-.search-footer {
-  height: 280px;
-  background: #222;
-}
 
 @media (max-width: 700px) {
   .search-breadcrumb {
@@ -295,9 +299,6 @@
   .event-section {
     padding: 0 24px;
   }
-
-
-
   .search-product-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -344,4 +345,68 @@
   fill: none !important;
   fill-opacity: 0 !important; /* 투명도를 0으로 강제 */
   stroke: #1c1c1c !important; /* 선 색상을 명시적으로 지정 */
+}
+
+/* 장바구니 팝업 */
+
+.cart-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+}
+
+.cart-popup {
+  width: 460px;
+  background: #fff;
+  border-radius: 26px;
+
+  padding: 54px 40px 38px;
+  text-align: center;
+}
+
+.cart-popup p {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 42px;
+  color: #111;
+}
+
+.cart-popup-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.cart-popup-buttons button {
+  width: 168px;
+  height: 56px;
+
+  border-radius: 14px;
+  font-size: 16px;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cart-popup-buttons button:first-child {
+  background: #fff;
+  border: 1px solid #666;
+  color: #333;
+}
+
+.cart-popup-buttons .go-cart {
+  background: #555;
+  border: none;
+  color: #fff;
+}
+
+.cart-popup-buttons button:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
 }

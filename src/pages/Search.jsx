@@ -5,18 +5,22 @@ import {
   ShoppingCart
 } from 'lucide-react'
 import { products } from '../data/products'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Search.css'
 
 function Search() {
   const defaultKeywords = ['랜턴', '침낭', '아이스박스', '체어', '테이블']
 
-const sortOptions = [
-  { label: '최신순', value: 'latest' },
-  { label: '인기순', value: 'popular' },
-  { label: '높은가격순', value: 'high' },
-  { label: '낮은가격순', value: 'low' },
-]
+  const navigate = useNavigate()
+
+  const [showCartPopup, setShowCartPopup] = useState(false)
+
+  const sortOptions = [
+    { label: '최신순', value: 'latest' },
+    { label: '인기순', value: 'popular' },
+    { label: '높은가격순', value: 'high' },
+    { label: '낮은가격순', value: 'low' },
+  ]
 
   const [keyword, setKeyword] = useState('')
   const [sortType, setSortType] = useState('latest')
@@ -47,8 +51,8 @@ const sortOptions = [
     return Number(String(price).replace(/[^0-9]/g, ''))
   }
 
-const currentSortLabel =
-  sortOptions.find((item) => item.value === sortType)?.label || '최신순'
+  const currentSortLabel =
+    sortOptions.find((item) => item.value === sortType)?.label || '최신순'
 
   const searchedProducts = products.filter((item) => {
     if (!keyword) return false
@@ -63,37 +67,37 @@ const currentSortLabel =
     return searchText.includes(keyword.toLowerCase())
   })
 
-const sortedProducts = [...searchedProducts].sort((a, b) => {
+  const sortedProducts = [...searchedProducts].sort((a, b) => {
 
-  // 최신순 : ID 오름차순
-  if (sortType === 'latest') {
-    return (a.id || 0) - (b.id || 0)
-  }
+    // 최신순 : ID 오름차순
+    if (sortType === 'latest') {
+      return (a.id || 0) - (b.id || 0)
+    }
 
-  // 인기순 : 별점 + 리뷰수
-  if (sortType === 'popular') {
+    // 인기순 : 별점 + 리뷰수
+    if (sortType === 'popular') {
 
-    const scoreA =
-      ((a.rating || 0) * 100) + (a.review || 0)
+      const scoreA =
+        ((a.rating || 0) * 100) + (a.review || 0)
 
-    const scoreB =
-      ((b.rating || 0) * 100) + (b.review || 0)
+      const scoreB =
+        ((b.rating || 0) * 100) + (b.review || 0)
 
-    return scoreB - scoreA
-  }
+      return scoreB - scoreA
+    }
 
-  // 높은 가격순
-  if (sortType === 'high') {
-    return getPriceNumber(b.price) - getPriceNumber(a.price)
-  }
+    // 높은 가격순
+    if (sortType === 'high') {
+      return getPriceNumber(b.price) - getPriceNumber(a.price)
+    }
 
-  // 낮은 가격순
-  if (sortType === 'low') {
-    return getPriceNumber(a.price) - getPriceNumber(b.price)
-  }
+    // 낮은 가격순
+    if (sortType === 'low') {
+      return getPriceNumber(a.price) - getPriceNumber(b.price)
+    }
 
-  return 0
-})
+    return 0
+  })
 
   const handleInputChange = (e) => {
     setKeyword(e.target.value)
@@ -128,7 +132,7 @@ const sortedProducts = [...searchedProducts].sort((a, b) => {
     localStorage.setItem('cartItems', JSON.stringify(updatedCart))
     window.dispatchEvent(new Event('cartUpdated'))
 
-    alert('장바구니에 담겼습니다.')
+    setShowCartPopup(true)
   }
 
   return (
@@ -149,7 +153,7 @@ const sortedProducts = [...searchedProducts].sort((a, b) => {
         </div>
 
         <div className="recommend-area">
-          <p>추천 검색어</p>
+          <p>관련 검색어</p>
 
           <div className="recommend-list">
             {recommendKeywords.map((item) => (
@@ -210,30 +214,40 @@ const sortedProducts = [...searchedProducts].sort((a, b) => {
           ) : (
             <div className="search-product-grid">
               {sortedProducts.map((item) => (
-                <article className="search-product-card" key={item.id}>
-                  <div
-                    className="search-product-img"
-                    style={{ backgroundImage: `url(${item.image})` }}
-                  ></div>
+<article
+  className="search-product-card"
+  key={item.id}
+>
+<div
+  className="search-product-link-area"
+  onClick={() => navigate(`/product/${item.id}`)}
+>
 
-<h3>{item.name}</h3>
+  <div
+    className="search-product-img"
+    style={{ backgroundImage: `url(${item.image})` }}
+  ></div>
 
-<p className="search-product-old-price">
-  {item.discountRate > 0
-    ? `${item.oldPrice}원`
-    : '\u00A0'}
-</p>
+  <h3>{item.name}</h3>
 
-<div className="search-price-row">
-{item.discountRate > 0 && (
-  <span className="search-discount-rate">
-    {item.discountRate}%
-  </span>
-)}
-
-  <p className="search-product-price">
-    {item.price}원
+  <p className="search-product-old-price">
+    {item.discountRate > 0
+      ? `${item.oldPrice}원`
+      : null}
   </p>
+
+  <div className="search-price-row">
+    {item.discountRate > 0 && (
+      <span className="search-discount-rate">
+        {item.discountRate}%
+      </span>
+    )}
+
+    <p className="search-product-price">
+      {item.price}원
+    </p>
+  </div>
+
 </div>
 
                   <div className="search-product-bottom">
@@ -242,13 +256,13 @@ const sortedProducts = [...searchedProducts].sort((a, b) => {
                     </small>
 
                     <div>
-                      <Heart size={24} strokeWidth={1.7} style={{ fill: 'none', stroke: 'currentColor' }}/>
+                      <Heart size={24} strokeWidth={1.7} style={{ fill: 'none', stroke: 'currentColor' }} />
                       <button
                         className="search-cart-btn"
                         onClick={() => handleAddToCart(item)}
                       >
-                        <ShoppingCart size={24} strokeWidth={1.7} 
-        style={{ fill: 'none', stroke: 'currentColor' }}/>
+                        <ShoppingCart size={24} strokeWidth={1.7}
+                          style={{ fill: 'none', stroke: 'currentColor' }} />
                       </button>
                     </div>
                   </div>
@@ -269,7 +283,31 @@ const sortedProducts = [...searchedProducts].sort((a, b) => {
           />
         </Link>
       </section>
+      {showCartPopup && (
+        <div className="cart-popup-overlay">
+          <div className="cart-popup">
 
+            <p>장바구니로 이동하시겠습니까?</p>
+
+            <div className="cart-popup-buttons">
+
+              <button
+                onClick={() => setShowCartPopup(false)}
+              >
+                계속 쇼핑하기
+              </button>
+
+              <button
+                className="go-cart"
+                onClick={() => navigate('/cart')}
+              >
+                장바구니 가기
+              </button>
+
+            </div>
+          </div>
+        </div>
+      )}
 
     </main>
   )
