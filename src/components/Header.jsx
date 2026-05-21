@@ -206,20 +206,11 @@ const isDarkMode = headerState.darkMode
         </Link>
 
         <Link to="/cart" className="cart-icon-wrap">
-          <svg className="cart-icon" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M3.5 4.8H5.8L7.8 15.2C7.95 16 8.65 16.6 9.45 16.6H18.2C18.95 16.6 19.6 16.1 19.85 15.4L22 8.2H7"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              fill="none"
-            />
-
-            <circle cx="10" cy="20" r="1.35" fill="currentColor" />
-            <circle cx="18.2" cy="20" r="1.35" fill="currentColor" />
-          </svg>
-
+          <img
+            src="/images/icons/ico-cart.png"
+            alt="장바구니"
+            className="cart-icon-img"
+          />
           {cartCount > 0 && (
             <span className="cart-count">{cartCount}</span>
           )}

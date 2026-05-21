@@ -120,9 +120,10 @@
   display: block;
 }
 
-.cart-icon {
-  width: 31px;
-  height: 31px;
+.cart-icon-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
   display: block;
 }
 

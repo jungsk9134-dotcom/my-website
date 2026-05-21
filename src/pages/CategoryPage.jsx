@@ -88,7 +88,14 @@ function CategoryPage() {
   const [showCartPopup, setShowCartPopup] = useState(false)
   const [visibleCount, setVisibleCount] = useState(16)
   const scrollYRef = useRef(null)
-
+  const [likedItems, setLikedItems] = useState([])
+  const handleLikeToggle = (id) => {
+        setLikedItems((prev) =>
+          prev.includes(id)
+            ? prev.filter((itemId) => itemId !== id)
+            : [...prev, id]
+        )
+      }
   useEffect(() => {
     if (scrollYRef.current !== null) {
       window.scrollTo(0, scrollYRef.current)
@@ -100,18 +107,18 @@ function CategoryPage() {
 
   const currentInfo = categoryInfo[type]
 
-const filteredProducts = products
-  .filter((item) => {
-    if (type === 'all' || type === 'best') return true
+  const filteredProducts = products
+    .filter((item) => {
+      if (type === 'all' || type === 'best') return true
 
-    if (item.category !== type) return false
+      if (item.category !== type) return false
 
-    if (filter === 'all') return true
+      if (filter === 'all') return true
 
-    return item.subCategory === filter
-  })
+      return item.subCategory === filter
+    })
 
-  .sort((a, b) => {
+    .sort((a, b) => {
 
     // 최신순 : ID 오름차순
     if (sortType === 'latest') {
@@ -307,6 +314,7 @@ return (
                 </div>
               </div>
 
+<<<<<<< HEAD
               <div className="product-bottom">
                 <div className="review">
                   ★ {item.rating || 0}
@@ -315,6 +323,42 @@ return (
                 <ProductIcons onCartClick={(e) => handleAddToCart(e, item)} />
               </div>
             </div>
+=======
+  <div className="product-bottom">
+    <div className="review">
+      ★ {item.rating || 0}
+      <span>({item.review || 0})</span>
+    </div>
+
+    <div className="product-icons">
+      <button
+        type="button"
+        className="heart-icon-btn"
+        onClick={(e) => {
+          e.stopPropagation()
+          handleLikeToggle(item.id)
+        }}
+      >
+        <img
+          src={
+            likedItems.includes(item.id)
+              ? "/images/icons/ico-heart-aurora.png"
+              : "/images/icons/ico-heart-black.png"
+          }
+          alt="찜하기"
+          className="heart-icon-img"
+        />
+      </button>
+      <button
+        className="cart-icon-btn"
+        onClick={(e) => handleAddToCart(e, item)}
+      >
+        <CartIcon />
+      </button>
+    </div>
+  </div>
+</div>
+>>>>>>> c30ee56 (작업 저장)
           </article>
         ))}
       </div>
