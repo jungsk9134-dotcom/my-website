@@ -39,45 +39,27 @@
 /* 텍스트 */
 .curation-hero-text {
   position: absolute;
-
   top: 50%;
   left: 50%;
-
   transform: translate(-50%, -50%);
-
   z-index: 2;
-
   color: white;
   text-align: center;
 }
 
 .curation-hero-text h2 {
   font-size: 48px;
-  font-weight: 400;
+  font-weight: 200;
   line-height: 1.4;
 }
 
 .curation-content {
   position: relative;
   z-index: 5;
-
   background: white;
-
-  /* 
-    오설록 스타일의 전체적으로 완만한 반원(호) 만들기 
-    형식: 좌상단 우상단 우하단 좌하단 / 수직수평 분리 비율
-    수평(너비)은 50%씩 차지하게 하여 가운데서 만나게 하고, 
-    수직(높이)은 PC 기준 120px~150px 정도로 부드러운 호를 그리게 만듭니다.
-  */
   border-radius: 50% 50% 0 0 / 120px 120px 0 0;
-
-  /* 내부 요소가 완만한 호 밖으로 삐져나가지 않도록 고정 */
   overflow: hidden;
-
-  /* 반원의 위쪽 둥근 정점이 비디오와 겹치도록 마이너스 마진 조정 */
   margin-top: 40vh;
-
-  /* 경계면 입체감을 위한 미세한 그림자 */
   box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.06);
 }
 
@@ -89,15 +71,12 @@
   background: #fff;
   border-radius: 0; 
   margin-top: 0;
-  
   position: relative;
   z-index: 5;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 140px;
-  
-  /* 중요: 상단이 깊게 파인 반원이 되었으므로 내부 텍스트나 아이콘이 잘리지 않도록 상단 여백을 충분히 줍니다 */
   padding: 120px 40px 35px; 
 }
 
