@@ -435,8 +435,15 @@ function ProductDetail({ onAddCart }) {
             </div>
 
             <div className="btns">
-              <button onClick={handleCartClick}>장바구니</button>
-              <button className="buy">바로 구매</button>
+              <div className="btns">
+                <button className="cart-btn" onClick={handleCartClick}>
+                  장바구니
+                </button>
+
+                <button className="buy">
+                  바로 구매
+                </button>
+              </div>
             </div>
           </div>
         </div>

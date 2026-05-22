@@ -583,22 +583,16 @@ filter: blur(0);
   align-items: center;
   justify-content: center;
   gap: 20px;
-
   padding: 16px 40px;
-
   border-radius: 50px;
   border: 2px solid rgba(255, 255, 255, 0.8);
-
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-
   color: #fff;
-
-  font-weight: 400 !important;
+  font-weight: 200 !important;
   font-size: 18px !important;
   line-height: 24px !important;
   letter-spacing: 0 !important;
-
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -621,7 +615,7 @@ filter: blur(0);
 }
 
 .bottom-banner-text p {
-  font-weight: 400;
+  font-weight: 200;
   font-size: 18px;
   line-height: 24px;
   letter-spacing: 0;
@@ -641,8 +635,11 @@ filter: blur(0);
 }
 
 .bottom-banner-text button:hover {
-  background: rgba(255, 255, 255, 0.12);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.brand-bottom-banner button:active {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 /* 푸터 */

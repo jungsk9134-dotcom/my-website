@@ -546,7 +546,3 @@
 .heart-icon-btn:hover .heart-icon-img {
   opacity: 0.7;
 }
-
-.heart-icon-btn:active .heart-icon-img {
-  transform: scale(0.9);
-}
