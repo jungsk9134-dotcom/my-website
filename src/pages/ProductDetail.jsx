@@ -35,9 +35,19 @@ function ProductDetail({ onAddCart }) {
 
   const { id } = useParams()
   const navigate = useNavigate()
+  const routeId = Number(id)
+  const normalProduct = products.find((item) => item.id === routeId)
+  const curationProduct = curationProducts.find(
+    (item) =>
+      item.id === routeId ||
+      item.detailId === routeId ||
+      item.name === normalProduct?.name
+  )
 
-  const allProducts = [...curationProducts, ...products]
-  const product = allProducts.find((item) => item.id === Number(id))
+  const product = {
+    ...(normalProduct || {}),
+    ...(curationProduct || {}),
+  }
 
   const reviews = [...userReviews, ...(product?.reviews || [])]
   const qnas = [...userQnas, ...(product?.qna || [])]
@@ -339,8 +349,8 @@ function ProductDetail({ onAddCart }) {
               <div className="sale-price">
                 <span className="sale">20%</span>
                 <span className="price">
-  {product.price || '0원'}
-</span>
+                  {product.price || '0원'}
+                </span>
               </div>
             </div>
 
@@ -351,43 +361,42 @@ function ProductDetail({ onAddCart }) {
               </span>
             </div>
 
-{product.sizes && (
-  <div className="select-row">
-    <label>사이즈</label>
+              {product.sizes && (
+                <div className="select-row">
+                  <label>사이즈</label>
 
-    <select
-      value={selectedSize}
-      onChange={(e) => setSelectedSize(e.target.value)}
-    >
-      <option value="">선택하세요</option>
+                  <select
+                    value={selectedSize}
+                    onChange={(e) => setSelectedSize(e.target.value)}
+                  >
+                    <option value="">선택하세요</option>
 
-      {product.sizes.map((size) => (
-        <option key={size} value={size}>
-          {size}
-        </option>
-      ))}
-    </select>
-  </div>
-)}
+                    {product.sizes.map((size) => (
+                      <option key={size} value={size}>
+                        {size}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+            {product.colors && (
+              <div className="select-row">
+                <label>컬러</label>
 
-{product.colors && (
-  <div className="select-row">
-    <label>컬러</label>
+                <select
+                  value={selectedColor}
+                  onChange={(e) => setSelectedColor(e.target.value)}
+                >
+                  <option value="">선택하세요</option>
 
-    <select
-      value={selectedColor}
-      onChange={(e) => setSelectedColor(e.target.value)}
-    >
-      <option value="">선택하세요</option>
-
-      {product.colors.map((color) => (
-        <option key={color} value={color}>
-          {color}
-        </option>
-      ))}
-    </select>
-  </div>
-)}
+                  {product.colors.map((color) => (
+                    <option key={color} value={color}>
+                      {color}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
           </div>
 
           <div className="selected-product">
@@ -416,34 +425,31 @@ function ProductDetail({ onAddCart }) {
               </div>
 
               <strong>
-{(priceNumber * quantity).toLocaleString()}원
-              </strong>
-            </div>
-          </div>
-
-          <div className="detail-info-bottom">
-            <div className="total">
-              <span>총 상품 금액</span>
-
-              <div>
-                <strong>
-{(priceNumber * quantity).toLocaleString()}원
+                {(priceNumber * quantity).toLocaleString()}원
                 </strong>
-
-                <em>&nbsp; ({quantity}개)</em>
               </div>
             </div>
+
+            <div className="detail-info-bottom">
+              <div className="total">
+                <span>총 상품 금액</span>
+
+                <div>
+                  <strong>
+                    {(priceNumber * quantity).toLocaleString()}원
+                  </strong>
+                  <em>&nbsp; ({quantity}개)</em>
+                </div>
+              </div>
 
             <div className="btns">
-              <div className="btns">
-                <button className="cart-btn" onClick={handleCartClick}>
-                  장바구니
-                </button>
+              <button className="cart-btn" onClick={handleCartClick}>
+                장바구니
+              </button>
 
-                <button className="buy">
-                  바로 구매
-                </button>
-              </div>
+              <button className="buy">
+                바로 구매
+              </button>
             </div>
           </div>
         </div>
@@ -973,14 +979,21 @@ function ProductDetail({ onAddCart }) {
         <div className="cart-popup-overlay">
           <div className="cart-popup">
             <p>장바구니로 이동하시겠습니까?</p>
-
             <div className="cart-popup-buttons">
-              <button onClick={() => setShowCartPopup(false)}>
+              <button
+                type="button"
+                onClick={() => setShowCartPopup(false)}
+              >
                 계속 쇼핑하기
               </button>
-
-              <button className="go-cart" onClick={() => navigate('/cart')}>
-                장바구니 가기
+              <button
+                type="button"
+                className="go-cart"
+                onClick={() => {
+                  window.location.href = '/cart'
+                }}
+              >
+                장바구니로 이동
               </button>
             </div>
           </div>

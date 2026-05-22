@@ -21,7 +21,7 @@ function App() {
 
     return savedCart.map((item) => ({
       ...item,
-      quantity: 1,
+      quantity: item.quantity || 1,
     }))
   })
 
@@ -34,11 +34,11 @@ function App() {
       if (existItem) {
         newCartItems = prev.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: 1 }
+            ? { ...item, quantity: item.quantity + product.quantity }
             : item
         )
       } else {
-        newCartItems = [...prev, { ...product, quantity: 1 }]
+        newCartItems = [...prev, { ...product, quantity: product.quantity || 1 }]
       }
 
       localStorage.setItem('cartItems', JSON.stringify(newCartItems))
@@ -94,11 +94,7 @@ function App() {
 
         <Route
           path="/product/:id"
-          element={
-            <ProductDetail
-              onAddCart={handleAddCart}
-            />
-          }
+          element={<ProductDetail onAddCart={handleAddCart} />}
         />
 
         <Route path="/category/:type" element={<CategoryPage />} />

@@ -122,7 +122,7 @@ function Cart({ cartItems, setCartItems }) {
               onClick={handleDeleteSelected}
               disabled={selectedIds.length === 0}
             >
-              선택삭제
+              선택 삭제
             </button>
           </div>
 
