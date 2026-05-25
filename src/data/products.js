@@ -36,6 +36,8 @@ export const products = [
     rating: 4.8,
     review: 9,
     image: '/images/products/prod-tt-05.png',
+    sizes: ['싱글', '더블', '퀸'],
+    colors: ['샌드', '베이지', '카키'],
   },
   {
     id: 3,

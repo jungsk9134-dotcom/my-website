@@ -124,8 +124,15 @@ function ProductDetail({ onAddCart }) {
   const dummyDetailData = {
     detailImages: ['/images/detail/dummy-detail.png'],
 
-    reviewSummary:
-      '아직 리뷰가 적은 상품입니다. 캠핑 상황에서 편하게 사용할 수 있도록 준비된 기본 리뷰 요약입니다.',
+    reviewSummary: (
+      <>
+        AI 리뷰 서비스가 제공되는 부분입니다. 해당 서비스는 최근
+        6개월 간의 리뷰를 대상으로 제공됩니다.
+        <br />
+        최근 등록된 제품의 경우 충분한 리뷰가 없어 서비스 제공이
+        어려울 수 있습니다.
+      </>
+    ),
 
     reviews: shuffledReviews,
 
@@ -480,7 +487,7 @@ function ProductDetail({ onAddCart }) {
                     value={selectedSize}
                     onChange={(e) => setSelectedSize(e.target.value)}
                   >
-                    <option value="">선택하세요</option>
+                    <option value="">[필수] 옵션을 선택해 주세요.</option>
 
                     {product.sizes.map((size) => (
                       <option key={size} value={size}>
@@ -498,7 +505,7 @@ function ProductDetail({ onAddCart }) {
                   value={selectedColor}
                   onChange={(e) => setSelectedColor(e.target.value)}
                 >
-                  <option value="">선택하세요</option>
+                  <option value="">[필수] 옵션을 선택해 주세요.</option>
 
                   {product.colors.map((color) => (
                     <option key={color} value={color}>
@@ -513,10 +520,17 @@ function ProductDetail({ onAddCart }) {
           <div className="selected-product">
             <button className="remove-btn">×</button>
 
-            <p>{product.name}</p>
+            <p className="selected-product-name">{product.name}</p>
 
-            {selectedSize && <span>- 사이즈 {selectedSize}</span>}
-            {selectedColor && <span>- 컬러 {selectedColor}</span>}
+              <div className="selected-option-lines">
+                <span className={product.sizes ? '' : 'empty-option'}>
+                  - 사이즈 {selectedSize || '선택'}
+                </span>
+
+                <span className={product.colors ? '' : 'empty-option'}>
+                  - 컬러 {selectedColor || '선택'}
+                </span>
+              </div>
 
             <div className="selected-bottom">
               <div className="quantity">
