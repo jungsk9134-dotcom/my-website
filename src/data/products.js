@@ -19,6 +19,10 @@ export const products = [
     rating: 4.9,
     review: 15,
     image: '/images/products/prod-tt-01.png',
+
+    detailImages: [
+    '/images/products-info/prod-tt-08-info.png',
+  ],
   },
   {
     id: 2,
@@ -92,6 +96,10 @@ export const products = [
     rating: 4.9,
     review: 11,
     image: '/images/products/prod-tc-05.png',
+
+    detailImages: [
+    '/images/products-info/prod-tc-05-info.png',
+  ],
   },
   {
     id: 7,
@@ -145,6 +153,10 @@ export const products = [
     rating: 4.9,
     review: 18,
     image: '/images/products/prod-lf-01.png',
+
+    detailImages: [
+    '/images/products-info/prod-lf-01-info.png',
+  ],
   },
   {
     id: 11,
@@ -236,6 +248,10 @@ export const products = [
     rating: 4.8,
     review: 7,
     image: '/images/products/prod-tc-03.png',
+
+    detailImages: [
+    '/images/products-info/prod-tc-03-info.png',
+  ],
   },
   {
     id: 18,
@@ -249,6 +265,10 @@ export const products = [
     rating: 4.9,
     review: 10,
     image: '/images/products/prod-tc-08.png',
+
+    detailImages: [
+    '/images/products-info/prod-tc-08-info.png',
+  ],
   },
   {
     id: 19,
@@ -353,6 +373,10 @@ export const products = [
     rating: 4.9,
     review: 14,
     image: '/images/products/prod-lf-02.png',
+
+    detailImages: [
+    '/images/products-info/prod-lf-02-info.png',
+  ],
   },
   {
     id: 27,

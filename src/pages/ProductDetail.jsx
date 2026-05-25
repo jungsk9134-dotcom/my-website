@@ -60,22 +60,23 @@ function ProductDetail({ onAddCart }) {
   )
 
   useEffect(() => {
-    if (product) {
-      setSelectedImage(product.image)
+    if (!product?.id) return
 
-      const savedReviews =
-        JSON.parse(localStorage.getItem(`reviews-${product.id}`)) || []
+    window.scrollTo(0, 0)
 
-      const savedQnas =
-        JSON.parse(localStorage.getItem(`qnas-${product.id}`)) || []
+    setSelectedImage(product.image)
 
-      setUserReviews(savedReviews)
-      setUserQnas(savedQnas)
-      setCurrentPage(1)
-    }
-  }, [product])
+    const savedReviews =
+      JSON.parse(localStorage.getItem(`reviews-${product.id}`)) || []
 
+    const savedQnas =
+      JSON.parse(localStorage.getItem(`qnas-${product.id}`)) || []
 
+    setUserReviews(savedReviews)
+    setUserQnas(savedQnas)
+    setCurrentPage(1)
+    setActiveTab('detail')
+  }, [id])
 
   useEffect(() => {
     const handleScroll = () => {
