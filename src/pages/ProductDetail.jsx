@@ -44,9 +44,119 @@ function ProductDetail({ onAddCart }) {
       item.name === normalProduct?.name
   )
 
-  const product = {
+  // 더미 데이터 관련 //
+  const dummyReviews = [
+    {
+      user: 'camper01 | 26.05.12',
+      text: '배송도 빠르고 제품 상태도 좋아요.',
+      img: '/images/products-dummy/prod-review-dummy-01.png',
+      rating: 5,
+    },
+    {
+      user: 'outdoor02 | 26.05.10',
+      text: '캠핑장에서 사용하기 편했습니다.',
+      img: '/images/products-dummy/prod-review-dummy-02.png',
+      rating: 5,
+    },
+    {
+      user: 'forest03 | 26.05.08',
+      text: '디자인이 예쁘고 감성 캠핑 느낌이 잘 나요.',
+      img: '/images/products-dummy/prod-review-dummy-03.png',
+      rating: 4,
+    },
+    {
+      user: 'night04 | 26.05.05',
+      text: '생각보다 튼튼하고 마감도 깔끔합니다.',
+      img: '/images/products-dummy/prod-review-dummy-04.png',
+      rating: 5,
+    },
+    {
+      user: 'camp05 | 26.05.01',
+      text: '가성비가 괜찮고 사용하기 편해요.',
+      img: '/images/products-dummy/prod-review-dummy-05.png',
+      rating: 4,
+    },
+  ]
+
+  const dummyQnas = [
+    {
+      id: 1,
+      status: '답변 완료',
+      title: '배송 문의',
+      writer: 'campuser',
+      question: '배송은 얼마나 걸리나요?',
+      answer: '보통 1~3일 정도 소요됩니다.',
+    },
+    {
+      id: 2,
+      status: '답변 완료',
+      title: '재입고 문의',
+      writer: 'outdoorlife',
+      question: '품절되면 재입고 예정 있나요?',
+      answer: '현재 재입고 일정 확인 중입니다.',
+    },
+    {
+      id: 3,
+      status: '답변 완료',
+      title: '제품 문의',
+      writer: 'campingday',
+      question: '초보 캠핑용으로 사용 가능할까요?',
+      answer: '초보자분들도 편하게 사용 가능합니다.',
+    },
+    {
+      id: 4,
+      status: '답변 완료',
+      title: '기타 문의',
+      writer: 'forestcamp',
+      question: '실사용 색상 차이가 큰가요?',
+      answer: '실제 색상은 상세이미지와 거의 동일합니다.',
+    },
+  ]
+  // 리뷰 갯수 //
+  const shuffledReviews = [...dummyReviews]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 5)
+
+  const shuffledQnas = [...dummyQnas]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 2)
+
+  const dummyDetailData = {
+    detailImages: ['/images/detail/dummy-detail.png'],
+
+    reviewSummary:
+      '아직 리뷰가 적은 상품입니다. 캠핑 상황에서 편하게 사용할 수 있도록 준비된 기본 리뷰 요약입니다.',
+
+    reviews: shuffledReviews,
+
+    qna: shuffledQnas,
+  }
+  
+  const baseProduct = {
     ...(normalProduct || {}),
     ...(curationProduct || {}),
+  }
+
+  const product = {
+    ...baseProduct,
+
+    reviewSummary:
+      baseProduct.reviewSummary || dummyDetailData.reviewSummary,
+
+    reviews:
+      baseProduct.reviews && baseProduct.reviews.length > 0
+        ? baseProduct.reviews
+        : dummyDetailData.reviews,
+
+    qna:
+      baseProduct.qna && baseProduct.qna.length > 0
+        ? baseProduct.qna
+        : dummyDetailData.qna,
+
+    detailImages:
+      baseProduct.detailImages && baseProduct.detailImages.length > 0
+        ? baseProduct.detailImages
+        : dummyDetailData.detailImages,
   }
 
   const reviews = [...userReviews, ...(product?.reviews || [])]

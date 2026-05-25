@@ -196,6 +196,7 @@ export const products = [
     rating: 4.8,
     review: 7,
     image: '/images/products/prod-lf-09.png',
+    
   },
   {
     id: 14,
@@ -209,7 +210,12 @@ export const products = [
     rating: 4.8,
     review: 9,
     image: '/images/products/prod-sm-05.png',
+
+    detailImages: [
+    '/images/products-info/prod-sm-05-info.png',
+  ],
   },
+  
   {
     id: 15,
     name: '스크린하우스 타프',
@@ -403,6 +409,10 @@ export const products = [
     rating: 4.8,
     review: 4,
     image: '/images/products/prod-sm-04.png',
+
+    detailImages: [
+    '/images/products-info/prod-sm-04-info.png',
+  ],
   },
   {
     id: 29,
@@ -520,6 +530,10 @@ export const products = [
     rating: 4.8,
     review: 7,
     image: '/images/products/prod-sm-03.png',
+
+    detailImages: [
+    '/images/products-info/prod-sm-03-info.png',
+  ],
   },
   {
     id: 38,
