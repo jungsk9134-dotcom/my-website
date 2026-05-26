@@ -14,7 +14,7 @@ function ProductDetail({ onAddCart }) {
   const [reviewImages, setReviewImages] = useState([])
   const [userReviews, setUserReviews] = useState([])
   const [isPhotoUploadOpen, setIsPhotoUploadOpen] = useState(false)
-  const [openGuide, setOpenGuide] = useState(null)
+  const [openGuide, setOpenGuide] = useState('null')
   const [openQaId, setOpenQaId] = useState(null)
   const [isQaModalOpen, setIsQaModalOpen] = useState(false)
   const [showCartPopup, setShowCartPopup] = useState(false)
@@ -35,9 +35,136 @@ function ProductDetail({ onAddCart }) {
 
   const { id } = useParams()
   const navigate = useNavigate()
+  const routeId = Number(id)
+  const normalProduct = products.find((item) => item.id === routeId)
+  const curationProduct = curationProducts.find(
+    (item) =>
+      item.id === routeId ||
+      item.detailId === routeId ||
+      item.name === normalProduct?.name
+  )
 
-  const allProducts = [...curationProducts, ...products]
-  const product = allProducts.find((item) => item.id === Number(id))
+  // 더미 데이터 관련 //
+  const dummyReviews = [
+    {
+      user: 'camper01 | 26.05.12',
+      text: '배송도 빠르고 제품 상태도 좋아요.',
+      img: '/images/products-dummy/prod-review-dummy-01.png',
+      rating: 5,
+    },
+    {
+      user: 'outdoor02 | 26.05.10',
+      text: '캠핑장에서 사용하기 편했습니다.',
+      img: '/images/products-dummy/prod-review-dummy-02.png',
+      rating: 5,
+    },
+    {
+      user: 'forest03 | 26.05.08',
+      text: '디자인이 예쁘고 감성 캠핑 느낌이 잘 나요.',
+      img: '/images/products-dummy/prod-review-dummy-03.png',
+      rating: 4,
+    },
+    {
+      user: 'night04 | 26.05.05',
+      text: '생각보다 튼튼하고 마감도 깔끔합니다.',
+      img: '/images/products-dummy/prod-review-dummy-04.png',
+      rating: 5,
+    },
+    {
+      user: 'camp05 | 26.05.01',
+      text: '가성비가 괜찮고 사용하기 편해요.',
+      img: '/images/products-dummy/prod-review-dummy-05.png',
+      rating: 4,
+    },
+  ]
+
+  const dummyQnas = [
+    {
+      id: 1,
+      status: '답변 완료',
+      title: '배송 문의',
+      writer: 'campuser',
+      question: '배송은 얼마나 걸리나요?',
+      answer: '보통 1~3일 정도 소요됩니다.',
+    },
+    {
+      id: 2,
+      status: '답변 완료',
+      title: '재입고 문의',
+      writer: 'outdoorlife',
+      question: '품절되면 재입고 예정 있나요?',
+      answer: '현재 재입고 일정 확인 중입니다.',
+    },
+    {
+      id: 3,
+      status: '답변 완료',
+      title: '제품 문의',
+      writer: 'campingday',
+      question: '초보 캠핑용으로 사용 가능할까요?',
+      answer: '초보자분들도 편하게 사용 가능합니다.',
+    },
+    {
+      id: 4,
+      status: '답변 완료',
+      title: '기타 문의',
+      writer: 'forestcamp',
+      question: '실사용 색상 차이가 큰가요?',
+      answer: '실제 색상은 상세이미지와 거의 동일합니다.',
+    },
+  ]
+  // 리뷰 갯수 //
+  const shuffledReviews = [...dummyReviews]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 5)
+
+  const shuffledQnas = [...dummyQnas]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 2)
+
+  const dummyDetailData = {
+    detailImages: ['/images/detail/dummy-detail.png'],
+
+    reviewSummary: (
+      <>
+        AI 리뷰 서비스가 제공되는 부분입니다. 해당 서비스는 최근
+        6개월 간의 리뷰를 대상으로 제공됩니다.
+        <br />
+        최근 등록된 제품의 경우 충분한 리뷰가 없어 서비스 제공이
+        어려울 수 있습니다.
+      </>
+    ),
+
+    reviews: shuffledReviews,
+
+    qna: shuffledQnas,
+  }
+  
+  const baseProduct = {
+    ...(normalProduct || {}),
+    ...(curationProduct || {}),
+  }
+
+  const product = {
+    ...baseProduct,
+
+    reviewSummary:
+      baseProduct.reviewSummary || dummyDetailData.reviewSummary,
+
+    reviews:
+      baseProduct.reviews && baseProduct.reviews.length > 0
+        ? baseProduct.reviews
+        : dummyDetailData.reviews,
+
+    qna:
+      baseProduct.qna && baseProduct.qna.length > 0
+        ? baseProduct.qna
+        : dummyDetailData.qna,
+
+    detailImages:
+      baseProduct.detailImages && baseProduct.detailImages.length > 0
+        ? baseProduct.detailImages
+        : dummyDetailData.detailImages,
+  }
 
   const reviews = [...userReviews, ...(product?.reviews || [])]
   const qnas = [...userQnas, ...(product?.qna || [])]
@@ -50,20 +177,23 @@ function ProductDetail({ onAddCart }) {
   )
 
   useEffect(() => {
-    if (product) {
-      setSelectedImage(product.image)
+    if (!product?.id) return
 
-      const savedReviews =
-        JSON.parse(localStorage.getItem(`reviews-${product.id}`)) || []
+    window.scrollTo(0, 0)
 
-      const savedQnas =
-        JSON.parse(localStorage.getItem(`qnas-${product.id}`)) || []
+    setSelectedImage(product.image)
 
-      setUserReviews(savedReviews)
-      setUserQnas(savedQnas)
-      setCurrentPage(1)
-    }
-  }, [product])
+    const savedReviews =
+      JSON.parse(localStorage.getItem(`reviews-${product.id}`)) || []
+
+    const savedQnas =
+      JSON.parse(localStorage.getItem(`qnas-${product.id}`)) || []
+
+    setUserReviews(savedReviews)
+    setUserQnas(savedQnas)
+    setCurrentPage(1)
+    setActiveTab('detail')
+  }, [id])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -97,8 +227,6 @@ function ProductDetail({ onAddCart }) {
   }, [])
 
   if (!product) return <div>상품 없음</div>
-
-  const priceNumber = Number(String(product.price || 0).replace(/[^0-9]/g, ''))
 
   const handleReviewImage = (file) => {
     if (!file) return
@@ -288,6 +416,9 @@ function ProductDetail({ onAddCart }) {
   }
 
   const breadcrumbCategory = categoryNameMap[product.category] || '전체상품'
+  const priceNumber = Number(
+  String(product.price || 0).replace(/[^0-9]/g, '')
+)
 
   return (
     <main className="detail-page">
@@ -335,7 +466,6 @@ function ProductDetail({ onAddCart }) {
 
               <div className="sale-price">
                 <span className="sale">20%</span>
-
                 <span className="price">
                   {product.price || '0원'}
                 </span>
@@ -344,31 +474,29 @@ function ProductDetail({ onAddCart }) {
 
             <div className="delivery-row">
               <span>배송비</span>
-
               <span>
                 3,000원 <small>(5만원 이상 무료배송)</small>
               </span>
             </div>
 
-            {product.sizes && (
-              <div className="select-row">
-                <label>사이즈</label>
+              {product.sizes && (
+                <div className="select-row">
+                  <label>사이즈</label>
 
-                <select
-                  value={selectedSize}
-                  onChange={(e) => setSelectedSize(e.target.value)}
-                >
-                  <option value="">선택하세요</option>
+                  <select
+                    value={selectedSize}
+                    onChange={(e) => setSelectedSize(e.target.value)}
+                  >
+                    <option value="">[필수] 옵션을 선택해 주세요.</option>
 
-                  {product.sizes.map((size) => (
-                    <option key={size} value={size}>
-                      {size}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-
+                    {product.sizes.map((size) => (
+                      <option key={size} value={size}>
+                        {size}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
             {product.colors && (
               <div className="select-row">
                 <label>컬러</label>
@@ -377,7 +505,7 @@ function ProductDetail({ onAddCart }) {
                   value={selectedColor}
                   onChange={(e) => setSelectedColor(e.target.value)}
                 >
-                  <option value="">선택하세요</option>
+                  <option value="">[필수] 옵션을 선택해 주세요.</option>
 
                   {product.colors.map((color) => (
                     <option key={color} value={color}>
@@ -392,10 +520,17 @@ function ProductDetail({ onAddCart }) {
           <div className="selected-product">
             <button className="remove-btn">×</button>
 
-            <p>{product.name}</p>
+            <p className="selected-product-name">{product.name}</p>
 
-            {selectedSize && <span>- 사이즈 {selectedSize}</span>}
-            {selectedColor && <span>- 컬러 {selectedColor}</span>}
+              <div className="selected-option-lines">
+                <span className={product.sizes ? '' : 'empty-option'}>
+                  - 사이즈 {selectedSize || '선택'}
+                </span>
+
+                <span className={product.colors ? '' : 'empty-option'}>
+                  - 컬러 {selectedColor || '선택'}
+                </span>
+              </div>
 
             <div className="selected-bottom">
               <div className="quantity">
@@ -416,25 +551,24 @@ function ProductDetail({ onAddCart }) {
 
               <strong>
                 {(priceNumber * quantity).toLocaleString()}원
-              </strong>
-            </div>
-          </div>
-
-          <div className="detail-info-bottom">
-            <div className="total">
-              <span>총 상품 금액</span>
-
-              <div>
-                <strong>
-                  {(priceNumber * quantity).toLocaleString()}원
                 </strong>
-
-                <em>&nbsp; ({quantity}개)</em>
               </div>
             </div>
 
+            <div className="detail-info-bottom">
+              <div className="total">
+                <span>총 상품 금액</span>
+
+                <div>
+                  <strong>
+                    {(priceNumber * quantity).toLocaleString()}원
+                  </strong>
+                  <em>&nbsp; ({quantity}개)</em>
+                </div>
+              </div>
+
             <div className="btns">
-              <button onClick={handleCartClick}>
+              <button className="cart-btn" onClick={handleCartClick}>
                 장바구니
               </button>
 
@@ -478,20 +612,18 @@ function ProductDetail({ onAddCart }) {
 
       <section className="detail-content" ref={detailRef}>
         <div className="detail-content-inner">
-          {(product.detailImages?.length > 0
-            ? product.detailImages
-            : ['/images/detail/dummy-detail.png']
-          ).map((img, index) => (
-            <img
-              key={index}
-              src={img}
-              alt={`${product.name} 상세이미지 ${index + 1}`}
-              className="detail-page-img"
-              onError={(e) => {
-                e.currentTarget.src = '/images/detail/dummy-detail.png'
-              }}
-            />
-          ))}
+          {product.detailImages && product.detailImages.length > 0 ? (
+            product.detailImages.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={`${product.name} 상세이미지 ${index + 1}`}
+                className="detail-page-img"
+              />
+            ))
+          ) : (
+            <div className="fake-img">상세페이지 이미지</div>
+          )}
         </div>
       </section>
 
@@ -870,7 +1002,6 @@ function ProductDetail({ onAddCart }) {
               {reviewImages.map((img, index) => (
                 <div className="review-upload-preview" key={index}>
                   <img src={img} alt={`첨부 이미지 ${index + 1}`} />
-
                   <button
                     type="button"
                     className="review-image-remove"
@@ -973,17 +1104,21 @@ function ProductDetail({ onAddCart }) {
         <div className="cart-popup-overlay">
           <div className="cart-popup">
             <p>장바구니로 이동하시겠습니까?</p>
-
             <div className="cart-popup-buttons">
-              <button onClick={() => setShowCartPopup(false)}>
+              <button
+                type="button"
+                onClick={() => setShowCartPopup(false)}
+              >
                 계속 쇼핑하기
               </button>
-
               <button
+                type="button"
                 className="go-cart"
-                onClick={() => navigate('/cart')}
+                onClick={() => {
+                  window.location.href = '/cart'
+                }}
               >
-                장바구니 가기
+                장바구니로 이동
               </button>
             </div>
           </div>
