@@ -190,8 +190,8 @@
 }
 
 .fire-product-card .product-icon-img {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
   background: transparent;
   border-radius: 0;
@@ -534,8 +534,8 @@
 }
 
 .heart-icon-img {
-  width: 24px !important;
-  height: 24px !important;
+  width: 30px !important;
+  height: 30px !important;
   object-fit: contain !important;
   background: none !important;
   border-radius: 0 !important;

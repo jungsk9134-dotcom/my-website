@@ -129,7 +129,7 @@ function CategoryPage() {
 
       // 최신순
       if (sortType === 'latest') {
-        return (b.id || 0) - (a.id || 0)
+        return (a.id || 0) - (b.id || 0)
       }
 
       // 인기순

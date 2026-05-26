@@ -281,8 +281,8 @@
 /* 버튼 */
 .heart-icon-btn,
 .cart-icon-btn {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   border: none;
   background: transparent;
   padding: 0;
@@ -299,8 +299,8 @@
 }
 
 .product-icon-img {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
 }
 
@@ -414,8 +414,8 @@
 /* 버튼 */
 .heart-icon-btn,
 .cart-icon-btn {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   border: none;
   background: transparent;
   padding: 0;
@@ -428,8 +428,8 @@
 
 /* 하트 이미지 */
 .heart-icon-img {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
   display: block;
   /* 위치 */
@@ -437,8 +437,8 @@
 }
 /* 장바구니 이미지 */
 .cart-img-icon {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
   display: block;
   /* 위치 */
