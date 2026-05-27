@@ -26,6 +26,9 @@ function ProductDetail({ onAddCart }) {
   const [qaText, setQaText] = useState('')
   const [userQnas, setUserQnas] = useState([])
   const [answerInputs, setAnswerInputs] = useState({})
+  const [isEditQaModalOpen, setIsEditQaModalOpen] = useState(false)
+  const [editQaId, setEditQaId] = useState(null)
+  const [editQaText, setEditQaText] = useState('')
 
   const detailRef = useRef(null)
   const reviewRef = useRef(null)
@@ -342,15 +345,24 @@ function ProductDetail({ onAddCart }) {
 
     if (!currentQa) return
 
-    const editText = window.prompt('수정할 문의 내용을 입력해주세요.', currentQa.question)
+    setEditQaId(qaId)
+    setEditQaText(currentQa.question)
+    setQaType(currentQa.title || '제품 문의')
+    setIsEditQaModalOpen(true)
+  }
 
-    if (!editText || editText.trim() === '') return
+  const handleSubmitEditQa = () => {
+    if (editQaText.trim() === '') {
+      alert('문의 내용을 입력해주세요.')
+      return
+    }
 
     const updatedQnas = userQnas.map((qa) =>
-      qa.id === qaId
+      qa.id === editQaId
         ? {
             ...qa,
-            question: editText,
+            title: qaType,
+            question: editQaText,
             status: '처리 대기',
             answer: '',
           }
@@ -359,6 +371,10 @@ function ProductDetail({ onAddCart }) {
 
     setUserQnas(updatedQnas)
     localStorage.setItem(`qnas-${product.id}`, JSON.stringify(updatedQnas))
+
+    setIsEditQaModalOpen(false)
+    setEditQaId(null)
+    setEditQaText('')
   }
 
   const handleDeleteQaAnswer = (qaId) => {
@@ -1053,7 +1069,11 @@ function ProductDetail({ onAddCart }) {
             <button
               className="qa-modal-close"
               type="button"
-              onClick={() => setIsQaModalOpen(false)}
+              onClick={() => {
+                setIsQaModalOpen(false)
+                setQaText('')
+                setQaType('제품 문의')
+              }}
             >
               ×
             </button>
@@ -1087,6 +1107,7 @@ function ProductDetail({ onAddCart }) {
                 onClick={() => {
                   setIsQaModalOpen(false)
                   setQaText('')
+                  setQaType('제품 문의')
                 }}
               >
                 취소
@@ -1100,25 +1121,60 @@ function ProductDetail({ onAddCart }) {
         </div>
       )}
 
-      {showCartPopup && (
-        <div className="cart-popup-overlay">
-          <div className="cart-popup">
-            <p>장바구니로 이동하시겠습니까?</p>
-            <div className="cart-popup-buttons">
+      {isEditQaModalOpen && (
+        <div className="qa-modal-overlay">
+          <div className="qa-modal">
+            <button
+              className="qa-modal-close"
+              type="button"
+              onClick={() => {
+                setIsEditQaModalOpen(false)
+                setEditQaId(null)
+                setEditQaText('')
+                setQaType('제품 문의')
+              }}
+            >
+              ×
+            </button>
+
+            <h3>상품 문의하기</h3>
+
+            <p className="qa-modal-sub">어떤 내용이 궁금한가요?</p>
+
+            <div className="qa-category-list">
+              {['제품 문의', '배송 문의', '재입고 문의', '기타'].map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  className={qaType === item ? 'active' : ''}
+                  onClick={() => setQaType(item)}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
+
+            <textarea
+              value={editQaText}
+              onChange={(e) => setEditQaText(e.target.value)}
+              placeholder="제품 사용감이나 구성에 대해 궁금한 내용을 남겨주세요"
+            ></textarea>
+
+            <div className="qa-modal-btns">
               <button
                 type="button"
-                onClick={() => setShowCartPopup(false)}
-              >
-                계속 쇼핑하기
-              </button>
-              <button
-                type="button"
-                className="go-cart"
                 onClick={() => {
-                  window.location.href = '/cart'
+                  setIsEditQaModalOpen(false)
+                  setEditQaId(null)
+                  setEditQaText('')
+                  setQaType('제품 문의')
                 }}
               >
-                장바구니로 이동
+                취소
+              </button>
+
+              <button type="button" onClick={handleSubmitEditQa}>
+                문의 등록하기
               </button>
             </div>
           </div>
