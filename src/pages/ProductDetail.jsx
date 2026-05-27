@@ -333,13 +333,19 @@ function ProductDetail({ onAddCart }) {
   }
 
   const handleDeleteQa = (qaId) => {
-    if (!window.confirm('문의글을 삭제하시겠습니까?')) return
+    setDeleteQaId(qaId)
+    setIsDeleteQaPopupOpen(true)
+  }
 
-    const updatedQnas = userQnas.filter((qa) => qa.id !== qaId)
+  const handleConfirmDeleteQa = () => {
+    const updatedQnas = userQnas.filter((qa) => qa.id !== deleteQaId)
 
     setUserQnas(updatedQnas)
     localStorage.setItem(`qnas-${product.id}`, JSON.stringify(updatedQnas))
+
     setOpenQaId(null)
+    setDeleteQaId(null)
+    setIsDeleteQaPopupOpen(false)
   }
 
   const handleEditQa = (qaId) => {
@@ -380,8 +386,6 @@ function ProductDetail({ onAddCart }) {
   }
 
   const handleDeleteQaAnswer = (qaId) => {
-    if (!window.confirm('답변을 삭제하시겠습니까?')) return
-
     const updatedQnas = userQnas.map((qa) =>
       qa.id === qaId
         ? {
@@ -1177,6 +1181,33 @@ function ProductDetail({ onAddCart }) {
 
               <button type="button" onClick={handleSubmitEditQa}>
                 문의 등록하기
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {isDeleteQaPopupOpen && (
+        <div className="qa-delete-popup-overlay">
+          <div className="qa-delete-popup">
+            <p>문의글을 삭제하시겠습니까?</p>
+
+            <div className="qa-delete-popup-buttons">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsDeleteQaPopupOpen(false)
+                  setDeleteQaId(null)
+                }}
+              >
+                뒤로가기
+              </button>
+
+              <button
+                type="button"
+                className="delete-confirm"
+                onClick={handleConfirmDeleteQa}
+              >
+                삭제하기
               </button>
             </div>
           </div>

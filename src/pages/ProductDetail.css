@@ -1390,3 +1390,85 @@
   color: #fff !important;
   transform: none !important;
 }
+
+.qa-delete-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.qa-delete-popup {
+  width: 640px;
+  background: #fff;
+  padding: 44px 50px 50px;
+  border-radius: 10px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.qa-delete-popup p {
+  margin: 0 0 34px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #222;
+}
+
+.qa-delete-popup-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.qa-delete-popup-buttons button {
+  width: 100%;
+  height: 64px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transform: none !important;
+}
+
+.qa-delete-popup-buttons button:first-child {
+  border: 1px solid #e8e6e1;
+  background: #fff;
+  color: #111;
+}
+
+.qa-delete-popup-buttons .delete-confirm {
+  border: 1px solid #6FAFA7;
+  background: #6FAFA7;
+  color: #fff;
+}
+
+/* 뒤로가기 - 호버 */
+.qa-delete-popup-buttons button:first-child:hover {
+  border-color: #6FAFA7;
+  background: #fff;
+  color: #6FAFA7;
+}
+
+/* 뒤로가기 - 클릭 */
+.qa-delete-popup-buttons button:first-child:active {
+  border-color: #4F8A83;
+  background: #f4fbfa;
+  color: #4F8A83;
+}
+
+/* 삭제하기 - 호버 */
+.qa-delete-popup-buttons .delete-confirm:hover {
+  border-color: #5F9D97;
+  background: #5F9D97;
+  color: #fff;
+}
+
+/* 삭제하기 - 클릭 */
+.qa-delete-popup-buttons .delete-confirm:active {
+  border-color: #4F8A83;
+  background: #4F8A83;
+  color: #fff;
+}
