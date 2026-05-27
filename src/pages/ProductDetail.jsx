@@ -122,7 +122,7 @@ function ProductDetail({ onAddCart }) {
     .slice(0, 2)
 
   const dummyDetailData = {
-    detailImages: ['/images/detail/dummy-detail.png'],
+    detailImages: ['/images/products-info/dummy-detail-info.png'],
 
     reviewSummary: (
       <>

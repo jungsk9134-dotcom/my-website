@@ -277,6 +277,7 @@
   background: #fff;
   color: #111;
   font-family: Arial, sans-serif;
+  min-width: 1440px;
 }
 
 .brand-hero {
@@ -446,4 +447,34 @@
   text-decoration: none;
   color: #111;
   cursor: pointer;
+}
+
+html,
+body,
+#root {
+  min-width: 1440px;
+  overflow-x: auto;
+}
+
+/* 전체 페이지 공통 */
+.brand-page,
+.detail-top,
+.detail-tabs,
+.detail-content {
+  min-width: 1100px;
+}
+
+/* 브랜드 섹션 */
+.brand-story {
+  min-width: 1100px;
+}
+
+.value-list,
+.gallery-list {
+  min-width: 900px;
+}
+
+/* 헤더 고정 */
+.campora-header {
+  min-width: 1440px;
 }
