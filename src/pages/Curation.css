@@ -129,17 +129,33 @@
   color: white;
 }
 
-.curation-card::after {
-  content: "";
+/* 카드 영상 */
+.curation-card-video {
   position: absolute;
   inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  z-index: 1;
+}
+
+/* 카드 오버레이 */
+.curation-card-overlay {
+  position: absolute;
+  inset: 0;
+
   background: rgba(0, 0, 0, 0.38);
+
+  z-index: 2;
 }
 
 .curation-card-text,
 .curation-link {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .curation-card h3 {
@@ -180,18 +196,6 @@
   transform: translateY(-2px);
 }
 
-/* 카드 배경 이미지 */
-.fire-card {
-  background-image: url("/images/curation/curation2-1.jpg");
-}
-
-.car-card {
-  background-image: url("/images/curation/curation2-2.jpg");
-}
-
-.minimal-card {
-  background-image: url("/images/curation/curation2-3.jpg");
-}
 
 
 

@@ -114,20 +114,20 @@ function Home() {
     <main className="campora-home">
       <section className="hero-section">
 
-  <video
-    className="hero-video"
-    autoPlay
-    muted
-    loop
-    playsInline
-  >
-    <source
-      src="/videos/main.mp4"
-      type="video/mp4"
-    />
-  </video>
+        <video
+          className="hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          <source
+            src="/videos/main.mp4"
+            type="video/mp4"
+          />
+        </video>
 
-</section>
+      </section>
 
       <section className="category-section">
         {categories.map((item) => (
@@ -165,14 +165,32 @@ function Home() {
         </p>
 
         <div className="lifestyle-cards">
+
+          {/* 불멍 */}
           <div className="life-card firem-card">
+
+            <video
+              className="card-video"
+              autoPlay
+              muted
+              loop
+              playsInline
+            >
+              <source
+                src="/videos/fire.mp4"
+                type="video/mp4"
+              />
+            </video>
+
             <div className="fire-overlay"></div>
+
             <div className="fire-content">
               <div className="fire-text">
                 <h3>
                   장작 소리만 들리는 밤,<br />
                   불빛 하나로 충분한
                 </h3>
+
                 <h2>불멍 캠핑</h2>
               </div>
 
@@ -182,14 +200,31 @@ function Home() {
             </div>
           </div>
 
+          {/* 차박 */}
           <div className="life-card carm-card">
+
+            <video
+              className="card-video"
+              autoPlay
+              muted
+              loop
+              playsInline
+            >
+              <source
+                src="/videos/car.mp4"
+                type="video/mp4"
+              />
+            </video>
+
             <div className="fire-overlay"></div>
+
             <div className="fire-content">
               <div className="fire-text">
                 <h3>
                   차 안에서 맞이하는 밤,<br />
                   어디든 쉴 수 있는
                 </h3>
+
                 <h2>차박 캠핑</h2>
               </div>
 
@@ -199,14 +234,31 @@ function Home() {
             </div>
           </div>
 
+          {/* 미니멀 */}
           <div className="life-card minimalm-card">
+
+            <video
+              className="card-video"
+              autoPlay
+              muted
+              loop
+              playsInline
+            >
+              <source
+                src="/videos/minimal.mp4"
+                type="video/mp4"
+              />
+            </video>
+
             <div className="fire-overlay"></div>
+
             <div className="fire-content">
               <div className="fire-text">
                 <h3>
                   덜어낸 만큼 여유로운 밤,<br />
                   더욱 조용해지는
                 </h3>
+
                 <h2>미니멀 캠핑</h2>
               </div>
 
@@ -215,6 +267,7 @@ function Home() {
               </Link>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -411,7 +464,7 @@ function Home() {
                           C796.38,199.2,798.58,204.3,799.93,209.62z"/>
                 </g>
               </g>
-        </svg>
+            </svg>
           </div>
 
           <p className="story-sub">

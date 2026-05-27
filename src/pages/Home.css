@@ -123,53 +123,41 @@
   padding: 46px;
   border-radius: 28px;
   overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
+/* 영상 */
+.card-video {
+  position: absolute;
+  inset: 0;
 
-.firem-card {
-  background-image: url('/images/mainscreen/firetest-new.jpg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  z-index: 1;
 }
-
-.carm-card {
-  background-image: url('/images/mainscreen/cartest-new.jpg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.minimalm-card {
-  background-image: url('/images/mainscreen/minimal-test2.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
+/* 어둡게 */
 .fire-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.28);
+  z-index: 2;
 }
-
+/* 내용 */
 .fire-content {
   position: relative;
-  z-index: 2;
-  width: 100%;
+  z-index: 3;
   height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .fire-text {
-  position: absolute;
-  top: 0;
-  left: 0;
+color: white;
 }
 
 .fire-text h3 {
-  color: white;
   font-size: 24px;
   font-weight: 300;
   line-height: 1.45;
@@ -177,7 +165,6 @@
 }
 
 .fire-text h2 {
-  color: white;
   font-size: 30px;
   font-weight: 300;
   margin-top: 25px;

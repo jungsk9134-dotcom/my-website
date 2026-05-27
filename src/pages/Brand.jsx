@@ -1,8 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Brand.css'
 
 function Brand() {
+  const videoRef = useRef(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+
+  const handlePlayVideo = () => {
+    if (videoRef.current) {
+      videoRef.current.play()
+      setIsPlaying(true)
+    }
+  }
   const navigate = useNavigate()
   const [scrollY, setScrollY] = useState(0)
 
@@ -33,10 +42,20 @@ function Brand() {
               )})`,
             }}
           >
-            <img
-              src="/images/brand/brand-main.jpg"
-              alt="Campora brand main"
-            />
+
+            <video
+              className="hero-video"
+              autoPlay
+              muted
+              loop
+              playsInline
+            >
+              <source
+                src="/images/brand/brand-main.mp4"
+                type="video/mp4"
+              />
+            </video>
+
           </div>
 
           <div className="hero-overlay"></div>
@@ -201,8 +220,28 @@ function Brand() {
       </section>
 
       <section className="brand-video">
-        <img src="/images/brand/brand5.jpg" alt="camping video" />
-        <div className="play-button">▶</div>
+
+        <video
+          ref={videoRef}
+          className="brand-video-player"
+          playsInline
+          controls={isPlaying}
+        >
+          <source
+            src="/images/brand/brand-video.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        {!isPlaying && (
+          <button
+            className="play-button"
+            onClick={handlePlayVideo}
+          >
+            ▶
+          </button>
+        )}
+
       </section>
 
       <section className="brand-mood">

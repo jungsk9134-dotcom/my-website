@@ -262,23 +262,33 @@ function CurationFire() {
 
   return (
     <main className="fire-page">
-      <section className="fire-hero">
-        <img
-          src="/images/curation-1/curationup.png"
-          alt="불멍 캠핑"
-          className="fire-hero-img"
-        />
+<section className="fire-hero">
 
-        <div className="fire-hero-dark"></div>
+  <video
+    className="fire-hero-video"
+    autoPlay
+    muted
+    loop
+    playsInline
+  >
+    <source
+      src="/images/curation-1/fire-hero.mp4"
+      type="video/mp4"
+    />
+  </video>
 
-        <div className="fire-hero-text">
-          <h2>
-            장작 소리만 들리는 밤,<br />
-            불빛 하나로 충분한
-          </h2>
-          <p>불멍 캠핑</p>
-        </div>
-      </section>
+  <div className="fire-hero-dark"></div>
+
+  <div className="fire-hero-text">
+    <h2>
+      장작 소리만 들리는 밤,<br />
+      불빛 하나로 충분한
+    </h2>
+
+    <p>불멍 캠핑</p>
+  </div>
+
+</section>
 
       <section className="fire-products">
         <div className="section-mark"></div>
