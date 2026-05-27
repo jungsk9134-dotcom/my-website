@@ -29,6 +29,8 @@ function ProductDetail({ onAddCart }) {
   const [isEditQaModalOpen, setIsEditQaModalOpen] = useState(false)
   const [editQaId, setEditQaId] = useState(null)
   const [editQaText, setEditQaText] = useState('')
+  const [isDeleteQaPopupOpen, setIsDeleteQaPopupOpen] = useState(false)
+  const [deleteQaId, setDeleteQaId] = useState(null)
 
   const detailRef = useRef(null)
   const reviewRef = useRef(null)
