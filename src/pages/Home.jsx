@@ -112,7 +112,22 @@ function Home() {
 
   return (
     <main className="campora-home">
-      <section className="hero-section"></section>
+      <section className="hero-section">
+
+  <video
+    className="hero-video"
+    autoPlay
+    muted
+    loop
+    playsInline
+  >
+    <source
+      src="/videos/main.mp4"
+      type="video/mp4"
+    />
+  </video>
+
+</section>
 
       <section className="category-section">
         {categories.map((item) => (
