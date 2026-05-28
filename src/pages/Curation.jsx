@@ -74,14 +74,31 @@ function Curation() {
             </div>
           </section>
 
-          <section className="curation-card fire-card">
+          <section className="curation-card fire-card"
+            onMouseEnter={(e) => {
+
+              const video =
+                e.currentTarget.querySelector('.curation-card-video')
+
+              video.currentTime = 0
+              video.play()
+            }}
+
+            onMouseLeave={(e) => {
+
+              const video =
+                e.currentTarget.querySelector('.curation-card-video')
+
+              video.pause()
+              video.currentTime = 0
+            }}
+          >
 
             <video
               className="curation-card-video"
-              autoPlay
               muted
-              loop
               playsInline
+              preload="metadata"
             >
               <source
                 src="/images/curation/fire.mp4"
@@ -105,14 +122,31 @@ function Curation() {
 
           </section>
 
-          <section className="curation-card car-card">
+          <section className="curation-card car-card"
+            onMouseEnter={(e) => {
+
+              const video =
+                e.currentTarget.querySelector('.curation-card-video')
+
+              video.currentTime = 0
+              video.play()
+            }}
+
+            onMouseLeave={(e) => {
+
+              const video =
+                e.currentTarget.querySelector('.curation-card-video')
+
+              video.pause()
+              video.currentTime = 0
+            }}
+          >
 
             <video
               className="curation-card-video"
-              autoPlay
               muted
-              loop
               playsInline
+              preload="metadata"
             >
               <source
                 src="/images/curation/car.mp4"
@@ -136,14 +170,31 @@ function Curation() {
 
           </section>
 
-          <section className="curation-card minimal-card">
+          <section className="curation-card minimal-card"
+            onMouseEnter={(e) => {
+
+              const video =
+                e.currentTarget.querySelector('.curation-card-video')
+
+              video.currentTime = 0
+              video.play()
+            }}
+
+            onMouseLeave={(e) => {
+
+              const video =
+                e.currentTarget.querySelector('.curation-card-video')
+
+              video.pause()
+              video.currentTime = 0
+            }}
+          >
 
             <video
               className="curation-card-video"
-              autoPlay
               muted
-              loop
               playsInline
+              preload="metadata"
             >
               <source
                 src="/images/curation/minimal.mp4"
