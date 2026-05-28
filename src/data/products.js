@@ -19,10 +19,7 @@ export const products = [
     rating: 4.9,
     review: 15,
     image: '/images/products/prod-tt-01.png',
-
-    detailImages: [
-    '/images/products-info/prod-tt-08-info.png',
-  ],
+    
   },
   {
     id: 2,
@@ -51,7 +48,12 @@ export const products = [
     rating: 4.8,
     review: 7,
     image: '/images/products/prod-lf-04.png',
+    thumbs: [
+      '/images/cu.prod.lf/prod-lf-04-detail-01.png'
+    ]
   },
+
+
   {
     id: 4,
     name: '윈터브리즈 캠핑침낭',
@@ -98,10 +100,13 @@ export const products = [
     rating: 4.9,
     review: 11,
     image: '/images/products/prod-tc-05.png',
-
+    thumbs: [
+      '/images/cu.prod.tc/prod-tc-05-detail-01.png',
+    ],
     detailImages: [
     '/images/products-info/prod-tc-05-info.png',
-  ],
+    ],
+    
   },
   {
     id: 7,
@@ -141,7 +146,9 @@ export const products = [
     rating: 4.8,
     review: 11,
     image: '/images/products/prod-sc-02.png',
-
+    thumbs: [
+      '/images/cu.prod.sc/prod-sc-02-detail-01.png',
+    ],
   },
   {
     id: 10,
@@ -198,7 +205,9 @@ export const products = [
     rating: 4.8,
     review: 7,
     image: '/images/products/prod-lf-09.png',
-    
+    thumbs: [
+      '/images/cu.prod.lf/prod-lf-09-detail-01.png',
+    ],
   },
   {
     id: 14,
@@ -212,10 +221,12 @@ export const products = [
     rating: 4.8,
     review: 9,
     image: '/images/products/prod-sm-05.png',
-
+    thumbs: [
+      '/images/cu.prod.sm/prod-sm-05-detail-01.png',
+    ],
     detailImages: [
     '/images/products-info/prod-sm-05-info.png',
-  ],
+    ],
   },
   
   {
@@ -329,6 +340,9 @@ export const products = [
     rating: 4.8,
     review: 2,
     image: '/images/products/prod-tc-07.png',
+    thumbs: [
+      '/images/cu.prod.tc/prod-tc-07-detail-01.png',
+    ],
   },
   {
     id: 23,
@@ -342,6 +356,9 @@ export const products = [
     rating: 4.8,
     review: 7,
     image: '/images/products/prod-sc-05.png',
+    thumbs: [
+      '/images/cu.prod.sc/prod-sc-05-detail-01.png',
+    ],
   },
   {
     id: 24,
@@ -368,6 +385,9 @@ export const products = [
     rating: 4.8,
     review: 8,
     image: '/images/products/prod-lf-06.png',
+    thumbs: [
+      '/images/cu.prod.lf/prod-lf-06-detail-01.png',
+    ],
   },
   {
     id: 26,
@@ -411,10 +431,13 @@ export const products = [
     rating: 4.8,
     review: 4,
     image: '/images/products/prod-sm-04.png',
-
+    thumbs: [
+      '/images/cu.prod.sm/prod-sm-04-detail-01.png',
+    ],
     detailImages: [
     '/images/products-info/prod-sm-04-info.png',
   ],
+
   },
   {
     id: 29,
@@ -428,7 +451,11 @@ export const products = [
     rating: 4.8,
     review: 9,
     image: '/images/products/prod-lf-05.png',
+    thumbs: [
+      '/images/cu.prod.lf/prod-lf-05-detail-01.png',
+     ]
   },
+
   {
     id: 30,
     name: '이지폴딩 화로대&그릴',
@@ -441,6 +468,11 @@ export const products = [
     rating: 4.8,
     review: 6,
     image: '/images/products/prod-lf-08.png',
+    thumbs: [
+      '/images/cu.prod.lf/prod-lf-08-detail-02.png',
+      '/images/cu.prod.lf/prod-lf-08-detail-03.png',
+      '/images/cu.prod.lf/prod-lf-08-detail-04.png',
+    ],
   },
   {
     id: 31,
@@ -454,6 +486,9 @@ export const products = [
     rating: 4.8,
     review: 1,
     image: '/images/products/prod-sc-03.png',
+    thumbs: [
+      '/images/cu.prod.sc/prod-sc-03-detail-01.png',
+    ],
   },
   {
     id: 32,
@@ -519,6 +554,9 @@ export const products = [
     rating: 4.8,
     review: 3,
     image: '/images/products/prod-sc-06.png',
+    thumbs: [
+      '/images/cu.prod.sc/prod-sc-06-detail-01.png',
+    ],
   },
   {
     id: 37,
@@ -532,7 +570,10 @@ export const products = [
     rating: 4.8,
     review: 7,
     image: '/images/products/prod-sm-03.png',
-
+    thumbs: [
+      '/images/cu.prod.sm/prod-sm-03-detail-01.png',
+      '/images/cu.prod.sm/prod-sm-03-detail-02.png',
+    ],
     detailImages: [
     '/images/products-info/prod-sm-03-info.png',
   ],
@@ -549,6 +590,9 @@ export const products = [
     rating: 4.8,
     review: 5,
     image: '/images/products/prod-sc-04.png',
+    thumbs: [
+      '/images/cu.prod.sc/prod-sc-04-detail-01.png',
+    ],
   },
   {
     id: 39,
@@ -575,5 +619,8 @@ export const products = [
     rating: 4.8,
     review: 3,
     image: '/images/products/prod-tt-08.png',
+    detailImages: [
+      '/images/products-info/prod-tt-08-info.png',
+  ],
   },
 ]
