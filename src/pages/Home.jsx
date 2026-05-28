@@ -167,14 +167,32 @@ function Home() {
         <div className="lifestyle-cards">
 
           {/* 불멍 */}
-          <div className="life-card firem-card">
+          <div className="life-card firem-card"
+
+            onMouseEnter={(e) => {
+              const video = e.currentTarget.querySelector('video')
+
+              if (video) {
+                video.play()
+              }
+            }}
+
+            onMouseLeave={(e) => {
+              const video = e.currentTarget.querySelector('video')
+
+              if (video) {
+                video.pause()
+                video.currentTime = 0
+              }
+            }}
+          >
 
             <video
               className="card-video"
-              autoPlay
               muted
               loop
               playsInline
+              preload="metadata"
             >
               <source
                 src="/videos/fire.mp4"
@@ -201,14 +219,32 @@ function Home() {
           </div>
 
           {/* 차박 */}
-          <div className="life-card carm-card">
+          <div className="life-card carm-card"
+
+            onMouseEnter={(e) => {
+              const video = e.currentTarget.querySelector('video')
+
+              if (video) {
+                video.play()
+              }
+            }}
+
+            onMouseLeave={(e) => {
+              const video = e.currentTarget.querySelector('video')
+
+              if (video) {
+                video.pause()
+                video.currentTime = 0
+              }
+            }}
+          >
 
             <video
               className="card-video"
-              autoPlay
               muted
               loop
               playsInline
+              preload="metadata"
             >
               <source
                 src="/videos/car.mp4"
@@ -235,14 +271,32 @@ function Home() {
           </div>
 
           {/* 미니멀 */}
-          <div className="life-card minimalm-card">
+          <div className="life-card minimalm-card"
+
+            onMouseEnter={(e) => {
+              const video = e.currentTarget.querySelector('video')
+
+              if (video) {
+                video.play()
+              }
+            }}
+
+            onMouseLeave={(e) => {
+              const video = e.currentTarget.querySelector('video')
+
+              if (video) {
+                video.pause()
+                video.currentTime = 0
+              }
+            }}
+          >
 
             <video
               className="card-video"
-              autoPlay
               muted
               loop
               playsInline
+              preload="metadata"
             >
               <source
                 src="/videos/minimal.mp4"

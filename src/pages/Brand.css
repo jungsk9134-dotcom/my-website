@@ -128,7 +128,7 @@
 .hero-copy-window {
   position: absolute;
   left: 50%;
-  bottom: 120px;
+  bottom: 250px;
   /* 로고와 안 겹치도록 적절히 배치 */
   width: 680px;
   transform: translateX(-50%);
