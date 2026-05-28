@@ -270,6 +270,7 @@ function CurationFire() {
     muted
     loop
     playsInline
+    preload="metadata"
   >
     <source
       src="/images/curation-1/fire-hero.mp4"

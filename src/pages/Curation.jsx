@@ -16,6 +16,7 @@ function Curation() {
             muted
             loop
             playsInline
+            preload="metadata"
           >
             <source
               src="/images/curation/curation.mp4"

@@ -49,6 +49,7 @@ function Brand() {
               muted
               loop
               playsInline
+              preload="metadata"
             >
               <source
                 src="/images/brand/brand-main.mp4"
