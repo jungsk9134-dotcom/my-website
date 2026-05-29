@@ -405,7 +405,7 @@
 
 /* 비디오 섹션 */
 .brand-video {
-  width: 1400px;
+  width: 1140px;
   margin: 0 auto 140px;
   position: relative;
 }
@@ -414,7 +414,7 @@
   width: 100%;
   height: 640px;
 
-  object-fit: cover;
+  object-fit: contain;
 
   display: block;
 }
